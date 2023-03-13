@@ -1,3 +1,6 @@
 # DaFne Micro-Frontend App
 
-This is the initial commit
+- Design Files: https://www.figma.com/file/WLF8iTjZjvnc58rI6xMdHH/DaFne_UI?node-id=31%3A21&t=G4lABVcnh6X5yhti-1
+- UI Component Library: Material UI
+- Vertical Split Micro-Frontend-Architecture 
+- Resources: O'Reilly; Building Micro-Frontends - Scaling Teams and Projects, Empowering Developers. (Luca Mezzalira)
