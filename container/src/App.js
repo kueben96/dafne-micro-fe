@@ -1,9 +1,12 @@
 import React from 'react'
+import MarketingApp from './components/MarketingApp'
 
 const App = () => {
     return (
-        <h1>Hi there from DaFne Container</h1>
+        <div>
+            <h1>Hi there from DaFne Container</h1>
+            <MarketingApp />
+        </div>
     )
 }
-
 export default App
