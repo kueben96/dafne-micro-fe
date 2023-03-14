@@ -1,7 +1,15 @@
-import { Box, Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { Box, Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, styled, TextField } from '@mui/material'
 import React, { useState } from 'react'
 
 const RegistrationForm = () => {
+
+    const FormStyle = styled(Box)({
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '60%',
+        margin: '0 auto',
+    });
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -64,7 +72,7 @@ const RegistrationForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <FormStyle component="form" onSubmit={handleSubmit}>
             <TextField
                 fullWidth
                 label="First Name"
@@ -160,12 +168,12 @@ const RegistrationForm = () => {
                 )}
             </FormControl>
 
-            <Box mt={2} display="flex" alignItems="center">
+            <Box mt={2} display="flex" justifyContent="flext-start" sx={{ width: '100%' }}>
                 <Button variant="contained" color="primary" type="submit">
                     Submit
                 </Button>
             </Box>
-        </form>
+        </FormStyle>
     )
 }
 
