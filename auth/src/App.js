@@ -13,6 +13,30 @@ const App = () => {
     const LeftContainer = styled(Paper)(({ theme }) => ({
         height: '100vh',
         background: `linear-gradient(180deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.lighter})`,
+        display: 'flex',
+        flexDirection: 'column',
+
+        alignItems: 'flex-start',
+        padding: theme.spacing(30, 30),
+    }));
+
+
+    const Header = styled(Typography)(({ theme }) => ({
+        fontSize: theme.typography.h3.fontSize,
+        fontWeight: theme.typography.fontWeightBold,
+        color: theme.palette.common.white,
+    }));
+
+    const Subline = styled(Typography)(({ theme }) => ({
+        fontSize: theme.typography.subtitle1.fontSize,
+        color: theme.palette.neutral.white,
+        marginTop: theme.spacing(5),
+    }));
+
+    const LoginButton = styled(Button)(({ theme }) => ({
+        marginTop: theme.spacing(5),
+        color: theme.palette.common.white,
+        borderColor: theme.palette.common.white,
     }));
 
     const RightContainer = styled(Paper)({
@@ -26,10 +50,14 @@ const App = () => {
                 <Navbar />
                 <Grid container>
                     <Grid item xs={6}>
-                        <LeftContainer />
+                        <LeftContainer>
+                            <Header>Create an account</Header>
+                            <Subline>Already Have an Account?</Subline>
+                            <LoginButton variant="outlined">Login</LoginButton></LeftContainer>
                     </Grid>
                     <Grid item xs={6}>
                         <RightContainer>
+
                             <RegistrationForm />
                         </RightContainer>
                     </Grid>

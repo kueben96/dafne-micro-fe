@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, styled, TextField } from '@mui/material'
+import { Box, Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, styled, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 
 const RegistrationForm = () => {
@@ -73,6 +73,9 @@ const RegistrationForm = () => {
 
     return (
         <FormStyle component="form" onSubmit={handleSubmit}>
+            <Box mt={2} display="flex" justifyContent="flext-start" sx={{ width: '100%' }}>
+                <Typography variant='h4'>Personal Data</Typography>
+            </Box>
             <TextField
                 fullWidth
                 label="First Name"
