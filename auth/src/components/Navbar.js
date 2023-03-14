@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import LogoImg from '../assets/images/logo.png'
 
 const CustomToolbar = styled(Toolbar)({
-    height: 150,
+    height: 130,
     marginLeft: 130,
 });
 
