@@ -10,6 +10,13 @@ export const theme = createTheme({
                     subtitle1: 'h2',
                     subtitle2: 'h3'
                 }
+            },
+        },
+        MuiAppBar: {
+            styleOverrides: {
+                root: {
+                    color: '#FFFFFF',
+                }
             }
         }
     },
