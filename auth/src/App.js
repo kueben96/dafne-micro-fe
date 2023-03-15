@@ -12,10 +12,9 @@ const App = () => {
 
     const LeftContainer = styled(Paper)(({ theme }) => ({
         height: '100vh',
-        background: `linear-gradient(180deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main}, ${theme.palette.primary.lighter})`,
+        background: `linear-gradient(120deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main} , ${theme.palette.neutral.white})`,
         display: 'flex',
         flexDirection: 'column',
-
         alignItems: 'flex-start',
         padding: theme.spacing(30, 30),
     }));
