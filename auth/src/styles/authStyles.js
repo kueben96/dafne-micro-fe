@@ -20,7 +20,6 @@ export const CustomToolbar = styled(Toolbar)({
     marginLeft: 130,
 });
 
-
 export const Logo = styled('img')({
     width: 180, // Set the width of the logo as per your requirement
     cursor: 'pointer',

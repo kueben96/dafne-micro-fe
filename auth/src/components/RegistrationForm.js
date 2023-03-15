@@ -5,21 +5,7 @@ import { formStyles } from '../styles/authStyles'
 
 const RegistrationForm = () => {
 
-
-
     const classes = formStyles()
-
-    // // wrapping does not work with forms instead --> makeStyles
-    // const FormContainer = styled(Box)(({ theme }) => ({
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     width: '100%',
-    //     [theme.breakpoints.up('sm')]: {
-    //         width: '60%',
-    //     },
-    //     margin: '0 auto',
-    //     alignItems: 'center',
-    // }));
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -32,8 +18,9 @@ const RegistrationForm = () => {
         agreedToTerms: false,
     });
 
-    const [formErrors, setFormErrors] = useState({});
+    const industryOptions = ['Urban Planning', 'Urban Design', 'Data Science', 'Consulting', 'Software Development', 'Research']
 
+    const [formErrors, setFormErrors] = useState({});
 
     const validateFormData = () => {
         const errors = {};
@@ -159,11 +146,10 @@ const RegistrationForm = () => {
                 />
                 <FormControl fullWidth margin="normal">
                     <InputLabel>Industry</InputLabel>
-                    <Select label="Industry" name="industry" value={formData.jobTitle} onChange={handleInputChange}>
-                        <MenuItem value="">Select Job Title</MenuItem>
-                        <MenuItem value="developer">Developer</MenuItem>
-                        <MenuItem value="designer">Designer</MenuItem>
-                        <MenuItem value="manager">Manager</MenuItem>
+                    <Select label="Industry" name="industry" value={formData.industry} onChange={handleInputChange}>
+                        {industryOptions.map((option) => (
+                            <MenuItem key={option} value={option}>{option}</MenuItem>
+                        ))}
                     </Select>
                     <FormHelperText error={formErrors.industry}>{formErrors.industry}</FormHelperText>
                 </FormControl>
@@ -191,7 +177,6 @@ const RegistrationForm = () => {
                 </Box>
             </form>
         </Box>
-        // </Box>
     )
 }
 
