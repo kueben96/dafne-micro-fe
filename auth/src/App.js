@@ -3,7 +3,7 @@ import { Paper, Container, ThemeProvider, Typography, Grid, Stack, Box, TextFiel
 
 import Navbar from './components/Navbar'
 
-import { theme } from './theme'
+import { theme } from './styles/theme'
 import RegistrationForm from './components/RegistrationForm'
 
 

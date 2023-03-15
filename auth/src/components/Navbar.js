@@ -1,17 +1,7 @@
 import { AppBar, Box, InputBase, styled, Toolbar, Typography, Badge, Avatar, Menu, MenuItem, useTheme, Button } from '@mui/material'
 import React, { useState } from 'react'
 import LogoImg from '../assets/images/logo.png'
-
-const CustomToolbar = styled(Toolbar)({
-    height: 130,
-    marginLeft: 130,
-});
-
-
-const Logo = styled('img')({
-    width: 180, // Set the width of the logo as per your requirement
-    cursor: 'pointer',
-});
+import { CustomToolbar, Logo } from '../styles/authStyles'
 
 const Navbar = () => {
 
