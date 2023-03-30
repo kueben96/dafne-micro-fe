@@ -11,6 +11,9 @@ const devConfig = {
             index: 'index.html'
         }
     },
+    output: {
+        publicPath: '/',
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html'
