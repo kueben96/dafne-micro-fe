@@ -12,6 +12,16 @@ export const theme = createTheme({
                 }
             },
         },
+        MuiButton: {
+            styleOverrides: {
+                root: ({ theme }) => ({
+                    color: theme.palette.primary,
+                    '&.MuiButton-containedPrimary': {
+                        color: theme.palette.common.white,
+                    },
+                }),
+            },
+        },
         MuiAppBar: {
             styleOverrides: {
                 root: {

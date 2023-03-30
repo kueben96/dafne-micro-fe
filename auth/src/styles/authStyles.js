@@ -36,11 +36,13 @@ export const Logo = styled('img')({
 
 export const LeftContainer = styled(Paper)(({ theme }) => ({
     height: '100%',
+    width: '100%',
     background: `linear-gradient(120deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main} , ${theme.palette.neutral.white})`,
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'flex-start',
-    padding: theme.spacing(30, 25),
+    paddingLeft: theme.spacing(25),
 }));
 
 export const RightContainer = styled(Paper)({
