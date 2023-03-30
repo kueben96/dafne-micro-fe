@@ -1,6 +1,8 @@
 import { Box, TextField, Typography, Button } from '@mui/material';
 import React, { useState } from 'react'
 import { formStyles } from '../styles/authStyles'
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import { grey, red } from '@mui/material/colors';
 const LoginForm = () => {
     const classes = formStyles()
 
@@ -28,25 +30,26 @@ const LoginForm = () => {
     return (
 
         <Box className={classes.formContainer}>
+            <LockOpenIcon style={{ fontSize: 90, }} color='primary' variant='filled' />
             <form onSubmit={handleSubmit} >
                 <Box mt={2} display="flex" justifyContent="flext-start" sx={{ width: '100%' }}>
-                    <Typography variant='h4'>Personal Data</Typography>
+                    <Typography variant='h4'>Account credentials</Typography>
                 </Box>
                 <TextField
                     fullWidth
-                    label="First Name"
+                    label="Email"
                     margin="normal"
-                    name="firstName"
-                    value={formData.firstName}
+                    name="email"
+                    value={formData.email}
                     onChange={handleInputChange}
                     required
                 />
                 <TextField
                     fullWidth
-                    label="Last Name"
+                    label="Password"
                     margin="normal"
-                    name="lastName"
-                    value={formData.lastName}
+                    name="password"
+                    value={formData.password}
 
                     required
                 />

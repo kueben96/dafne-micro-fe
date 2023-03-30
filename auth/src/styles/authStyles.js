@@ -6,9 +6,11 @@ export const formStyles = makeStyles((theme) => ({
     formContainer: {
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
+        height: '50%',
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            width: '60%',
+            width: '70%',
         },
         margin: '0 auto',
         alignItems: 'center',
