@@ -10,7 +10,7 @@ const AuthPageLayout = ({ isLoginMode, onToggleMode, children }) => {
         <ThemeProvider theme={theme}>
             <Box height="100vh" display="flex" flexDirection="column" overflow="hidden">
                 <Navbar />
-                <Grid container>
+                <Grid container height="100%">
                     <Grid item xs={isLoginMode ? 4 : 3} sm={isLoginMode ? 7 : 6}>
                         <LeftContainer>
                             <Header>{isLoginMode ? "Log in to DaFne" : "Create an account"}</Header>

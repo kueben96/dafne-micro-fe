@@ -7,13 +7,20 @@ export const formStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        height: '50%',
         width: '100%',
+        height: '100%',
         [theme.breakpoints.up('sm')]: {
             width: '70%',
         },
         margin: '0 auto',
         alignItems: 'center',
+        position: 'relative',
+
+    },
+    lockIcon: {
+        position: 'absolute',
+        top: theme.spacing(2),
+        right: theme.spacing(0),
     }
 }))
 
@@ -28,7 +35,7 @@ export const Logo = styled('img')({
 });
 
 export const LeftContainer = styled(Paper)(({ theme }) => ({
-    height: '100vh',
+    height: '100%',
     background: `linear-gradient(120deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main} , ${theme.palette.neutral.white})`,
     display: 'flex',
     flexDirection: 'column',
@@ -36,6 +43,12 @@ export const LeftContainer = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(30, 25),
 }));
 
+export const RightContainer = styled(Paper)({
+    height: '100%',
+    padding: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+});
 
 export const Header = styled(Typography)(({ theme }) => ({
     fontSize: theme.typography.h3.fontSize,
@@ -54,8 +67,3 @@ export const LoginButton = styled(Button)(({ theme }) => ({
     color: theme.palette.common.white,
     borderColor: theme.palette.common.white,
 }));
-
-export const RightContainer = styled(Paper)({
-    height: '100%',
-    padding: '40px',
-});

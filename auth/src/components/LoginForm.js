@@ -1,10 +1,11 @@
-import { Box, TextField, Typography, Button } from '@mui/material';
+import { Box, TextField, Typography, Button, useTheme } from '@mui/material';
 import React, { useState } from 'react'
 import { formStyles } from '../styles/authStyles'
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { grey, red } from '@mui/material/colors';
 const LoginForm = () => {
     const classes = formStyles()
+    const theme = useTheme()
 
     const [formData, setFormData] = useState({
         email: '',
@@ -30,7 +31,7 @@ const LoginForm = () => {
     return (
 
         <Box className={classes.formContainer}>
-            <LockOpenIcon style={{ fontSize: 90, }} color='primary' variant='filled' />
+            <LockOpenIcon className={classes.lockIcon} style={{ fontSize: 90, color: theme.palette.grey.light }} variant='filled' />
             <form onSubmit={handleSubmit} >
                 <Box mt={2} display="flex" justifyContent="flext-start" sx={{ width: '100%' }}>
                     <Typography variant='h4'>Account credentials</Typography>
