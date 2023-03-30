@@ -5,24 +5,12 @@ import LoginForm from './components/LoginForm'
 import { Routes, Route, Navigate, BrowserRouter, useNavigate } from 'react-router-dom'
 import AuthPageLayout from './components/AuthPageLayout'
 
-const LoginPage = ({ onToggleMode, isLoginMode }) => (
-    <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode}>
-        <LoginForm />
-    </AuthPageLayout>
-)
-const SignupPage = ({ onToggleMode, isLoginMode }) => (
-    <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode}>
-        <RegistrationForm />
-    </AuthPageLayout>
-);
+
 
 const App = () => {
 
     const [isLoginMode, setIsLoginMode] = useState(true);
     const navigate = useNavigate();
-    console.log("isLoginMode")
-    console.log(isLoginMode)
-
 
     const handleToggleMode = () => {
         setIsLoginMode(!isLoginMode);
@@ -32,6 +20,8 @@ const App = () => {
             navigate('/auth/login');
         }
     };
+
+
 
     return (
         <>
@@ -45,3 +35,18 @@ const App = () => {
 }
 
 export default App
+
+
+const LoginPage = ({ onToggleMode, isLoginMode }) => (
+    <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode}>
+        <LoginForm />
+    </AuthPageLayout>
+)
+const SignupPage = ({ onToggleMode, isLoginMode }) => {
+    console.log("entering this code")
+    return (
+        <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode}>
+            <RegistrationForm />
+        </AuthPageLayout>
+    );
+}

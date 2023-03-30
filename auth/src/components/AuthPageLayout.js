@@ -1,12 +1,11 @@
 import { Box, Grid, ThemeProvider } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import { Header, LeftContainer, LoginButton, RightContainer, Subline } from '../styles/authStyles'
 import Navbar from './Navbar'
 import { theme } from '../styles/theme'
 
 const AuthPageLayout = ({ isLoginMode, onToggleMode, children }) => {
-    console.log("Authpagelaou")
-    console.log(isLoginMode)
+
     return (
         <ThemeProvider theme={theme}>
             <Box height="100vh" display="flex" flexDirection="column" overflow="hidden">
