@@ -1,6 +1,6 @@
 import { Box, Grid, ThemeProvider } from '@mui/material'
 import React, { useState } from 'react'
-import { Header, LeftContainer, LoginButton, RightContainer, Subline } from '../styles/authStyles'
+import { Header, LeftContainer, ButtonDaFne, RightContainer, Subline } from '../styles/authStyles'
 import Navbar from './Navbar'
 import { theme } from '../styles/theme'
 
@@ -17,9 +17,9 @@ const AuthPageLayout = ({ isLoginMode, onToggleMode, children }) => {
                             <Subline>
                                 {isLoginMode ? "Don't have an account yet?" : "Already Have an Account?"}
                             </Subline>
-                            <LoginButton onClick={onToggleMode} variant="outlined">
+                            <ButtonDaFne onClick={onToggleMode} variant="outlined">
                                 {isLoginMode ? "Register" : "Login"}
-                            </LoginButton>
+                            </ButtonDaFne>
                         </LeftContainer>
                     </Grid>
                     <Grid item xs={isLoginMode ? 8 : 9} sm={isLoginMode ? 5 : 6}>

@@ -36,7 +36,7 @@ export const Logo = styled('img')({
 
 export const LeftContainer = styled(Paper)(({ theme }) => ({
     height: '100%',
-    width: '100%',
+    flex: '0 1 auto',
     background: `linear-gradient(120deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main} , ${theme.palette.neutral.white})`,
     display: 'flex',
     flexDirection: 'column',
@@ -47,6 +47,7 @@ export const LeftContainer = styled(Paper)(({ theme }) => ({
 
 export const RightContainer = styled(Paper)({
     height: '100%',
+    flex: '1 0 auto',
     padding: '20px',
     display: 'flex',
     flexDirection: 'column',
@@ -64,7 +65,7 @@ export const Subline = styled(Typography)(({ theme }) => ({
     marginTop: theme.spacing(5),
 }));
 
-export const LoginButton = styled(Button)(({ theme }) => ({
+export const ButtonDaFne = styled(Button)(({ theme }) => ({
     marginTop: theme.spacing(5),
     color: theme.palette.common.white,
     borderColor: theme.palette.common.white,
