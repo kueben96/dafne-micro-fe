@@ -1,12 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 // mount functin to start up the app
 
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App />,
+    },
+]);
+
 const mount = (el) => {
     ReactDOM.render(
-        <App></App>,
+        <RouterProvider router={router} />,
         el
     )
 }

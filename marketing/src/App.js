@@ -1,8 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const App = () => {
     return (
-        <h1>Marketing App</h1>
+        <div>
+            <h1>Marketing App</h1>
+            <Link to='/auth'>Link</Link>
+        </div>
     )
 }
 
