@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { BrowserRouter } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
-
+import { BrowserRouter, MemoryRouter } from 'react-router-dom'
 // mount functin to start up the app
+
+
 
 const mount = (el) => {
     ReactDOM.render(
-        <BrowserRouter basename="/"> <App></App></BrowserRouter>
+        <MemoryRouter basename="/"> <App></App></MemoryRouter>
         ,
         el
     )

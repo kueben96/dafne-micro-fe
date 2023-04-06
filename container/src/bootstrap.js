@@ -20,6 +20,9 @@ const router = createBrowserRouter([
     },
 ]);
 
+console.log("router")
+console.log(router)
+
 ReactDOM.render(
 
     <RouterProvider router={router} />

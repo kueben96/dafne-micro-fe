@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "start": "concurrently \"npm run start:container\" \"npm run start:auth\" \"npm run start:marketing\" \"npm run start:dafne\"",
+    "start:container": "cd container && npm start",
+    "start:auth": "cd auth && npm start",
+    "start:marketing": "cd marketing && npm start",
+    "start:dafne": "cd dafne && npm start",
+    "stop": "concurrently \"npm run stop:container\" \"npm run stop:auth\" \"npm run stop:marketing\" \"npm run stop:dafne\"",
+    "stop:container": "cd container && npm stop",
+    "stop:auth": "cd auth && npm stop",
+    "stop:marketing": "cd marketing && npm stop",
+    "stop:dafne": "cd dafne && npm stop"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
