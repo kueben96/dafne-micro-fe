@@ -8,6 +8,7 @@ import { BrowserRouter, MemoryRouter } from 'react-router-dom'
 
 const mount = (el) => {
     ReactDOM.render(
+        // sub apps memory history
         <MemoryRouter basename="/"> <App></App></MemoryRouter>
         ,
         el
