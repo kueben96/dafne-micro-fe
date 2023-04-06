@@ -19,7 +19,7 @@ const App = () => {
         <>
             <Routes>
                 <Route path="*" element={renderMFE(MarketingLazy)} ></Route>
-                <Route path="/auth" element={renderMFE(AuthLazy)} />
+                <Route path="/auth/*" element={renderMFE(AuthLazy)} />
                 <Route path="/dafne" element={renderMFE(DaFneLazy)} />
             </Routes>
         </>

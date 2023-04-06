@@ -7,9 +7,18 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
+        children: [
+            {
+                path: 'auth',
+                element: <App />,
+            },
+            {
+                path: 'dafne',
+                element: <App />,
+            }
+        ]
     },
 ]);
-
 
 ReactDOM.render(
 
