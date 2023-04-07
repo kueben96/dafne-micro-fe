@@ -5,7 +5,11 @@ const App = () => {
     return (
         <div>
             <h1>Marketing App</h1>
-            <Link to='/auth'>Link</Link>
+            {/* Communicate back to Container/parent */}
+            <Link to='/auth'>Auth</Link>
+            <Link to='/contribute'>Contribute</Link>
+            <Link to='/about'>About</Link>
+            <Link to='/documentation'>Documentation</Link>
         </div>
     )
 }

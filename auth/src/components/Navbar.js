@@ -1,7 +1,8 @@
-import { AppBar, Box, InputBase, styled, Toolbar, Typography, Badge, Avatar, Menu, MenuItem, useTheme, Button } from '@mui/material'
+import { AppBar, useTheme, } from '@mui/material'
 import React, { useState } from 'react'
 import LogoImg from '../assets/images/logo.png'
 import { CustomToolbar, Logo } from '../styles/authStyles'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
 
