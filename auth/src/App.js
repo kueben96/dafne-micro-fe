@@ -43,7 +43,7 @@ const LoginPage = ({ onToggleMode, isLoginMode }) => (
     </AuthPageLayout>
 )
 const SignupPage = ({ onToggleMode, isLoginMode }) => {
-    console.log("entering this code")
+
     return (
         <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode}>
             <RegistrationForm />
