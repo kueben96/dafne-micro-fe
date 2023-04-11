@@ -1,30 +1,33 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
-import { routes } from './routing/routes.js'
-import { BrowserRouter, MemoryRouter, createBrowserRouter, createMemoryRouter, RouterProvider } from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
+import { createRouter } from './routing/router-factory'
+
 // mount functin to start up the app
-
-
-
-const mount = (el) => {
-    const browserRouter = createBrowserRouter(routes)
-    const memoryRouter = createMemoryRouter(routes)
+const mount = ({
+    mountPoint,
+    initialPathname,
+    routingStrategy
+} = {}) => {
+    const router = createRouter({
+        strategy: routingStrategy || 'browser',
+        initialPathname: initialPathname || '/',
+    })
 
     ReactDOM.render(
-        // sub apps memory history
-        <RouterProvider router={browserRouter}><App /></RouterProvider>
-        ,
-        el
+        <RouterProvider router={router} />,
+        mountPoint
     )
+    return () => queueMicrotask(() => ReactDOM.unmountComponentAtNode(mountPoint));
 }
 // if in dev or isolation -> call mount immediately 
 
 if (process.env.NODE_ENV == 'development') {
     const devRoot = document.querySelector('#_auth-dev-root');
 
+
     if (devRoot) {
-        mount(devRoot);
+        mount({ mountPoint: devRoot, routingStrategy: 'browser' });
     }
 }
 

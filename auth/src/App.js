@@ -14,9 +14,9 @@ const App = () => {
     const handleToggleMode = () => {
         setIsLoginMode(!isLoginMode);
         if (isLoginMode === true) {
-            navigate('/auth/signup');
+            navigate('/signup');
         } else {
-            navigate('/auth/login');
+            navigate('/login');
         }
     };
 
@@ -24,9 +24,9 @@ const App = () => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Navigate to="/auth/login" replace />} />
-                <Route path="/auth/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
-                <Route path="/auth/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+                <Route path="/" element={<Navigate to="/login" replace />} />
+                <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+                <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
             </Routes>
         </>
     )

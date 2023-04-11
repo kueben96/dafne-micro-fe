@@ -1,17 +1,24 @@
 import React from 'react'
 import App from '../App'
+import NavigationManager from '../components/NavigationManager'
 
 export const routes = [
     {
         path: "/",
-        element: <App />,
+        element: (
+            <>
+                <NavigationManager>
+                    <App />
+                </NavigationManager>
+            </>
+        ),
         children: [
             {
-                path: '/auth/login',
+                path: '/login',
                 element: <App />,
             },
             {
-                path: '/auth/signup',
+                path: '/signup',
                 element: <App />,
             }
         ]
