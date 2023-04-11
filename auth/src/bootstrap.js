@@ -9,11 +9,10 @@ import { BrowserRouter, MemoryRouter, createBrowserRouter, createMemoryRouter, R
 
 const mount = (el) => {
     const browserRouter = createBrowserRouter(routes)
-    // const memoryRouter = createMemoryRouter()
+    const memoryRouter = createMemoryRouter(routes)
 
     ReactDOM.render(
         // sub apps memory history
-        // <MemoryRouter basename="/"> <App></App></MemoryRouter>
         <RouterProvider router={browserRouter}><App /></RouterProvider>
         ,
         el

@@ -1,24 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import { routes } from './routing/routes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-        children: [
-            {
-                path: 'auth',
-                element: <App />,
-            },
-            {
-                path: 'dafne',
-                element: <App />,
-            }
-        ]
-    },
-]);
+const router = createBrowserRouter(routes);
 
 ReactDOM.render(
 
