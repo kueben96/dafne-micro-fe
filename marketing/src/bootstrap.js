@@ -6,8 +6,6 @@ import { createRouter } from './routing/router-factory'
 
 // mount functin to start up the app
 
-// const router = createBrowserRouter(routes);
-
 const mount = ({
     mountPoint,
     initialPathname,
@@ -21,7 +19,7 @@ const mount = ({
         <RouterProvider router={router} />,
         mountPoint
     )
-    // return () => queueMicrotask(() => ReactDOM.unmountComponentAtNode(mountPoint));
+    return () => queueMicrotask(() => ReactDOM.unmountComponentAtNode(mountPoint));
 }
 // if in dev or isolation -> call mount immediately 
 
