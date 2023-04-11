@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { routes } from './routing/routes'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, BrowserRouter } from 'react-router-dom'
+import App from './App';
 
 const router = createBrowserRouter(routes);
 
 ReactDOM.render(
 
-    <RouterProvider router={router} />
+    <BrowserRouter><App /></BrowserRouter>
     ,
     document.querySelector('#root')
 )

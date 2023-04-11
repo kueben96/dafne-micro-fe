@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { mount } from "../../../marketing/src/bootstrap";
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const marketingBaseName = 'marketing'
+const marketingBaseName = ''
 
 const MarketingApp = () => {
     const wrapperRef = useRef(null);
