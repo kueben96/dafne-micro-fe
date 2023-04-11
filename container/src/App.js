@@ -1,12 +1,11 @@
-import React, { Suspense, lazy } from 'react'
-import { Routes, Route, Router } from 'react-router-dom'
+import React, { lazy } from 'react'
+import { Routes, Route } from 'react-router-dom'
 
 const App = () => {
 
     const MarketingLazy = lazy(() => import('./components/MarketingApp'))
     const DaFneLazy = lazy(() => import('./components/DafneApp'))
     const AuthLazy = lazy(() => import('./components/AuthApp'))
-
 
     const renderMFE = (MFE) => {
         return (
@@ -17,7 +16,6 @@ const App = () => {
     }
     return (
         <>
-
             <Routes>
                 <Route path="*" element={renderMFE(MarketingLazy)} ></Route>
                 <Route path="/auth/*" element={renderMFE(AuthLazy)} />
