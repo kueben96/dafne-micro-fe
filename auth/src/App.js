@@ -6,7 +6,6 @@ import { Routes, Route, Navigate, BrowserRouter, useNavigate } from 'react-route
 import AuthPageLayout from './components/AuthPageLayout'
 
 
-
 const App = () => {
 
     const [isLoginMode, setIsLoginMode] = useState(true);
@@ -20,7 +19,6 @@ const App = () => {
             navigate('/auth/login');
         }
     };
-
 
 
     return (
