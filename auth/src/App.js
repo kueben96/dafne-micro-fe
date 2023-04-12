@@ -25,7 +25,7 @@ const App = () => {
         <>
             <Routes>
                 <Route path="/" element={<Navigate to="/login" replace />} />
-                <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+                <Route index path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
                 <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
             </Routes>
         </>
