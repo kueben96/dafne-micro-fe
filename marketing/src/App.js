@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Routes, Route } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 const App = () => {
     return (
@@ -10,6 +10,7 @@ const App = () => {
             <Link to='/contribute'>Contribute</Link>
             <Link to='/about'>About</Link>
             <Link to='/documentation'>Documentation</Link>
+            <Outlet />
         </div>
     )
 }

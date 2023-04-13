@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { routes } from './routing/routes'
+import { RouterProvider } from 'react-router-dom'
 import { createRouter } from './routing/router-factory'
 
 // mount functin to start up the app
@@ -11,10 +10,12 @@ const mount = ({
     initialPathname,
     routingStrategy
 } = {}) => {
+
     const router = createRouter({
         strategy: routingStrategy || 'browser',
         initialPathname: initialPathname || '/',
     })
+
     ReactDOM.render(
         <RouterProvider router={router} />,
         mountPoint

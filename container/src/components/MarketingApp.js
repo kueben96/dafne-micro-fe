@@ -13,7 +13,6 @@ const MarketingApp = () => {
     // listens for navigation events and updates the location object accordingly
     useEffect(() => {
         const marketingAppNavigationHandler = (event) => {
-            console.log("inside marketing app navigation handler")
             const pathname = event.detail;
             const newPathname = `${marketingBaseName}${pathname}`
             if (newPathname === location.pathname) {

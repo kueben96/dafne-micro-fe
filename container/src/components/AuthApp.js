@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { mount } from "../../../auth/src/bootstrap";
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const authBaseName = 'auth'
+const authBaseName = '/auth'
 
 console.log("in auth app")
 const AuthApp = () => {
@@ -52,13 +52,11 @@ const AuthApp = () => {
         if (!isFirstRunRef.current) {
             return;
         }
-        console.log(wrapperRef)
-        let loc = location.pathname
-        console.log("loc")
-        console.log(loc)
+
         unmountRef.current = mount({
             mountPoint: wrapperRef.current,
             initialPathname: location.pathname.replace(authBaseName, ""),
+            routingStrategy: "memory",
         });
         isFirstRunRef.current = false;
     }, [location]);

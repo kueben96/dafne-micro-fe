@@ -24,9 +24,11 @@ const App = () => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Navigate to="/login" replace />} />
-                <Route index path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
-                <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+                <Route path="/">
+                    <Route index element={<Navigate to={"/login"} />} />
+                    <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+                    <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+                </Route>
             </Routes>
         </>
     )

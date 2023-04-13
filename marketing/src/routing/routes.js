@@ -10,12 +10,15 @@ export const routes = [
             <>
                 <NavigationManager >
                     <App />
-                    <Outlet />
                 </NavigationManager>
 
             </>
         ),
         children: [
+            {
+                index: true,
+                element: <h2>Contribute</h2>,
+            },
             {
                 path: 'contribute',
                 element: <h2>Contribute</h2>,

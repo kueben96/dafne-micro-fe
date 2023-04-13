@@ -1,7 +1,9 @@
 import React from 'react'
-import { dafneRoutingPrefix, authRoutingPrefix, marketingRoutingPrefix } from '../routing/constants'
 import { Outlet, Link } from 'react-router-dom'
 const Layout = () => {
+    const dafneRoutingPrefix = "dafne"
+    const authRoutingPrefix = "auth"
+    const marketingRoutingPrefix = "marketing"
     return (
         <>
             <nav style={{ marginBottom: "3rem" }}>
