@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
+import { Button } from '@mui/material'
 
-const App = () => {
+const App = ({ onAuthClicked }) => {
     return (
         <div>
             <h1>Marketing App</h1>
             {/* Communicate back to Container/parent */}
-            <Link to='/auth'>Auth</Link>
+            <Button onClick={onAuthClicked}>auth</Button>
             <Link to='/contribute'>Contribute</Link>
             <Link to='/about'>About</Link>
             <Link to='/documentation'>Documentation</Link>

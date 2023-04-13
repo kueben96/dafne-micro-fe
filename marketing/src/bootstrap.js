@@ -8,12 +8,14 @@ import { createRouter } from './routing/router-factory'
 const mount = ({
     mountPoint,
     initialPathname,
-    routingStrategy
+    routingStrategy,
+    onAuthClicked
 } = {}) => {
 
     const router = createRouter({
         strategy: routingStrategy || 'browser',
         initialPathname: initialPathname || '/',
+        onAuthClicked
     })
 
     ReactDOM.render(

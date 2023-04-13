@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { Routes, Route, Link, Navigate } from 'react-router-dom'
+import { Routes, Route, Link, Navigate, useNavigate } from 'react-router-dom'
 import Layout from './components/Layout'
 
 const App = () => {
@@ -8,12 +8,19 @@ const App = () => {
     const DaFneLazy = lazy(() => import('./components/DafneApp'))
     const AuthLazy = lazy(() => import('./components/AuthApp'))
 
+    const navigate = useNavigate()
+
     const renderMFE = (MFE) => {
         return (
             <React.Suspense fallback="Loading...">
-                <MFE />
+                <MFE onAuthClicked={navigateAuth} />
             </React.Suspense>
         )
+    }
+
+    const navigateAuth = () => {
+        navigate('/auth')
+
     }
     return (
         <>

@@ -58,14 +58,12 @@ const RegistrationForm = () => {
             ...prevFormData,
             [event.target.name]: event.target.value,
         }));
-        console.log(formData)
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         if (validateFormData()) {
             // Submit the form data to Keycloak for user registration
-            console.log(formData);
         }
     };
 

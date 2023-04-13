@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 const marketingBaseName = '/marketing'
 
-const MarketingApp = () => {
+const MarketingApp = ({ onAuthClicked }) => {
     const wrapperRef = useRef(null);
     const navigate = useNavigate();
     const location = useLocation();
@@ -52,6 +52,7 @@ const MarketingApp = () => {
             mountPoint: wrapperRef.current,
             initialPathname: location.pathname.replace(marketingBaseName, ""),
             routingStrategy: "memory",
+            onAuthClicked: onAuthClicked
         });
         isFirstRunRef.current = false;
     }, [location]);

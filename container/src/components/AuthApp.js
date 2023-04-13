@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 const authBaseName = '/auth'
 
-console.log("in auth app")
+
 const AuthApp = () => {
     const wrapperRef = useRef(null);
     const navigate = useNavigate();
@@ -12,7 +12,6 @@ const AuthApp = () => {
 
     // listens for navigation events and updates the location object accordingly
     useEffect(() => {
-        console.log("useEff1")
         const authAppNavigationHandler = (event) => {
             const pathname = event.detail;
             const newPathname = `${authBaseName}${pathname}`
@@ -34,10 +33,8 @@ const AuthApp = () => {
 
     // listens for location changes in the shell and dispatches notification to marketing app if the location starts with marketingBaseName
     useEffect(() => {
-        console.log("useEff2")
-        console.log(location.pathname)
+
         if (location.pathname.startsWith(authBaseName)) {
-            console.log("trueee")
             window.dispatchEvent(
                 new CustomEvent("[shell] navigated", {
                     detail: location.pathname.replace(authBaseName, ""),
