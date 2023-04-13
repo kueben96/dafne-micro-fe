@@ -1,5 +1,6 @@
 import React, { lazy } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Link, Navigate } from 'react-router-dom'
+import Layout from './components/Layout'
 
 const App = () => {
 
@@ -16,12 +17,17 @@ const App = () => {
     }
     return (
         <>
+            <Link to="/auth">auth</Link>
             <Routes>
-                <Route path="*" element={renderMFE(MarketingLazy)} ></Route>
-                <Route path="/auth/*" element={renderMFE(AuthLazy)} />
-                <Route path="/dafne" element={renderMFE(DaFneLazy)} />
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Navigate to={"/marketing"} />} />
+                    <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
+                    <Route path="/auth" element={renderMFE(AuthLazy)}></Route>
+                    <Route path="/dafne" element={renderMFE(DaFneLazy)} />
+                </Route>
             </Routes>
         </>
     )
 }
 export default App
+
