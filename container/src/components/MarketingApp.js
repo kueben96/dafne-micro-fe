@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { mount } from "../../../marketing/src/bootstrap";
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const marketingBaseName = ''
+const marketingBaseName = '/marketing'
 
 const MarketingApp = () => {
     const wrapperRef = useRef(null);
@@ -13,6 +13,7 @@ const MarketingApp = () => {
     // listens for navigation events and updates the location object accordingly
     useEffect(() => {
         const marketingAppNavigationHandler = (event) => {
+            console.log("inside marketing app navigation handler")
             const pathname = event.detail;
             const newPathname = `${marketingBaseName}${pathname}`
             if (newPathname === location.pathname) {
@@ -51,6 +52,7 @@ const MarketingApp = () => {
         unmountRef.current = mount({
             mountPoint: wrapperRef.current,
             initialPathname: location.pathname.replace(marketingBaseName, ""),
+            routingStrategy: "memory",
         });
         isFirstRunRef.current = false;
     }, [location]);
