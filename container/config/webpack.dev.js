@@ -7,12 +7,19 @@ const packageJson = require('../package.json')
 const devConfig = {
     mode: 'development',
     entry: './src/index.js',
+    output: {
+        publicPath: '/'
+    },
     devServer: {
         port: 8080,
         historyApiFallback: {
             historyApiFallback: true,
+        },
+        headers: {
+            'Access-Control-Allow-Origin': '*',
         }
     },
+
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html'
