@@ -4,12 +4,12 @@ import { Header, LeftContainer, ButtonDaFne, RightContainer, Subline } from '../
 import Navbar from './Navbar'
 import { theme } from '../styles/theme'
 
-const AuthPageLayout = ({ isLoginMode, onToggleMode, children }) => {
+const AuthPageLayout = ({ isLoginMode, onToggleMode, children, onNavigateBackToShell }) => {
 
     return (
         <ThemeProvider theme={theme}>
             <Box height="100vh" display="flex" flexDirection="column" overflow="hidden">
-                <Navbar />
+                <Navbar onNavigateBackToShell={onNavigateBackToShell} />
                 <Grid container height="100%">
                     <Grid item xs={isLoginMode ? 4 : 3} sm={isLoginMode ? 7 : 6}>
                         <LeftContainer>

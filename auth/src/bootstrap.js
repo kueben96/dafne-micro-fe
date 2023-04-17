@@ -7,11 +7,13 @@ import { createRouter } from './routing/router-factory'
 const mount = ({
     mountPoint,
     initialPathname,
-    routingStrategy
+    routingStrategy,
+    onNavigateBackToShell
 } = {}) => {
     const router = createRouter({
         strategy: routingStrategy || 'browser',
         initialPathname: initialPathname || '/',
+        onNavigateBackToShell
     })
 
     ReactDOM.render(

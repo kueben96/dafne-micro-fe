@@ -21,8 +21,12 @@ function NavigationManager({ children }) {
     // if so, coponent navigates using useNavigate to the new url
     useEffect(() => {
         function shellNavigationHandler(event) {
+            console.log(" shellNavigationHandler event")
+            console.log(event)
             const pathname = event.detail;
+            console.log("match routes:", matchRoutes(routes, { pathname }))
             if (location.pathname === pathname || !matchRoutes(routes, { pathname })) {
+                console.log("DOESNT MATCH condition")
                 return;
             }
             navigate(pathname);
