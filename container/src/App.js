@@ -17,17 +17,15 @@ const App = () => {
     const renderMFE = (MFE) => {
         return (
             <React.Suspense fallback="Loading...">
-                <MFE onAuthClicked={navigateAuth} onNavigateBackToShell={navigateBackToShell} />
+                <MFE onNavigateOnShell={navigateOnShell} />
             </React.Suspense>
         )
     }
     // TODO: handle generic navigation to paths (navigateToParentPath("/auth"))
-    const navigateAuth = () => {
-        navigate('/auth')
-    }
-    const navigateBackToShell = () => {
-        console.log("fire onNavigateBackToShell")
-        navigate('/')
+    // Concern: How readable and understandable is this approach?
+    const navigateOnShell = (path) => {
+        console.log("fire onNavigateOnShell")
+        navigate(path)
     }
     return (
         <>

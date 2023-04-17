@@ -6,7 +6,7 @@ import { Routes, Route, Navigate, BrowserRouter, useNavigate } from 'react-route
 import AuthPageLayout from './components/AuthPageLayout'
 
 
-const App = ({ onNavigateBackToShell }) => {
+const App = ({ onNavigateOnShell }) => {
 
     const [isLoginMode, setIsLoginMode] = useState(true);
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ const App = ({ onNavigateBackToShell }) => {
             <Routes>
                 <Route path="/">
                     <Route index element={<Navigate to={"/login"} />} />
-                    <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} onNavigateBackToShell={onNavigateBackToShell} />} />
+                    <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} onNavigateOnShell={onNavigateOnShell} />} />
                     <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
                 </Route>
             </Routes>
@@ -37,15 +37,15 @@ const App = ({ onNavigateBackToShell }) => {
 export default App
 
 
-const LoginPage = ({ onToggleMode, isLoginMode, onNavigateBackToShell }) => (
-    <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode} onNavigateBackToShell={onNavigateBackToShell}>
+const LoginPage = ({ onToggleMode, isLoginMode, onNavigateOnShell }) => (
+    <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode} onNavigateOnShell={onNavigateOnShell}>
         <LoginForm />
     </AuthPageLayout>
 )
-const SignupPage = ({ onToggleMode, isLoginMode, onNavigateBackToShell }) => {
+const SignupPage = ({ onToggleMode, isLoginMode, onNavigateOnShell }) => {
 
     return (
-        <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode} onNavigateBackToShell={onNavigateBackToShell}>
+        <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode} onNavigateOnShell={onNavigateOnShell}>
             <RegistrationForm />
         </AuthPageLayout>
     );

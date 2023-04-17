@@ -3,7 +3,7 @@ import NavigationManager from '../components/NavigationManager'
 import { Outlet, useRoutes } from 'react-router-dom';
 import App from '../App';
 
-export const routes = (onAuthClicked) => {
+export const routes = (onNavigateOnShell) => {
     return (
         [
             {
@@ -11,7 +11,7 @@ export const routes = (onAuthClicked) => {
                 element: (
                     <>
                         <NavigationManager >
-                            <App onAuthClicked={onAuthClicked} />
+                            <App onNavigateOnShell={onNavigateOnShell} />
                         </NavigationManager>
 
                     </>

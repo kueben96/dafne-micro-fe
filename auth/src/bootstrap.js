@@ -8,12 +8,12 @@ const mount = ({
     mountPoint,
     initialPathname,
     routingStrategy,
-    onNavigateBackToShell
+    onNavigateOnShell
 } = {}) => {
     const router = createRouter({
         strategy: routingStrategy || 'browser',
         initialPathname: initialPathname || '/',
-        onNavigateBackToShell
+        onNavigateOnShell
     })
 
     ReactDOM.render(

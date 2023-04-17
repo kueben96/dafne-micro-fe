@@ -9,13 +9,13 @@ const mount = ({
     mountPoint,
     initialPathname,
     routingStrategy,
-    onAuthClicked
+    onNavigateOnShell
 } = {}) => {
 
     const router = createRouter({
         strategy: routingStrategy || 'browser',
         initialPathname: initialPathname || '/',
-        onAuthClicked
+        onNavigateOnShell
     })
 
     ReactDOM.render(
