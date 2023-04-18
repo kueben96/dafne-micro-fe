@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import RegistrationForm from './components/RegistrationForm'
 import LoginForm from './components/LoginForm'
@@ -10,6 +10,14 @@ const App = ({ onNavigateOnShell }) => {
 
     const [isLoginMode, setIsLoginMode] = useState(true);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const unlisten = navigate((location) => {
+            console.log(`Navigated to ${location.pathname}`);
+        });
+
+        return unlisten;
+    }, []);
 
     const handleToggleMode = () => {
         setIsLoginMode(!isLoginMode);

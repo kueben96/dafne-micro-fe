@@ -3,6 +3,7 @@ import { mount } from "../../../auth/src/bootstrap";
 import { useNavigate, useLocation } from 'react-router-dom'
 
 const authBaseName = '/auth'
+const loadedOnce = false;
 
 
 const AuthApp = ({ onNavigateOnShell }) => {
@@ -12,17 +13,39 @@ const AuthApp = ({ onNavigateOnShell }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const isParentPath = (path) => path === "/";
+
+
     // listens for navigation events and updates the location object accordingly
     useEffect(() => {
+
         const authAppNavigationHandler = (event) => {
-            console.log("authAppNavigationHandler event")
-            console.log(event)
+            console.log("loaded once")
+            console.log(loadedOnce)
+
+            // console.log("authAppNavigationHandler event")
+            // console.log(event)
+            // TODO: if pathName == '/' or isParent 
+            // TODO: if isParentPath after it was already loaded once
+            // TODO: could count -> but look for cleaner solution
             const pathname = event.detail;
-            const newPathname = `${authBaseName}${pathname}`
-            if (newPathname === location.pathname) {
-                return;
+            console.log('AUTH APP NAVIGATION EVENT EVENT DETAIL')
+            console.log(pathname)
+            if (isParentPath(pathname) && loadedOnce) {
+                console.log("is parent path")
+                navigate(-1)
+            } else {
+                console.log("in else statement")
+                loadedOnce = true;
+                console.log("loaded once after nav")
+                console.log(loadedOnce)
+                const newPathname = `${authBaseName}${pathname}`
+                if (newPathname === location.pathname) {
+                    console.log("returning")
+                    return;
+                }
+                navigate(newPathname);
             }
-            navigate(newPathname);
 
         }
         window.addEventListener("[auth] navigated", authAppNavigationHandler);

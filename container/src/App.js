@@ -10,7 +10,7 @@ const App = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
-    console.log("location")
+    console.log("location on container")
     console.log(location)
 
 
