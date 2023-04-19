@@ -3,8 +3,6 @@ import { mount } from "../../../auth/src/bootstrap";
 import { useNavigate, useLocation } from 'react-router-dom'
 
 const authBaseName = '/auth'
-const loadedOnce = false;
-
 
 const AuthApp = ({ onNavigateOnShell }) => {
     // TODO: handle back navigation from auth to main page 
@@ -20,32 +18,18 @@ const AuthApp = ({ onNavigateOnShell }) => {
     useEffect(() => {
 
         const authAppNavigationHandler = (event) => {
-            console.log("loaded once")
-            console.log(loadedOnce)
 
-            // console.log("authAppNavigationHandler event")
-            // console.log(event)
             // TODO: if pathName == '/' or isParent 
             // TODO: if isParentPath after it was already loaded once
             // TODO: could count -> but look for cleaner solution
             const pathname = event.detail;
-            console.log('AUTH APP NAVIGATION EVENT EVENT DETAIL')
-            console.log(pathname)
-            if (isParentPath(pathname) && loadedOnce) {
-                console.log("is parent path")
-                navigate(-1)
-            } else {
-                console.log("in else statement")
-                loadedOnce = true;
-                console.log("loaded once after nav")
-                console.log(loadedOnce)
-                const newPathname = `${authBaseName}${pathname}`
-                if (newPathname === location.pathname) {
-                    console.log("returning")
-                    return;
-                }
-                navigate(newPathname);
+            console.log("AUTH EVENT DETAIL", pathname)
+            const newPathname = `${authBaseName}${pathname}`
+            if (newPathname === location.pathname) {
+                return;
             }
+            navigate(newPathname);
+
 
         }
         window.addEventListener("[auth] navigated", authAppNavigationHandler);
@@ -58,10 +42,13 @@ const AuthApp = ({ onNavigateOnShell }) => {
         }
     }, [location]);
 
-    // listens for location changes in the shell and dispatches notification to marketing app if the location starts with marketingBaseName
+    // listens for location changes in the shell and dispatches notification to auth app if the location starts with authBaseName
     useEffect(() => {
 
         if (location.pathname.startsWith(authBaseName)) {
+            // TODO: shell navigation event dispatched when path is /
+            // TODO: implement back nav here when Event Detail is /
+
             window.dispatchEvent(
                 new CustomEvent("[shell] navigated", {
                     detail: location.pathname.replace(authBaseName, ""),

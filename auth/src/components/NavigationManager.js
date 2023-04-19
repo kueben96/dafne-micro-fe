@@ -15,21 +15,23 @@ function NavigationManager({ children }) {
     // navigate to new url 
     const navigate = useNavigate();
 
+    // TODO: handle isParentPath
+    const isParentPath = (path) => path === "/";
+
     // set up an event listener for [shell] navigated
     // dispatched by shell container whenever user navigates to new URL within the app.
     // when this event is received --> check if new url matches of any of the "routes" inside auth
     // if so, coponent navigates using useNavigate to the new url
     useEffect(() => {
         function shellNavigationHandler(event) {
-            // console.log(" shellNavigationHandler event")
-            // console.log(event)
             const pathname = event.detail;
-            console.log("SHELL NAVIGATION EVENT DETAIL")
-            console.log(pathname)
-            // console.log("match routes:", matchRoutes(routes, { pathname }))
+            console.log("SHELL NAVIGATION EVENT DETAIL", pathname)
+            console.log("SHELL nav handler location.pathname", location.pathname)
+
             if (location.pathname === pathname || !matchRoutes(routes, { pathname })) {
                 return;
             }
+
             navigate(pathname);
         }
 

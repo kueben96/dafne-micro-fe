@@ -11,14 +11,6 @@ const App = ({ onNavigateOnShell }) => {
     const [isLoginMode, setIsLoginMode] = useState(true);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const unlisten = navigate((location) => {
-            console.log(`Navigated to ${location.pathname}`);
-        });
-
-        return unlisten;
-    }, []);
-
     const handleToggleMode = () => {
         setIsLoginMode(!isLoginMode);
         if (isLoginMode === true) {

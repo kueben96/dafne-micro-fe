@@ -10,7 +10,8 @@ const App = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
-    console.log("location on container")
+    // TODO: handle routing
+    console.log("Location on container")
     console.log(location)
 
 
@@ -24,7 +25,6 @@ const App = () => {
     // TODO: handle generic navigation to paths (navigateToParentPath("/auth"))
     // Concern: How readable and understandable is this approach?
     const navigateOnShell = (path) => {
-        console.log("fire onNavigateOnShell")
         navigate(path)
     }
     return (
