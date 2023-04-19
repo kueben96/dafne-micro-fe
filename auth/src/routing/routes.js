@@ -2,7 +2,7 @@ import React from 'react'
 import App from '../App'
 import NavigationManager from '../components/NavigationManager'
 
-export const routes = (onNavigateOnShell) => {
+export const routes = ({ onNavigateOnShell }) => {
     return (
         [
             {

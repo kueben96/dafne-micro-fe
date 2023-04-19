@@ -3,7 +3,7 @@ import NavigationManager from '../components/NavigationManager'
 import { Outlet, useRoutes } from 'react-router-dom';
 import App from '../App';
 
-export const routes = (onNavigateOnShell) => {
+export const routes = ({ onNavigateOnShell }) => {
     return (
         [
             {
