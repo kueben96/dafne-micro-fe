@@ -3,7 +3,7 @@ import { routes } from "./routes";
 
 function createRouter({ strategy, initialPathname, onNavigateOnShell }) {
     if (strategy === 'browser') {
-        return createBrowserRouter(routes);
+        return createBrowserRouter(routes(onNavigateOnShell));
     }
 
     const initialEntries = [initialPathname || "/"];
