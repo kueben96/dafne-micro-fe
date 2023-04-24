@@ -27,6 +27,12 @@ function App() {
             <DafneDrawer handleDrawerToggle={handleNavToggle} isNavOpen={isNavOpen} />
             <Container>
                 <h1>DaFne App</h1>
+                <h1>DaFne App</h1>
+                <h1>DaFne App</h1>
+                <h1>DaFne App</h1>
+                <h1>DaFne App</h1>
+                <h1>DaFne App</h1>
+                <h1>DaFne App</h1>
             </Container>
         </ThemeProvider>
     );

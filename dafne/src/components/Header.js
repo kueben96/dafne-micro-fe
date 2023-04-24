@@ -24,7 +24,7 @@ const AppBarHeader = ({ handleDrawerToggle }) => {
 
     const theme = useTheme()
     return (
-        <AppBar sx={{ backgroundColor: theme.palette.neutral.white, zIndex: theme.zIndex.drawer + 1 }} position="fixed">
+        <AppBar sx={{ backgroundColor: theme.palette.neutral.white, zIndex: theme.zIndex.drawer + 1 }} position="relative">
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <IconButton color="primary" onClick={handleDrawerToggle}>

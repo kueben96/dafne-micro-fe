@@ -2,6 +2,7 @@ import React from 'react'
 import { styled } from '@mui/material/styles';
 import { ListItemButton, ListItemText, List } from '@mui/material';
 
+// TODO: navbar components with icons
 const NavComponents = () => {
     const CollapsableNavList = styled(List)(({ theme }) => ({
         width: 250,
