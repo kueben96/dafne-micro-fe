@@ -54,4 +54,7 @@ export const theme = createTheme({
             lighter: '#EDEDED'
         }
     },
+    layout: {
+        drawerWidth: 240,
+    }
 })

@@ -2,11 +2,12 @@ import { makeStyles } from '@mui/styles'
 
 export const drawerStyles = makeStyles((theme) => ({
     drawer: {
-        width: 240,
+        width: theme.layout.drawerWidth,
         flexShrink: 0,
+
     },
     drawerPaper: {
-        width: 240,
+        width: theme.layout.drawerWidth,
         marginTop: theme.mixins.toolbar.minHeight,
     },
     content: {
