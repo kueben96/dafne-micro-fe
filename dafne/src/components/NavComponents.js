@@ -11,7 +11,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 
 // TODO: Add Active Color to List Item
-// TODO: Add Sub Menus
+
 const IconListItem = ({ icon, text, children }) => {
     const [open, setOpen] = useState(false);
 
@@ -38,6 +38,15 @@ const IconListItem = ({ icon, text, children }) => {
         </>
     )
 }
+
+const ChildListItem = ({ text }) => {
+    return (
+        <ListItemButton>
+            <ListItemIcon />
+            <ListItemText primary={text} />
+        </ListItemButton>
+    )
+}
 const NavComponents = () => {
     const CollapsableNavList = styled(List)(({ theme }) => ({
         width: 250,
@@ -46,18 +55,25 @@ const NavComponents = () => {
 
     return (
         <CollapsableNavList>
-            <IconListItem icon={<SpeedOutlinedIcon />} text="Dashboard" />
-            <IconListItem icon={<DashboardOutlinedIcon />} text="Methods" children={
+            <IconListItem icon={<SpeedOutlinedIcon />} text="Dashboard" children={
                 <div>
-                    <ListItemButton>
-                        <ListItemText primary="Child 1" />
-                    </ListItemButton>
-                    <ListItemButton>
-                        <ListItemText primary="Child 2" />
-                    </ListItemButton>
+                    <ChildListItem text="Processes" />
+                    <ChildListItem text="Data" />
+                    <ChildListItem text="Models" />
                 </div>
             } />
-            <IconListItem icon={<LightbulbOutlinedIcon />} text="Use Case Explorer" />
+            <IconListItem icon={<DashboardOutlinedIcon />} text="Methods" children={
+                <div>
+                    <ChildListItem text="Reproduction" />
+                    <ChildListItem text="Fusion" />
+                    <ChildListItem text="Rule Based" />
+                </div>
+            } />
+            <IconListItem icon={<LightbulbOutlinedIcon />} text="Use Case Explorer" children={
+                <div>
+                    <ChildListItem text="Neighborhood Generation" />
+                </div>
+            } />
             <IconListItem icon={<ExtensionOutlinedIcon />} text="Contribute" />
             <IconListItem icon={<ArticleOutlinedIcon />} text="Documentation" />
             <IconListItem icon={<PersonOutlineOutlinedIcon />} text="Account" children={
