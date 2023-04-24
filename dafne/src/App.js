@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { useRef, useState, useEffect } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItemText from '@mui/material/ListItemText';
-import { styled } from '@mui/material/styles';
 
+import NavComponents from './components/NavComponents'
 import { theme } from './styles/theme'
-import { Container, ListItemButton } from '@mui/material';
-import Header from './components/Header';
+import { Container } from '@mui/material';
+import AppBarHeader from './components/Header';
+import { drawerStyles } from './styles/dafneStyles';
+import DafneDrawer from './components/DafneDrawer';
 
 
-const CollapsableNavList = styled(List)(({ theme }) => ({
-    width: 250,
-    padding: theme.spacing(2),
-}));
 
 // App component
 function App() {
@@ -27,29 +23,8 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Header handleDrawerToggle={handleNavToggle} />
-            <Drawer anchor="left" open={isNavOpen} onClose={handleNavToggle}>
-                <CollapsableNavList>
-                    <ListItemButton>
-                        <ListItemText primary="Dashboard" />
-                    </ListItemButton>
-                    <ListItemButton>
-                        <ListItemText primary="Methods" />
-                    </ListItemButton>
-                    <ListItemButton >
-                        <ListItemText primary="Use Case Explorer" />
-                    </ListItemButton>
-                    <ListItemButton >
-                        <ListItemText primary="Contribute" />
-                    </ListItemButton>
-                    <ListItemButton >
-                        <ListItemText primary="Documentation" />
-                    </ListItemButton>
-                    <ListItemButton >
-                        <ListItemText primary="Account" />
-                    </ListItemButton>
-                </CollapsableNavList>
-            </Drawer>
+            <AppBarHeader handleDrawerToggle={handleNavToggle} />
+            <DafneDrawer handleDrawerToggle={handleNavToggle} isNavOpen={isNavOpen} />
             <Container>
                 <h1>DaFne App</h1>
             </Container>

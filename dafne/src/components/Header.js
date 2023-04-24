@@ -20,11 +20,11 @@ const UserContainer = styled('div')({
 
 
 
-const Header = ({ handleDrawerToggle }) => {
+const AppBarHeader = ({ handleDrawerToggle }) => {
 
     const theme = useTheme()
     return (
-        <AppBar sx={{ backgroundColor: theme.palette.neutral.white }} position="static">
+        <AppBar sx={{ backgroundColor: theme.palette.neutral.white, zIndex: theme.zIndex.drawer + 1 }} position="fixed">
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <IconButton color="primary" onClick={handleDrawerToggle}>
@@ -56,4 +56,4 @@ const Header = ({ handleDrawerToggle }) => {
     )
 }
 
-export default Header
+export default AppBarHeader
