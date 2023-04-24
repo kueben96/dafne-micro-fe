@@ -25,7 +25,7 @@ export const theme = createTheme({
         MuiAppBar: {
             styleOverrides: {
                 root: {
-                    color: '#FFFFFF',
+                    color: '#1D201F',
                 }
             }
         }
