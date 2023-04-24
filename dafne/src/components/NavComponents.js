@@ -76,16 +76,7 @@ const NavComponents = () => {
             } />
             <IconListItem icon={<ExtensionOutlinedIcon />} text="Contribute" />
             <IconListItem icon={<ArticleOutlinedIcon />} text="Documentation" />
-            <IconListItem icon={<PersonOutlineOutlinedIcon />} text="Account" children={
-                <div>
-                    <ListItemButton>
-                        <ListItemText primary="Child 1" />
-                    </ListItemButton>
-                    <ListItemButton>
-                        <ListItemText primary="Child 2" />
-                    </ListItemButton>
-                </div>
-            } />
+            <IconListItem icon={<PersonOutlineOutlinedIcon />} text="Account" />
         </CollapsableNavList>
     )
 }

@@ -1,9 +1,30 @@
 import { createTheme } from '@mui/material'
 
 export const theme = createTheme({
+    typography: {
+        fontSize: 14,
+        h1: {
+            fontSize: '2.5rem',
+        },
+        h2: {
+            fontSize: '2rem',
+        },
+        h3: {
+            fontSize: '1.5rem',
+        },
+        subtitle1: {
+            fontSize: '1.25rem',
+        },
+        subtitle2: {
+            fontSize: '1rem',
+        },
+    },
+
     components: {
         MuiTypography: {
+
             defaultProps: {
+
                 variantMapping: {
                     h1: 'h2',
                     h2: 'h2',
