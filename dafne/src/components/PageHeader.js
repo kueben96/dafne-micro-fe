@@ -22,8 +22,8 @@ const AssetStatistic = styled(Box)(({ theme }) => ({
     marginRight: theme.spacing(2),
     marginLeft: theme.spacing(2),
 
-    '& > :first-child': {
-        marginBottom: theme.spacing(1),
+    '& > :first-of-type': {
+        marginBottom: theme.spacing(0.5),
     },
     '& > :last-child': {
 
@@ -82,9 +82,9 @@ const PageHeader = (props) => {
                             indicatorColor="primary"
                             aria-label="secondary tabs example"
                         >
-                            <Tab value="one" label="Processes" />
-                            <Tab value="two" label="Models" />
-                            <Tab value="three" label="Data" />
+                            <Tab value="one" label="Processes" sx={{ paddingLeft: 0 }} />
+                            <Tab value="two" label="Models" sx={{ paddingLeft: 0 }} />
+                            <Tab value="three" label="Data" sx={{ paddingLeft: 0 }} />
                         </Tabs>
                     </Box>
                 </Container>

@@ -51,6 +51,7 @@ const NavComponents = () => {
     const CollapsableNavList = styled(List)(({ theme }) => ({
         width: 250,
         padding: theme.spacing(2),
+        fontSize: 10
     }));
 
     return (

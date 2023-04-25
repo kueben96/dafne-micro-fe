@@ -4,7 +4,6 @@ export const drawerStyles = makeStyles((theme) => ({
     drawer: {
         width: theme.layout.drawerWidth,
         flexShrink: 0,
-
     },
     drawerPaper: {
         width: theme.layout.drawerWidth,

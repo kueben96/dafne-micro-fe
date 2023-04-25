@@ -3,7 +3,7 @@ import React from 'react'
 
 const CustomBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
     color: theme.palette.grey.regular,
-    fontSize: theme.typography.subtitle1.fontSize
+    fontSize: theme.typography.subtitle1.fontSize,
 }))
 
 // TODO: add links with props

@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material'
 
 export const theme = createTheme({
     typography: {
-        fontSize: 14,
+        fontSize: 13,
         h1: {
             fontSize: '2.5rem',
         },
@@ -34,7 +34,6 @@ export const theme = createTheme({
         MuiTypography: {
 
             defaultProps: {
-
                 variantMapping: {
                     h1: 'h2',
                     h2: 'h2',
@@ -42,6 +41,8 @@ export const theme = createTheme({
                     subtitle2: 'h3'
                 }
             },
+
+
         },
         MuiButton: {
             styleOverrides: {
