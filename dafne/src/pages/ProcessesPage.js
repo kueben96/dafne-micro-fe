@@ -99,12 +99,13 @@ const ProcessesPage = (props) => {
                                     <SearchIcon style={{ color: theme.palette.grey['300'] }} />
                                 </SearchIconWrapper>
                             </SearchBox>
-                            <IconButton color="secondary" variant="outlined">
-                                <DeleteIcon />
-                            </IconButton>
-                            <Button variant="contained" startIcon={<AddIcon />}>
-                                Add new
-                            </Button>
+                            <Box>
+                                <Button variant="outlined">Delete</Button>
+                                <Button variant="contained" startIcon={<AddIcon />}>
+                                    Add new
+                                </Button>
+                            </Box>
+
                         </Box>
                         <Box sx={{ height: 400, width: '100%' }}>
                             <DataGrid
@@ -124,6 +125,13 @@ const ProcessesPage = (props) => {
                             />
                         </Box>
 
+                    </Box>
+                </Container>
+            </ContentPaper>
+            <ContentPaper>
+                <Container>
+                    <Box>
+                        <Typography variant="h3">Quicklinks</Typography>
                     </Box>
                 </Container>
             </ContentPaper>
