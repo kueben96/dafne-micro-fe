@@ -2,8 +2,28 @@ import React, { useState } from 'react'
 import AppBarHeader from './components/Header'
 import DafneDrawer from './components/DafneDrawer'
 import { Container, CssBaseline } from '@mui/material'
+import { styled } from '@mui/styles';
+import { Outlet } from 'react-router-dom';
+
+const Main = styled('main')(
+    // TODO: check if there is still enough space for content only add margin if overlaps
+    // TODO: think of layout concept after implementing main content
+    ({ theme, open }) => ({
+        ... (open && {
+            marginLeft: theme.layout.drawerWidth,
+        }),
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+
+    }),
+);
 
 const Layout = () => {
+
+
+
     const [isNavOpen, setIsNavOpen] = useState(false);
 
     const handleNavToggle = () => {
@@ -14,15 +34,11 @@ const Layout = () => {
             <CssBaseline />
             <AppBarHeader handleDrawerToggle={handleNavToggle} />
             <DafneDrawer handleDrawerToggle={handleNavToggle} isNavOpen={isNavOpen} />
-            <Container>
-                <h1>DaFne App</h1>
-                <h1>DaFne App</h1>
-                <h1>DaFne App</h1>
-                <h1>DaFne App</h1>
-                <h1>DaFne App</h1>
-                <h1>DaFne App</h1>
-                <h1>DaFne App</h1>
-            </Container>
+            <Main open={isNavOpen}>
+
+                <Outlet />
+
+            </Main>
         </>
     )
 }

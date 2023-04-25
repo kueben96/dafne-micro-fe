@@ -13,14 +13,24 @@ export const theme = createTheme({
             fontSize: '1.5rem',
         },
         subtitle1: {
-            fontSize: '1.25rem',
+            fontSize: 12,
+            color: '#656565'
         },
         subtitle2: {
-            fontSize: '1rem',
+            fontSize: 10,
+            color: '#656565'
         },
     },
 
     components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                body: {
+                    backgroundColor: '#EDEDED',
+                },
+            },
+        },
+
         MuiTypography: {
 
             defaultProps: {
@@ -47,6 +57,7 @@ export const theme = createTheme({
             styleOverrides: {
                 root: {
                     color: '#1D201F',
+                    backgroundColor: "#fff",
                 }
             }
         }

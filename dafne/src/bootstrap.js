@@ -1,12 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
+import { BrowserRouter } from 'react-router-dom'
 
 // mount functin to start up the app
 
 const mount = (el) => {
     ReactDOM.render(
-        <App></App>,
+        <BrowserRouter>
+            <App></App>
+        </BrowserRouter>,
         el
     )
 }

@@ -6,6 +6,8 @@ import Drawer from '@mui/material/Drawer';
 import NavComponents from './components/NavComponents'
 import { theme } from './styles/theme'
 import Layout from './Layout';
+import { Route, Routes } from 'react-router-dom';
+import ProcessesPage from './pages/ProcessesPage';
 
 
 // App component
@@ -13,7 +15,12 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Layout />
+            <Routes>
+                <Route path='/' element={<Layout />}>
+                    <Route index element={<ProcessesPage />} />
+                </Route>
+            </Routes>
+            {/* <Layout /> */}
         </ThemeProvider>
     );
 }
