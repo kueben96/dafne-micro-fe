@@ -1,11 +1,11 @@
 import { AppBar, Badge, Box, Button, Container, IconButton, InputBase, Typography, styled } from '@mui/material'
-import AddIcon from '@mui/icons-material/Add';
-import SearchIcon from '@mui/icons-material/Search';
-import DeleteIcon from '@mui/icons-material/Delete';
+
 import React, { useState } from 'react'
 import PageHeader from '../components/PageHeader';
 import { useTheme } from '@emotion/react';
 import { DataGrid } from '@mui/x-data-grid';
+import TableToolBar from '../components/TableToolBar';
+import { SizedBoxVertical } from '../styles/dafneStyles';
 
 
 const ContentPaper = styled(Box)(({ theme }) => ({
@@ -14,56 +14,6 @@ const ContentPaper = styled(Box)(({ theme }) => ({
     background: theme.palette.neutral.white,
 }));
 
-const SearchBox = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    border: `1px solid ${theme.palette.grey[300]}`,
-    borderRadius: 0,
-}));
-
-const SearchInput = styled(InputBase)(({ theme }) => ({
-    marginLeft: theme.spacing(1),
-    flex: 1,
-}));
-
-const SearchIconWrapper = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: theme.spacing(6),
-    height: '100%',
-    borderLeft: `1px solid ${theme.palette.grey[300]}`,
-}));
-const StyledFilterButton = styled(Box)(({ theme }) => ({
-    display: "flex",
-    flexDirection: "row",
-    backgroundColor: 'transparent',
-    borderRadius: theme.shape.borderRadius - 0.5,
-    margin: theme.spacing(0.3),
-    padding: theme.spacing(1),
-    '&:hover': {
-        backgroundColor: 'transparent',
-    },
-    '&.selected': {
-        backgroundColor: theme.palette.neutral.white,
-    },
-}));
-const StyledFilterBadge = styled(Box)(({ theme, selected }) => ({
-    borderRadius: "50%",
-    color: theme.palette.neutral.white,
-    marginLeft: theme.spacing(1),
-    padding: theme.spacing(0, 0.8),
-    backgroundColor: selected ? theme.palette.secondary.main : theme.palette.grey.regular,
-
-}));
-
-const FilterButton = ({ selected, count, children, label, ...rest }) => (
-    <StyledFilterButton className={selected ? 'selected' : ''} {...rest}>
-        {children}
-        {/* <Typography>{label}</Typography> */}
-        <StyledFilterBadge selected={selected}>{count}</StyledFilterBadge>
-    </StyledFilterButton>
-);
 
 
 
@@ -114,21 +64,6 @@ const rows = [
 
 const ProcessesPage = (props) => {
 
-    const [selected, setSelected] = useState(0);
-    const filters = [
-        { label: 'All', count: 1 },
-        { label: 'Running', count: 0 },
-        { label: 'Completed', count: 0 },
-    ];
-
-    const handleFilterClick = index => {
-        setSelected(prevSelected => {
-            if (prevSelected === index) {
-                return prevSelected;
-            }
-            return index;
-        });
-    };
 
     const theme = useTheme()
 
@@ -138,34 +73,8 @@ const ProcessesPage = (props) => {
             <ContentPaper>
                 <Container>
                     <Box display="flex" flexDirection="column">
-                        <Box display="flex" flexDirection="row" justifyContent="space-between">
-                            <Box display="flex" flexDirection="row" sx={{ backgroundColor: theme.palette.grey.lighter }}>
-                                {filters.map((filter, index) => (
-                                    <FilterButton
-                                        key={index}
-                                        selected={selected === index}
-                                        count={filter.count}
-                                        label={filter.label}
-                                        onClick={() => handleFilterClick(index)}
-                                    >{filter.label}</FilterButton>
-                                ))}
-                            </Box>
-                            <SearchBox {...props}>
-                                <SearchInput placeholder="Search..." />
-                                <SearchIconWrapper>
-                                    <SearchIcon style={{ color: theme.palette.grey['300'] }} />
-                                </SearchIconWrapper>
-                            </SearchBox>
-                            <Box>
-                                <Button sx={{ marginRight: theme.spacing(0.5) }} variant="outlined"><DeleteIcon /></Button>
-                                <Button variant="contained"
-                                    startIcon={<AddIcon />}>
-                                    Add new
-                                </Button>
-
-                            </Box>
-
-                        </Box>
+                        <TableToolBar />
+                        <SizedBoxVertical space={2} />
                         <Box sx={{ height: 400, width: '100%' }}>
                             <DataGrid
                                 rows={rows}

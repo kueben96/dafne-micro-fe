@@ -1,4 +1,5 @@
-import { makeStyles } from '@mui/styles'
+import { Box } from '@mui/material';
+import { makeStyles, styled } from '@mui/styles'
 
 export const drawerStyles = makeStyles((theme) => ({
     drawer: {
@@ -14,3 +15,14 @@ export const drawerStyles = makeStyles((theme) => ({
         padding: theme.spacing(3),
     },
 }));
+
+
+export const SizedBoxVertical = styled(Box)(({ theme, space }) => ({
+    marginBottom: theme.spacing(space),
+}));
+export const SizedBoxHorizontal = styled(Box)(({ theme, space }) => ({
+    marginRight: theme.spacing(space),
+}));
+
+;
+
