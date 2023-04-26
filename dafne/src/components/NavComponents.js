@@ -12,6 +12,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // TODO: Add Active Color to List Item
+// TODO: handle parent being open when path is active or when user didnt collapse back
 
 const IconListItem = ({ icon, text, children, isActive }) => {
     const [open, setOpen] = useState(false);
