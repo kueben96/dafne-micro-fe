@@ -9,6 +9,7 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import { useNavigate } from 'react-router-dom';
 
 // TODO: Add Active Color to List Item
 
@@ -39,9 +40,14 @@ const IconListItem = ({ icon, text, children }) => {
     )
 }
 
-const ChildListItem = ({ text }) => {
+const ChildListItem = ({ text, path }) => {
+    const navigate = useNavigate()
+    const handleNavigation = () => {
+        navigate(path)
+    };
+
     return (
-        <ListItemButton>
+        <ListItemButton onClick={handleNavigation}>
             <ListItemIcon />
             <ListItemText primary={text} />
         </ListItemButton>
@@ -58,16 +64,17 @@ const NavComponents = () => {
         <CollapsableNavList>
             <IconListItem icon={<SpeedOutlinedIcon />} text="Dashboard" children={
                 <div>
-                    <ChildListItem text="Processes" />
-                    <ChildListItem text="Data" />
-                    <ChildListItem text="Models" />
+                    <ChildListItem text="Processes" path='/dashboard/processes' />
+                    <ChildListItem text="Processes" path="/dashboard/processes" />
+                    <ChildListItem text="Data" path="/dashboard/data" />
+                    <ChildListItem text="Models" path="/dashboard/models" />
                 </div>
             } />
             <IconListItem icon={<DashboardOutlinedIcon />} text="Methods" children={
                 <div>
-                    <ChildListItem text="Reproduction" />
-                    <ChildListItem text="Fusion" />
-                    <ChildListItem text="Rule Based" />
+                    <ChildListItem text="Reproduction" path="/reproduction" />
+                    <ChildListItem text="Fusion" path="/fusion" />
+                    <ChildListItem text="Rule Based" path="/rule-based" />
                 </div>
             } />
             <IconListItem icon={<LightbulbOutlinedIcon />} text="Use Case Explorer" children={

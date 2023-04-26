@@ -4,6 +4,7 @@ import { theme } from './styles/theme'
 import Layout from './Layout';
 import { Route, Routes } from 'react-router-dom';
 import ProcessesPage from './pages/ProcessesPage';
+import ReproductionPage from './pages/ReproductionPage';
 
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
             <Routes>
                 <Route path='/' element={<Layout />}>
                     <Route index element={<ProcessesPage />} />
+                    <Route path='/dashboard/processes' element={<ProcessesPage />} />
+                    <Route path='/reproduction' element={<ReproductionPage />} />
                 </Route>
             </Routes>
             {/* <Layout /> */}
