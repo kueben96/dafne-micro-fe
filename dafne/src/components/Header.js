@@ -48,7 +48,7 @@ const AppBarHeader = ({ handleDrawerToggle }) => {
                         <IconButton>
                             <Avatar sx={{ width: 30, height: 30 }} alt="User" src="/avatar.jpg" />
                         </IconButton>
-                        <Typography variant="body1" >John Doe</Typography>
+                        <Typography variant="body1" >Hanna Schmidt</Typography>
                     </Box>
                 </UserContainer>
             </Toolbar>
