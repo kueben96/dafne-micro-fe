@@ -15,7 +15,7 @@ function App() {
                 <Route path='/' element={<Layout />}>
                     <Route index element={<ProcessesPage />} />
                     <Route path='/dashboard/processes' element={<ProcessesPage />} />
-                    <Route path='/reproduction' element={<ReproductionPage />} />
+                    <Route path='/methods/reproduction' element={<ReproductionPage />} />
                 </Route>
             </Routes>
             {/* <Layout /> */}

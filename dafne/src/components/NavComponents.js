@@ -9,11 +9,11 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // TODO: Add Active Color to List Item
 
-const IconListItem = ({ icon, text, children }) => {
+const IconListItem = ({ icon, text, children, isActive }) => {
     const [open, setOpen] = useState(false);
 
     const handleClick = () => {
@@ -22,8 +22,8 @@ const IconListItem = ({ icon, text, children }) => {
     return (
         <>
 
-            <ListItemButton onClick={handleClick}>
-                <ListItemIcon>
+            <ListItemButton onClick={handleClick} sx={{ color: isActive ? 'primary.main' : 'inherit' }}>
+                <ListItemIcon sx={{ color: isActive ? 'primary.main' : 'inherit' }}>
                     {icon}
                 </ListItemIcon>
                 <ListItemText primary={text} />
@@ -40,20 +40,24 @@ const IconListItem = ({ icon, text, children }) => {
     )
 }
 
-const ChildListItem = ({ text, path }) => {
+const ChildListItem = ({ text, path, isActive }) => {
     const navigate = useNavigate()
     const handleNavigation = () => {
         navigate(path)
     };
 
     return (
-        <ListItemButton onClick={handleNavigation}>
+        <ListItemButton onClick={handleNavigation} sx={{ bgcolor: isActive ? 'primary.main' : 'transparent', opacity: isActive ? 0.7 : 1 }}>
             <ListItemIcon />
             <ListItemText primary={text} />
         </ListItemButton>
     )
 }
 const NavComponents = () => {
+
+    const location = useLocation();
+    const { pathname } = location;
+
     const CollapsableNavList = styled(List)(({ theme }) => ({
         width: 250,
         padding: theme.spacing(2),
@@ -62,19 +66,19 @@ const NavComponents = () => {
 
     return (
         <CollapsableNavList>
-            <IconListItem icon={<SpeedOutlinedIcon />} text="Dashboard" children={
+            <IconListItem icon={<SpeedOutlinedIcon />} text="Dashboard" isActive={pathname.startsWith('/dashboard')} children={
                 <div>
-                    <ChildListItem text="Processes" path='/dashboard/processes' />
-                    <ChildListItem text="Processes" path="/dashboard/processes" />
+                    <ChildListItem text="Processes" path='/dashboard/processes' isActive={pathname === '/dashboard/processes'} />
                     <ChildListItem text="Data" path="/dashboard/data" />
                     <ChildListItem text="Models" path="/dashboard/models" />
                 </div>
             } />
-            <IconListItem icon={<DashboardOutlinedIcon />} text="Methods" children={
+            <IconListItem icon={<DashboardOutlinedIcon />} text="Methods" isActive={pathname.startsWith('/methods')} children={
                 <div>
-                    <ChildListItem text="Reproduction" path="/reproduction" />
-                    <ChildListItem text="Fusion" path="/fusion" />
-                    <ChildListItem text="Rule Based" path="/rule-based" />
+                    <ChildListItem text="Reproduction" path="/methods/reproduction" isActive={pathname === '/methods/reproduction'} />
+                    <ChildListItem text="Fusion" path="/methods/fusion" isActive={pathname === '/methods/fusion'} />
+                    <ChildListItem text="Rule Based" path="/methods/rule-based" isActive={pathname === '/methods/rule-based'} />
+
                 </div>
             } />
             <IconListItem icon={<LightbulbOutlinedIcon />} text="Use Case Explorer" children={
