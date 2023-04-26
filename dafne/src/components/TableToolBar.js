@@ -40,10 +40,11 @@ const StyledFilterButton = styled(Box)(({ theme }) => ({
     },
 }));
 const StyledFilterBadge = styled(Box)(({ theme, selected }) => ({
-    borderRadius: "50%",
+    borderRadius: "20px",
+    height: "25px",
     color: theme.palette.neutral.white,
     marginLeft: theme.spacing(1),
-    padding: theme.spacing(0, 0.8),
+    padding: theme.spacing(0.2, 1),
     backgroundColor: selected ? theme.palette.secondary.main : theme.palette.grey.regular,
 
 }));
