@@ -87,6 +87,12 @@ export const theme = createTheme({
             regular: '#656565',
             light: '#B9B9B9',
             lighter: '#EDEDED'
+        },
+        error: {
+            main: '#FF4D4F'
+        },
+        success: {
+            main: '#52C41A'
         }
     },
     layout: {

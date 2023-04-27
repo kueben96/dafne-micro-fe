@@ -3,6 +3,7 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { Box, Button, Link, Typography, styled, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles'
 import EmptyRowsImage from '../assets/images/empty-image.png';
+import ProcessStatus from './ProcessStatus';
 
 
 const columns = [
@@ -16,22 +17,24 @@ const columns = [
         field: 'service',
         headerName: 'Service',
         flex: 1,
-        editable: true,
         headerClassName: 'header-cell',
     },
     {
         field: 'metric',
         headerName: 'Metric',
         flex: 1,
-        editable: true,
         headerClassName: 'header-cell',
     },
     {
         field: 'status',
         headerName: 'Status',
         flex: 1,
-        editable: true,
+
         headerClassName: 'header-cell',
+        renderCell: (params) => {
+            const { value } = params;
+            return <ProcessStatus status={value} />;
+        }
     },
     {
         field: 'score',
@@ -64,13 +67,18 @@ const columns = [
 ];
 
 const rows = [
-    { id: 1, service: 'Reproduction', metric: 'ML Taks', status: 'Completed', score: 0.96, dateCreated: new Date('2022-04-01'), actions: 'Action' },
+    { id: "ahdskessi23ns", service: 'Reproduction', metric: 'ML Taks', status: 'Completed', score: 0.96, dateCreated: new Date('2022-04-01') },
+    { id: "dserw2343244", service: 'Reproduction', metric: 'ML Taks', status: 'Error', score: 0.96, dateCreated: new Date('2022-04-01') },
+    { id: "02377832hjsad", service: 'Reproduction', metric: 'ML Taks', status: 'Running', score: 0.96, dateCreated: new Date('2022-04-01') },
+    { id: "9023903khs", service: 'Reproduction', metric: 'ML Taks', status: 'Paused', score: 0.96, dateCreated: new Date('2022-04-01') },
 ];
 
 const StyledLink = styled(Link)(({ theme }) => ({
     color: theme.palette.primary.main,
     marginRight: theme.spacing(2),
 }));
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
