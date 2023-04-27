@@ -47,8 +47,7 @@ export const theme = createTheme({
         MuiButton: {
             styleOverrides: {
                 root: ({ theme }) => ({
-                    color: theme.palette.primary,
-                    '&.MuiButton-containedPrimary': {
+                    '&.MuiButton-contained': {
                         color: theme.palette.common.white,
                     },
                 }),
@@ -66,14 +65,14 @@ export const theme = createTheme({
     palette: {
         type: 'light',
         primary: {
-            dark: '#3C9085',
             main: '#6CC1B5',
+            dark: '#3C9085',
             light: '#A9DBD4',
             lighter: '#E2F3F1'
         },
         secondary: {
-            dark: '#C2631E',
             main: '#E08542',
+            dark: '#C2631E',
             light: '#E9A372',
             lighter: '#F1CBB0'
         },
