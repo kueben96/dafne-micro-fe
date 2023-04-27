@@ -50,7 +50,7 @@ const StyledFilterBadge = styled(Box)(({ theme, selected }) => ({
     color: theme.palette.neutral.white,
     marginLeft: theme.spacing(1),
     padding: theme.spacing(0.2, 1),
-    backgroundColor: selected ? theme.palette.secondary.main : theme.palette.grey.regular,
+    backgroundColor: selected ? theme.palette.secondary.main : theme.palette.grey.light,
 
 }));
 

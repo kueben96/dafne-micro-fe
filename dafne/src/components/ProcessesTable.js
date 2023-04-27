@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { Box, Button, Typography, useTheme } from '@mui/material';
+import { Box, Button, Link, Typography, styled, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles'
 import EmptyRowsImage from '../assets/images/empty-image.png';
 
@@ -37,6 +37,7 @@ const columns = [
         field: 'score',
         headerName: 'Score',
         description: 'Shows the performance of the process',
+        type: 'number',
         flex: 0.5,
         headerClassName: 'header-cell',
     },
@@ -52,10 +53,24 @@ const columns = [
         headerName: 'Action',
         flex: 1,
         headerClassName: 'header-cell',
+        renderCell: (params) => (
+            <>
+                <StyledLink underline="none" href="#">Delete</StyledLink>
+                <StyledLink underline="none" href="#">Details</StyledLink>
+            </>
+        ),
+
     },
 ];
 
-const rows = [];
+const rows = [
+    { id: 1, service: 'Reproduction', metric: 'ML Taks', status: 'Completed', score: 0.96, dateCreated: new Date('2022-04-01'), actions: 'Action' },
+];
+
+const StyledLink = styled(Link)(({ theme }) => ({
+    color: theme.palette.primary.main,
+    marginRight: theme.spacing(2),
+}));
 
 const useStyles = makeStyles((theme) => ({
     root: {
