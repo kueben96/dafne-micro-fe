@@ -15,7 +15,9 @@ const SearchBox = styled(Box)(({ theme }) => ({
 const SearchInput = styled(InputBase)(({ theme }) => ({
     marginLeft: theme.spacing(1),
     flex: 1,
+    fontSize: theme.typography.medium.fontSize,
 }));
+
 
 const SearchIconWrapper = styled(Box)(({ theme }) => ({
     display: 'flex',
@@ -31,6 +33,7 @@ const StyledFilterButton = styled(Box)(({ theme }) => ({
     backgroundColor: 'transparent',
     borderRadius: "3px",
     margin: theme.spacing(0.3),
+    cursor: 'pointer',
     padding: theme.spacing(0.5),
     '&:hover': {
         backgroundColor: 'transparent',
@@ -41,7 +44,9 @@ const StyledFilterButton = styled(Box)(({ theme }) => ({
 }));
 const StyledFilterBadge = styled(Box)(({ theme, selected }) => ({
     borderRadius: "20px",
-    height: "25px",
+    height: "100%",
+    width: "100%",
+    fontSize: theme.typography.medium,
     color: theme.palette.neutral.white,
     marginLeft: theme.spacing(1),
     padding: theme.spacing(0.2, 1),
@@ -76,10 +81,14 @@ const TableToolBar = (props) => {
             return index;
         });
     };
+    const buttonStyles = {
+        fontSize: theme.typography.medium
+    };
+
 
 
     return (
-        <Box display="flex" flexDirection="row" justifyContent="space-between">
+        <Box display="flex" flexDirection="row" justifyContent="space-between" sx={{ fontSize: theme.typography.medium }}>
             <Box display="flex" flexDirection="row" sx={{ backgroundColor: theme.palette.grey.lighter, borderRadius: "3px" }}>
                 {filters.map((filter, index) => (
                     <FilterButton
@@ -98,8 +107,8 @@ const TableToolBar = (props) => {
                 </SearchIconWrapper>
             </SearchBox>
             <Box>
-                <Button sx={{ marginRight: theme.spacing(0.5) }} variant="outlined"><DeleteIcon /></Button>
-                <Button variant="contained"
+                <Button sx={{ ...buttonStyles, marginRight: theme.spacing(0.5) }} variant="outlined"><DeleteIcon /></Button>
+                <Button sx={buttonStyles} variant="contained"
                     startIcon={<AddIcon />}>
                     Add new
                 </Button>

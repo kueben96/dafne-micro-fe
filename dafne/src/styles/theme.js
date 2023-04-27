@@ -20,6 +20,9 @@ export const theme = createTheme({
             fontSize: 10,
             color: '#656565'
         },
+        medium: {
+            fontSize: 12,
+        }
     },
 
     components: {
