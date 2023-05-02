@@ -1,16 +1,16 @@
 import { AppBar, Box, Container, Divider, Icon, IconButton, Tab, Tabs, TextField, Toolbar, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import HeaderBreadcrumbs from './HeaderBreadcrumbs';
-import { pageHeaderStyles } from '../styles/dafneStyles';
+import { SizedBoxVertical, pageHeaderStyles } from '../styles/dafneStyles';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
-
+// TODO: Dialogue for save, edit and cancel
 
 const PageHeader = (props) => {
-
-    const classes = pageHeaderStyles()
+    const classes = pageHeaderStyles();
     const [isEditable, setIsEditable] = useState(false);
+    const [originalTitle, setOriginalTitle] = useState(props.title);
     const [title, setTitle] = useState(props.title);
 
     const handleTitleChange = (event) => {
@@ -18,10 +18,8 @@ const PageHeader = (props) => {
     };
 
     const handleTitleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            setIsEditable(false);
-            // TODO: handle state/session object of process instance
-            // props.onTitleChange(title);
+        if (event.key === "Enter") {
+            handleSaveClick();
         }
     };
 
@@ -29,17 +27,25 @@ const PageHeader = (props) => {
         setIsEditable(true);
     };
 
+
     const handleCancelClick = () => {
-        setIsEditable(false);
-        setTitle(props.title);
+        if (title !== originalTitle) {
+            if (window.confirm("Discard changes to title?")) {
+                setTitle(originalTitle);
+                setIsEditable(false);
+            }
+        } else {
+            setIsEditable(false);
+        }
     };
 
     const handleSaveClick = () => {
+        if (title !== originalTitle) {
+            setTitle(title);
+            setOriginalTitle(title);
+        }
         setIsEditable(false);
-        // TODO: handle state/session object of process instance
-        //   props.onTitleChange(title);
     };
-
 
     return (
         <AppBar position="static" className={classes.appBar}>
@@ -58,29 +64,35 @@ const PageHeader = (props) => {
                                         value={title}
                                         onChange={handleTitleChange}
                                         onKeyPress={handleTitleKeyPress}
-                                        onBlur={handleCancelClick}
-                                        sx={{ width: '70%' }}
+                                        sx={{ width: "70%" }}
                                     />
                                     <IconButton onClick={handleSaveClick}>
-                                        <CheckOutlinedIcon sx={{ padding: '1px' }} />
+                                        <CheckOutlinedIcon sx={{ padding: "1px" }} />
                                     </IconButton>
                                 </>
                             ) : (
                                 <>
-                                    <Typography variant="h4" fontWeight="bold" component="div" sx={{ paddingTop: 1, paddingBottom: 1 }}>
+                                    <Typography
+                                        variant="h4"
+                                        fontWeight="bold"
+                                        component="div"
+                                        sx={{ paddingTop: 1, paddingBottom: 1 }}
+                                    >
                                         {title}
                                     </Typography>
                                     <IconButton onClick={handleEditClick}>
-                                        <BorderColorOutlinedIcon sx={{ padding: '1px' }} />
+                                        <BorderColorOutlinedIcon sx={{ padding: "1px" }} />
                                     </IconButton>
                                 </>
                             )}
                         </Box>
+                        <Typography variant="small">Follow the steps to generate a synthetic dataset from an already existing dataset</Typography>
+                        <SizedBoxVertical space={2} />
                     </Box>
                 </Container>
             </Toolbar>
         </AppBar>
-    )
-}
+    );
+};
 
-export default PageHeader
+export default PageHeader;
