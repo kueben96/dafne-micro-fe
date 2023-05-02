@@ -18,7 +18,6 @@ function App() {
                     <Route path='/methods/reproduction' element={<ReproductionPage />} />
                 </Route>
             </Routes>
-            {/* <Layout /> */}
         </ThemeProvider>
     );
 }

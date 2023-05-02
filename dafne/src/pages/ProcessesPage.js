@@ -1,7 +1,7 @@
 import { AppBar, Badge, Box, Button, Container, IconButton, InputBase, Typography, styled } from '@mui/material'
 
 import React, { useState } from 'react'
-import PageHeader from '../components/PageHeader';
+import PageHeaderDashboard from '../components/PageHeaderDashboard';
 import { useTheme } from '@emotion/react';
 import TableToolBar from '../components/TableToolBar';
 import { SizedBoxVertical } from '../styles/dafneStyles';
@@ -24,7 +24,7 @@ const ProcessesPage = (props) => {
 
     return (
         <>
-            <PageHeader title="Dashboard" />
+            <PageHeaderDashboard title="Dashboard" />
             <ContentPaper>
                 <Container>
                     <Box display="flex" flexDirection="column">
