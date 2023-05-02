@@ -3,30 +3,11 @@ import PageHeader from '../components/PageHeader'
 import { ContentPaper } from '../styles/dafneStyles'
 import { Box, Button, Container, Step, StepIcon, StepLabel, Stepper, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react';
-import CheckIcon from '@mui/icons-material/Check';
+import CustomStepIcon from '../components/CustomStepIcon';
+
 
 const steps = ['Set generation settings', 'Set row number', 'View results'];
 
-const CustomStepIcon = ({ active, completed, icon, theme }) => {
-    const activeColor = theme.palette.primary.dark;
-    const inactiveColor = theme.palette.grey[300];
-    const completedColor = theme.palette.primary.dark;
-    const borderColor = active ? activeColor : completed ? completedColor : inactiveColor;
-    const iconColor = active ? '#fff' : completed ? completedColor : 'inherit';
-    return (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-            {completed ? (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, borderRadius: '50%', border: `1px solid ${borderColor}` }}>
-                    <CheckIcon style={{ fontSize: 18, color: completedColor }} />
-                </div>
-            ) : (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, borderRadius: '50%', backgroundColor: active ? activeColor : 'transparent', border: `2px solid ${borderColor}` }}>
-                    <Typography variant="body1" style={{ color: iconColor }}>{icon}</Typography>
-                </div>
-            )}
-        </div>
-    );
-};
 
 
 const ReproductionPage = () => {
@@ -86,6 +67,7 @@ const ReproductionPage = () => {
 
     const handleReset = () => {
         setActiveStep(0);
+        setCompleted(new Set())
     };
     return (
         <>
@@ -109,8 +91,6 @@ const ReproductionPage = () => {
                                     if (isStepCompleted(index)) {
                                         stepProps.completed = true;
                                     }
-
-                                    console.log("stepProps", stepProps)
 
                                     return (
                                         <Step key={label} {...stepProps}>
