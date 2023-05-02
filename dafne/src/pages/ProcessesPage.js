@@ -4,18 +4,8 @@ import React, { useState } from 'react'
 import PageHeaderDashboard from '../components/PageHeaderDashboard';
 import { useTheme } from '@emotion/react';
 import TableToolBar from '../components/TableToolBar';
-import { SizedBoxVertical } from '../styles/dafneStyles';
+import { ContentPaper, SizedBoxVertical } from '../styles/dafneStyles';
 import ProcessesTable from '../components/ProcessesTable';
-
-
-const ContentPaper = styled(Box)(({ theme }) => ({
-    margin: theme.spacing(2),
-    padding: theme.spacing(2, 0),
-    background: theme.palette.neutral.white,
-}));
-
-
-
 
 const ProcessesPage = (props) => {
 

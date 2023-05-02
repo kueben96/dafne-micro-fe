@@ -19,7 +19,6 @@ const UserContainer = styled('div')({
 })
 
 
-
 const AppBarHeader = ({ handleDrawerToggle }) => {
 
     const theme = useTheme()
