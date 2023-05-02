@@ -1,9 +1,10 @@
 import React from 'react'
 import PageHeader from '../components/PageHeader'
 import { ContentPaper } from '../styles/dafneStyles'
-import { Box, Button, Container, Step, StepIcon, StepLabel, Stepper, Typography } from '@mui/material'
+import { Box, Button, Container, Step, StepLabel, Stepper, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react';
 import CustomStepIcon from '../components/CustomStepIcon';
+import HorizontalStepper from '../components/HorizontalStepper';
 
 
 const steps = ['Set generation settings', 'Set row number', 'View results'];
@@ -69,6 +70,8 @@ const ReproductionPage = () => {
         setActiveStep(0);
         setCompleted(new Set())
     };
+
+
     return (
         <>
             <PageHeader title="MyReproductionProcess1" />
@@ -76,35 +79,7 @@ const ReproductionPage = () => {
                 <Container>
                     <Box sx={{ width: '100%' }}>
                         <Box display="flex" flexDirection="row" sx={{ width: '100%' }} justifyContent="center" >
-                            <Stepper sx={{ width: '70%' }} activeStep={activeStep}>
-                                {steps.map((label, index) => {
-                                    const stepProps = {};
-                                    const labelProps = {};
-                                    if (isStepOptional(index)) {
-                                        labelProps.optional = (
-                                            <Typography variant="caption">Optional</Typography>
-                                        );
-                                    }
-                                    if (isStepSkipped(index)) {
-                                        stepProps.completed = false;
-                                    }
-                                    if (isStepCompleted(index)) {
-                                        stepProps.completed = true;
-                                    }
-
-                                    return (
-                                        <Step key={label} {...stepProps}>
-                                            <StepLabel {...labelProps} StepIconComponent={props => (
-                                                <CustomStepIcon {...stepProps} icon={index + 1} completed={stepProps.completed} active={activeStep === index} theme={theme}>
-                                                    {index + 1}
-                                                </CustomStepIcon>
-                                            )}>
-                                                {label}
-                                            </StepLabel>
-                                        </Step>
-                                    );
-                                })}
-                            </Stepper>
+                            <HorizontalStepper activeStep={activeStep} isStepCompleted={isStepCompleted} isStepOptional={isStepOptional} isStepSkipped={isStepSkipped} steps={steps} theme={theme} width="100%"></HorizontalStepper>
                         </Box>
 
                         {activeStep === steps.length ? (
