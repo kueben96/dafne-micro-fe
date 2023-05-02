@@ -5,6 +5,7 @@ import { Box, Button, Container, Step, StepLabel, Stepper, Typography } from '@m
 import { useTheme } from '@emotion/react';
 import CustomStepIcon from '../components/CustomStepIcon';
 import HorizontalStepper from '../components/HorizontalStepper';
+import GenerationSettingsForm from '../components/GenerationSettingsForm';
 
 
 const steps = ['Set generation settings', 'Set row number', 'View results'];
@@ -71,6 +72,18 @@ const ReproductionPage = () => {
         setCompleted(new Set())
     };
 
+    function _renderStepContent(step) {
+        switch (step) {
+            case 0:
+                return <GenerationSettingsForm />
+            case 1:
+                return <div>Vert slider {step}</div>
+            case 2:
+                return <div>Vert slider {step}</div>
+            default:
+                return <div>Not Found</div>;
+        }
+    }
 
     return (
         <>
@@ -79,9 +92,10 @@ const ReproductionPage = () => {
                 <Container>
                     <Box sx={{ width: '100%' }}>
                         <Box display="flex" flexDirection="row" sx={{ width: '100%' }} justifyContent="center" >
-                            <HorizontalStepper activeStep={activeStep} isStepCompleted={isStepCompleted} isStepOptional={isStepOptional} isStepSkipped={isStepSkipped} steps={steps} theme={theme} width="100%"></HorizontalStepper>
+                            <HorizontalStepper activeStep={activeStep} isStepCompleted={isStepCompleted} isStepOptional={isStepOptional} isStepSkipped={isStepSkipped} steps={steps} theme={theme} width="75%"></HorizontalStepper>
                         </Box>
 
+                        {/* case if horizontal steps finished */}
                         {activeStep === steps.length ? (
                             <React.Fragment>
                                 <Typography sx={{ mt: 2, mb: 1 }}>
@@ -93,7 +107,8 @@ const ReproductionPage = () => {
                                 </Box>
                             </React.Fragment>
                         ) : (
-                            <React.Fragment>
+                            <Box>
+                                {_renderStepContent(activeStep)}
                                 <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
                                 <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                                     <Button
@@ -115,7 +130,7 @@ const ReproductionPage = () => {
                                         {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                                     </Button>
                                 </Box>
-                            </React.Fragment>
+                            </Box>
                         )}
                     </Box>
                 </Container>
