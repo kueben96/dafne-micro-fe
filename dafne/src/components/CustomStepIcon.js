@@ -9,7 +9,7 @@ const CustomStepIcon = ({ active, completed, icon, theme }) => {
     const inactiveColor = theme.palette.grey[300];
     const completedColor = theme.palette.primary.dark;
     const borderColor = active ? activeColor : completed ? completedColor : inactiveColor;
-    const iconColor = active ? theme.palette.neutral.white : completed ? completedColor : theme.palette.grey.regular;
+    const iconColor = active ? theme.palette.neutral.white : completed ? completedColor : theme.palette.grey.light;
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
             {completed ? (

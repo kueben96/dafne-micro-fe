@@ -1,11 +1,11 @@
 import React from 'react'
-import PageHeader from '../components/PageHeader'
-import { ContentPaper } from '../styles/dafneStyles'
+import PageHeader from '../../components/PageHeader'
+import { ContentPaper } from '../../styles/dafneStyles'
 import { Box, Button, Container, Step, StepLabel, Stepper, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react';
-import CustomStepIcon from '../components/CustomStepIcon';
-import HorizontalStepper from '../components/HorizontalStepper';
-import GenerationSettingsForm from '../components/GenerationSettingsForm';
+import CustomStepIcon from '../../components/CustomStepIcon';
+import HorizontalStepper from '../../components/HorizontalStepper';
+import GenerationSettingsForm from './GenerationSettingsForm';
 
 
 const steps = ['Set generation settings', 'Set row number', 'View results'];

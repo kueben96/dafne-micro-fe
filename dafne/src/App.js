@@ -4,7 +4,7 @@ import { theme } from './styles/theme'
 import Layout from './Layout';
 import { Route, Routes } from 'react-router-dom';
 import ProcessesPage from './pages/ProcessesPage';
-import ReproductionPage from './pages/ReproductionPage';
+import ReproductionPage from './pages/ReproductionPage/index';
 
 
 function App() {
