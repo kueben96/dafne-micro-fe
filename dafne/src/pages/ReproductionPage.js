@@ -1,11 +1,12 @@
 import React from 'react'
-import PageHeaderDashboard from '../components/PageHeaderDashboard'
-import { AppBar } from '@mui/material'
+import PageHeader from '../components/PageHeader'
+
+
 
 const ReproductionPage = () => {
     return (
         <>
-            <PageHeaderDashboard />
+            <PageHeader title="MyReproductionProcess1" />
         </>
     )
 }

@@ -1,5 +1,17 @@
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import { makeStyles, styled } from '@mui/styles'
+
+export const pageHeaderStyles = makeStyles((theme) => ({
+    appBar: {
+        backgroundColor: "#fff",
+        boxShadow: 'none',
+        paddingTop: theme.spacing(2)
+    },
+    toolbar: {
+        display: "flex",
+        justifyContent: "space-between",
+    },
+}));
 
 export const drawerStyles = makeStyles((theme) => ({
     drawer: {

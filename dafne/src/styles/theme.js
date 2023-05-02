@@ -12,6 +12,9 @@ export const theme = createTheme({
         h3: {
             fontSize: '1.5rem',
         },
+        h4: {
+            fontSize: '1.3rem',
+        },
         subtitle1: {
             fontSize: 12,
             color: '#656565'
@@ -40,8 +43,8 @@ export const theme = createTheme({
                 variantMapping: {
                     h1: 'h2',
                     h2: 'h2',
-                    subtitle1: 'h2',
-                    subtitle2: 'h3'
+                    // subtitle1: 'h2',
+                    // subtitle2: 'h3'
                 }
             },
 

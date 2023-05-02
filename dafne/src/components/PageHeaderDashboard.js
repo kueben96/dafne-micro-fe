@@ -2,18 +2,8 @@ import { AppBar, Box, Container, Divider, Tab, Tabs, Toolbar, Typography, styled
 import { makeStyles } from "@mui/styles";
 import React from 'react'
 import HeaderBreadcrumbs from './HeaderBreadcrumbs';
+import { pageHeaderStyles } from '../styles/dafneStyles';
 
-const useStyles = makeStyles((theme) => ({
-    appBar: {
-        backgroundColor: "#fff",
-        boxShadow: 'none',
-        paddingTop: theme.spacing(2)
-    },
-    toolbar: {
-        display: "flex",
-        justifyContent: "space-between",
-    },
-}));
 
 const AssetStatistic = styled(Box)(({ theme }) => ({
     display: 'flex',
@@ -32,7 +22,7 @@ const AssetStatistic = styled(Box)(({ theme }) => ({
 
 
 const PageHeaderDashboard = (props) => {
-    const classes = useStyles();
+    const classes = pageHeaderStyles()
     const [value, setValue] = React.useState('one');
 
     const handleChange = (event, newValue) => {
