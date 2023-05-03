@@ -12,9 +12,7 @@ const DataSourceSelectionComponent = ({ variant, selected, onClick }) => {
     const theme = useTheme()
 
     const handleClick = () => {
-        console.log('handle click')
         if (onClick) {
-            console.log('onClickAbailable')
             onClick();
         }
     };

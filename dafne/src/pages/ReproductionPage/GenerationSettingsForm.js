@@ -1,38 +1,51 @@
 import { Stepper, Box, Step, StepLabel, StepContent, Typography, Button, Paper, useTheme } from '@mui/material';
 import React from 'react'
 import CustomStepIcon from '../../components/CustomStepIcon';
-import DataSourceSelectionComponent from './DataSourceSelectionComponent';
+import { isStepCompleted, isStepSkipped } from '../../utils/stepperUtils';
+import { DataSourceSelectionStep } from './steps';
 
 
-const handleCatalogueSelection = () => {
-    // TODO: handle catalogue selection
-    console.log('catalogue selection')
-}
-const handleFileUpload = () => {
-    // TODO: handle catalogue selection
-    console.log('file uploAD')
-}
 
 
-const steps = [
-    {
-        label: 'Select source dataset',
-        content: <Box display="flex" flexDirection="row" >
-            <DataSourceSelectionComponent variant="catalogueSelection" onClick={handleCatalogueSelection} />
-            <DataSourceSelectionComponent variant="computerSelection" onClick={handleFileUpload} />
-        </Box>
-    },
-    {
-        label: 'Create an ad group',
-        content: <div> Hi</div>,
-    },
-    {
-        label: 'Create an ad',
-        content: <div> Hi</div>,
-    },
-];
 
 const GenerationSettingsForm = () => {
+
+    const [selectedFile, setSelectedFile] = React.useState(null);
+
+    const handleCatalogueSelection = () => {
+        // TODO: handle catalogue selection
+        console.log('catalogue selection')
+    }
+
+    const handleFileUpload = () => {
+        // Open file dialog to select file
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.onchange = (event) => {
+            setSelectedFile(event.target.files[0]);
+        };
+        input.click();
+    };
+
+    const steps = [
+        {
+            label: 'Select source dataset',
+            content: <DataSourceSelectionStep handleFileUpload={handleFileUpload} handleCatalogueSelection={handleCatalogueSelection} selectedFile={selectedFile} />
+        },
+        {
+            label: 'Select metric',
+            content: <div> Hi</div>,
+        },
+        {
+            label: 'Select model',
+            content: <div> Hi</div>,
+        },
+        {
+            label: 'Set parameters',
+            content: <div> Hi</div>,
+        },
+    ];
+
 
 
 
@@ -44,12 +57,12 @@ const GenerationSettingsForm = () => {
 
     const handleNext = () => {
         let newSkipped = skipped;
-        if (isStepSkipped(activeStep)) {
+        if (isStepSkipped(activeStep, skipped)) {
             newSkipped = new Set(newSkipped.values());
             newSkipped.delete(activeStep);
         }
         const newCompleted = new Set(completed);
-        if (!isStepCompleted(activeStep)) {
+        if (!isStepCompleted(activeStep, completed)) {
             newCompleted.add(activeStep);
         } else {
             newCompleted.delete(activeStep);
@@ -67,25 +80,16 @@ const GenerationSettingsForm = () => {
         setActiveStep(0);
     };
 
-    const isStepSkipped = (step) => {
-        return skipped.has(step);
-    };
-    const isStepCompleted = (step) => {
-        return completed.has(step);
-    };
-
-
-
     return (
         <Box sx={{ maxWidth: "70%" }}>
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => {
                     const stepProps = {};
 
-                    if (isStepSkipped(index)) {
+                    if (isStepSkipped(index, skipped)) {
                         stepProps.completed = false;
                     }
-                    if (isStepCompleted(index)) {
+                    if (isStepCompleted(index, completed)) {
                         stepProps.completed = true;
                     }
 
