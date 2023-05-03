@@ -10,35 +10,13 @@ const GenerationSettingsForm = () => {
 
 
     const [selectedSource, setSelectedSource] = React.useState(null);
-    const [selectedFileCatalogue, setSelectedFileCatalogue] = React.useState("DemoData.csv");
-    const [selectedFileUpload, setSelectedFileUpload] = React.useState(null);
-
-    // TODO: wir können nur eine source auswählen 
-    // entweder catalogue oder file system. raus rauskommt soll aber erstmal nur ein File Object oder ein String sein
-    const handleCatalogueSelection = () => {
-        // TODO: handle catalogue selection
-        console.log('catalogue selection')
-    }
-
-    const handleFileUpload = () => {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.onchange = (event) => {
-            setSelectedFileUpload(event.target.files[0]);
-        };
-        input.click();
-    };
 
     const steps = [
         {
             label: 'Select source dataset',
             content:
                 <DataSourceSelectionStep
-                    handleFileUpload={handleFileUpload}
-                    handleCatalogueSelection={handleCatalogueSelection}
-                    selectedFileCatalogue={selectedFileCatalogue}
-                    selectedFileUpload={selectedFileUpload}
-                    setSelectedFile={setSelectedSource} />
+                    setSelectedSource={setSelectedSource} />
         },
         {
             label: 'Select metric',
@@ -119,6 +97,7 @@ const GenerationSettingsForm = () => {
                             </StepLabel>
                             <StepContent>
                                 {step.content}
+                                <Typography>{selectedSource}</Typography>
                                 <Box sx={{ mb: 2 }}>
                                     <div>
                                         <Button
