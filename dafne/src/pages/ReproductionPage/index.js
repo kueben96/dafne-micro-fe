@@ -5,10 +5,10 @@ import { Box, Button, Container, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react';
 import HorizontalStepper from '../../components/HorizontalStepper';
 import GenerationSettingsForm from './GenerationSettingsForm';
+import { isStepCompleted, isStepOptional, isStepSkipped } from '../../utils/stepperUtils';
 
 
 const steps = ['Set generation settings', 'Set row number', 'View results'];
-
 
 
 const ReproductionPage = () => {
@@ -19,25 +19,15 @@ const ReproductionPage = () => {
     const [skipped, setSkipped] = React.useState(new Set());
     const [completed, setCompleted] = React.useState(new Set());
 
-    const isStepOptional = (step) => {
-        return step === 1;
-    };
-
-    const isStepSkipped = (step) => {
-        return skipped.has(step);
-    };
-    const isStepCompleted = (step) => {
-        return completed.has(step);
-    };
 
     const handleNext = () => {
         let newSkipped = skipped;
-        if (isStepSkipped(activeStep)) {
+        if (isStepSkipped(activeStep, skipped)) {
             newSkipped = new Set(newSkipped.values());
             newSkipped.delete(activeStep);
         }
         const newCompleted = new Set(completed);
-        if (!isStepCompleted(activeStep)) {
+        if (!isStepCompleted(activeStep, completed)) {
             newCompleted.add(activeStep);
         } else {
             newCompleted.delete(activeStep);
@@ -91,7 +81,15 @@ const ReproductionPage = () => {
                 <Container>
                     <Box sx={{ width: '100%' }}>
                         <Box display="flex" flexDirection="row" sx={{ width: '100%' }} justifyContent="center" >
-                            <HorizontalStepper activeStep={activeStep} isStepCompleted={isStepCompleted} isStepOptional={isStepOptional} isStepSkipped={isStepSkipped} steps={steps} theme={theme} width="75%"></HorizontalStepper>
+                            <HorizontalStepper
+                                activeStep={activeStep}
+                                isStepCompleted={step => isStepCompleted(step, completed)}
+                                isStepOptional={isStepOptional}
+                                isStepSkipped={step => isStepSkipped(step, skipped)}
+                                steps={steps}
+                                theme={theme}
+                                width="75%"
+                            />
                         </Box>
 
                         {/* case if horizontal steps finished */}
