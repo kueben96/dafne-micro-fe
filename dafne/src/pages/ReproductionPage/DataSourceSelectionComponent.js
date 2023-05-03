@@ -8,7 +8,7 @@ const CustomIcon = ({ icon, theme }) => {
     return <IconComponent sx={{ color: theme.palette.primary.dark }} />;
 };
 
-const DataSourceSelectionComponent = ({ variant, selected, onClick, selectedFileCatalogue = "DemoData.csv", selectedFileComputer = null }) => {
+const DataSourceSelectionComponent = ({ variant, selected, onClick, selectedFileCatalogue, selectedFileComputer = null }) => {
     const theme = useTheme()
 
     const handleClick = () => {

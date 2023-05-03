@@ -8,8 +8,13 @@ import { DataSourceSelectionStep } from './steps';
 
 const GenerationSettingsForm = () => {
 
-    const [selectedSource, setSelectedSource] = React.useState(null);
 
+    const [selectedSource, setSelectedSource] = React.useState(null);
+    const [selectedFileCatalogue, setSelectedFileCatalogue] = React.useState("DemoData.csv");
+    const [selectedFileUpload, setSelectedFileUpload] = React.useState(null);
+
+    // TODO: wir können nur eine source auswählen 
+    // entweder catalogue oder file system. raus rauskommt soll aber erstmal nur ein File Object oder ein String sein
     const handleCatalogueSelection = () => {
         // TODO: handle catalogue selection
         console.log('catalogue selection')
@@ -19,7 +24,7 @@ const GenerationSettingsForm = () => {
         const input = document.createElement('input');
         input.type = 'file';
         input.onchange = (event) => {
-            setSelectedSource(event.target.files[0]);
+            setSelectedFileUpload(event.target.files[0]);
         };
         input.click();
     };
@@ -31,7 +36,8 @@ const GenerationSettingsForm = () => {
                 <DataSourceSelectionStep
                     handleFileUpload={handleFileUpload}
                     handleCatalogueSelection={handleCatalogueSelection}
-                    selectedFile={selectedSource}
+                    selectedFileCatalogue={selectedFileCatalogue}
+                    selectedFileUpload={selectedFileUpload}
                     setSelectedFile={setSelectedSource} />
         },
         {

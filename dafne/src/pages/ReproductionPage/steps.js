@@ -2,7 +2,9 @@ import { Box } from '@mui/material'
 import React from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
 
-export const DataSourceSelectionStep = ({ handleFileUpload, handleCatalogueSelection, selectedFile }) => {
+export const DataSourceSelectionStep = ({ handleFileUpload, handleCatalogueSelection, selectedFileUpload, selectedFileCatalogue }) => {
+
+
 
     const [selected, setSelected] = React.useState(null);
 
@@ -13,7 +15,6 @@ export const DataSourceSelectionStep = ({ handleFileUpload, handleCatalogueSelec
     };
 
     const handleUploadClick = () => {
-        console.log("clicked file upload")
         handleFileUpload()
         setSelected(false);
         setSelectedFile("uploaded_file_name");
@@ -21,8 +22,8 @@ export const DataSourceSelectionStep = ({ handleFileUpload, handleCatalogueSelec
 
     return (
         <Box display="flex" flexDirection="row" >
-            <DataSourceSelectionComponent variant="catalogueSelection" onClick={handleCatalogueClick} selected={selected} selectedFileCatalogue={selectedFile} />
-            <DataSourceSelectionComponent variant="computerSelection" onClick={handleUploadClick} selected={selected} selectedFileComputer={selectedFile} />
+            <DataSourceSelectionComponent variant="catalogueSelection" onClick={handleCatalogueSelection} selected={selected} selectedFileCatalogue={selectedFileCatalogue} />
+            <DataSourceSelectionComponent variant="computerSelection" onClick={handleFileUpload} selected={selected} selectedFileComputer={selectedFileUpload} />
         </Box>
     )
 }
