@@ -4,7 +4,6 @@ import { Typography } from '@mui/material';
 
 const CustomStepIcon = ({ active, completed, icon, theme }) => {
 
-    console.log(active)
     const activeColor = theme.palette.primary.dark;
     const inactiveColor = theme.palette.grey[300];
     const completedColor = theme.palette.primary.dark;

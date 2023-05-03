@@ -1,9 +1,8 @@
 import React from 'react'
 import PageHeader from '../../components/PageHeader'
 import { ContentPaper } from '../../styles/dafneStyles'
-import { Box, Button, Container, Step, StepLabel, Stepper, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react';
-import CustomStepIcon from '../../components/CustomStepIcon';
 import HorizontalStepper from '../../components/HorizontalStepper';
 import GenerationSettingsForm from './GenerationSettingsForm';
 
