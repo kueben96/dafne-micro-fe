@@ -6,11 +6,9 @@ import { DataSourceSelectionStep } from './steps';
 
 
 
-
-
 const GenerationSettingsForm = () => {
 
-    const [selectedFile, setSelectedFile] = React.useState(null);
+    const [selectedSource, setSelectedSource] = React.useState(null);
 
     const handleCatalogueSelection = () => {
         // TODO: handle catalogue selection
@@ -18,11 +16,10 @@ const GenerationSettingsForm = () => {
     }
 
     const handleFileUpload = () => {
-        // Open file dialog to select file
         const input = document.createElement('input');
         input.type = 'file';
         input.onchange = (event) => {
-            setSelectedFile(event.target.files[0]);
+            setSelectedSource(event.target.files[0]);
         };
         input.click();
     };
@@ -30,7 +27,12 @@ const GenerationSettingsForm = () => {
     const steps = [
         {
             label: 'Select source dataset',
-            content: <DataSourceSelectionStep handleFileUpload={handleFileUpload} handleCatalogueSelection={handleCatalogueSelection} selectedFile={selectedFile} />
+            content:
+                <DataSourceSelectionStep
+                    handleFileUpload={handleFileUpload}
+                    handleCatalogueSelection={handleCatalogueSelection}
+                    selectedFile={selectedSource}
+                    setSelectedFile={setSelectedSource} />
         },
         {
             label: 'Select metric',

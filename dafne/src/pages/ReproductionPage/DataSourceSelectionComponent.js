@@ -8,7 +8,7 @@ const CustomIcon = ({ icon, theme }) => {
     return <IconComponent sx={{ color: theme.palette.primary.dark }} />;
 };
 
-const DataSourceSelectionComponent = ({ variant, selected, onClick }) => {
+const DataSourceSelectionComponent = ({ variant, selected, onClick, selectedFileCatalogue = "DemoData.csv", selectedFileComputer = null }) => {
     const theme = useTheme()
 
     const handleClick = () => {
@@ -39,9 +39,9 @@ const DataSourceSelectionComponent = ({ variant, selected, onClick }) => {
 
     const getSubtitle = () => {
         if (variant === 'catalogueSelection') {
-            return 'Selected: DemoData.csv';
+            return `Selected: ${selectedFileCatalogue}`;
         } else if (variant === 'computerSelection') {
-            return 'Upload your own data set (.csv, .xlsx, .xls and json types are supported)';
+            return selectedFileComputer?.name ?? 'Upload your own data set (.csv, .xlsx, .xls and json types are supported)';
         } else {
             return '';
         }
