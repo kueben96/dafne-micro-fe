@@ -7,28 +7,29 @@ export const DataSourceSelectionStep = ({ setSelectedSource }) => {
     const [selectedFileCatalogue, setSelectedFileCatalogue] = React.useState("DemoData.csv");
     const [selectedFileUpload, setSelectedFileUpload] = React.useState(null);
 
-    // TODO: if selected === true -> setSelectedSource()
-
     const handleCatalogueSelection = () => {
-        // TODO: handle catalogue selection d
         setSelectedFileCatalogue('Catalogue Change.csv');
-        if (selected !== 'catalogue') {
-            setSelected('catalogue');
-            setSelectedSource('catalogue', selectedFileCatalogue);
-        }
+        setSelected('catalogue');
+        setSelectedSource({
+            variant: 'catalogue',
+            file: selectedFileCatalogue
+        });
     }
 
     const handleFileUpload = () => {
-        if (selected !== 'upload') {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.onchange = (event) => {
-                setSelectedFileUpload(event.target.files[0]);
-                setSelected('upload');
-                setSelectedSource('upload', event.target.files[0].name);
-            };
-            input.click();
-        }
+
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.onchange = (event) => {
+            setSelectedFileUpload(event.target.files[0]);
+            setSelected('upload');
+            setSelectedSource({
+                variant: 'upload',
+                file: event.target.files[0].name
+            });
+        };
+        input.click();
+
     };
 
     return (

@@ -9,7 +9,10 @@ import { DataSourceSelectionStep } from './steps';
 const GenerationSettingsForm = () => {
 
 
-    const [selectedSource, setSelectedSource] = React.useState(null);
+    const [selectedSource, setSelectedSource] = React.useState({
+        variant: 'catalogue',
+        file: "DemoData.csv"
+    });
 
     const steps = [
         {
@@ -97,7 +100,7 @@ const GenerationSettingsForm = () => {
                             </StepLabel>
                             <StepContent>
                                 {step.content}
-                                <Typography>{selectedSource}</Typography>
+                                <Typography>{selectedSource.file}</Typography>
                                 <Box sx={{ mb: 2 }}>
                                     <div>
                                         <Button
