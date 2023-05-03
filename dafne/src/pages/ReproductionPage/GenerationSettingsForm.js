@@ -4,6 +4,10 @@ import CustomStepIcon from '../../components/CustomStepIcon';
 import StorageSharpIcon from '@mui/icons-material/StorageSharp';
 import FileUploadRoundedIcon from '@mui/icons-material/FileUploadRounded';
 
+const CustomIcon = ({ icon, theme }) => {
+    const IconComponent = icon;
+    return <IconComponent sx={{ color: theme.palette.primary.dark }} />;
+};
 const DataSourceSelectionComponent = ({ variant, selected, onClick }) => {
     const theme = useTheme()
 
@@ -15,9 +19,9 @@ const DataSourceSelectionComponent = ({ variant, selected, onClick }) => {
 
     const getIcon = () => {
         if (variant === 'catalogueSelection') {
-            return <StorageSharpIcon />;
+            return <CustomIcon icon={StorageSharpIcon} theme={theme} />;
         } else if (variant === 'computerSelection') {
-            return <FileUploadRoundedIcon />;
+            return <CustomIcon icon={FileUploadRoundedIcon} theme={theme} />;
         } else {
             return null;
         }
