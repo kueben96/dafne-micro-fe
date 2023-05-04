@@ -2,13 +2,14 @@ import { Stepper, Box, Step, StepLabel, StepContent, Typography, Button, Paper, 
 import React from 'react'
 import CustomStepIcon from '../../components/CustomStepIcon';
 import { isStepCompleted, isStepSkipped } from '../../utils/stepperUtils';
-import { DataSourceSelectionStep, DropDownSelectionStep, StepSummaryField } from './steps';
-import { modelOptionsReproduction } from '../../utils/constants';
+import { DataSourceSelectionStep, DropDownSelectionStep, ParameterSettingsStep, StepSummaryField } from './steps';
+import { metricOptionsReproduction, modelOptionsReproduction } from '../../utils/constants';
 
-// TODO: go to step on click -> gesture detector!
+// TODO: go to step on click -> gesture detector! and mark completed
 const GenerationSettingsForm = () => {
 
 
+    // TODO: save all states in an reproduction settings object
     const [selectedSource, setSelectedSource] = React.useState({
         variant: 'catalogue',
         file: "DemoData.csv"
@@ -33,17 +34,17 @@ const GenerationSettingsForm = () => {
         },
         {
             label: 'Select metric',
+            content: <DropDownSelectionStep setSelectedHook={setSelectedMetric} selectionItems={metricOptionsReproduction} />,
+            completedContent: <StepSummaryField label="selectedMetric" />
+        },
+        {
+            label: 'Select model',
             content: <DropDownSelectionStep setSelectedHook={setSelectedModel} selectionItems={modelOptionsReproduction} />,
             completedContent: <StepSummaryField label={selectedModel} />
         },
         {
-            label: 'Select model',
-            content: <DropDownSelectionStep />,
-            completedContent: <StepSummaryField label="selectedMetric" />
-        },
-        {
             label: 'Set parameters',
-            content: <div> Hi</div>,
+            content: <ParameterSettingsStep />
         },
     ];
 

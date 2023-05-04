@@ -1,5 +1,5 @@
-import { Box, FormControl, InputLabel, MenuItem, Select, TextField, Tooltip } from '@mui/material'
-import React, { useState } from 'react'
+import { Box, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField, Tooltip, Typography } from '@mui/material'
+import React, { useRef, useState } from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
 
 
@@ -14,11 +14,6 @@ export const StepSummaryField = ({ label }) => {
                         ✓
                     </Box>
                 ),
-                // sx: {
-                //     '& .MuiInputBase-input': {
-                //         padding: '4px',
-                //     },
-                // },
             }}
             sx={{
                 mb: 3,
@@ -99,5 +94,83 @@ export const DropDownSelectionStep = ({ selectionItems, setSelectedHook }) => {
                 ))}
             </Select>
         </FormControl>
+    );
+}
+
+export const ParameterSettingsStep = () => {
+    return (
+        <FormControl>
+
+            <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+            >
+                <FormControlLabel value="default" control={<Radio />} label="Default Settings" />
+                <FormControlLabel value="advanced" control={<Radio />} label="Advanced parameters" />
+            </RadioGroup>
+        </FormControl>
+    );
+}
+
+export const RowNumberSelectionStep = ({ defaultRowNumber, setSelectedRowNumber }) => {
+
+    const [selectedOption, setSelectedOption] = useState('inherit');
+    const [inputValue, setInputValue] = useState(defaultRowNumber);
+    const [defaultInputValue, setDefaultInputValue] = useState(defaultRowNumber);
+    const inputRef = useRef(null);
+
+    const handleChange = (event) => {
+        const value = event.target.value;
+        setSelectedOption(value);
+
+        if (value === 'inherit') {
+            setInputValue(defaultInputValue);
+            setSelectedRowNumber(defaultInputValue);
+        } else {
+            inputRef.current.focus();
+        }
+    };
+
+    const handleInputChange = (event) => {
+        const value = event.target.value;
+        setInputValue(value);
+        setSelectedRowNumber(parseInt(value, 10));
+    };
+
+    const handleInputBlur = () => {
+        if (inputValue.trim() === '') {
+            setInputValue(defaultInputValue);
+            setSelectedOption('inherit');
+            setSelectedRowNumber(defaultInputValue);
+        }
+    };
+
+    return (
+        <Box display="flex" flexDirection="column">
+            <Typography>How many rows do you want to generate?</Typography>
+            <FormControl>
+                <RadioGroup
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    name="row-radio-buttons-group"
+                    value={selectedOption}
+                    onChange={handleChange}
+                >
+                    <FormControlLabel value="inherit" control={<Radio />} label="Same size as original dataset" />
+                    <FormControlLabel value="custom" control={<Radio />} label="Enter desired row number" />
+                </RadioGroup>
+                <TextField
+                    inputRef={inputRef}
+                    type='number'
+                    sx={{ maxWidth: 400 }}
+                    disabled={selectedOption === 'inherit'}
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    onBlur={handleInputBlur}
+                    inputProps={{ style: { color: selectedOption === 'inherit' ? 'grey' : 'black' } }}
+                />
+            </FormControl>
+        </Box>
     );
 }

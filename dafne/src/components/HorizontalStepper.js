@@ -4,26 +4,20 @@ import CustomStepIcon from './CustomStepIcon';
 
 const HorizontalStepper = ({
     activeStep,
-    isStepOptional,
-    isStepSkipped,
     isStepCompleted,
     steps,
     theme,
-    width
+    width,
 }) => {
     return (
         <Stepper sx={{ width: width }} activeStep={activeStep}>
             {steps.map((label, index) => {
                 const stepProps = {};
                 const labelProps = {};
-                if (isStepOptional(index)) {
-                    labelProps.optional = (
-                        <Typography variant="caption">Optional</Typography>
-                    );
-                }
-                if (isStepSkipped(index)) {
+
+                {/* if (isStepSkipped(index)) {
                     stepProps.completed = false;
-                }
+                } */}
                 if (isStepCompleted(index)) {
                     stepProps.completed = true;
                 }

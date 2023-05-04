@@ -1,6 +1,6 @@
-export const isStepOptional = (step) => {
-    return step === 1;
-};
+// export const isStepOptional = (step) => {
+//     return step === 1;
+// };
 
 export const isStepSkipped = (step, skipped) => {
     return skipped.has(step);
