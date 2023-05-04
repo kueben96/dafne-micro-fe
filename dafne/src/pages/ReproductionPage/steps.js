@@ -1,5 +1,5 @@
-import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import React from 'react'
+import { Box, FormControl, InputLabel, MenuItem, Select, TextField, Tooltip } from '@mui/material'
+import React, { useState } from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
 
 
@@ -70,26 +70,34 @@ export const DataSourceSelectionStep = ({ setSelectedSource }) => {
     )
 }
 
-export const ModelSelectionStep = () => {
-    const [age, setAge] = React.useState('');
+export const DropDownSelectionStep = ({ selectionItems, setSelectedHook }) => {
+
+    const [value, setValue] = useState('')
+
 
     const handleChange = (event) => {
-        setAge(event.target.value);
+        const selectedValue = event.target.value;
+        setValue(selectedValue);
+        setSelectedHook(selectedValue);
     };
+
     return (
         <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <InputLabel id="model-select-label">Model</InputLabel>
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={age}
-                label="Age"
+                labelId="model-select-label"
+                id="model-select"
+                value={value}
+                label="Model"
                 onChange={handleChange}
             >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {selectionItems && selectionItems.map((option, index) => (
+                    <MenuItem key={index} value={option.value}>
+                        {option.label}
+                    </MenuItem>
+
+                ))}
             </Select>
         </FormControl>
-    )
+    );
 }

@@ -2,12 +2,10 @@ import { Stepper, Box, Step, StepLabel, StepContent, Typography, Button, Paper, 
 import React from 'react'
 import CustomStepIcon from '../../components/CustomStepIcon';
 import { isStepCompleted, isStepSkipped } from '../../utils/stepperUtils';
-import { DataSourceSelectionStep, ModelSelectionStep, StepSummaryField } from './steps';
-import { SizedBoxVertical } from '../../styles/dafneStyles';
+import { DataSourceSelectionStep, DropDownSelectionStep, StepSummaryField } from './steps';
+import { modelOptionsReproduction } from '../../utils/constants';
 
-
-
-
+// TODO: go to step on click -> gesture detector!
 const GenerationSettingsForm = () => {
 
 
@@ -15,10 +13,14 @@ const GenerationSettingsForm = () => {
         variant: 'catalogue',
         file: "DemoData.csv"
     });
+    const [selectedMetric, setSelectedMetric] = React.useState()
+    const [selectedModel, setSelectedModel] = React.useState()
     const theme = useTheme()
     const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState(new Set());
     const [skipped, setSkipped] = React.useState(new Set());
+
+
 
     const steps = [
         {
@@ -31,12 +33,13 @@ const GenerationSettingsForm = () => {
         },
         {
             label: 'Select metric',
-            content: <ModelSelectionStep />,
-            completedContent: <StepSummaryField label="selectedMetric" />
+            content: <DropDownSelectionStep setSelectedHook={setSelectedModel} selectionItems={modelOptionsReproduction} />,
+            completedContent: <StepSummaryField label={selectedModel} />
         },
         {
             label: 'Select model',
-            content: <div> Hi</div>,
+            content: <DropDownSelectionStep />,
+            completedContent: <StepSummaryField label="selectedMetric" />
         },
         {
             label: 'Set parameters',
@@ -98,24 +101,27 @@ const GenerationSettingsForm = () => {
 
                             <StepContent TransitionProps={{ in: true }} >
                                 {isStepCompleted(index, completed) && activeStep !== index ? (step.completedContent) : step.content}
-                                <Box sx={{ mb: 2 }}>
-                                    <div>
-                                        <Button
-                                            variant="contained"
-                                            onClick={handleNext}
-                                            sx={{ mt: 1, mr: 1 }}
-                                        >
-                                            {index === steps.length - 1 ? 'Finish' : 'Continue'}
-                                        </Button>
-                                        <Button
-                                            disabled={index === 0}
-                                            onClick={handleBack}
-                                            sx={{ mt: 1, mr: 1 }}
-                                        >
-                                            Back
-                                        </Button>
-                                    </div>
-                                </Box>
+                                {/* {index === activeStep ? (
+                                    <Box sx={{ mb: 2 }}>
+                                        <div>
+                                            <Button
+                                                variant="contained"
+                                                onClick={handleNext}
+                                                sx={{ mt: 1, mr: 1 }}
+                                            >
+                                                {index === steps.length - 1 ? 'Finish' : 'Continue'}
+                                            </Button>
+                                            <Button
+                                                disabled={index === 0}
+                                                onClick={handleBack}
+                                                sx={{ mt: 1, mr: 1 }}
+                                            >
+                                                Back
+                                            </Button>
+                                        </div>
+                                    </Box>
+                                ) : null} */}
+
                             </StepContent>
                         </Step>
                     )
