@@ -1,10 +1,11 @@
-import { Box, TextField } from '@mui/material'
+import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
 
 
 export const StepSummaryField = ({ label }) => {
     return (
+
         <TextField
             value={label}
             InputProps={{
@@ -13,20 +14,20 @@ export const StepSummaryField = ({ label }) => {
                         ✓
                     </Box>
                 ),
-                sx: {
-                    '& .MuiInputBase-input': {
-                        padding: '4px', // add padding around the text
-                    },
-                },
+                // sx: {
+                //     '& .MuiInputBase-input': {
+                //         padding: '4px',
+                //     },
+                // },
             }}
             sx={{
-                position: 'absolute',
-                ml: 3,
                 mb: 3,
-                width: 400,
+
             }}
             disabled
+            fullWidth
         />
+
 
     )
 }
@@ -69,3 +70,26 @@ export const DataSourceSelectionStep = ({ setSelectedSource }) => {
     )
 }
 
+export const ModelSelectionStep = () => {
+    const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
+    return (
+        <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={age}
+                label="Age"
+                onChange={handleChange}
+            >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+        </FormControl>
+    )
+}

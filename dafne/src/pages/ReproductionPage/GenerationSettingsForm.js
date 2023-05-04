@@ -1,8 +1,8 @@
-import { Stepper, Box, Step, StepLabel, StepContent, Typography, Button, Paper, useTheme, TextField } from '@mui/material';
+import { Stepper, Box, Step, StepLabel, StepContent, Typography, Button, Paper, useTheme, TextField, Fade } from '@mui/material';
 import React from 'react'
 import CustomStepIcon from '../../components/CustomStepIcon';
 import { isStepCompleted, isStepSkipped } from '../../utils/stepperUtils';
-import { DataSourceSelectionStep, StepSummaryField } from './steps';
+import { DataSourceSelectionStep, ModelSelectionStep, StepSummaryField } from './steps';
 import { SizedBoxVertical } from '../../styles/dafneStyles';
 
 
@@ -31,7 +31,7 @@ const GenerationSettingsForm = () => {
         },
         {
             label: 'Select metric',
-            content: <div> Hi</div>,
+            content: <ModelSelectionStep />,
             completedContent: <StepSummaryField label="selectedMetric" />
         },
         {
@@ -95,10 +95,9 @@ const GenerationSettingsForm = () => {
                             </StepLabel>
 
 
-                            {isStepCompleted(index, completed) && activeStep !== index ? (step.completedContent) : null}
 
-                            <StepContent>
-                                {step.content}
+                            <StepContent TransitionProps={{ in: true }} >
+                                {isStepCompleted(index, completed) && activeStep !== index ? (step.completedContent) : step.content}
                                 <Box sx={{ mb: 2 }}>
                                     <div>
                                         <Button
@@ -122,15 +121,17 @@ const GenerationSettingsForm = () => {
                     )
                 })}
             </Stepper>
-            {activeStep === steps.length && (
-                <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>All steps completed - you&apos;re finished</Typography>
-                    <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-                        Reset
-                    </Button>
-                </Paper>
-            )}
-        </Box>
+            {
+                activeStep === steps.length && (
+                    <Paper square elevation={0} sx={{ p: 3 }}>
+                        <Typography>All steps completed - you&apos;re finished</Typography>
+                        <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+                            Reset
+                        </Button>
+                    </Paper>
+                )
+            }
+        </Box >
     );
 }
 
