@@ -3,7 +3,7 @@ import React from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
 
 
-export const StepSummaryField = (label) => {
+export const StepSummaryField = ({ label }) => {
     return (
         <TextField
             value={label}
@@ -12,12 +12,22 @@ export const StepSummaryField = (label) => {
                     <Box component="span" sx={{ color: 'success.main' }}>
                         ✓
                     </Box>
-                )
+                ),
+                sx: {
+                    '& .MuiInputBase-input': {
+                        padding: '4px', // add padding around the text
+                    },
+                },
             }}
-            sx={{ mt: 2 }}
-            fullWidth
+            sx={{
+                position: 'absolute',
+                ml: 3,
+                mb: 3,
+                width: 400,
+            }}
             disabled
         />
+
     )
 }
 

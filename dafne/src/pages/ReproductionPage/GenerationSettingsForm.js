@@ -23,17 +23,11 @@ const GenerationSettingsForm = () => {
     const steps = [
         {
             label: 'Select source dataset',
-            content: () => {
-                if (isStepCompleted(0, completed)) {
-                    return <StepSummaryField label={selectedSource} />;
-                } else {
-                    return (
-                        <DataSourceSelectionStep
-                            setSelectedSource={setSelectedSource}
-                        />
-                    );
-                }
-            }
+            content:
+                <DataSourceSelectionStep
+                    setSelectedSource={setSelectedSource}
+                />,
+            completedContent: <StepSummaryField label={selectedSource.file} />
         },
         {
             label: 'Select metric',
@@ -58,11 +52,9 @@ const GenerationSettingsForm = () => {
             newSkipped.delete(activeStep);
         }
         const newCompleted = new Set(completed);
-        if (!isStepCompleted(activeStep, completed)) {
-            newCompleted.add(activeStep);
-        } else {
-            newCompleted.delete(activeStep);
-        }
+
+        newCompleted.add(activeStep);
+
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setCompleted(newCompleted);
         setSkipped(newSkipped);
@@ -90,21 +82,20 @@ const GenerationSettingsForm = () => {
                     }
 
                     return (
-                        <Step key={step.label} >
+                        <Step key={step.label}  >
                             <StepLabel
-                                optional={
-                                    index === 2 ? (
-                                        <Typography variant="caption">Last step</Typography>
-                                    ) : null
-                                }
+                                sx={{ marginTop: theme.spacing(2) }}
                                 StepIconComponent={props => (
                                     <CustomStepIcon {...stepProps} icon={index + 1} completed={stepProps.completed} active={activeStep === index} theme={theme}></CustomStepIcon>
                                 )
-
                                 }
                             >
                                 {step.label}
+
                             </StepLabel>
+
+
+                            {isStepCompleted(index, completed) && activeStep !== index ? (step.completedContent) : null}
 
                             <StepContent>
                                 {step.content}
