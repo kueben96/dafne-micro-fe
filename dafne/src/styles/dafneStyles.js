@@ -36,7 +36,7 @@ export const ContentPaper = styled(Box)(({ theme }) => ({
 
 
 
-export const SizedBoxVertical = styled(Box)(({ theme, space }) => ({
+export const SizedBoxVertical = styled(Box)(({ theme, space = 2 }) => ({
     marginBottom: theme.spacing(space),
 }));
 export const SizedBoxHorizontal = styled(Box)(({ theme, space }) => ({

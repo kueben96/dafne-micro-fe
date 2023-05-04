@@ -1,8 +1,10 @@
-import { Stepper, Box, Step, StepLabel, StepContent, Typography, Button, Paper, useTheme } from '@mui/material';
+import { Stepper, Box, Step, StepLabel, StepContent, Typography, Button, Paper, useTheme, TextField } from '@mui/material';
 import React from 'react'
 import CustomStepIcon from '../../components/CustomStepIcon';
 import { isStepCompleted, isStepSkipped } from '../../utils/stepperUtils';
-import { DataSourceSelectionStep } from './steps';
+import { DataSourceSelectionStep, StepSummaryField } from './steps';
+import { SizedBoxVertical } from '../../styles/dafneStyles';
+
 
 
 
@@ -13,17 +15,30 @@ const GenerationSettingsForm = () => {
         variant: 'catalogue',
         file: "DemoData.csv"
     });
+    const theme = useTheme()
+    const [activeStep, setActiveStep] = React.useState(0);
+    const [completed, setCompleted] = React.useState(new Set());
+    const [skipped, setSkipped] = React.useState(new Set());
 
     const steps = [
         {
             label: 'Select source dataset',
-            content:
-                <DataSourceSelectionStep
-                    setSelectedSource={setSelectedSource} />
+            content: () => {
+                if (isStepCompleted(0, completed)) {
+                    return <StepSummaryField label={selectedSource} />;
+                } else {
+                    return (
+                        <DataSourceSelectionStep
+                            setSelectedSource={setSelectedSource}
+                        />
+                    );
+                }
+            }
         },
         {
             label: 'Select metric',
             content: <div> Hi</div>,
+            completedContent: <StepSummaryField label="selectedMetric" />
         },
         {
             label: 'Select model',
@@ -34,14 +49,6 @@ const GenerationSettingsForm = () => {
             content: <div> Hi</div>,
         },
     ];
-
-
-
-
-    const theme = useTheme()
-    const [activeStep, setActiveStep] = React.useState(0);
-    const [completed, setCompleted] = React.useState(new Set());
-    const [skipped, setSkipped] = React.useState(new Set());
 
 
     const handleNext = () => {
@@ -98,9 +105,9 @@ const GenerationSettingsForm = () => {
                             >
                                 {step.label}
                             </StepLabel>
+
                             <StepContent>
                                 {step.content}
-                                <Typography>{selectedSource.file}</Typography>
                                 <Box sx={{ mb: 2 }}>
                                     <div>
                                         <Button

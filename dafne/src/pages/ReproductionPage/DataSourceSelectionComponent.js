@@ -55,7 +55,7 @@ const DataSourceSelectionComponent = ({ variant, selected, onClick, selectedFile
                 margin: theme.spacing(0.5),
                 padding: theme.spacing(4, 1),
                 border: `1px solid ${theme.palette.primary.dark}`,
-                backgroundColor: selected ? `${theme.palette.primary.main}20` : `${theme.palette.grey.lighter}40`,
+                backgroundColor: selected ? `${theme.palette.primary.main}20` : `${theme.palette.grey.lighter}50`,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',

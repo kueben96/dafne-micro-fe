@@ -1,6 +1,25 @@
-import { Box } from '@mui/material'
+import { Box, TextField } from '@mui/material'
 import React from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
+
+
+export const StepSummaryField = (label) => {
+    return (
+        <TextField
+            value={label}
+            InputProps={{
+                endAdornment: (
+                    <Box component="span" sx={{ color: 'success.main' }}>
+                        ✓
+                    </Box>
+                )
+            }}
+            sx={{ mt: 2 }}
+            fullWidth
+            disabled
+        />
+    )
+}
 
 export const DataSourceSelectionStep = ({ setSelectedSource }) => {
     const [selected, setSelected] = React.useState('catalogue');
