@@ -34,8 +34,6 @@ export const ContentPaper = styled(Box)(({ theme }) => ({
     background: theme.palette.neutral.white,
 }));
 
-
-
 export const SizedBoxVertical = styled(Box)(({ theme, space = 2 }) => ({
     marginBottom: theme.spacing(space),
 }));

@@ -1,5 +1,6 @@
 import { Box, CircularProgress, LinearProgress } from '@mui/material'
 import React, { useEffect } from 'react'
+import LinearProgressEpochs from '../../components/LinearProgressEpochs';
 
 const GenerationFeedback = () => {
     const [progress, setProgress] = React.useState(0);
@@ -32,9 +33,10 @@ const GenerationFeedback = () => {
             <Box display="flex" flexDirection="row" width="100%" justifyContent="center">
                 <CircularProgress color="primary" />
             </Box>
-            <LinearProgress variant="determinate" value={progress} valueBuffer={buffer} />
+            <LinearProgressEpochs progress={7} />
         </Box>
     )
 }
 
 export default GenerationFeedback
+
