@@ -7,6 +7,7 @@ import HorizontalStepper from '../../components/HorizontalStepper';
 import GenerationSettingsForm from './GenerationSettingsForm';
 import { isStepCompleted, } from '../../utils/stepperUtils';
 import { RowNumberSelectionStep } from './steps';
+import GenerationFeedback from './GenerationFeedback';
 
 
 const steps = ['Set generation settings', 'Set row number', 'View results'];
@@ -16,7 +17,7 @@ const ReproductionPage = () => {
 
     const theme = useTheme()
 
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = React.useState(2);
     const [completed, setCompleted] = React.useState(new Set());
     const [rowNumber, setSelectedRowNumber] = React.useState(300)
 
@@ -60,7 +61,7 @@ const ReproductionPage = () => {
             case 1:
                 return <RowNumberSelectionStep defaultRowNumber={rowNumber} setSelectedRowNumber={setSelectedRowNumber} />
             case 2:
-                return <div>Vert slider {step}</div>
+                return <GenerationFeedback />
             default:
                 return <div>Not Found</div>;
         }
