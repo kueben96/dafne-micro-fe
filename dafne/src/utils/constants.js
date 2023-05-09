@@ -7,3 +7,4 @@ export const metricOptionsReproduction = [
     { value: 'ml-task', label: 'Machine Learning task', info: 'Info about ML' },
     { value: 'logistik', label: 'Logistic detection', info: 'Info about log' },
 ]
+export const reproductionEpochCount = 15;

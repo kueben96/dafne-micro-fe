@@ -1,21 +1,21 @@
-import { Box, CircularProgress, LinearProgress } from '@mui/material'
-import React, { useEffect } from 'react'
+import { Box, CircularProgress, LinearProgress, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import LinearProgressEpochs from '../../components/LinearProgressEpochs';
+import { useTheme } from '@emotion/react';
+import { reproductionEpochCount } from '../../utils/constants';
 
 const GenerationFeedback = () => {
+
+    const theme = useTheme()
     const [progress, setProgress] = React.useState(0);
-    const [buffer, setBuffer] = React.useState(10);
+    const [completed, setCompleted] = useState(false)
+
     const progressRef = React.useRef(() => { });
     useEffect(() => {
         progressRef.current = () => {
-            if (progress > 100) {
-                setProgress(0);
-                setBuffer(10);
-            } else {
-                const diff = Math.random() * 10;
-                const diff2 = Math.random() * 10;
-                setProgress(progress + diff);
-                setBuffer(progress + diff + diff2);
+            for (let i = 0; i < reproductionEpochCount; i++) {
+                setProgress(progress + 1)
+                setCompleted(true)
             }
         };
     });
@@ -29,12 +29,17 @@ const GenerationFeedback = () => {
     }, []);
 
     return (
-        <Box display="flex" flexDirection="column">
-            <Box display="flex" flexDirection="row" width="100%" justifyContent="center">
-                <CircularProgress color="primary" />
+        <>
+            <Box display="flex" flexDirection="column" >
+                <Box display="flex" flexDirection="row" width="100%" justifyContent="center" padding={2}>
+                    <CircularProgress sx={{ color: theme.palette.primary.dark }} />
+                </Box>
+                <Box display="flex" flexDirection="row" width="100%" justifyContent="center" paddingBottom={2}>
+                    <Typography >Learning your data...</Typography>
+                </Box>
+                <LinearProgressEpochs progress={progress} />
             </Box>
-            <LinearProgressEpochs progress={7} />
-        </Box>
+        </>
     )
 }
 
