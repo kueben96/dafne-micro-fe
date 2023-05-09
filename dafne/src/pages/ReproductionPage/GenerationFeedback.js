@@ -10,22 +10,21 @@ const GenerationFeedback = () => {
     const [progress, setProgress] = React.useState(0);
     const [completed, setCompleted] = useState(false)
 
-    const progressRef = React.useRef(() => { });
     useEffect(() => {
-        progressRef.current = () => {
-            for (let i = 0; i < reproductionEpochCount; i++) {
-                setProgress(progress + 1)
-                setCompleted(true)
-            }
+        let epoch = 0;
+        const simulateEpoch = () => {
+            epoch += 1;
+            setProgress(epoch);
+            setCompleted(epoch === reproductionEpochCount);
+            setTimeout(() => {
+                if (epoch === reproductionEpochCount) {
+                    return;
+                }
+                simulateEpoch();
+            }, 400);
         };
-    });
-    useEffect(() => {
-        const timer = setInterval(() => {
-            progressRef.current();
-        }, 500);
-        return () => {
-            clearInterval(timer);
-        };
+        // start the simulation
+        simulateEpoch();
     }, []);
 
     return (
