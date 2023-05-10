@@ -1,7 +1,7 @@
 import React from 'react'
 import PageHeader from '../../components/PageHeader'
 import { ContentPaper, SizedBoxVertical } from '../../styles/dafneStyles'
-import { Box, Button, Collapse, Container, Typography } from '@mui/material'
+import { Box, Button, Collapse, Container, IconButton, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react';
 import HorizontalStepper from '../../components/HorizontalStepper';
 import GenerationSettingsForm from './GenerationSettingsForm';
@@ -9,13 +9,14 @@ import { isStepCompleted, } from '../../utils/stepperUtils';
 import { RowNumberSelectionStep } from './steps';
 import GenerationFeedback from './GenerationFeedback';
 import { reproductionHorizontalSteps } from '../../utils/constants';
+import styled from '@emotion/styled';
 
 const ReproductionPage = () => {
 
     const horizontalSteps = reproductionHorizontalSteps
 
     const theme = useTheme()
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = React.useState(2);
     const [stepCompleted, setStepCompleted] = React.useState(new Set());
     const [rowNumber, setSelectedRowNumber] = React.useState(300)
     const [generationCompleted, setGenerationCompleted] = React.useState(false)
@@ -101,7 +102,6 @@ const ReproductionPage = () => {
     return (
         <>
             <PageHeader title="MyReproductionProcess1" />
-
             <Collapse in={showProcessSteps} timeout="auto" unmountOnExit>
                 <ContentPaper>
                     <Container>
@@ -130,14 +130,98 @@ const ReproductionPage = () => {
             <SizedBoxVertical />
             {generationCompleted &&
                 (
-                    <ContentPaper>
-                        <Box>Results here</Box>
-                    </ContentPaper>
-                )}
-
+                    <Container>
+                        <CardContainer>
+                            <MyCard title="Settings overview" flex={4} />
+                            <MyCard title="Metric Score" flex={2} />
+                            <MyCard title="Quality Report" flex={4} />
+                        </CardContainer>
+                    </Container>
+                )
+            }
 
         </>
     )
 }
 
 export default ReproductionPage
+
+const CardContainer = styled(Box)({
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'stretch',
+});
+
+const Card = styled(Box)(({ theme }) => ({
+    flex: 1,
+    border: `1px solid ${theme.palette.grey[300]}`,
+    borderRadius: theme.shape.borderRadius,
+    overflow: 'hidden',
+    background: theme.palette.neutral.white,
+}));
+
+const Header = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: theme.spacing(1, 2),
+    borderBottom: `1px solid ${theme.palette.grey[300]}`,
+}));
+
+const HeaderTitle = styled(Typography)(({ theme }) => ({
+    fontWeight: 'bold',
+    padding: theme.spacing(1, 0)
+}));
+
+const ActionButtonContainer = styled(Box)({
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+});
+
+const ActionButtonIcon = styled(IconButton)(({ theme }) => ({
+    padding: theme.spacing(1),
+}));
+
+const Divider = styled(Box)(({ theme }) => ({
+    width: 1,
+    height: '100%',
+    backgroundColor: theme.palette.grey[300],
+}));
+
+const CardContent = styled(Box)(({ theme }) => ({
+    padding: theme.spacing(2),
+}));
+
+const MyCard = ({ title, actions, children, flex }) => {
+    const theme = useTheme()
+    return (
+        <Card style={{ flex }}>
+            <Header>
+                <HeaderTitle>{title}</HeaderTitle>
+                {actions && (
+                    <ActionButtonContainer>
+                        {actions.map((action, index) => (
+                            <React.Fragment key={index}>
+                                {index > 0 && <Divider />}
+                                <ActionButtonIcon>{action.icon}</ActionButtonIcon>
+                            </React.Fragment>
+                        ))}
+                    </ActionButtonContainer>
+                )}
+            </Header>
+            <CardContent>{children}</CardContent>
+        </Card>
+    );
+};
+
+const MyCardRow = () => {
+    return (
+        <CardContainer>
+            <MyCard title="Settings overview" flex={4} />
+            <MyCard title="Metric Score" flex={2} />
+            <MyCard title="Quality Report" flex={4} />
+        </CardContainer>
+    );
+};

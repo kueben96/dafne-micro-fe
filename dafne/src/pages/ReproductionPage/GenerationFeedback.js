@@ -21,7 +21,7 @@ const GenerationFeedback = ({ completed, setCompleted }) => {
                     return;
                 }
                 simulateEpoch();
-            }, 400);
+            }, 100);
         };
         // start the simulation
         simulateEpoch();
