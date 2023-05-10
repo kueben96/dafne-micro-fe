@@ -6,11 +6,10 @@ import { reproductionEpochCount } from '../../utils/constants';
 import CheckIcon from '@mui/icons-material/Check';
 import { ContentPaper, SizedBoxVertical } from '../../styles/dafneStyles';
 
-const GenerationFeedback = () => {
+const GenerationFeedback = ({ completed, setCompleted }) => {
 
     const theme = useTheme()
     const [progress, setProgress] = React.useState(0);
-    const [completed, setCompleted] = useState(false)
 
     useEffect(() => {
         let epoch = 0;

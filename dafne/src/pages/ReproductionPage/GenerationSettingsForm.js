@@ -14,8 +14,8 @@ const GenerationSettingsForm = () => {
         variant: 'catalogue',
         file: "DemoData.csv"
     });
-    const [selectedMetric, setSelectedMetric] = React.useState()
-    const [selectedModel, setSelectedModel] = React.useState()
+    const [selectedMetric, setSelectedMetric] = React.useState(null)
+    const [selectedModel, setSelectedModel] = React.useState(null)
     const theme = useTheme()
     const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState(new Set());
@@ -71,6 +71,7 @@ const GenerationSettingsForm = () => {
     const handleReset = () => {
         setActiveStep(0);
     };
+
 
     return (
         <Box sx={{ maxWidth: "70%" }}>

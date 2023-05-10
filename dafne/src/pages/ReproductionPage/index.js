@@ -16,19 +16,20 @@ const ReproductionPage = () => {
 
     const theme = useTheme()
     const [activeStep, setActiveStep] = React.useState(0);
-    const [completed, setCompleted] = React.useState(new Set());
+    const [stepCompleted, setStepCompleted] = React.useState(new Set());
     const [rowNumber, setSelectedRowNumber] = React.useState(300)
+    const [generationCompleted, setGenerationCompleted] = React.useState(false)
 
     const handleNext = () => {
 
-        const newCompleted = new Set(completed);
-        if (!isStepCompleted(activeStep, completed)) {
+        const newCompleted = new Set(stepCompleted);
+        if (!isStepCompleted(activeStep, stepCompleted)) {
             newCompleted.add(activeStep);
         } else {
             newCompleted.delete(activeStep);
         }
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setCompleted(newCompleted);
+        setStepCompleted(newCompleted);
 
     };
 
@@ -36,9 +37,8 @@ const ReproductionPage = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleReset = () => {
-        setActiveStep(0);
-        setCompleted(new Set())
+    const handleCancel = () => {
+        setActiveStep(activeStep - 1);
     };
 
     const isLastStep = (activeStep, steps) => {
@@ -52,7 +52,7 @@ const ReproductionPage = () => {
             case 1:
                 return <RowNumberSelectionStep defaultRowNumber={rowNumber} setSelectedRowNumber={setSelectedRowNumber} />
             case 2:
-                return <GenerationFeedback />
+                return <GenerationFeedback completed={generationCompleted} setCompleted={setGenerationCompleted} />
             default:
                 return <div>Not Found</div>;
         }
@@ -67,16 +67,12 @@ const ReproductionPage = () => {
                         <Box display="flex" flexDirection="row" sx={{ width: '100%' }} justifyContent="center" >
                             <HorizontalStepper
                                 activeStep={activeStep}
-                                isStepCompleted={step => isStepCompleted(step, completed)}
+                                isStepCompleted={step => isStepCompleted(step, stepCompleted)}
                                 steps={horizontalSteps}
                                 theme={theme}
                                 width="75%"
                             />
                         </Box>
-
-                        {/* case if horizontal steps finished */}
-                        {/* {activeStep === horizontalSteps.length ? ( */}
-
                         <Box>
                             {_renderStepContent(activeStep)}
 
@@ -92,7 +88,7 @@ const ReproductionPage = () => {
                                 </Button>
                                 <Box sx={{ flex: '1 1 auto' }} />
                                 {activeStep === horizontalSteps.length - 1 ? (
-                                    <Button variant='outlined' color="secondary" onClick={handleReset}>
+                                    <Button variant='outlined' color="secondary" onClick={handleCancel}>
                                         Cancel
                                     </Button>)
                                     : (<Button variant='contained' onClick={handleNext}>
