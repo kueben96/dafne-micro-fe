@@ -19,6 +19,7 @@ const ReproductionPage = () => {
     const [stepCompleted, setStepCompleted] = React.useState(new Set());
     const [rowNumber, setSelectedRowNumber] = React.useState(300)
     const [generationCompleted, setGenerationCompleted] = React.useState(false)
+    const [showProcessSteps, setShowProcessSteps] = React.useState(true)
 
     const handleNext = () => {
 
@@ -38,11 +39,14 @@ const ReproductionPage = () => {
     };
 
     const handleCancel = () => {
-        setActiveStep(activeStep - 1);
+        setGenerationCompleted(false)
     };
 
     const isLastStep = (activeStep, steps) => {
         return activeStep === steps.length - 2
+    }
+    const isGeneratingStep = (activeStep, steps) => {
+        return activeStep === steps.length - 1
     }
 
     function _renderStepContent(step) {
@@ -61,48 +65,65 @@ const ReproductionPage = () => {
     return (
         <>
             <PageHeader title="MyReproductionProcess1" />
-            <ContentPaper>
-                <Container>
-                    <Box sx={{ width: '100%' }}>
-                        <Box display="flex" flexDirection="row" sx={{ width: '100%' }} justifyContent="center" >
-                            <HorizontalStepper
-                                activeStep={activeStep}
-                                isStepCompleted={step => isStepCompleted(step, stepCompleted)}
-                                steps={horizontalSteps}
-                                theme={theme}
-                                width="75%"
-                            />
-                        </Box>
-                        <Box>
-                            {_renderStepContent(activeStep)}
+            {showProcessSteps &&
+                <ContentPaper>
+                    <Container>
+                        <Box sx={{ width: '100%' }}>
+                            <Box display="flex" flexDirection="row" sx={{ width: '100%' }} justifyContent="center" >
+                                <HorizontalStepper
+                                    activeStep={activeStep}
+                                    isStepCompleted={step => isStepCompleted(step, stepCompleted)}
+                                    steps={horizontalSteps}
+                                    theme={theme}
+                                    width="75%"
+                                />
+                            </Box>
+                            <Box>
+                                {_renderStepContent(activeStep)}
 
-                            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                                <Button
+                                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                                    {/* only show back button if user didnt start generating */}
+                                    {!isGeneratingStep(activeStep, horizontalSteps) &&
+                                        <Button
+                                            color="inherit"
+                                            disabled={activeStep === 0}
+                                            onClick={handleBack}
+                                            sx={{ mr: 1 }}
+                                        >
+                                            Back
+                                        </Button>}
+                                    <Box sx={{ flex: '1 1 auto' }} />
+                                    {!generationCompleted ? (
 
-                                    color="inherit"
-                                    disabled={activeStep === 0}
-                                    onClick={handleBack}
-                                    sx={{ mr: 1 }}
-                                >
-                                    Back
-                                </Button>
-                                <Box sx={{ flex: '1 1 auto' }} />
-                                {activeStep === horizontalSteps.length - 1 ? (
-                                    <Button variant='outlined' color="secondary" onClick={handleCancel}>
-                                        Cancel
-                                    </Button>)
-                                    : (<Button variant='contained' onClick={handleNext}>
-                                        {isLastStep(activeStep, horizontalSteps) ? 'Generate' : 'Next'}
-                                    </Button>)}
+                                        <>
+
+                                            {activeStep === horizontalSteps.length - 1 && !generationCompleted ? (
+                                                <Button variant='outlined' color="secondary" onClick={handleCancel}>
+                                                    Cancel
+                                                </Button>)
+                                                : (<Button variant='contained' onClick={handleNext}>
+                                                    {isLastStep(activeStep, horizontalSteps) ? 'Generate' : 'Next'}
+                                                </Button>)}
+                                        </>
+                                    ) : <Button variant='outlined' onClick={() => { setShowProcessSteps(false) }}>
+                                        Close
+                                    </Button>
+                                    }
+                                </Box>
                             </Box>
                         </Box>
-                    </Box>
-                </Container>
-            </ContentPaper>
+                    </Container>
+                </ContentPaper>}
+
             <SizedBoxVertical />
-            <ContentPaper>
-                <Box>Results here</Box>
-            </ContentPaper>
+            {generationCompleted &&
+                (
+                    <ContentPaper>
+                        <Box>Results here</Box>
+                    </ContentPaper>
+                )}
+
+
         </>
     )
 }

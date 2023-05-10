@@ -7,7 +7,6 @@ import CheckIcon from '@mui/icons-material/Check';
 import { ContentPaper, SizedBoxVertical } from '../../styles/dafneStyles';
 
 const GenerationFeedback = ({ completed, setCompleted }) => {
-
     const theme = useTheme()
     const [progress, setProgress] = React.useState(0);
 
@@ -26,7 +25,7 @@ const GenerationFeedback = ({ completed, setCompleted }) => {
         };
         // start the simulation
         simulateEpoch();
-    }, []);
+    }, [setCompleted]);
 
     return (
         <>
