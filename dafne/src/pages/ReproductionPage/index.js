@@ -1,6 +1,6 @@
 import React from 'react'
 import PageHeader from '../../components/PageHeader'
-import { ContentPaper } from '../../styles/dafneStyles'
+import { ContentPaper, SizedBoxVertical } from '../../styles/dafneStyles'
 import { Box, Button, Container, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react';
 import HorizontalStepper from '../../components/HorizontalStepper';
@@ -8,16 +8,14 @@ import GenerationSettingsForm from './GenerationSettingsForm';
 import { isStepCompleted, } from '../../utils/stepperUtils';
 import { RowNumberSelectionStep } from './steps';
 import GenerationFeedback from './GenerationFeedback';
-
-
-const steps = ['Set generation settings', 'Set row number', 'View results'];
-
+import { reproductionHorizontalSteps } from '../../utils/constants';
 
 const ReproductionPage = () => {
 
-    const theme = useTheme()
+    const horizontalSteps = reproductionHorizontalSteps
 
-    const [activeStep, setActiveStep] = React.useState(2);
+    const theme = useTheme()
+    const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState(new Set());
     const [rowNumber, setSelectedRowNumber] = React.useState(300)
 
@@ -38,21 +36,14 @@ const ReproductionPage = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    // const handleSkip = () => {
-    //     // if (!isStepOptional(activeStep)) {
-    //     //     // You probably want to guard against something like this,
-    //     //     // it should never occur unless someone's actively trying to break something.
-    //     //     throw new Error("You can't skip a step that isn't optional.");
-    //     // }
-
-    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-
-    // };
-
     const handleReset = () => {
         setActiveStep(0);
         setCompleted(new Set())
     };
+
+    const isLastStep = (activeStep, steps) => {
+        return activeStep === steps.length - 2
+    }
 
     function _renderStepContent(step) {
         switch (step) {
@@ -77,52 +68,44 @@ const ReproductionPage = () => {
                             <HorizontalStepper
                                 activeStep={activeStep}
                                 isStepCompleted={step => isStepCompleted(step, completed)}
-                                steps={steps}
+                                steps={horizontalSteps}
                                 theme={theme}
                                 width="75%"
                             />
                         </Box>
 
                         {/* case if horizontal steps finished */}
-                        {activeStep === steps.length ? (
-                            <React.Fragment>
-                                <Typography sx={{ mt: 2, mb: 1 }}>
-                                    All steps completed - you&apos;re finished
-                                </Typography>
-                                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                                    <Box sx={{ flex: '1 1 auto' }} />
-                                    <Button onClick={handleReset}>Reset</Button>
-                                </Box>
-                            </React.Fragment>
-                        ) : (
-                            <Box>
-                                {_renderStepContent(activeStep)}
+                        {/* {activeStep === horizontalSteps.length ? ( */}
 
-                                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                                    <Button
+                        <Box>
+                            {_renderStepContent(activeStep)}
 
-                                        color="inherit"
-                                        disabled={activeStep === 0}
-                                        onClick={handleBack}
-                                        sx={{ mr: 1 }}
-                                    >
-                                        Back
-                                    </Button>
-                                    <Box sx={{ flex: '1 1 auto' }} />
-                                    {/* {isStepOptional(activeStep) && (
-                                        <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                                            Skip
-                                        </Button>
-                                    )} */}
+                            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                                <Button
 
-                                    <Button variant='contained' onClick={handleNext}>
-                                        {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                    </Button>
-                                </Box>
+                                    color="inherit"
+                                    disabled={activeStep === 0}
+                                    onClick={handleBack}
+                                    sx={{ mr: 1 }}
+                                >
+                                    Back
+                                </Button>
+                                <Box sx={{ flex: '1 1 auto' }} />
+                                {activeStep === horizontalSteps.length - 1 ? (
+                                    <Button variant='outlined' color="secondary" onClick={handleReset}>
+                                        Cancel
+                                    </Button>)
+                                    : (<Button variant='contained' onClick={handleNext}>
+                                        {isLastStep(activeStep, horizontalSteps) ? 'Generate' : 'Next'}
+                                    </Button>)}
                             </Box>
-                        )}
+                        </Box>
                     </Box>
                 </Container>
+            </ContentPaper>
+            <SizedBoxVertical />
+            <ContentPaper>
+                <Box>Results here</Box>
             </ContentPaper>
         </>
     )
