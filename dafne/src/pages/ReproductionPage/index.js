@@ -42,12 +42,9 @@ const ReproductionPage = () => {
         setGenerationCompleted(false)
     };
 
-    const isLastStep = (activeStep, steps) => {
-        return activeStep === steps.length - 2
-    }
-    const isGeneratingStep = (activeStep, steps) => {
-        return activeStep === steps.length - 1
-    }
+    const isLastStep = (activeStep, steps) => activeStep === steps.length - 2
+
+    const isGeneratingStep = (activeStep, steps) => activeStep === steps.length - 1
 
     function _renderStepContent(step) {
         switch (step) {
@@ -61,6 +58,45 @@ const ReproductionPage = () => {
                 return <div>Not Found</div>;
         }
     }
+
+    const _renderBackButton = () => {
+        if (!isGeneratingStep(activeStep, horizontalSteps)) {
+            return (
+                <Button
+                    color="inherit"
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    sx={{ mr: 1 }}
+                >
+                    Back
+                </Button>
+            )
+        }
+
+    };
+    const _renderNextButton = () => {
+        if (generationCompleted) {
+            return (
+                <Button variant="outlined" onClick={() => setShowProcessSteps(false)}>
+                    Close
+                </Button>
+            );
+        }
+
+        if (activeStep === horizontalSteps.length - 1 && !generationCompleted) {
+            return (
+                <Button variant="outlined" color="secondary" onClick={handleCancel}>
+                    Cancel
+                </Button>
+            );
+        }
+
+        return (
+            <Button variant="contained" onClick={handleNext}>
+                {isLastStep(activeStep, horizontalSteps) ? 'Generate' : 'Next'}
+            </Button>
+        );
+    };
 
     return (
         <>
@@ -80,41 +116,15 @@ const ReproductionPage = () => {
                             </Box>
                             <Box>
                                 {_renderStepContent(activeStep)}
-
                                 <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                                    {/* only show back button if user didnt start generating */}
-                                    {!isGeneratingStep(activeStep, horizontalSteps) &&
-                                        <Button
-                                            color="inherit"
-                                            disabled={activeStep === 0}
-                                            onClick={handleBack}
-                                            sx={{ mr: 1 }}
-                                        >
-                                            Back
-                                        </Button>}
+                                    {_renderBackButton()}
                                     <Box sx={{ flex: '1 1 auto' }} />
-                                    {!generationCompleted ? (
-
-                                        <>
-
-                                            {activeStep === horizontalSteps.length - 1 && !generationCompleted ? (
-                                                <Button variant='outlined' color="secondary" onClick={handleCancel}>
-                                                    Cancel
-                                                </Button>)
-                                                : (<Button variant='contained' onClick={handleNext}>
-                                                    {isLastStep(activeStep, horizontalSteps) ? 'Generate' : 'Next'}
-                                                </Button>)}
-                                        </>
-                                    ) : <Button variant='outlined' onClick={() => { setShowProcessSteps(false) }}>
-                                        Close
-                                    </Button>
-                                    }
+                                    {_renderNextButton()}
                                 </Box>
                             </Box>
                         </Box>
                     </Container>
                 </ContentPaper>}
-
             <SizedBoxVertical />
             {generationCompleted &&
                 (
