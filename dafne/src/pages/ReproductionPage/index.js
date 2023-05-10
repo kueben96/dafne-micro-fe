@@ -1,7 +1,7 @@
 import React from 'react'
 import PageHeader from '../../components/PageHeader'
 import { ContentPaper, SizedBoxVertical } from '../../styles/dafneStyles'
-import { Box, Button, Container, Typography } from '@mui/material'
+import { Box, Button, Collapse, Container, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react';
 import HorizontalStepper from '../../components/HorizontalStepper';
 import GenerationSettingsForm from './GenerationSettingsForm';
@@ -101,7 +101,8 @@ const ReproductionPage = () => {
     return (
         <>
             <PageHeader title="MyReproductionProcess1" />
-            {showProcessSteps &&
+
+            <Collapse in={showProcessSteps} timeout="auto" unmountOnExit>
                 <ContentPaper>
                     <Container>
                         <Box sx={{ width: '100%' }}>
@@ -124,7 +125,8 @@ const ReproductionPage = () => {
                             </Box>
                         </Box>
                     </Container>
-                </ContentPaper>}
+                </ContentPaper>
+            </Collapse>
             <SizedBoxVertical />
             {generationCompleted &&
                 (

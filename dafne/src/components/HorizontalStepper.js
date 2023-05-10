@@ -15,9 +15,6 @@ const HorizontalStepper = ({
                 const stepProps = {};
                 const labelProps = {};
 
-                {/* if (isStepSkipped(index)) {
-                    stepProps.completed = false;
-                } */}
                 if (isStepCompleted(index)) {
                     stepProps.completed = true;
                 }
