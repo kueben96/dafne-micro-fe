@@ -5,7 +5,7 @@ const commonConfig = require('./webpack.common');
 
 const devConfig = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: './src/index.ts',
     devServer: {
         port: 8083,
         historyApiFallback: {

@@ -4,3 +4,8 @@
 - UI Component Library: Material UI
 - Vertical Split Micro-Frontend-Architecture 
 - Resources: O'Reilly; Building Micro-Frontends - Scaling Teams and Projects, Empowering Developers. (Luca Mezzalira)
+
+
+For typescript migration install 
+
+npm install --save-dev @babel/preset-typescript typescript @types/react @types/react-dom
