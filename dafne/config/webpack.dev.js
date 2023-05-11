@@ -15,6 +15,9 @@ const devConfig = {
     output: {
         publicPath: '/',
     },
+    resolve: {
+        extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+    },
     plugins: [
         new ModuleFederationPlugin({
             name: 'dafne',
