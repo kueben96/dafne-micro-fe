@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     columnHeaders: {
-        background: theme.palette.grey['100'],
+        background: theme.palette.gray.lighter,
     },
 }));
 

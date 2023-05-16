@@ -16,7 +16,7 @@ const ReproductionPage = () => {
     const horizontalSteps = reproductionHorizontalSteps
 
     const theme = useTheme()
-    const [activeStep, setActiveStep] = React.useState(2);
+    const [activeStep, setActiveStep] = React.useState(0);
     const [stepCompleted, setStepCompleted] = React.useState(new Set());
     const [rowNumber, setSelectedRowNumber] = React.useState(300)
     const [generationCompleted, setGenerationCompleted] = React.useState(false)
@@ -154,10 +154,10 @@ const CardContainer = styled(Box)({
 
 const Card = styled(Box)(({ theme }) => ({
     flex: 1,
-    border: `1px solid ${theme.palette.grey[300]}`,
+    border: `1px solid ${theme.palette.gray.light}`,
     borderRadius: theme.shape.borderRadius,
     overflow: 'hidden',
-    background: theme.palette.neutral.white,
+    background: theme.palette.common.white,
 }));
 
 const Header = styled(Box)(({ theme }) => ({
@@ -166,7 +166,7 @@ const Header = styled(Box)(({ theme }) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: theme.spacing(1, 2),
-    borderBottom: `1px solid ${theme.palette.grey[300]}`,
+    borderBottom: `1px solid ${theme.palette.gray.light}`,
 }));
 
 const HeaderTitle = styled(Typography)(({ theme }) => ({
@@ -187,7 +187,7 @@ const ActionButtonIcon = styled(IconButton)(({ theme }) => ({
 const Divider = styled(Box)(({ theme }) => ({
     width: 1,
     height: '100%',
-    backgroundColor: theme.palette.grey[300],
+    backgroundColor: theme.palette.gray.light,
 }));
 
 const CardContent = styled(Box)(({ theme }) => ({

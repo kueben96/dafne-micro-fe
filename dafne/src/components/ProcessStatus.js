@@ -19,7 +19,7 @@ const ProcessStatus = (props) => {
             label = 'Error';
             break;
         case 'Paused':
-            color = theme.palette.grey.light;
+            color = theme.palette.gray.light;
             label = 'Paused';
             break;
         default:

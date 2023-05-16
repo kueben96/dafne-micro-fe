@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const SearchBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
-    border: `1px solid ${theme.palette.grey[300]}`,
+    border: `1px solid ${theme.palette.gray.light}`,
     borderRadius: 0,
 }));
 
@@ -25,7 +25,7 @@ const SearchIconWrapper = styled(Box)(({ theme }) => ({
     justifyContent: 'center',
     width: theme.spacing(6),
     height: '100%',
-    borderLeft: `1px solid ${theme.palette.grey[300]}`,
+    borderLeft: `1px solid ${theme.palette.gray.light}`,
 }));
 const StyledFilterButton = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -39,7 +39,7 @@ const StyledFilterButton = styled(Box)(({ theme }) => ({
         backgroundColor: 'transparent',
     },
     '&.selected': {
-        backgroundColor: theme.palette.neutral.white,
+        backgroundColor: theme.palette.common.white,
     },
 }));
 const StyledFilterBadge = styled(Box)(({ theme, selected }) => ({
@@ -47,10 +47,10 @@ const StyledFilterBadge = styled(Box)(({ theme, selected }) => ({
     height: "100%",
     width: "100%",
     fontSize: theme.typography.medium,
-    color: theme.palette.neutral.white,
+    color: theme.palette.common.white,
     marginLeft: theme.spacing(1),
     padding: theme.spacing(0.2, 1),
-    backgroundColor: selected ? theme.palette.secondary.main : theme.palette.grey.light,
+    backgroundColor: selected ? theme.palette.secondary.main : theme.palette.gray.light,
 
 }));
 
@@ -89,7 +89,7 @@ const TableToolBar = (props) => {
 
     return (
         <Box display="flex" flexDirection="row" justifyContent="space-between" sx={{ fontSize: theme.typography.medium }}>
-            <Box display="flex" flexDirection="row" sx={{ backgroundColor: theme.palette.grey.lighter, borderRadius: "3px" }}>
+            <Box display="flex" flexDirection="row" sx={{ backgroundColor: theme.palette.gray.lighter, borderRadius: "3px" }}>
                 {filters.map((filter, index) => (
                     <FilterButton
                         key={index}
@@ -103,7 +103,7 @@ const TableToolBar = (props) => {
             <SearchBox {...props}>
                 <SearchInput placeholder="Search..." />
                 <SearchIconWrapper>
-                    <SearchIcon style={{ color: theme.palette.grey['300'] }} />
+                    <SearchIcon style={{ color: theme.palette.gray.light }} />
                 </SearchIconWrapper>
             </SearchBox>
             <Box>

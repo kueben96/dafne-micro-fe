@@ -4,7 +4,7 @@ import React from 'react'
 const CustomLinearProgress = styled(Box)(({ theme, progress, current }) => ({
     marginRight: theme.spacing(0.5),
     padding: theme.spacing(2, 0),
-    backgroundColor: current <= progress ? theme.palette.primary.dark : theme.palette.grey.lighter,
+    backgroundColor: current <= progress ? theme.palette.primary.dark : theme.palette.gray.lighter,
     display: 'inline-block',
     width: 'calc(100% / 15)',
     height: '18px',

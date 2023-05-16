@@ -2,7 +2,7 @@ import { Breadcrumbs, Link, Typography, styled } from '@mui/material'
 import React from 'react'
 
 const CustomBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
-    color: theme.palette.grey.regular,
+    color: theme.palette.gray.main,
     fontSize: theme.typography.subtitle1.fontSize,
 }))
 

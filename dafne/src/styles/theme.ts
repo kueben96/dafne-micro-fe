@@ -1,5 +1,21 @@
-import { createTheme } from '@mui/material'
+import { Palette, PaletteColorOptions, createTheme } from '@mui/material'
+import { FontStyleOptions, Variant, TypographyOptions } from '@mui/material/styles/createTypography'
+import { CSSProperties } from '@mui/styles'
 
+declare module '@mui/material/styles' {
+    interface SimplePaletteColorOptions {
+        lighter?: string,
+        regular?: string,
+    }
+    interface PaletteOptions {
+        gray?: PaletteColorOptions,
+    }
+    interface ThemeOptions {
+        layout?: {
+            drawerWidth?: number;
+        };
+    }
+}
 export const theme = createTheme({
     typography: {
         fontSize: 13,
@@ -23,11 +39,11 @@ export const theme = createTheme({
             fontSize: 10,
             color: '#656565'
         },
-        medium: {
+        body1: {
             fontSize: 12,
         }
-    },
 
+    },
     components: {
         MuiCssBaseline: {
             styleOverrides: {
@@ -43,12 +59,8 @@ export const theme = createTheme({
                 variantMapping: {
                     h1: 'h2',
                     h2: 'h2',
-                    // subtitle1: 'h2',
-                    // subtitle2: 'h3'
                 }
             },
-
-
         },
         MuiButton: {
             styleOverrides: {
@@ -69,7 +81,6 @@ export const theme = createTheme({
         }
     },
     palette: {
-        type: 'light',
         primary: {
             main: '#6CC1B5',
             dark: '#3C9085',
@@ -82,12 +93,12 @@ export const theme = createTheme({
             light: '#E9A372',
             lighter: '#F1CBB0'
         },
-        neutral: {
+        common: {
             black: '#1D201F',
             white: '#FFFFFF',
         },
-        grey: {
-            regular: '#656565',
+        gray: {
+            main: '#656565',
             light: '#B9B9B9',
             lighter: '#EDEDED'
         },
@@ -96,9 +107,9 @@ export const theme = createTheme({
         },
         success: {
             main: '#52C41A'
-        }
+        },
     },
     layout: {
         drawerWidth: 240,
-    }
+    },
 })

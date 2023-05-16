@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import AppBarHeader from './components/Header'
 import DafneDrawer from './components/DafneDrawer'
-import { Container, CssBaseline } from '@mui/material'
+import { Container, CssBaseline, Theme } from '@mui/material'
 import { styled } from '@mui/styles';
 import { Outlet } from 'react-router-dom';
 
 const Main = styled('main')(
     // TODO: check if there is still enough space for content only add margin if overlaps
     // TODO: think of layout concept after implementing main content
-    ({ theme, open }) => ({
+    ({ theme, open }: { theme: any; open: boolean }) => ({
         ... (open && {
             marginLeft: theme.layout.drawerWidth,
         }),

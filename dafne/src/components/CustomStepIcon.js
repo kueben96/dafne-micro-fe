@@ -5,10 +5,10 @@ import { Typography } from '@mui/material';
 const CustomStepIcon = ({ active, completed, icon, theme }) => {
 
     const activeColor = theme.palette.primary.dark;
-    const inactiveColor = theme.palette.grey[300];
+    const inactiveColor = theme.palette.gray.light;
     const completedColor = theme.palette.primary.dark;
     const borderColor = active ? activeColor : completed ? completedColor : inactiveColor;
-    const iconColor = active ? theme.palette.neutral.white : completed ? completedColor : theme.palette.grey.light;
+    const iconColor = active ? theme.palette.common.white : completed ? completedColor : theme.palette.gray.light;
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
             {completed ? (

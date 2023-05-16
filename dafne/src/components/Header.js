@@ -23,7 +23,7 @@ const AppBarHeader = ({ handleDrawerToggle }) => {
 
     const theme = useTheme()
     return (
-        <AppBar sx={{ backgroundColor: theme.palette.neutral.white, zIndex: theme.zIndex.drawer + 1 }} position="relative">
+        <AppBar sx={{ backgroundColor: theme.palette.common.white, zIndex: theme.zIndex.drawer + 1 }} position="relative">
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <IconButton color="primary" onClick={handleDrawerToggle}>
@@ -32,15 +32,15 @@ const AppBarHeader = ({ handleDrawerToggle }) => {
                     <Logo src={LogoImg} alt="Logo" />
                 </Box>
                 <UserContainer>
-                    <IconButton color={theme.palette.grey.regular}>
+                    <IconButton color={theme.palette.gray.main}>
                         <SearchOutlinedIcon />
                     </IconButton>
-                    <IconButton color={theme.palette.grey.regular}>
+                    <IconButton color={theme.palette.gray.main}>
                         <HelpOutlineOutlinedIcon />
                     </IconButton>
-                    <IconButton color={theme.palette.grey.regular}>
+                    <IconButton color={theme.palette.gray.main}>
                         <Badge badgeContent={1} color="secondary">
-                            <NotificationsOutlinedIcon sx={{ color: theme.palette.grey.regular }}></NotificationsOutlinedIcon>
+                            <NotificationsOutlinedIcon sx={{ color: theme.palette.gray.regular }}></NotificationsOutlinedIcon>
                         </Badge>
                     </IconButton>
                     <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { console.log('User Info Clicked') }}  >

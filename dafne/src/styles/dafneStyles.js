@@ -31,7 +31,7 @@ export const drawerStyles = makeStyles((theme) => ({
 export const ContentPaper = styled(Box)(({ theme }) => ({
     margin: theme.spacing(2),
     padding: theme.spacing(2, 0),
-    background: theme.palette.neutral.white,
+    background: theme.palette.common.white,
 }));
 
 export const SizedBoxVertical = styled(Box)(({ theme, space = 2 }) => ({
