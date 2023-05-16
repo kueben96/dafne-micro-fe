@@ -1,8 +1,16 @@
-import { Palette, PaletteColorOptions, createTheme } from '@mui/material'
-import { FontStyleOptions, Variant, TypographyOptions } from '@mui/material/styles/createTypography'
-import { CSSProperties } from '@mui/styles'
-
+import { PaletteColorOptions, Theme, ThemeOptions, createTheme } from '@mui/material'
 declare module '@mui/material/styles' {
+    interface Theme {
+        layout?: {
+            drawerWidth?: number;
+        };
+    }
+    // allow configuration using `createTheme`
+    interface CustomThemeOptions extends ThemeOptions {
+        layout?: {
+            drawerWidth?: number;
+        };
+    }
     interface SimplePaletteColorOptions {
         lighter?: string,
         regular?: string,
@@ -10,13 +18,9 @@ declare module '@mui/material/styles' {
     interface PaletteOptions {
         gray?: PaletteColorOptions,
     }
-    interface ThemeOptions {
-        layout?: {
-            drawerWidth?: number;
-        };
-    }
+    export function createTheme(options?: CustomThemeOptions): Theme;
 }
-export const theme = createTheme({
+const theme = createTheme({
     typography: {
         fontSize: 13,
         h1: {
@@ -112,4 +116,6 @@ export const theme = createTheme({
     layout: {
         drawerWidth: 240,
     },
-})
+});
+
+export { theme };
