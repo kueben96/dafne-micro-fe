@@ -1,6 +1,5 @@
 import { AppBar, Box, Container, Divider, Tab, Tabs, Toolbar, Typography, styled } from '@mui/material'
-import { makeStyles } from "@mui/styles";
-import React from 'react'
+import React, { useState } from 'react'
 import HeaderBreadcrumbs from './HeaderBreadcrumbs';
 import { pageHeaderStyles } from '../styles/dafneStyles';
 
@@ -20,14 +19,16 @@ const AssetStatistic = styled(Box)(({ theme }) => ({
     },
 }));
 
-
-const PageHeaderDashboard = (props) => {
+interface PageHeaderDashboardProps {
+    title: string;
+  }
+const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
     const classes = pageHeaderStyles()
-    const [value, setValue] = React.useState('one');
+    const [value, setValue] = useState<string>('one');
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
         setValue(newValue);
-    };
+      };
     return (
         <AppBar position="static" className={classes.appBar}>
             <Toolbar className={classes.toolbar}>

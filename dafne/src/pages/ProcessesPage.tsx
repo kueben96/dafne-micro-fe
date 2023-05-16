@@ -1,4 +1,4 @@
-import { AppBar, Badge, Box, Button, Container, IconButton, InputBase, Typography, styled } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 
 import React, { useState } from 'react'
 import PageHeaderDashboard from '../components/PageHeaderDashboard';
@@ -7,7 +7,7 @@ import TableToolBar from '../components/TableToolBar';
 import { ContentPaper, SizedBoxVertical } from '../styles/dafneStyles';
 import ProcessesTable from '../components/ProcessesTable';
 
-const ProcessesPage = (props) => {
+const ProcessesPage = () => {
 
 
     const theme = useTheme()
