@@ -22,8 +22,6 @@ const Main = styled('main')(
 
 const Layout = () => {
 
-
-
     const [isNavOpen, setIsNavOpen] = useState(false);
 
     const handleNavToggle = () => {
@@ -35,7 +33,6 @@ const Layout = () => {
             <AppBarHeader handleDrawerToggle={handleNavToggle} />
             <DafneDrawer handleDrawerToggle={handleNavToggle} isNavOpen={isNavOpen} />
             <Main open={isNavOpen}>
-
                 <Outlet />
 
             </Main>

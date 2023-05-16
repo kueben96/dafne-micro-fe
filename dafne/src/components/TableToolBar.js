@@ -15,7 +15,7 @@ const SearchBox = styled(Box)(({ theme }) => ({
 const SearchInput = styled(InputBase)(({ theme }) => ({
     marginLeft: theme.spacing(1),
     flex: 1,
-    fontSize: theme.typography.medium.fontSize,
+    fontSize: theme.typography.body1.fontSize,
 }));
 
 
@@ -46,7 +46,7 @@ const StyledFilterBadge = styled(Box)(({ theme, selected }) => ({
     borderRadius: "20px",
     height: "100%",
     width: "100%",
-    fontSize: theme.typography.medium,
+    fontSize: theme.typography.body1,
     color: theme.palette.common.white,
     marginLeft: theme.spacing(1),
     padding: theme.spacing(0.2, 1),
@@ -82,13 +82,13 @@ const TableToolBar = (props) => {
         });
     };
     const buttonStyles = {
-        fontSize: theme.typography.medium
+        fontSize: theme.typography.body1
     };
 
 
 
     return (
-        <Box display="flex" flexDirection="row" justifyContent="space-between" sx={{ fontSize: theme.typography.medium }}>
+        <Box display="flex" flexDirection="row" justifyContent="space-between" sx={{ fontSize: theme.typography.body1 }}>
             <Box display="flex" flexDirection="row" sx={{ backgroundColor: theme.palette.gray.lighter, borderRadius: "3px" }}>
                 {filters.map((filter, index) => (
                     <FilterButton
