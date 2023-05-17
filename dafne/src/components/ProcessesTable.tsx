@@ -1,12 +1,19 @@
 import React from 'react';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { Box, Button, Link, Typography, styled, useTheme } from '@mui/material';
+import { DataGrid, GridCellParams, GridColDef, GridSlotsComponent, GridToolbar } from '@mui/x-data-grid';
+import { Box, Button, Link, Theme, Typography, styled, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles'
 import EmptyRowsImage from '../assets/images/empty-image.png';
 import ProcessStatus from './ProcessStatus';
 
-
-const columns = [
+interface ProcessesRowData {
+    id: string;
+    service: string;
+    metric: string;
+    status: string;
+    score: number;
+    dateCreated: Date;
+  }
+  const columns: GridColDef<ProcessesRowData>[] = [
     {
         field: 'id',
         headerName: 'Process ID',
@@ -31,9 +38,9 @@ const columns = [
         flex: 1,
 
         headerClassName: 'header-cell',
-        renderCell: (params) => {
+        renderCell: (params: GridCellParams) => {
             const { value } = params;
-            return <ProcessStatus status={value} />;
+            return <ProcessStatus status={value as string} />;
         }
     },
     {
@@ -56,7 +63,7 @@ const columns = [
         headerName: 'Action',
         flex: 1,
         headerClassName: 'header-cell',
-        renderCell: (params) => (
+        renderCell: () => (
             <>
                 <StyledLink underline="none" href="#">Delete</StyledLink>
                 <StyledLink underline="none" href="#">Details</StyledLink>
@@ -66,7 +73,7 @@ const columns = [
     },
 ];
 
-const rows = [
+const rows: ProcessesRowData[] = [
     { id: "ahdskessi23ns", service: 'Reproduction', metric: 'ML Taks', status: 'Completed', score: 0.96, dateCreated: new Date('2022-04-01') },
     { id: "dserw2343244", service: 'Reproduction', metric: 'ML Taks', status: 'Error', score: 0.96, dateCreated: new Date('2022-04-01') },
     { id: "02377832hjsad", service: 'Reproduction', metric: 'ML Taks', status: 'Running', score: 0.96, dateCreated: new Date('2022-04-01') },
@@ -74,13 +81,13 @@ const rows = [
 ];
 
 const StyledLink = styled(Link)(({ theme }) => ({
-    color: theme.palette.primary.main,
+    color: theme.palette.primary?.main,
     marginRight: theme.spacing(2),
 }));
 
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         height: 400,
         width: '100%',
@@ -89,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     columnHeaders: {
-        background: theme.palette.gray.lighter,
+        background: theme.palette.gray?.lighter,
     },
 }));
 
@@ -97,7 +104,7 @@ const CustomNoRowsOverlay = () => {
     const theme = useTheme()
     return (
         <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }} className="empty-rows" >
-            <img sx={{ maxWidth: '100%', maxHeight: '100%', }} src={EmptyRowsImage} alt="empty rows" />
+            <img style={{ maxWidth: '100%', maxHeight: '100%', }} src={EmptyRowsImage} alt="empty rows" />
             <Typography variant='subtitle1' sx={{ padding: theme.spacing(1) }}>No data generation processes started yet</Typography>
             <Button variant='contained' color='secondary' >Generate your first dataset</Button>
         </Box>
@@ -106,25 +113,22 @@ const CustomNoRowsOverlay = () => {
 
 const ProcessesTable = () => {
     const classes = useStyles();
+
+
+// const components: Partial<GridSlotsComponent> = {
+//     Toolbar: GridToolbar,
+//     Header: (props: any) => (
+//       <div className="cell header-cell">
+//         <span>{props.column.headerName}</span>
+//       </div>
+//     ),
+//   };
+  
     return (
         <Box className={classes.root}>
             <DataGrid
                 rows={rows}
                 columns={columns}
-
-                className={classes.grid}
-                components={{
-                    Toolbar: GridToolbar,
-                    Header: (props) => (
-                        <div className="cell header-cell">
-                            <span>{props.column.headerName}</span>
-                        </div>
-                    ),
-                }}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
-                checkboxSelection
-                disableSelectionOnClick
                 slots={{
                     noRowsOverlay: CustomNoRowsOverlay,
                 }}
