@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const SearchBox = styled(Box)<{ theme: Theme }>(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
-    border: `1px solid ${theme.palette?.gray?.light}`,
+    border: `1px solid ${theme.palette.gray?.light}`,
     borderRadius: 0,
 }));
 
@@ -41,7 +41,7 @@ const StyledFilterButton = styled(Box)(({ theme }) => ({
         backgroundColor: 'transparent',
     },
     '&.selected': {
-        backgroundColor: theme.palette?.common?.white,
+        backgroundColor: theme.palette.common?.white,
     },
 }));
 
@@ -58,10 +58,11 @@ interface StyledFilterBadgeProps {
     color: theme.palette?.common?.white,
     marginLeft: theme.spacing(1),
     padding: theme.spacing(0.2, 1),
-    backgroundColor: selected ? theme.palette?.secondary?.main : theme.palette.gray.light,
+    backgroundColor: selected ? theme.palette.secondary?.main : theme.palette.gray?.light,
   }));
 
 interface FilterButtonProps {
+    theme: Theme;
     selected: boolean;
     count: number;
     label: string;
@@ -69,12 +70,14 @@ interface FilterButtonProps {
     onClick: () => void;
   }
 
-const FilterButton: React.FC<FilterButtonProps> = ({ selected, count, children, label, ...rest }) => (
-    <StyledFilterButton className={selected ? 'selected' : ''} {...rest}>
-    {children}
-    <StyledFilterBadge selected={selected}>{count}</StyledFilterBadge>
-  </StyledFilterButton>
-);
+const FilterButton: React.FC<FilterButtonProps> = ({theme, selected, count, children, label, ...rest }) => {
+    return (
+        <StyledFilterButton className={selected ? 'selected' : ''} {...rest}>
+            {children}
+            <StyledFilterBadge selected={selected} theme={theme}>{count}</StyledFilterBadge>
+        </StyledFilterButton>
+    );
+};
 
 
 const TableToolBar = (props: any) => {
@@ -104,9 +107,10 @@ const TableToolBar = (props: any) => {
 
     return (
         <Box display="flex" flexDirection="row" justifyContent="space-between" sx={{ fontSize: theme.typography.body1 }}>
-            <Box display="flex" flexDirection="row" sx={{ backgroundColor: theme.palette.gray.lighter, borderRadius: "3px" }}>
+            <Box display="flex" flexDirection="row" sx={{ backgroundColor: theme.palette.gray?.lighter, borderRadius: "3px" }}>
                 {filters.map((filter, index) => (
                     <FilterButton
+                        theme={theme}
                         key={index}
                         selected={selected === index}
                         count={filter.count}
@@ -118,7 +122,7 @@ const TableToolBar = (props: any) => {
             <SearchBox {...props}>
                 <SearchInput placeholder="Search..." />
                 <SearchIconWrapper theme={theme}>
-                    <SearchIcon style={{ color: theme.palette?.gray?.light}}/>
+                    <SearchIcon style={{ color: theme.palette.gray?.light}}/>
                 </SearchIconWrapper>
             </SearchBox>
             <Box>

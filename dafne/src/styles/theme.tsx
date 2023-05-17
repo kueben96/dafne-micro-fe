@@ -1,34 +1,36 @@
 import { PaletteColorOptions, PaletteOptions, Theme, ThemeOptions, createTheme } from '@mui/material'
 // https://xiaominzhu.medium.com/mui-v5-theming-and-styled-utility-react-typescript-c1227cf12918
 declare module '@mui/material/styles' {
-   
+
+    // TODO: implement as PaletteColor Type??
+    interface SimplePaletteColorOptions {
+        main: string;
+        light?: string;
+        lighter?: string;
+        dark?: string;
+        contrastText?: string;
+    }
     interface CustomPaletteOptions extends PaletteOptions  {
-        gray?: PaletteColorOptions,
+        gray?: SimplePaletteColorOptions;
+        secondary?: SimplePaletteColorOptions;
     }
     interface Theme {
         layout?: {
             drawerWidth?: number;
         };
-        palette?: CustomPaletteOptions;
+        palette: CustomPaletteOptions;
     }
     // allow configuration using `createTheme`
     interface CustomThemeOptions extends ThemeOptions {
         layout?: {
             drawerWidth?: number;
         },
-        palette?: CustomPaletteOptions;
+        palette: CustomPaletteOptions;
         
     }
     export function createTheme(options?: CustomThemeOptions): Theme;
 }
-interface ExtraSimplePaletteColorOptions {
-    lighter?: string,
-}
-declare module "@mui/material/styles/createPalette" {
-    export interface SimplePaletteColorOptions extends ExtraSimplePaletteColorOptions {
-       
-    }
-}
+
 const customTheme = createTheme({
     typography: {
         fontSize: 13,
