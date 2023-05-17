@@ -2,7 +2,7 @@ import { Box, Container, Typography } from '@mui/material'
 
 import React from 'react'
 import TableToolBar from '../../../components/TableToolBar';
-import { ContentPaper, SizedBoxVertical } from '../../../styles/dafneStyles';
+import { ContentPaper, SizedBoxVertical } from '../../../assets/styles/dafneStyles';
 import ProcessesTable from '../../../components/ProcessesTable';
 
 const ProcessesView = () => {

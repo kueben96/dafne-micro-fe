@@ -35,9 +35,7 @@ const DashboardPage = () => {
       <>
         <PageHeaderDashboard title="Dashboard" value={value} onChange={handleChange} />
         <Box component="main">
-          <Container>
             {renderView()}
-          </Container>
         </Box>
       </>
     );
