@@ -4,7 +4,7 @@ import LinearProgressEpochs from '../../components/LinearProgressEpochs';
 import { useTheme } from '@emotion/react';
 import { reproductionEpochCount } from '../../utils/constants';
 import CheckIcon from '@mui/icons-material/Check';
-import { ContentPaper, SizedBoxVertical } from '../../assets/styles/dafneStyles';
+import { ContentPaper, SizedBoxVertical } from '../../assets/theme/dafneStyles';
 
 const GenerationFeedback = ({ completed, setCompleted }) => {
     const theme = useTheme()

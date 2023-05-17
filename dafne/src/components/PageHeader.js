@@ -1,7 +1,7 @@
 import { AppBar, Box, Container, Divider, Icon, IconButton, Tab, Tabs, TextField, Toolbar, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import HeaderBreadcrumbs from './HeaderBreadcrumbs';
-import { SizedBoxVertical, pageHeaderStyles } from '../assets/styles/dafneStyles';
+import { SizedBoxVertical, pageHeaderStyles } from '../assets/theme/dafneStyles';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 

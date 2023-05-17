@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material';
-import { customTheme }  from './assets/styles/theme';
+import { customTheme }  from './assets/theme/theme';
 import Layout from './Layout';
 import { Route, Routes } from 'react-router-dom';
 import ReproductionPage from './pages/ReproductionPage/index';

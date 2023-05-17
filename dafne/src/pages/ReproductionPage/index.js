@@ -1,6 +1,6 @@
 import React from 'react'
 import PageHeader from '../../components/PageHeader'
-import { ContentPaper, SizedBoxVertical } from '../../assets/styles/dafneStyles'
+import { ContentPaper, SizedBoxVertical } from '../../assets/theme/dafneStyles'
 import { Box, Button, Collapse, Container, IconButton, Typography } from '@mui/material'
 import { useTheme } from '@emotion/react';
 import HorizontalStepper from '../../components/HorizontalStepper';

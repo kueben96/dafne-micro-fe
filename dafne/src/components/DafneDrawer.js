@@ -1,7 +1,7 @@
 import React from 'react'
 import NavComponents from './NavComponents'
 import { Drawer, useTheme } from '@mui/material'
-import { drawerStyles } from '../assets/styles/dafneStyles'
+import { drawerStyles } from '../assets/theme/dafneStyles'
 
 const DafneDrawer = ({ handleDrawerToggle, isNavOpen }) => {
 

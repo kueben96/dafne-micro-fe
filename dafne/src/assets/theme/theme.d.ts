@@ -1,5 +1,5 @@
-declare module '*.jpg';
-declare module '*.png';
+// import { ThemeOptions } from "@mui/material";
+
 // declare module '@mui/material/styles' {
 //     interface PaletteColorOptions {
 //         main: string;

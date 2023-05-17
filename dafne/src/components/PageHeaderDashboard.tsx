@@ -1,7 +1,7 @@
 import { AppBar, Box, Container, Divider, Tab, Tabs, Toolbar, Typography, styled } from '@mui/material'
 import React, { useState } from 'react'
 import HeaderBreadcrumbs from './HeaderBreadcrumbs';
-import { pageHeaderStyles } from '../assets/styles/dafneStyles';
+import { pageHeaderStyles } from '../assets/theme/dafneStyles';
 
 
 const AssetStatistic = styled(Box)(({ theme }) => ({

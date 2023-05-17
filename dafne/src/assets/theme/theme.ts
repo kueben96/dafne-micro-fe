@@ -1,31 +1,5 @@
 import { PaletteColorOptions, PaletteOptions, Theme, ThemeOptions, createTheme } from '@mui/material'
-// https://xiaominzhu.medium.com/mui-v5-theming-and-styled-utility-react-typescript-c1227cf12918
-declare module '@mui/material/styles' {
-    interface PaletteColorOptions {
-        main: string;
-        light?: string;
-        lighter?: string;
-        dark?: string;
-        contrastText?: string;
-    }
-     interface PaletteOptions  {
-        gray?: PaletteColorOptions;
-    }
-    interface Theme {
-        layout?: {
-            drawerWidth?: number;
-        };
-        palette: PaletteOptions;
-    }
-    interface CustomThemeOptions extends ThemeOptions {
-        layout?: {
-            drawerWidth?: number;
-        },
-        palette: PaletteOptions;
-        
-    }
-    export function createTheme(options?: CustomThemeOptions): Theme;
-}
+import palette from './palette';
 
 const customTheme = createTheme({
     typography: {
@@ -91,35 +65,7 @@ const customTheme = createTheme({
             }
         }
     },
-    palette: {
-        primary: {
-            main: '#6CC1B5',
-            dark: '#3C9085',
-            light: '#A9DBD4',
-            lighter: '#E2F3F1'
-        },
-        secondary: {
-            main: '#E08542',
-            dark: '#C2631E',
-            light: '#E9A372',
-            lighter: '#F1CBB0'
-        },
-        common: {
-            black: '#1D201F',
-            white: '#FFFFFF',
-        },
-        gray: {
-            main: '#656565',
-            light: '#B9B9B9',
-            lighter: '#EDEDED'
-        },
-        error: {
-            main: '#FF4D4F'
-        },
-        success: {
-            main: '#52C41A'
-        },
-    },
+    palette: palette,
     layout: {
         drawerWidth: 240,
     },

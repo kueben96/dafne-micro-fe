@@ -2,7 +2,7 @@ import React from 'react';
 import { DataGrid, GridCellParams, GridColDef, GridSlotsComponent, GridToolbar } from '@mui/x-data-grid';
 import { Box, Button, Link, Theme, Typography, styled, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles'
-import EmptyRowsImage from '../assets/images/empty-image.png';
+import { EmptyRowsImage } from '../assets/images';
 import ProcessStatus from './ProcessStatus';
 
 interface ProcessesRowData {
