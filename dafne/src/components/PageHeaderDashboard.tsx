@@ -21,14 +21,12 @@ const AssetStatistic = styled(Box)(({ theme }) => ({
 
 interface PageHeaderDashboardProps {
     title: string;
+    value: string;
+    onChange: (event: React.ChangeEvent<{}>, newValue: string) => void;
   }
 const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
     const classes = pageHeaderStyles()
-    const [value, setValue] = useState<string>('one');
-
-    const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-        setValue(newValue);
-      };
+  
     return (
         <AppBar position="static" className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
@@ -67,15 +65,15 @@ const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
                             </Box>
                         </Box>
                         <Tabs
-                            value={value}
-                            onChange={handleChange}
+                            value={props.value}
+                            onChange={props.onChange}
                             textColor="primary"
                             indicatorColor="primary"
                             aria-label="secondary tabs example"
                         >
-                            <Tab value="one" label="Processes" sx={{ paddingLeft: 0 }} />
-                            <Tab value="two" label="Models" sx={{ paddingLeft: 0 }} />
-                            <Tab value="three" label="Data" sx={{ paddingLeft: 0 }} />
+                            <Tab value="processes" label="Processes" sx={{ paddingLeft: 0 }} />
+                            <Tab value="models" label="Models" sx={{ paddingLeft: 0 }} />
+                            <Tab value="data" label="Data" sx={{ paddingLeft: 0 }} />
                         </Tabs>
                     </Box>
                 </Container>

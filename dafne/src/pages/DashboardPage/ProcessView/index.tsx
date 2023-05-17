@@ -1,20 +1,14 @@
 import { Box, Container, Typography } from '@mui/material'
 
-import React, { useState } from 'react'
-import PageHeaderDashboard from '../components/PageHeaderDashboard';
-import { useTheme } from '@emotion/react';
-import TableToolBar from '../components/TableToolBar';
-import { ContentPaper, SizedBoxVertical } from '../styles/dafneStyles';
-import ProcessesTable from '../components/ProcessesTable';
+import React from 'react'
+import TableToolBar from '../../../components/TableToolBar';
+import { ContentPaper, SizedBoxVertical } from '../../../styles/dafneStyles';
+import ProcessesTable from '../../../components/ProcessesTable';
 
-const ProcessesPage = () => {
-
-
-    const theme = useTheme()
+const ProcessesView = () => {
 
     return (
         <>
-            <PageHeaderDashboard title="Dashboard" />
             <ContentPaper>
                 <Container>
                     <Box display="flex" flexDirection="column">
@@ -35,4 +29,4 @@ const ProcessesPage = () => {
     )
 }
 
-export default ProcessesPage
+export default ProcessesView

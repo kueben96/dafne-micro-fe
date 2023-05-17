@@ -34,7 +34,6 @@ const Layout = () => {
             <DafneDrawer handleDrawerToggle={handleNavToggle} isNavOpen={isNavOpen} />
             <Main open={isNavOpen}>
                 <Outlet />
-
             </Main>
         </>
     )
