@@ -114,16 +114,6 @@ const CustomNoRowsOverlay = () => {
 const ProcessesTable = () => {
     const classes = useStyles();
 
-
-// const components: Partial<GridSlotsComponent> = {
-//     Toolbar: GridToolbar,
-//     Header: (props: any) => (
-//       <div className="cell header-cell">
-//         <span>{props.column.headerName}</span>
-//       </div>
-//     ),
-//   };
-  
     return (
         <Box className={classes.root}>
             <DataGrid
@@ -133,7 +123,6 @@ const ProcessesTable = () => {
                     noRowsOverlay: CustomNoRowsOverlay,
                 }}
                 classes={{ columnHeaders: classes.columnHeaders }}
-
             />
         </Box>
     );
