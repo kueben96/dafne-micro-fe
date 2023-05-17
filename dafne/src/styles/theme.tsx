@@ -1,26 +1,35 @@
-import { PaletteColorOptions, Theme, ThemeOptions, createTheme } from '@mui/material'
+import { PaletteColorOptions, PaletteOptions, Theme, ThemeOptions, createTheme } from '@mui/material'
+// https://xiaominzhu.medium.com/mui-v5-theming-and-styled-utility-react-typescript-c1227cf12918
 declare module '@mui/material/styles' {
+   
+    interface CustomPaletteOptions extends PaletteOptions  {
+        gray?: PaletteColorOptions,
+    }
     interface Theme {
         layout?: {
             drawerWidth?: number;
         };
+        palette?: CustomPaletteOptions;
     }
     // allow configuration using `createTheme`
     interface CustomThemeOptions extends ThemeOptions {
         layout?: {
             drawerWidth?: number;
-        };
-    }
-    interface SimplePaletteColorOptions {
-        lighter?: string,
-        regular?: string,
-    }
-    interface PaletteOptions {
-        gray?: PaletteColorOptions,
+        },
+        palette?: CustomPaletteOptions;
+        
     }
     export function createTheme(options?: CustomThemeOptions): Theme;
 }
-const theme = createTheme({
+interface ExtraSimplePaletteColorOptions {
+    lighter?: string,
+}
+declare module "@mui/material/styles/createPalette" {
+    export interface SimplePaletteColorOptions extends ExtraSimplePaletteColorOptions {
+       
+    }
+}
+const customTheme = createTheme({
     typography: {
         fontSize: 13,
         h1: {
@@ -70,7 +79,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: ({ theme }) => ({
                     '&.MuiButton-contained': {
-                        color: theme.palette.common.white,
+                        color: theme.palette?.common?.white,
                     },
                 }),
             },
@@ -116,6 +125,6 @@ const theme = createTheme({
     layout: {
         drawerWidth: 240,
     },
-});
+}) as ThemeOptions;
 
-export { theme };
+export { customTheme };

@@ -40,7 +40,7 @@ const AppBarHeader = ({ handleDrawerToggle }) => {
                     </IconButton>
                     <IconButton color={theme.palette.gray.main}>
                         <Badge badgeContent={1} color="secondary">
-                            <NotificationsOutlinedIcon sx={{ color: theme.palette.gray.regular }}></NotificationsOutlinedIcon>
+                            <NotificationsOutlinedIcon sx={{ color: theme.palette.gray.main }}></NotificationsOutlinedIcon>
                         </Badge>
                     </IconButton>
                     <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { console.log('User Info Clicked') }}  >

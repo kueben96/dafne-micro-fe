@@ -1,31 +1,33 @@
-import { useTheme } from '@emotion/react';
-import { Box, Button, InputBase, styled } from '@mui/material';
+import { Box, Button, InputBase, Theme, styled, useTheme } from '@mui/material';
 import React, { useState } from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const SearchBox = styled(Box)(({ theme }) => ({
+const SearchBox = styled(Box)<{ theme: Theme }>(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
-    border: `1px solid ${theme.palette.gray.light}`,
+    border: `1px solid ${theme.palette?.gray?.light}`,
     borderRadius: 0,
 }));
 
-const SearchInput = styled(InputBase)(({ theme }) => ({
+const SearchInput = styled(InputBase)(({ theme }) => {
+    console.log(theme)
+    return {
     marginLeft: theme.spacing(1),
     flex: 1,
     fontSize: theme.typography.body1.fontSize,
-}));
+    }
+});
 
 
-const SearchIconWrapper = styled(Box)(({ theme }) => ({
+const SearchIconWrapper = styled(Box)<{ theme: Theme }>(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: theme.spacing(6),
     height: '100%',
-    borderLeft: `1px solid ${theme.palette.gray.light}`,
+    borderLeft: `1px solid ${theme.palette?.gray?.light}`,
 }));
 const StyledFilterButton = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -39,30 +41,43 @@ const StyledFilterButton = styled(Box)(({ theme }) => ({
         backgroundColor: 'transparent',
     },
     '&.selected': {
-        backgroundColor: theme.palette.common.white,
+        backgroundColor: theme.palette?.common?.white,
     },
 }));
-const StyledFilterBadge = styled(Box)(({ theme, selected }) => ({
+
+interface StyledFilterBadgeProps {
+    selected?: boolean;
+    theme: Theme;
+  }
+  
+  const StyledFilterBadge = styled(Box)<StyledFilterBadgeProps>(({ selected, theme }) => ({
     borderRadius: "20px",
     height: "100%",
     width: "100%",
-    fontSize: theme.typography.body1,
-    color: theme.palette.common.white,
+    fontSize: theme.typography.body1.fontSize,
+    color: theme.palette?.common?.white,
     marginLeft: theme.spacing(1),
     padding: theme.spacing(0.2, 1),
-    backgroundColor: selected ? theme.palette.secondary.main : theme.palette.gray.light,
+    backgroundColor: selected ? theme.palette?.secondary?.main : theme.palette.gray.light,
+  }));
 
-}));
+interface FilterButtonProps {
+    selected: boolean;
+    count: number;
+    label: string;
+    children: React.ReactNode;
+    onClick: () => void;
+  }
 
-const FilterButton = ({ selected, count, children, label, ...rest }) => (
+const FilterButton: React.FC<FilterButtonProps> = ({ selected, count, children, label, ...rest }) => (
     <StyledFilterButton className={selected ? 'selected' : ''} {...rest}>
-        {children}
-        <StyledFilterBadge selected={selected}>{count}</StyledFilterBadge>
-    </StyledFilterButton>
+    {children}
+    <StyledFilterBadge selected={selected}>{count}</StyledFilterBadge>
+  </StyledFilterButton>
 );
 
 
-const TableToolBar = (props) => {
+const TableToolBar = (props: any) => {
 
     const theme = useTheme()
 
@@ -73,7 +88,7 @@ const TableToolBar = (props) => {
         { label: 'Completed', count: 0 },
     ];
 
-    const handleFilterClick = index => {
+    const handleFilterClick = (index: number) => {
         setSelected(prevSelected => {
             if (prevSelected === index) {
                 return prevSelected;
@@ -102,8 +117,8 @@ const TableToolBar = (props) => {
             </Box>
             <SearchBox {...props}>
                 <SearchInput placeholder="Search..." />
-                <SearchIconWrapper>
-                    <SearchIcon style={{ color: theme.palette.gray.light }} />
+                <SearchIconWrapper theme={theme}>
+                    <SearchIcon style={{ color: theme.palette?.gray?.light}}/>
                 </SearchIconWrapper>
             </SearchBox>
             <Box>
