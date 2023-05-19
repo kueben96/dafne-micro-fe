@@ -12,3 +12,19 @@ export const reproductionStep1 = 'Set generation settings';
 export const reproductionStep2 = 'Set row number'
 export const reproductionStep3 = 'View results'
 export const reproductionHorizontalSteps = [reproductionStep1, reproductionStep2, reproductionStep3];
+
+export const ROUTES = {
+    HOME: '/',
+    DASHBOARD: {
+        PATH: '/dashboard',
+        PROCESSES: '/dashboard/processes',
+        DATA: '/dashboard/data',
+        MODELS: '/dashboard/models',
+    },
+    METHODS: {
+        PATH: '/methods',
+        REPRODUCTION: '/methods/reproduction',
+        FUSION: '/methods/fusion',
+        RULE_BASED: '/methods/rule-based',
+    },
+};
