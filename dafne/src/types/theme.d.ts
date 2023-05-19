@@ -22,7 +22,6 @@ declare module '@mui/material/styles' {
             drawerWidth?: number;
         },
         palette: PaletteOptions;
-
     }
     export function createTheme(options?: CustomThemeOptions): Theme;
 }

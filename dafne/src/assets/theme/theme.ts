@@ -26,6 +26,9 @@ const customTheme = createTheme({
         },
         body1: {
             fontSize: 12,
+        },
+        body2: {
+            fontSize: 11,
         }
 
     },
