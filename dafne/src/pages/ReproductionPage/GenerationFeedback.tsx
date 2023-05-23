@@ -1,13 +1,16 @@
-import { Box, CircularProgress, LinearProgress, Typography } from '@mui/material'
+import { Box, CircularProgress, LinearProgress, Theme, Typography, useTheme } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import LinearProgressEpochs from '../../components/LinearProgressEpochs';
-import { useTheme } from '@emotion/react';
 import { reproductionEpochCount } from '../../utils/constants';
 import CheckIcon from '@mui/icons-material/Check';
 import { ContentPaper, SizedBoxVertical } from '../../assets/theme/dafneStyles';
 
-const GenerationFeedback = ({ completed, setCompleted }) => {
-    const theme = useTheme()
+interface GenerationFeedbackProps {
+    completed: boolean;
+    setCompleted: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const GenerationFeedback: React.FC<GenerationFeedbackProps> = ({ completed, setCompleted }) => {
+    const theme = useTheme();
     const [progress, setProgress] = React.useState(0);
 
     useEffect(() => {
@@ -37,11 +40,18 @@ const GenerationFeedback = ({ completed, setCompleted }) => {
 
 export default GenerationFeedback
 
-const ProgressSection = ({ progress, completed, theme }) => {
+interface ProgressSectionProps {
+    progress: number;
+    completed: boolean;
+    theme: Theme;
+}
+    const ProgressSection: React.FC<ProgressSectionProps> = ({ progress, completed, theme }) => {
     return (
         <Box display="flex" flexDirection="column" >
             <Box display="flex" flexDirection="row" width="100%" justifyContent="center" padding={2}>
-                {completed ? <CheckIcon style={{ fontSize: 50, color: theme.palette.primary.dark }} /> : <CircularProgress sx={{ color: theme.palette.primary.dark }} />}
+                {completed ? 
+                <CheckIcon style={ { fontSize: 50, color: theme.palette?.primary?.dark }} /> 
+                    : <CircularProgress sx={{ color: theme.palette?.primary?.dark }} />}
             </Box>
             <Box display="flex" flexDirection="row" width="100%" justifyContent="center" paddingBottom={2}>
                 <Typography >{completed ? "Completed" : "Learning your data..."}</Typography>
