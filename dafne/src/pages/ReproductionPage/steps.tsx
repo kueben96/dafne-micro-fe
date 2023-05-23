@@ -1,4 +1,4 @@
-import { Box, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField, Tooltip, Typography } from '@mui/material'
+import { Box, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, TextField, Tooltip, Typography } from '@mui/material'
 import React, { ChangeEvent, useRef, useState } from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
 
@@ -32,8 +32,10 @@ interface StepSummaryFieldProps {
   }
   
   export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = ({ setSelectedSource }) => {
+
+    // TODO: implement data catalogue selection
     const [selected, setSelected] = useState('catalogue');
-    const [selectedFileCatalogue, setSelectedFileCatalogue] = useState<File | null>(null);
+    const [selectedFileCatalogue, setSelectedFileCatalogue] = useState<File>(new File([''], 'DemoDataset.csv'));
     const [selectedFileUpload, setSelectedFileUpload] = useState<File | null>(null);
   
     const handleCatalogueSelection = () => {
@@ -45,8 +47,8 @@ interface StepSummaryFieldProps {
       });
     };
   
-    const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
-      const file = event.target.files?.[0] || null;
+    const handleFileUpload = (event: Event) => {
+      const file = (event.target as HTMLInputElement).files?.[0] || null;
       setSelectedFileUpload(file);
       setSelected('upload');
       setSelectedSource({
@@ -54,7 +56,6 @@ interface StepSummaryFieldProps {
         file: file ?? null,
       });
     };
-  
     const openFileInput = () => {
       const input = document.createElement('input');
       input.type = 'file';
@@ -68,7 +69,7 @@ interface StepSummaryFieldProps {
           variant="catalogueSelection"
           onClick={handleCatalogueSelection}
           selected={selected === 'catalogue'}
-          selectedFileNameCatalogue={selectedFileCatalogue?.name ?? 'DemoDataset.csv'}
+          selectedFileNameCatalogue={selectedFileCatalogue?.name }
         />
         <DataSourceSelectionComponent
           variant="computerSelection"
@@ -88,8 +89,8 @@ interface StepSummaryFieldProps {
   export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({ selectionItems, setSelectedHook }) => {
     const [value, setValue] = useState('');
   
-    const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
-      const selectedValue = event.target.value as string;
+    const handleChange = (event: SelectChangeEvent<string>) => {
+      const selectedValue = event.target.value;
       setValue(selectedValue);
       setSelectedHook(selectedValue);
     };
