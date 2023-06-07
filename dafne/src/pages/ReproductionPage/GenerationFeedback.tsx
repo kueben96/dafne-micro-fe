@@ -24,7 +24,7 @@ const GenerationFeedback: React.FC<GenerationFeedbackProps> = ({ completed, setC
                     return;
                 }
                 simulateEpoch();
-            }, 100);
+            }, 50);
         };
         // start the simulation
         simulateEpoch();

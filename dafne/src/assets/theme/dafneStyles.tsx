@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { makeStyles, styled } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
 
@@ -33,6 +33,10 @@ export const ContentPaper = styled(Box)(({ theme }: { theme: Theme }) => ({
     margin: theme.spacing(2),
     padding: theme.spacing(2, 0),
     background: theme.palette?.common?.white,
+}));
+export const ContentBox = styled(Box)(({ theme }: { theme: Theme }) => ({
+    margin: theme.spacing(2),
+    padding: theme.spacing(2, 0),
 }));
 
 export const SizedBoxVertical = styled(Box)(({ theme, space = 2 }: { theme: Theme, space?: number }) => ({

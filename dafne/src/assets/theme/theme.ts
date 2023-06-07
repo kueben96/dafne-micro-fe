@@ -16,6 +16,12 @@ const customTheme = createTheme({
         h4: {
             fontSize: '1.3rem',
         },
+        h5: {
+            fontSize: '1.1rem',
+        },
+        h6: {
+            fontSize: '1.0rem',
+        },
         subtitle1: {
             fontSize: 12,
             color: '#656565'

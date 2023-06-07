@@ -9,19 +9,15 @@ import { isStepCompleted } from '../../utils/stepperUtils';
 import { RowNumberSelectionStep } from './steps';
 import GenerationFeedback from './GenerationFeedback';
 import { reproductionHorizontalSteps } from '../../utils/constants';
-import { MyCardRow } from './SummaryCard';
+import ProcessDetail from './ProcessDetail';
 
 
-const CardContainer = styled(Box)({
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'stretch',
-});
+
 
 const ReproductionPage: React.FC = () => {
   const horizontalSteps = reproductionHorizontalSteps;
   const theme = useTheme();
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(2);
   const [stepCompleted, setStepCompleted] = useState(new Set<number>());
   const [rowNumber, setSelectedRowNumber] = useState(300);
   const [generationCompleted, setGenerationCompleted] = useState(false);
@@ -127,11 +123,7 @@ const ReproductionPage: React.FC = () => {
       </Collapse>
       <SizedBoxVertical />
       {generationCompleted && (
-        <Container>
-          <CardContainer>
-            <MyCardRow />
-          </CardContainer>
-        </Container>
+        <ProcessDetail />
       )}
     </>
   );

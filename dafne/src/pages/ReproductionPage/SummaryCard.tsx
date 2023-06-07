@@ -1,18 +1,13 @@
 import React from 'react';
 import { Box, IconButton, Theme, Typography, styled } from '@mui/material';
-import { useTheme } from '@emotion/react';
+import { SizedBoxVertical } from '../../assets/theme/dafneStyles';
+import { CircularProgressWithLabel } from '../../components/CicularProgressWithLabel';
 
-
-const CardContainer = styled(Box)({
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'stretch',
-});
 
 const Card = styled(Box)(({ theme }: { theme: Theme }) => ({
   flex: 1,
-  border: `1px solid ${theme.palette?.gray?.light}`,
-  borderRadius: theme.shape.borderRadius,
+  border: `1px solid ${theme.palette?.gray?.lighter}`,
+  borderRadius: 1,
   overflow: 'hidden',
   background: theme.palette?.common?.white,
 }));
@@ -23,7 +18,7 @@ const Header = styled(Box)(({ theme }: { theme: Theme }) => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: theme.spacing(1, 2),
-  borderBottom: `1px solid ${theme.palette?.gray?.light}`,
+  borderBottom: `1px solid ${theme.palette?.gray?.lighter}`,
 }));
 
 const HeaderTitle = styled(Typography)(({ theme }: { theme: any }) => ({
@@ -51,15 +46,14 @@ const CardContent = styled(Box)(({ theme }: { theme: any }) => ({
   padding: theme.spacing(2),
 }));
 
-interface MyCardProps {
+interface SummaryCardProps {
   title: string;
   actions?: { icon: React.ReactNode }[];
   children?: React.ReactNode;
   flex: number;
 }
 
-const MyCard: React.FC<MyCardProps> = ({ title, actions, children, flex }) => {
-  const theme = useTheme();
+export const SummaryCard: React.FC<SummaryCardProps> = ({ title, actions, children, flex }) => {
   return (
     <Card style={{ flex }}>
       <Header>
@@ -75,21 +69,57 @@ const MyCard: React.FC<MyCardProps> = ({ title, actions, children, flex }) => {
           </ActionButtonContainer>
         )}
       </Header>
-      <CardContent>{children}</CardContent>
+      <CardContent style={{ height: '100%' }}>{children}</CardContent>
     </Card>
   );
 };
 
-export default MyCard;
 
+export const SettingsOverviewCard: React.FC = () => {
+  return (
+    <SummaryCard title="Settings overview" flex={4}>
+      <Box display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" >
+        <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
+          <Typography variant="body2" color="gray.main">Rows number</Typography>
+          <SizedBoxVertical space={0.5} />
+          <Typography variant="h6">1798</Typography>
+        </Box>
+        <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
+          <Typography variant="body2" color="gray.main">Source Dataset</Typography>
+          <Typography variant="h6">DemoDataset.csv</Typography>
+        </Box>
+        <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
+          <Typography variant="body2" color="gray.main">Model</Typography>
+          <Typography variant="h6">CTGAN</Typography>
+        </Box>
+        <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
+          <Typography variant="body2" color="gray.main">Parameters</Typography>
+          <Typography variant="h6">Default</Typography>
+        </Box>
+      </Box>
+    </SummaryCard>
+  );
+};
 
+export const MetricScoreCard: React.FC = () => {
+  return (
+    <SummaryCard title="Metric Score" flex={2}>
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
+        <Typography variant='h6'>Statistical Similarity</Typography>
+        <SizedBoxVertical space={1} />
+        <CircularProgressWithLabel value={95} />
+      </Box>
+    </SummaryCard>
+  );
+};
 
-export const MyCardRow: React.FC = () => {
-    return (
-      <CardContainer>
-        <MyCard title="Settings overview" flex={4} />
-        <MyCard title="Metric Score" flex={2} />
-        <MyCard title="Quality Report" flex={4} />
-      </CardContainer>
-    );
-  };
+export const QualityReportCard: React.FC = () => {
+  return (
+    <SummaryCard title="Quality Report" flex={2}>
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
+        <Typography variant='h6'>To be defined</Typography>
+      </Box>
+    </SummaryCard>
+  );
+};
+
