@@ -3,6 +3,7 @@ import { ContentBox, ContentPaper, SizedBoxHorizontal } from '../../assets/theme
 import { Box, Container, styled } from '@mui/material';
 import { MetricScoreCard, QualityReportCard, SettingsOverviewCard, SummaryCard } from './SummaryCard';
 import ProcessesTable from '../../components/ProcessesTable';
+import PageHeader from '../../components/PageHeader';
 
 const CardContainer = styled(Box)({
   display: 'flex',
@@ -37,7 +38,12 @@ const ProcessDetail: React.FC = () => {
     <>
       <ProcessSummary />
       <ContentPaper>
-        <ProcessesTable columns={columns} />
+        <PageHeader title="Processes" />
+        <Container>
+
+          <ProcessesTable columns={columns} />
+        </Container>
+
       </ContentPaper>
     </>
 

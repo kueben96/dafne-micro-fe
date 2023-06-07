@@ -56,38 +56,15 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
               <HeaderBreadcrumbs />
             </Box>
             <Box display="flex" flexDirection="row" alignItems="center">
-              {isEditable ? (
-                <>
-                  <TextField
-                    autoFocus
-                    margin="none"
-                    value={title}
-                    onChange={handleTitleChange}
-                    onKeyPress={handleTitleKeyPress}
-                    sx={{ width: '70%' }}
-                  />
-                  <IconButton onClick={handleSaveClick}>
-                    <CheckOutlinedIcon sx={{ padding: '1px' }} />
-                  </IconButton>
-                  <IconButton onClick={handleCancelClick}>
-                    <ClearOutlinedIcon sx={{ padding: '1px' }} />
-                  </IconButton>
-                </>
-              ) : (
-                <>
-                  <Typography
-                    variant="h4"
-                    fontWeight="bold"
-                    component="div"
-                    sx={{ paddingTop: 1, paddingBottom: 1 }}
-                  >
-                    {title}
-                  </Typography>
-                  <IconButton onClick={handleEditClick}>
-                    <BorderColorOutlinedIcon sx={{ padding: '1px' }} />
-                  </IconButton>
-                </>
-              )}
+              <HeaderEditable
+                isEditable={isEditable}
+                title={title}
+                onTitleChange={handleTitleChange}
+                onTitleKeyPress={handleTitleKeyPress}
+                onEditClick={handleEditClick}
+                onSaveClick={handleSaveClick}
+                onCancelClick={handleCancelClick}
+              />
             </Box>
             <Typography variant='body2'>
               Follow the steps to generate a synthetic dataset from an already existing dataset
@@ -101,3 +78,77 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
 };
 
 export default PageHeader;
+
+enum HeaderSize {
+  PageHeadline = 'PageHeadline',
+  SmallHeader = 'SmallHeader',
+}
+interface HeaderEditableProps {
+  isEditable: boolean;
+  title: string;
+  onTitleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onTitleKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  onEditClick?: () => void;
+  onSaveClick?: () => void;
+  onCancelClick?: () => void;
+  headerSize?: HeaderSize;
+}
+
+export const HeaderEditable: React.FC<HeaderEditableProps> = ({
+  isEditable = false,
+  title,
+  onTitleChange,
+  onTitleKeyPress,
+  onEditClick,
+  onSaveClick,
+  onCancelClick,
+  headerSize = HeaderSize.PageHeadline,
+}) => {
+
+  const getTypographyVariant = () => {
+    switch (headerSize) {
+      case HeaderSize.PageHeadline:
+        return 'h4';
+      case HeaderSize.SmallHeader:
+        return 'h6';
+      default:
+        return 'h4';
+    }
+  };
+  return (
+    <Box display="flex" flexDirection="row" alignItems="center">
+      {isEditable ? (
+        <>
+          <TextField
+            autoFocus
+            margin="none"
+            value={title}
+            onChange={onTitleChange}
+            onKeyPress={onTitleKeyPress}
+            sx={{ width: '70%' }}
+          />
+          <IconButton onClick={onSaveClick}>
+            <CheckOutlinedIcon sx={{ padding: '1px' }} />
+          </IconButton>
+          <IconButton onClick={onCancelClick}>
+            <ClearOutlinedIcon sx={{ padding: '1px' }} />
+          </IconButton>
+        </>
+      ) : (
+        <>
+          <Typography
+            variant={getTypographyVariant()}
+            fontWeight="bold"
+            component="div"
+            sx={{ paddingTop: 1, paddingBottom: 1 }}
+          >
+            {title}
+          </Typography>
+          <IconButton onClick={onEditClick}>
+            <BorderColorOutlinedIcon sx={{ padding: '1px' }} />
+          </IconButton>
+        </>
+      )}
+    </Box>
+  );
+};
