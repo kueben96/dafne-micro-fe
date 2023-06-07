@@ -57,7 +57,7 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ title, actions, childr
   return (
     <Card style={{ flex }}>
       <Header>
-        <HeaderTitle>{title}</HeaderTitle>
+        <HeaderTitle variant='subtitle1'>{title}</HeaderTitle>
         {actions && (
           <ActionButtonContainer>
             {actions.map((action, index) => (

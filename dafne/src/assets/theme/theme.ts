@@ -23,7 +23,7 @@ const customTheme = createTheme({
             fontSize: '1.0rem',
         },
         subtitle1: {
-            fontSize: 12,
+            fontSize: 13,
             color: '#656565'
         },
         subtitle2: {
