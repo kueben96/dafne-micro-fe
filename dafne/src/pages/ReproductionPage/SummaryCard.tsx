@@ -2,7 +2,9 @@ import React from 'react';
 import { Box, IconButton, Theme, Typography, styled } from '@mui/material';
 import { SizedBoxVertical } from '../../assets/theme/dafneStyles';
 import { CircularProgressWithLabel } from '../../components/CicularProgressWithLabel';
-
+import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
+import SearchIcon from '@mui/icons-material/Search';
+import { red } from '@mui/material/colors';
 
 const Card = styled(Box)(({ theme }: { theme: Theme }) => ({
   flex: 1,
@@ -32,17 +34,15 @@ const ActionButtonContainer = styled(Box)({
   alignItems: 'center',
 });
 
-const ActionButtonIcon = styled(IconButton)(({ theme }: { theme: any }) => ({
-  padding: theme.spacing(1),
-}));
 
-const Divider = styled(Box)(({ theme }: { theme: any }) => ({
+const Divider = styled(Box)(({ theme }: { theme: Theme }) => ({
   width: 1,
   height: '100%',
-  backgroundColor: theme.palette.gray.light,
+  backgroundColor: theme.palette?.gray?.lighter,
+  alignSelf: 'stretch',
 }));
 
-const CardContent = styled(Box)(({ theme }: { theme: any }) => ({
+const CardContent = styled(Box)(({ theme }: { theme: Theme }) => ({
   padding: theme.spacing(2),
 }));
 
@@ -63,7 +63,7 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ title, actions, childr
             {actions.map((action, index) => (
               <React.Fragment key={index}>
                 {index > 0 && <Divider />}
-                <ActionButtonIcon>{action.icon}</ActionButtonIcon>
+                <IconButton>{action.icon}</IconButton>
               </React.Fragment>
             ))}
           </ActionButtonContainer>
@@ -114,10 +114,14 @@ export const MetricScoreCard: React.FC = () => {
 };
 
 export const QualityReportCard: React.FC = () => {
+  const actions = [
+    { icon: <FileDownloadOutlinedIcon /> },
+    { icon: <SearchIcon /> },
+  ];
   return (
-    <SummaryCard title="Quality Report" flex={2}>
+    <SummaryCard title="Quality Report" actions={actions} flex={2}>
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
-        <Typography variant='h6'>To be defined</Typography>
+        <Typography variant='h6'>To be defined: indicators and metrics</Typography>
       </Box>
     </SummaryCard>
   );
