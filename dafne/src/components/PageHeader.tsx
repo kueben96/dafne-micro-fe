@@ -79,13 +79,13 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
 
 export default PageHeader;
 
-enum HeaderSize {
+export enum HeaderSize {
   PageHeadline = 'PageHeadline',
   SmallHeader = 'SmallHeader',
 }
 interface HeaderEditableProps {
-  isEditable: boolean;
   title: string;
+  isEditable?: boolean;
   onTitleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onTitleKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   onEditClick?: () => void;
