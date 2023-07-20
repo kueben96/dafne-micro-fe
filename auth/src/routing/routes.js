@@ -2,7 +2,7 @@ import React from 'react'
 import App from '../App'
 import NavigationManager from '../components/NavigationManager'
 
-export const routes = ({ onNavigateOnShell }) => {
+export const routes = () => {
     return (
         [
             {
@@ -10,7 +10,7 @@ export const routes = ({ onNavigateOnShell }) => {
                 element: (
                     <>
                         <NavigationManager>
-                            <App onNavigateOnShell={onNavigateOnShell} />
+                            <App />
                         </NavigationManager>
                     </>
                 ),

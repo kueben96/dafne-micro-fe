@@ -3,10 +3,10 @@ import React from 'react'
 import LogoImg from '../assets/images/logo.png'
 import { CustomToolbar, Logo } from '../styles/authStyles'
 
-const Navbar = ({ onNavigateOnShell }) => {
+const Navbar = () => {
     const theme = useTheme()
     const navigateBackToShell = () => {
-        onNavigateOnShell('/')
+        console.log('TODO: Implement navigateBackToShell homepage in marketing app')
     }
     return (
         <AppBar sx={{ backgroundColor: theme.palette.neutral.white }} position='relative'>

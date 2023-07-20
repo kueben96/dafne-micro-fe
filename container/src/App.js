@@ -30,7 +30,7 @@ const App = () => {
     const renderMFE = (MFE) => {
         return (
             <React.Suspense fallback="Loading...">
-                <MFE onNavigateOnShell={navigateOnShell} />
+                <MFE />
             </React.Suspense>
         )
     }

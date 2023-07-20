@@ -6,7 +6,7 @@ import { Routes, Route, Navigate, BrowserRouter, useNavigate } from 'react-route
 import AuthPageLayout from './components/AuthPageLayout'
 
 
-const App = ({ onNavigateOnShell }) => {
+const App = () => {
 
     const [isLoginMode, setIsLoginMode] = useState(true);
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ const App = ({ onNavigateOnShell }) => {
             <Routes>
                 <Route path="/">
                     <Route index element={<Navigate to={"/login"} />} />
-                    <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} onNavigateOnShell={onNavigateOnShell} />} />
+                    <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
                     <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
                 </Route>
             </Routes>
@@ -37,15 +37,15 @@ const App = ({ onNavigateOnShell }) => {
 export default App
 
 
-const LoginPage = ({ onToggleMode, isLoginMode, onNavigateOnShell }) => (
-    <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode} onNavigateOnShell={onNavigateOnShell}>
+const LoginPage = ({ onToggleMode, isLoginMode }) => (
+    <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode} >
         <LoginForm />
     </AuthPageLayout>
 )
-const SignupPage = ({ onToggleMode, isLoginMode, onNavigateOnShell }) => {
+const SignupPage = ({ onToggleMode, isLoginMode }) => {
 
     return (
-        <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode} onNavigateOnShell={onNavigateOnShell}>
+        <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode}>
             <RegistrationForm />
         </AuthPageLayout>
     );

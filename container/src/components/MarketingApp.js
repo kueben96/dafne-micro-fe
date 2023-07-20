@@ -3,7 +3,7 @@ import { mount } from "../../../marketing/src/bootstrap";
 import { useNavigate, useLocation } from 'react-router-dom'
 import { authRoutingPrefix, marketingRoutingPrefix } from "../constants";
 
-const MarketingApp = ({ onNavigateOnShell }) => {
+const MarketingApp = () => {
     const wrapperRef = useRef(null);
     const navigate = useNavigate();
     const location = useLocation();
@@ -56,7 +56,6 @@ const MarketingApp = ({ onNavigateOnShell }) => {
             mountPoint: wrapperRef.current,
             initialPathname: location.pathname.replace(marketingRoutingPrefix, ""),
             routingStrategy: "memory",
-            onNavigateOnShell: onNavigateOnShell
         });
         isFirstRunRef.current = false;
     }, [location]);

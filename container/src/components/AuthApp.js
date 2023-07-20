@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 const authBaseName = '/auth'
 
-const AuthApp = ({ onNavigateOnShell }) => {
+const AuthApp = () => {
     // TODO: handle back navigation from auth to main page 
     // TODO: problem: Router navigates back to /auth and /auth automatically navigates to /auth/login
     const wrapperRef = useRef(null);
@@ -68,8 +68,6 @@ const AuthApp = ({ onNavigateOnShell }) => {
             mountPoint: wrapperRef.current,
             initialPathname: location.pathname.replace(authBaseName, ""),
             routingStrategy: "memory",
-            onNavigateOnShell: onNavigateOnShell
-
         });
         isFirstRunRef.current = false;
     }, [location]);

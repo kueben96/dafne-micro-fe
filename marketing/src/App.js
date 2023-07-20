@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
 
-const App = ({ onNavigateOnShell }) => {
+const App = () => {
     const navigate = useNavigate()
     const navigateToAuthApp = () => {
         console.log('I WANNA NAVIGATE TO AUTH');
