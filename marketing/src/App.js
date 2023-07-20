@@ -1,10 +1,18 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
 
 const App = ({ onNavigateOnShell }) => {
+    const navigate = useNavigate()
     const navigateToAuthApp = () => {
-        onNavigateOnShell('/auth')
+        console.log('I WANNA NAVIGATE TO AUTH');
+        // navigate('/auth');
+        // onNavigateOnShell('/auth');
+        window.dispatchEvent(
+            new CustomEvent("[external] navigated",
+                { detail: '/auth' })
+        );
+
     }
     return (
         <div>

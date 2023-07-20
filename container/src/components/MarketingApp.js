@@ -1,8 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { mount } from "../../../marketing/src/bootstrap";
 import { useNavigate, useLocation } from 'react-router-dom'
-
-const marketingBaseName = '/marketing'
+import { authRoutingPrefix, marketingRoutingPrefix } from "../constants";
 
 const MarketingApp = ({ onNavigateOnShell }) => {
     const wrapperRef = useRef(null);
@@ -14,7 +13,7 @@ const MarketingApp = ({ onNavigateOnShell }) => {
     useEffect(() => {
         const marketingAppNavigationHandler = (event) => {
             const pathname = event.detail;
-            const newPathname = `${marketingBaseName}${pathname}`
+            const newPathname = `${marketingRoutingPrefix}${pathname}`
             if (newPathname === location.pathname) {
                 return;
             }
@@ -33,12 +32,17 @@ const MarketingApp = ({ onNavigateOnShell }) => {
 
     // listens for location changes in the shell and dispatches notification to marketing app if the location starts with marketingBaseName
     useEffect(() => {
-        if (location.pathname.startsWith(marketingBaseName)) {
+        console.log("Location on MarketingApp.js")
+        console.log(location)
+        if (location.pathname.startsWith(marketingRoutingPrefix)) {
             window.dispatchEvent(
                 new CustomEvent("[shell] navigated", {
-                    detail: location.pathname.replace(marketingBaseName, ""),
+                    detail: location.pathname.replace(marketingRoutingPrefix, ""),
                 })
             );
+        }
+        else if (location.pathname.startsWith(authRoutingPrefix)) {
+            console.log("FOUND AUTH ROUTING PREFIX")
         }
     }, [location]);
 
@@ -50,7 +54,7 @@ const MarketingApp = ({ onNavigateOnShell }) => {
         }
         unmountRef.current = mount({
             mountPoint: wrapperRef.current,
-            initialPathname: location.pathname.replace(marketingBaseName, ""),
+            initialPathname: location.pathname.replace(marketingRoutingPrefix, ""),
             routingStrategy: "memory",
             onNavigateOnShell: onNavigateOnShell
         });
