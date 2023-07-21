@@ -15,10 +15,6 @@ export const routes =
             ),
             children: [
                 {
-                    index: true,
-                    element: <App />,
-                },
-                {
                     path: '/login',
                     element: <App />,
                 },

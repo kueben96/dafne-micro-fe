@@ -4,6 +4,7 @@ import RegistrationForm from './components/RegistrationForm'
 import LoginForm from './components/LoginForm'
 import { Routes, Route, Navigate, BrowserRouter, useNavigate } from 'react-router-dom'
 import AuthPageLayout from './components/AuthPageLayout'
+import NavigationManager from './components/NavigationManager'
 
 
 const App = () => {
@@ -21,17 +22,10 @@ const App = () => {
     };
 
     return (
-        <>
-
-            <Routes >
-                <Route path="/">
-                    <Route index element={<Navigate to={"/login"} />} />
-                    <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
-                    <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
-                </Route>
-            </Routes>
-
-        </>
+        <Routes >
+            <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+            <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+        </Routes>
     )
 }
 
