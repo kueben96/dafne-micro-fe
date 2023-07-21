@@ -31,51 +31,7 @@ const App = () => {
         )
     }
     // TODO: handle generic navigation to paths (navigateToParentPath("/auth"))
-    // Concern: How readable and understandable is this approach?
-    const prevLocationRef = useRef(null);
-    const previousLocationsRef = useRef([]);
-
-
-    // useEffect(() => {
-    //     // Update the previous location whenever the location changes
-
-    //     console.log("*****useEffect")
-    //     prevLocationRef.current = location;
-
-    //     previousLocationsRef.current.push(location);
-    //     // console.log("previousLocationsRef.current")
-    //     console.log(previousLocationsRef.current)
-    // }, [location]);
-
-    // const handleBackNavigation = () => {
-    //     console.log("*****handleBackNavigation")
-    //     // // Check if there's a previous location in the custom history stack
-    //     if (prevLocationRef.current) {
-    //         // Navigate back to the previous location using the custom history
-    //         // navigate(prevLocationRef.current.pathname);
-    //         console.log("test")
-    //         console.log(previousLocationsRef.current)
-    //         navigate(previousLocationsRef.current[0].pathname);
-    //     } else {
-    //         // If there's no previous location, use the default navigate function
-    //         navigate(-1);
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     // Add a listener to handle browser's back button navigation
-    //     window.addEventListener('popstate', handleBackNavigation);
-
-    //     // Clean up the listener when the component unmounts
-    //     return () => window.removeEventListener('popstate', handleBackNavigation);
-    // }, [navigate]);
-
     const { myHistory } = useMyHistory();
-    // console.log("myHistory")
-    // console.log(myHistory)
-
-    // console.log("window.location")
-    // console.log(window.location.pathname)
 
     return (
         <>
