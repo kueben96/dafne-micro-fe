@@ -1,3 +1,9 @@
-import('./bootstrap').then(({ mount }) => {
-    mount(document.getElementById('_dafne-dev-root')!);
-});
+import('./bootstrap').then(
+    ({ mount }) => {
+        const localRoot = document.getElementById('_dafne-dev-root');
+
+        mount({
+            mountPoint: localRoot!,
+            routingStrategy: 'browser',
+        })
+    });
