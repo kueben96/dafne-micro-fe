@@ -32,8 +32,6 @@ const MarketingApp = () => {
 
     // listens for location changes in the shell and dispatches notification to marketing app if the location starts with marketingBaseName
     useEffect(() => {
-        console.log("Location on MarketingApp.js")
-        console.log(location)
         if (location.pathname.startsWith(marketingRoutingPrefix)) {
             window.dispatchEvent(
                 new CustomEvent("[shell] navigated", {

@@ -3,11 +3,11 @@ import { routes } from "./routes";
 
 function createRouter({ strategy, initialPathname }) {
     if (strategy === 'browser') {
-        return createBrowserRouter(routes({}));
+        return createBrowserRouter(routes);
     }
 
     const initialEntries = [initialPathname || "/"];
-    return createMemoryRouter(routes({}), { initialEntries: initialEntries });
+    return createMemoryRouter(routes, { initialEntries: initialEntries });
 }
 
 export { createRouter };

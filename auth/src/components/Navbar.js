@@ -5,10 +5,12 @@ import { CustomToolbar, Logo } from '../styles/authStyles'
 
 const Navbar = () => {
     const theme = useTheme()
+    // TODO: differentiate if isolation mode or not
+    // TODO: if isolation, then only refresh the page
     const navigateBackToShell = () => {
         window.dispatchEvent(
             new CustomEvent("[external] navigated",
-                { detail: '/marketing' })
+                { detail: '/marketing/' })
         );
     }
     return (

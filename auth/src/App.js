@@ -20,16 +20,17 @@ const App = () => {
         }
     };
 
-
     return (
         <>
-            <Routes>
+
+            <Routes >
                 <Route path="/">
                     <Route index element={<Navigate to={"/login"} />} />
                     <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
                     <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
                 </Route>
             </Routes>
+
         </>
     )
 }
@@ -37,12 +38,12 @@ const App = () => {
 export default App
 
 
-const LoginPage = ({ onToggleMode, isLoginMode }) => (
+export const LoginPage = ({ onToggleMode, isLoginMode }) => (
     <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode} >
         <LoginForm />
     </AuthPageLayout>
 )
-const SignupPage = ({ onToggleMode, isLoginMode }) => {
+export const SignupPage = ({ onToggleMode, isLoginMode }) => {
 
     return (
         <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode}>

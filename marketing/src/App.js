@@ -3,14 +3,13 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
 
 const App = () => {
-    const navigate = useNavigate()
+    // TODO: implement more generic navigation
+    // TODO: navigateToOtherMicroFrontend("/auth")
+    // TODO: is there a solution to retrieve these functions from shell? 
     const navigateToAuthApp = () => {
-        console.log('I WANNA NAVIGATE TO AUTH');
-        // navigate('/auth');
-        // onNavigateOnShell('/auth');
         window.dispatchEvent(
             new CustomEvent("[external] navigated",
-                { detail: '/auth' })
+                { detail: '/auth/login' })
         );
 
     }
