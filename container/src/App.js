@@ -41,14 +41,7 @@ const App = () => {
 
     return (
         <>
-            <nav style={{ marginBottom: "3rem" }}>
-                <Link to={`${marketingRoutingPrefix}`}>Marketing</Link>
-                <Link to={`${authRoutingPrefix}`}>Auth</Link>
-                <Link to={`${dafneRoutingPrefix}`}>Dafne</Link>
-            </nav>
             <Routes>
-                {/* <Route path="/" element={<Container />}> */}
-
                 <Route index element={<Navigate to={"/marketing/"} />} />
                 <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
                 <Route path="/auth/*" element={renderMFE(AuthLazy)}>
