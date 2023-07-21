@@ -6,7 +6,10 @@ import { CustomToolbar, Logo } from '../styles/authStyles'
 const Navbar = () => {
     const theme = useTheme()
     const navigateBackToShell = () => {
-        console.log('TODO: Implement navigateBackToShell homepage in marketing app')
+        window.dispatchEvent(
+            new CustomEvent("[external] navigated",
+                { detail: '/marketing' })
+        );
     }
     return (
         <AppBar sx={{ backgroundColor: theme.palette.neutral.white }} position='relative'>
