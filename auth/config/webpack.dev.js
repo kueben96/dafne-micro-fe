@@ -12,9 +12,9 @@ const devConfig = {
             historyApiFallback: true,
         }
     },
-    output: {
-        publicPath: '/',
-    },
+    // output: {
+    //     publicPath: '/',
+    // },
     plugins: [
         new ModuleFederationPlugin({
             name: 'auth',

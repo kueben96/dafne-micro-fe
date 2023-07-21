@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { mount } from "../../../auth/src/bootstrap";
+import { mount } from "auth/AuthApp";
 import { useNavigate, useLocation } from 'react-router-dom'
 
 const authBaseName = '/auth'

@@ -12,9 +12,9 @@ const devConfig = {
             historyApiFallback: true,
         }
     },
-    output: {
-        publicPath: '/',
-    },
+    // output: {
+    //     publicPath: '/',
+    // },
     resolve: {
         extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
     },

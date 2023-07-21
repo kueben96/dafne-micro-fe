@@ -9,7 +9,7 @@ const App = () => {
     // TODO: if authenticated, then navigate index to dafne
 
     const MarketingLazy = lazy(() => import('./components/MarketingApp'))
-    // const DaFneLazy = lazy(() => import('./components/DafneApp'))
+    const DaFneLazy = lazy(() => import('./components/DafneApp'))
     const AuthLazy = lazy(() => import('./components/AuthApp'))
 
     const navigate = useNavigate()
@@ -47,7 +47,7 @@ const App = () => {
                 <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
                 <Route path="/auth/*" element={renderMFE(AuthLazy)}>
                 </Route>
-                {/* <Route path="/dafne" element={renderMFE(DaFneLazy)} /> */}
+                <Route path="/dafne" element={renderMFE(DaFneLazy)} />
                 {/* </Route> */}
             </Routes>
         </>

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
-import { mount } from "../../../marketing/src/bootstrap";
+import { mount } from "marketing/MarketingApp";
 import { useNavigate, useLocation } from 'react-router-dom'
-import { authRoutingPrefix, marketingRoutingPrefix } from "../constants";
+import { marketingRoutingPrefix } from "../constants";
 
 const MarketingApp = () => {
     const wrapperRef = useRef(null);
@@ -38,9 +38,6 @@ const MarketingApp = () => {
                     detail: location.pathname.replace(marketingRoutingPrefix, ""),
                 })
             );
-        }
-        else if (location.pathname.startsWith(authRoutingPrefix)) {
-            console.log("FOUND AUTH ROUTING PREFIX")
         }
     }, [location]);
 
