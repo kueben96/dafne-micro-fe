@@ -22,6 +22,12 @@ const App = () => {
             console.log(event.detail);
             navigate(event.detail)
         });
+    window.addEventListener("jwtReceived",
+        (event) => {
+
+            console.log(event.detail);
+            navigate('/dafne')
+        });
 
     const renderMFE = (MFE) => {
         return (

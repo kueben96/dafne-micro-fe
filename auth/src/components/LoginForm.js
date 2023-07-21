@@ -4,6 +4,9 @@ import { formStyles } from '../styles/authStyles'
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { grey, red } from '@mui/material/colors';
 const LoginForm = () => {
+
+    const faketoken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+
     const classes = formStyles()
     const theme = useTheme()
 
@@ -20,11 +23,18 @@ const LoginForm = () => {
 
     };
 
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (validateFormData()) {
-            // Submit the form data to Keycloak for user registration
-        }
+        // TODO: validate form data
+        // if (validateFormData()) {
+        //     // Submit the form data to Keycloak for user registration
+        // }
+        // Store the JWT token in the localStorage
+        localStorage.setItem('jwtToken', faketoken);
+
+        // Dispatch a custom event to notify other microfrontends
+        window.dispatchEvent(new CustomEvent('jwtReceived', { detail: faketoken }));
     };
 
     return (
@@ -50,7 +60,7 @@ const LoginForm = () => {
                     margin="normal"
                     name="password"
                     value={formData.password}
-
+                    onChange={handleInputChange}
                     required
                 />
                 <Box mt={2} display="flex" justifyContent="flext-start" sx={{ width: '100%' }}>
