@@ -15,6 +15,7 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../utils/constants';
 
@@ -29,7 +30,7 @@ const IconListItem = ({
   children?: React.ReactNode;
   isActive: boolean;
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const handleClick = () => {
     setOpen(!open);
@@ -111,15 +112,15 @@ const NavComponents = () => {
               path={ROUTES.DASHBOARD.PROCESSES}
               isActive={pathname === ROUTES.DASHBOARD.PROCESSES}
             />
-            <ChildListItem 
-            text="Data" 
-            path={ROUTES.DASHBOARD.DATA}
-            isActive={pathname === ROUTES.DASHBOARD.DATA}
+            <ChildListItem
+              text="Data"
+              path={ROUTES.DASHBOARD.DATA}
+              isActive={pathname === ROUTES.DASHBOARD.DATA}
             />
-            <ChildListItem 
-            text="Models" 
-            path={ROUTES.DASHBOARD.MODELS}
-            isActive={pathname === ROUTES.DASHBOARD.MODELS}
+            <ChildListItem
+              text="Models"
+              path={ROUTES.DASHBOARD.MODELS}
+              isActive={pathname === ROUTES.DASHBOARD.MODELS}
             />
           </div>
         }
@@ -149,14 +150,15 @@ const NavComponents = () => {
         }
       />
       <IconListItem
-              icon={<LightbulbOutlinedIcon />}
-              text="Use Case Explorer"
-              children={<div>
-                  <ChildListItem text="Neighborhood Generation" path={''} isActive={false} />
-              </div>} isActive={false}      />
+        icon={<LightbulbOutlinedIcon />}
+        text="Use Case Explorer"
+        children={<div>
+          <ChildListItem text="Neighborhood Generation" path={''} isActive={false} />
+        </div>} isActive={false} />
       <IconListItem icon={<ExtensionOutlinedIcon />} text="Contribute" isActive={false} />
       <IconListItem icon={<ArticleOutlinedIcon />} text="Documentation" isActive={false} />
       <IconListItem icon={<PersonOutlineOutlinedIcon />} text="Account" isActive={false} />
+      <IconListItem icon={<LogoutIcon />} text="Logout" isActive={false} />
     </CollapsableNavList>
   );
 };
