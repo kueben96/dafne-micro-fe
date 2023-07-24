@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import RegistrationForm from './components/RegistrationForm'
 import LoginForm from './components/LoginForm'
-import { Routes, Route, Navigate, BrowserRouter, useNavigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import AuthPageLayout from './components/AuthPageLayout'
-import NavigationManager from './components/NavigationManager'
 
 
 const App = () => {
