@@ -14,7 +14,7 @@ const App = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
-    // TODO: handle routing
+
     // TODO: handle more generic navigation
     window.addEventListener("[external] navigated",
         (event) => {
