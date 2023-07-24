@@ -10,6 +10,7 @@ const prodConfig = {
     mode: 'production',
     output: {
         filename: '[name].[contenthash].js',
+        publicPath: '/auth/latest/'
     },
     plugins: [
         new HtmlWebpackPlugin({

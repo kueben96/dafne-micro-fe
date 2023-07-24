@@ -13,6 +13,7 @@ const prodConfig = {
     mode: 'production',
     output: {
         filename: '[name].[contenthash].js',
+        publicPath: '/dafne/latest/'
     },
     plugins: [
         new HtmlWebpackPlugin({
