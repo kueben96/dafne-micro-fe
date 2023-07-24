@@ -17,7 +17,7 @@ const prodConfig = {
             template: './public/index.html'
         }),
         new ModuleFederationPlugin({
-            name: 'dafne',
+            name: 'auth',
             filename: 'remoteEntry.js',
             exposes: {
                 './AuthApp': './src/bootstrap'
