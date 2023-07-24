@@ -29,12 +29,12 @@ const mount = ({
     return () => queueMicrotask(() => ReactDOM.unmountComponentAtNode(mountPoint));
 };
 
-// if (process.env.NODE_ENV == 'development') {
-//     const devRoot = document.querySelector('#_auth-dev-root') as HTMLElement;
+if (process.env.NODE_ENV == 'development') {
+    const devRoot = document.querySelector('#_dafne-dev-root') as HTMLElement;
 
 
-//     if (devRoot) {
-//         mount({ mountPoint: devRoot, routingStrategy: 'browser' });
-//     }
-// }
+    if (devRoot) {
+        mount({ mountPoint: devRoot, routingStrategy: 'browser' });
+    }
+}
 export { mount };
