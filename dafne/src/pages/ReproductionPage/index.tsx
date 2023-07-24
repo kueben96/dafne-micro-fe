@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Box, Button, Collapse, Container, useTheme } from '@mui/material';
-import styled from '@emotion/styled';
 import PageHeader from '../../components/PageHeader';
 import { ContentPaper, SizedBoxVertical } from '../../assets/theme/dafneStyles';
 import HorizontalStepper from '../../components/HorizontalStepper';
@@ -17,7 +16,7 @@ import ProcessDetail from './ProcessDetail';
 const ReproductionPage: React.FC = () => {
   const horizontalSteps = reproductionHorizontalSteps;
   const theme = useTheme();
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
   const [stepCompleted, setStepCompleted] = useState(new Set<number>());
   const [rowNumber, setSelectedRowNumber] = useState(300);
   const [generationCompleted, setGenerationCompleted] = useState(false);

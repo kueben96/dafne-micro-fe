@@ -1,4 +1,4 @@
-import { Stepper, Step, StepLabel, Typography, Theme } from '@mui/material';
+import { Stepper, Step, StepLabel, Theme } from '@mui/material';
 import React from 'react';
 import CustomStepIcon from './CustomStepIcon';
 
@@ -31,7 +31,7 @@ const HorizontalStepper: React.FC<HorizontalStepperProps> = ({
           <Step key={label} {...stepProps}>
             <StepLabel
               {...labelProps}
-              StepIconComponent={(props) => (
+              StepIconComponent={() => (
                 <CustomStepIcon
                   {...stepProps}
                   icon={index + 1}

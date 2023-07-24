@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ContentBox, ContentPaper, SizedBoxHorizontal } from '../../assets/theme/dafneStyles'
-import { Box, Button, Container, IconButton, Typography, styled, useTheme } from '@mui/material';
-import { MetricScoreCard, QualityReportCard, SettingsOverviewCard, SummaryCard } from './SummaryCard';
+import { Box, Button, IconButton, Typography, styled } from '@mui/material';
+import { MetricScoreCard, QualityReportCard, SettingsOverviewCard } from './SummaryCard';
 import ProcessesTable from '../../components/ProcessesTable';
 import { HeaderEditable, HeaderSize } from '../../components/PageHeader';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
@@ -41,8 +41,6 @@ const columns = [
 const ProcessDetail: React.FC = () => {
 
   const [tableName, setTablename] = useState('MySyntheticDataset.csv');
-
-  const theme = useTheme();
 
   return (
     <>

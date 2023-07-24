@@ -2,17 +2,18 @@ import React from 'react';
 import StorageSharpIcon from '@mui/icons-material/StorageSharp';
 import FileUploadRoundedIcon from '@mui/icons-material/FileUploadRounded';
 import { Box, Typography, useTheme } from '@mui/material';
+import { Theme } from '@mui/system';
 
 interface DataSourceSelectionComponentProps {
-    // TODO: ENUM HERE
+  // TODO: ENUM HERE
   variant: 'catalogueSelection' | 'computerSelection';
   selected: boolean;
   onClick: () => void;
   selectedFileNameCatalogue?: string;
-  selectedFileNameComputer?: string ;
+  selectedFileNameComputer?: string;
 }
 
-const CustomIcon: React.FC<{ icon: React.ElementType; theme: any }> = ({ icon: IconComponent, theme }) => {
+const CustomIcon: React.FC<{ icon: React.ElementType; theme: Theme }> = ({ icon: IconComponent, theme }) => {
   return <IconComponent sx={{ color: theme.palette.primary.dark }} />;
 };
 
@@ -20,7 +21,7 @@ const DataSourceSelectionComponent: React.FC<DataSourceSelectionComponentProps> 
   variant,
   selected,
   onClick,
-  selectedFileNameCatalogue,    
+  selectedFileNameCatalogue,
   selectedFileNameComputer = 'Upload your own data set (.csv, .xlsx, .xls and json types are supported)',
 }) => {
   const theme = useTheme();
@@ -55,7 +56,7 @@ const DataSourceSelectionComponent: React.FC<DataSourceSelectionComponentProps> 
     if (variant === 'catalogueSelection') {
       return `Selected: ${selectedFileNameCatalogue}`;
     } else if (variant === 'computerSelection') {
-      return selectedFileNameComputer ;
+      return selectedFileNameComputer;
     } else {
       return '';
     }

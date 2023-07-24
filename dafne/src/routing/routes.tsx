@@ -1,5 +1,4 @@
 import React from 'react';
-import { Outlet } from "react-router-dom";
 import { NavigationManager } from '../utils/NavigationManager';
 import DashboardPage from '../pages/DashboardPage';
 import ReproductionPage from '../pages/ReproductionPage';

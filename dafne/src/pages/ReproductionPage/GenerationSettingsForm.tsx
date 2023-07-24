@@ -6,9 +6,9 @@ import { DataSourceSelectionStep, DropDownSelectionStep, ParameterSettingsStep, 
 import { metricOptionsReproduction, modelOptionsReproduction } from '../../utils/constants';
 
 const GenerationSettingsForm = () => {
-    const [selectedSource, setSelectedSource] = useState<{variant: string; file: File | null}>({
+    const [selectedSource, setSelectedSource] = useState<{ variant: string; file: File | null }>({
         variant: 'catalogue',
-        file: null, 
+        file: null,
     });
     const [selectedMetric, setSelectedMetric] = useState<string | null>(null);
     const [selectedModel, setSelectedModel] = useState<string | null>(null);
@@ -51,24 +51,24 @@ const GenerationSettingsForm = () => {
         }
     ];
 
-    const handleNext = () => {
-        let newSkipped = skipped;
-        if (isStepSkipped(activeStep, skipped)) {
-            newSkipped = new Set(newSkipped.values());
-            newSkipped.delete(activeStep);
-        }
-        const newCompleted = new Set(completed);
+    // const handleNext = () => {
+    //     let newSkipped = skipped;
+    //     if (isStepSkipped(activeStep, skipped)) {
+    //         newSkipped = new Set(newSkipped.values());
+    //         newSkipped.delete(activeStep);
+    //     }
+    //     const newCompleted = new Set(completed);
 
-        newCompleted.add(activeStep);
+    //     newCompleted.add(activeStep);
 
-        setActiveStep(prevActiveStep => prevActiveStep + 1);
-        setCompleted(newCompleted);
-        setSkipped(newSkipped);
-    };
+    //     setActiveStep(prevActiveStep => prevActiveStep + 1);
+    //     setCompleted(newCompleted);
+    //     setSkipped(newSkipped);
+    // };
 
-    const handleBack = () => {
-        setActiveStep(prevActiveStep => prevActiveStep - 1);
-    };
+    // const handleBack = () => {
+    //     setActiveStep(prevActiveStep => prevActiveStep - 1);
+    // };
 
     const handleReset = () => {
         setActiveStep(0);
@@ -91,7 +91,7 @@ const GenerationSettingsForm = () => {
                         <Step key={step.label}>
                             <StepLabel
                                 sx={{ marginTop: theme.spacing(2) }}
-                                StepIconComponent={props => (
+                                StepIconComponent={() => (
                                     <CustomStepIcon
                                         {...stepProps}
                                         icon={index + 1}

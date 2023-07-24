@@ -1,9 +1,9 @@
-import { Box, CircularProgress, LinearProgress, Theme, Typography, useTheme } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { Box, CircularProgress, Theme, Typography, useTheme } from '@mui/material'
+import React, { useEffect } from 'react'
 import LinearProgressEpochs from '../../components/LinearProgressEpochs';
 import { reproductionEpochCount } from '../../utils/constants';
 import CheckIcon from '@mui/icons-material/Check';
-import { ContentPaper, SizedBoxVertical } from '../../assets/theme/dafneStyles';
+import { SizedBoxVertical } from '../../assets/theme/dafneStyles';
 
 interface GenerationFeedbackProps {
     completed: boolean;
@@ -45,12 +45,12 @@ interface ProgressSectionProps {
     completed: boolean;
     theme: Theme;
 }
-    const ProgressSection: React.FC<ProgressSectionProps> = ({ progress, completed, theme }) => {
+const ProgressSection: React.FC<ProgressSectionProps> = ({ progress, completed, theme }) => {
     return (
         <Box display="flex" flexDirection="column" >
             <Box display="flex" flexDirection="row" width="100%" justifyContent="center" padding={2}>
-                {completed ? 
-                <CheckIcon style={ { fontSize: 50, color: theme.palette?.primary?.dark }} /> 
+                {completed ?
+                    <CheckIcon style={{ fontSize: 50, color: theme.palette?.primary?.dark }} />
                     : <CircularProgress sx={{ color: theme.palette?.primary?.dark }} />}
             </Box>
             <Box display="flex" flexDirection="row" width="100%" justifyContent="center" paddingBottom={2}>

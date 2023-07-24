@@ -7,7 +7,7 @@ const CustomBreadcrumbs = styled(Breadcrumbs)(({ theme }: { theme: Theme }) => (
 }));
 
 // TODO: add links with props
-const HeaderBreadcrumbs: React.FC = (props) => {
+const HeaderBreadcrumbs: React.FC = () => {
   return (
     <CustomBreadcrumbs aria-label="breadcrumb">
       <Link underline="hover" color="inherit" href="/">

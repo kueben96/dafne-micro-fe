@@ -1,6 +1,6 @@
 import React from 'react';
 import NavComponents from './NavComponents';
-import { Drawer, useTheme } from '@mui/material';
+import { Drawer } from '@mui/material';
 import { drawerStyles } from '../assets/theme/dafneStyles';
 
 interface DafneDrawerProps {

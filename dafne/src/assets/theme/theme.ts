@@ -1,4 +1,4 @@
-import { PaletteColorOptions, PaletteOptions, Theme, ThemeOptions, createTheme } from '@mui/material'
+import { ThemeOptions, createTheme } from '@mui/material'
 import palette from './palette';
 
 const customTheme = createTheme({
