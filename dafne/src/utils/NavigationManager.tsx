@@ -28,7 +28,7 @@ export function NavigationManager({ children }: NavigationManagerProps) {
 
     useEffect(() => {
         window.dispatchEvent(
-            new CustomEvent("[app1] navigated", { detail: location.pathname })
+            new CustomEvent("[dafne] navigated", { detail: location.pathname })
         );
     }, [location]);
 
