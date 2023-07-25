@@ -28,6 +28,10 @@ const App = () => {
             console.log(event.detail);
             navigate('/dafne')
         });
+    window.addEventListener("userLogout",
+        () => {
+            navigate('/marketing')
+        });
 
     const renderMFE = (MFE) => {
         return (
