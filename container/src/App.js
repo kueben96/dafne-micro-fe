@@ -51,7 +51,6 @@ const App = () => {
                 <Route path="/auth/*" element={renderMFE(AuthLazy)}>
                 </Route>
                 <Route path="/dafne/*" element={renderMFE(DaFneLazy)} />
-                {/* </Route> */}
             </Routes>
         </>
     )
