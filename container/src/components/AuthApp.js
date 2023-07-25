@@ -11,19 +11,11 @@ const AuthApp = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const isParentPath = (path) => path === "/";
-
-
     // listens for navigation events and updates the location object accordingly
     useEffect(() => {
 
         const authAppNavigationHandler = (event) => {
-
-            // TODO: if pathName == '/' or isParent 
-            // TODO: if isParentPath after it was already loaded once
-            // TODO: could count -> but look for cleaner solution
             const pathname = event.detail;
-            // console.log("AUTH EVENT DETAIL", pathname)
             const newPathname = `${authBaseName}${pathname}`
             if (newPathname === location.pathname) {
                 return;

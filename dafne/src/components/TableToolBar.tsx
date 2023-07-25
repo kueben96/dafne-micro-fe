@@ -12,11 +12,10 @@ const SearchBox = styled(Box)<{ theme: Theme }>(({ theme }) => ({
 }));
 
 const SearchInput = styled(InputBase)(({ theme }) => {
-    console.log(theme)
     return {
-    marginLeft: theme.spacing(1),
-    flex: 1,
-    fontSize: theme.typography.body1.fontSize,
+        marginLeft: theme.spacing(1),
+        flex: 1,
+        fontSize: theme.typography.body1.fontSize,
     }
 });
 
@@ -48,9 +47,9 @@ const StyledFilterButton = styled(Box)(({ theme }) => ({
 interface StyledFilterBadgeProps {
     selected?: boolean;
     theme: Theme;
-  }
-  
-  const StyledFilterBadge = styled(Box)<StyledFilterBadgeProps>(({ selected, theme }) => ({
+}
+
+const StyledFilterBadge = styled(Box)<StyledFilterBadgeProps>(({ selected, theme }) => ({
     borderRadius: "20px",
     height: "100%",
     width: "100%",
@@ -59,7 +58,7 @@ interface StyledFilterBadgeProps {
     marginLeft: theme.spacing(1),
     padding: theme.spacing(0.2, 1),
     backgroundColor: selected ? theme.palette.secondary?.main : theme.palette.gray?.light,
-  }));
+}));
 
 interface FilterButtonProps {
     theme: Theme;
@@ -68,9 +67,9 @@ interface FilterButtonProps {
     label: string;
     children: React.ReactNode;
     onClick: () => void;
-  }
+}
 
-const FilterButton: React.FC<FilterButtonProps> = ({theme, selected, count, children, label, ...rest }) => {
+const FilterButton: React.FC<FilterButtonProps> = ({ theme, selected, count, children, label, ...rest }) => {
     return (
         <StyledFilterButton className={selected ? 'selected' : ''} {...rest}>
             {children}
@@ -122,7 +121,7 @@ const TableToolBar = (props: any) => {
             <SearchBox {...props}>
                 <SearchInput placeholder="Search..." />
                 <SearchIconWrapper theme={theme}>
-                    <SearchIcon style={{ color: theme.palette.gray?.light}}/>
+                    <SearchIcon style={{ color: theme.palette.gray?.light }} />
                 </SearchIconWrapper>
             </SearchBox>
             <Box>

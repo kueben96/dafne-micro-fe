@@ -7,15 +7,16 @@ const packageJson = require('../package.json')
 const devConfig = {
     mode: 'development',
     entry: './src/index.ts',
+    output: {
+        publicPath: "http://localhost:8083/",
+    },
     devServer: {
         port: 8083,
         historyApiFallback: {
             historyApiFallback: true,
-        }
+        },
+
     },
-    // output: {
-    //     publicPath: '/',
-    // },
     resolve: {
         extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
     },

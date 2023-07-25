@@ -3,6 +3,7 @@ import { NavigationManager } from '../utils/NavigationManager';
 import DashboardPage from '../pages/DashboardPage';
 import ReproductionPage from '../pages/ReproductionPage';
 import App from '../App';
+import { Navigate } from 'react-router-dom';
 
 export const routes = [
     {
@@ -15,7 +16,7 @@ export const routes = [
         children: [
             {
                 index: true,
-                element: <DashboardPage />
+                element: <Navigate to="/dashboard/processes" />
             },
             {
                 path: "/dashboard/processes",

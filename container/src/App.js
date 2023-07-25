@@ -18,8 +18,6 @@ const App = () => {
     // TODO: handle more generic navigation
     window.addEventListener("[external] navigated",
         (event) => {
-            console.log("EXTERNAL NAVIGATED EVENT");
-            console.log(event.detail);
             navigate(event.detail)
         });
     window.addEventListener("jwtReceived",
@@ -46,7 +44,7 @@ const App = () => {
                 <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
                 <Route path="/auth/*" element={renderMFE(AuthLazy)}>
                 </Route>
-                <Route path="/dafne" element={renderMFE(DaFneLazy)} />
+                <Route path="/dafne/*" element={renderMFE(DaFneLazy)} />
                 {/* </Route> */}
             </Routes>
         </>
