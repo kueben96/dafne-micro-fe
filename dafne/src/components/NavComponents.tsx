@@ -18,22 +18,30 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../utils/constants';
+import useLogout from '../utils/hooks/useLogout';
 
 const IconListItem = ({
   icon,
   text,
   children,
   isActive,
+  onClick,
 }: {
   icon: React.ReactNode;
   text: string;
   children?: React.ReactNode;
   isActive: boolean;
+  onClick?: () => void;
 }) => {
   const [open, setOpen] = useState(true);
 
   const handleClick = () => {
-    setOpen(!open);
+    if (onClick) {
+      onClick();
+    } else {
+      setOpen(!open);
+    }
+
   };
 
   return (
@@ -92,12 +100,17 @@ const ChildListItem = ({
 const NavComponents = () => {
   const location = useLocation();
   const { pathname } = location;
+  const logout = useLogout();
 
   const CollapsableNavList = styled(List)(({ theme }) => ({
     width: 250,
     padding: theme.spacing(2),
     fontSize: 10,
   }));
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <CollapsableNavList>
@@ -158,7 +171,7 @@ const NavComponents = () => {
       <IconListItem icon={<ExtensionOutlinedIcon />} text="Contribute" isActive={false} />
       <IconListItem icon={<ArticleOutlinedIcon />} text="Documentation" isActive={false} />
       <IconListItem icon={<PersonOutlineOutlinedIcon />} text="Account" isActive={false} />
-      <IconListItem icon={<LogoutIcon />} text="Logout" isActive={false} />
+      <IconListItem icon={<LogoutIcon />} text="Logout" isActive={false} onClick={handleLogout} />
     </CollapsableNavList>
   );
 };

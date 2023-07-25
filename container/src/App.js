@@ -7,6 +7,8 @@ import { useRef, useEffect } from 'react'
 
 const App = () => {
     // TODO: if authenticated, then navigate index to dafne
+    // TODO: if logout clicked, then navigate index to marketing
+    // TODO: if logout clicked, the token gets removed
 
     const MarketingLazy = lazy(() => import('./components/MarketingApp'))
     const DaFneLazy = lazy(() => import('./components/DafneApp'))
