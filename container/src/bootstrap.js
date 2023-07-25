@@ -2,15 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App';
-import { MyHistoryProvider } from './utils/MyHistoryProvider';
+import { AuthProvider } from './utils/AuthProvider';
 
 
 ReactDOM.render(
-    <MyHistoryProvider>
+    <AuthProvider>
         <BrowserRouter><App /></BrowserRouter>
-    </MyHistoryProvider>
-
-
+    </AuthProvider>
     ,
     document.querySelector('#root')
 )

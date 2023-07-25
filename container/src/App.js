@@ -1,8 +1,7 @@
 import React, { lazy } from 'react'
-import { Routes, Route, Link, Navigate, useNavigate, useLocation } from 'react-router-dom'
+import { Routes, Route, Link, Navigate, useNavigate, useLocation, BrowserRouter } from 'react-router-dom'
 import { marketingRoutingPrefix, authRoutingPrefix, dafneRoutingPrefix } from './constants'
-import { Container, useMyHistory } from './utils/MyHistoryProvider'
-import { useRef, useEffect } from 'react'
+import { AuthProvider } from './utils/AuthProvider'
 
 
 const App = () => {
@@ -22,12 +21,15 @@ const App = () => {
         (event) => {
             navigate(event.detail)
         });
+
+    // this is on login   
     window.addEventListener("jwtReceived",
         (event) => {
 
             console.log(event.detail);
             navigate('/dafne')
         });
+    // this is on logout 
     window.addEventListener("userLogout",
         () => {
             navigate('/marketing')
@@ -41,18 +43,18 @@ const App = () => {
         )
     }
     // TODO: handle generic navigation to paths (navigateToParentPath("/auth"))
-    const { myHistory } = useMyHistory();
 
     return (
+
         <>
             <Routes>
                 <Route index element={<Navigate to={"/marketing/"} />} />
                 <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
-                <Route path="/auth/*" element={renderMFE(AuthLazy)}>
-                </Route>
+                <Route path="/auth/*" element={renderMFE(AuthLazy)} />
                 <Route path="/dafne/*" element={renderMFE(DaFneLazy)} />
             </Routes>
         </>
+
     )
 }
 export default App
