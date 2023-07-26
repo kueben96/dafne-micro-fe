@@ -22,8 +22,6 @@ function NavigationManager({ children }) {
     useEffect(() => {
         function shellNavigationHandler(event) {
             const pathname = event.detail;
-            console.log("[marketing] navigation manager")
-            console.log(event)
             if (location.pathname === pathname || !matchRoutes(routes, { pathname })) {
                 return;
             }

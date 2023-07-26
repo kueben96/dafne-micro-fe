@@ -1,7 +1,7 @@
-import React, { lazy } from 'react'
+import React, { lazy, useContext } from 'react'
 import { Routes, Route, Link, Navigate, useNavigate, useLocation, BrowserRouter } from 'react-router-dom'
 import { marketingRoutingPrefix, authRoutingPrefix, dafneRoutingPrefix } from './constants'
-import { AuthProvider } from './utils/AuthProvider'
+import { AuthContext, AuthProvider, useAuth } from './utils/AuthProvider'
 
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
+    const { token, onLogin, onLogout } = useAuth();
 
     // TODO: handle more generic navigation
     window.addEventListener("[external] navigated",
@@ -22,18 +23,8 @@ const App = () => {
             navigate(event.detail)
         });
 
-    // this is on login   
-    window.addEventListener("jwtReceived",
-        (event) => {
-
-            console.log(event.detail);
-            navigate('/dafne')
-        });
-    // this is on logout 
-    window.addEventListener("userLogout",
-        () => {
-            navigate('/marketing')
-        });
+    window.addEventListener('jwtReceived', onLogin);
+    window.addEventListener('userLogout', onLogout);
 
     const renderMFE = (MFE) => {
         return (

@@ -6,9 +6,11 @@ import { AuthProvider } from './utils/AuthProvider';
 
 
 ReactDOM.render(
-    <AuthProvider>
-        <BrowserRouter><App /></BrowserRouter>
-    </AuthProvider>
+
+    <BrowserRouter>
+        <AuthProvider><App /> </AuthProvider>
+    </BrowserRouter>
+
     ,
     document.querySelector('#root')
 )
