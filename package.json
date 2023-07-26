@@ -12,6 +12,7 @@
     "stop:dafne": "cd dafne && npm stop"
   },
   "devDependencies": {
-    "concurrently": "^8.0.1"
+    "concurrently": "^8.0.1",
+    "cypress": "^12.17.2"
   }
 }

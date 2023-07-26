@@ -1,0 +1,42 @@
+name: shell-integration
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'container/**'
+jobs: 
+    # start_microfrontends:
+    #     runs-on: ubuntu-latest
+    #     strategy: 
+    #         matrix: 
+    #             microfrontend: ['marketing', 'auth', 'dafne']
+    #     steps: 
+    #         - uses: actions/checkout@v2
+    #         - name: Build and Start Microfrontend
+    #           run: |
+    #             cd ${{ matrix.microfrontend }}
+    #             npm install
+    #             npm run start &
+
+    #         - name: Wait for Microfrontends to Start
+    #           run: sleep 10  
+    test:
+        runs-on: unbuntu-latest
+        steps: 
+            - uses: actions/checkout@v2
+            - run: npm install
+            - run: npm run start:marketing
+            - run: npm run start:auth
+            - run: npm run start:dafne
+            - run: npm run start:container
+            - run: sleep 10
+            - run: npx cypress run
+
+
+        
+
+
+
+
