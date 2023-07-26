@@ -5,7 +5,7 @@ describe('Basic Test', () => {
   });
   it('Visits the Marketing Microfrontend on /marketing', () => {
     cy.visit('localhost:8080/marketing'); // Replace '/marketing' with the correct route of your marketing microfrontend.
-    cy.contains('Marketing App');
+    cy.contains('Dafne App');
   });
   it('Clicks on the Auth button and checks if the login button is visible', () => {
     // Visit the /marketing path
