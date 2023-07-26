@@ -2,6 +2,7 @@ import React, { lazy, useContext } from 'react'
 import { Routes, Route, Link, Navigate, useNavigate, useLocation, BrowserRouter } from 'react-router-dom'
 import { marketingRoutingPrefix, authRoutingPrefix, dafneRoutingPrefix } from './utils/constants'
 import { AuthContext, AuthProvider, useAuth } from './utils/AuthProvider'
+import ProtectedRoute from './utils/ProtectedRoute'
 
 
 const App = () => {
@@ -37,7 +38,11 @@ const App = () => {
             <Route index element={<Navigate to={"/marketing/"} />} />
             <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
             <Route path="/auth/*" element={renderMFE(AuthLazy)} />
-            <Route path="/dafne/*" element={renderMFE(DaFneLazy)} />
+            <Route path="/dafne/*" element={
+                <ProtectedRoute>
+                    {renderMFE(DaFneLazy)}
+                </ProtectedRoute>
+            } />
         </Routes>
     )
 }
