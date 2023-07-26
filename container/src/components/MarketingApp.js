@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { mount } from "marketing/MarketingApp";
 import { useNavigate, useLocation } from 'react-router-dom'
-import { marketingRoutingPrefix } from "../constants";
+import { marketingRoutingPrefix } from "../utils/constants";
 
 const MarketingApp = () => {
     const wrapperRef = useRef(null);

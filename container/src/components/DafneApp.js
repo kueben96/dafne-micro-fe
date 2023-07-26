@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { mount } from "dafne/DafneApp";
 import { useNavigate, useLocation } from 'react-router-dom'
-import { dafneRoutingPrefix } from "../constants";
+import { dafneRoutingPrefix } from "../utils/constants";
 
 const DafneApp = () => {
     const wrapperRef = useRef(null);
