@@ -1,6 +1,6 @@
 import React from 'react';
 import { createContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 // see here for more info on auth context
 // https://www.robinwieruch.de/react-router-authentication/
@@ -11,11 +11,16 @@ const AuthProvider = ({ children }) => {
 
     const [token, setToken] = useState(localStorage.getItem('jwtToken') || '');
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogin = (event) => {
         setToken(event.detail)
-        console.log(event.detail);
-        navigate('/dafne')
+        if (location.state) {
+
+            navigate(location.state?.from?.pathname)
+        }
+        const origin = location.state?.from?.pathname || '/dafne'
+        navigate(origin)
     }
 
     const handleLogout = () => {

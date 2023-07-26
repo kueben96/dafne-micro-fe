@@ -38,9 +38,6 @@ const AuthApp = () => {
     useEffect(() => {
 
         if (location.pathname.startsWith(authBaseName)) {
-            // TODO: shell navigation event dispatched when path is /
-            // TODO: implement back nav here when Event Detail is /
-
             window.dispatchEvent(
                 new CustomEvent("[shell] navigated", {
                     detail: location.pathname.replace(authBaseName, ""),
