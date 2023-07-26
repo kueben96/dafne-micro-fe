@@ -24,9 +24,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd container
-      - run: npm install
-      - run: npm run build 
+      - name: Install dependencies and build container app
+        run: |
+          cd container
+          npm install
+          npm run build
         env:
          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
       - uses: shinyinc/action-aws-cli@v1.2
