@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'container/**'
 jobs: 
     # start_microfrontends:
     #     runs-on: ubuntu-latest
