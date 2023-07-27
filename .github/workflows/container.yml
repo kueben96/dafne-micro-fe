@@ -1,5 +1,6 @@
 name: deploy-container
 
+# TODO: this fails in deployment because it doesnt find the files for container as the working directory is forgotten again
 on:
   push:
     branches:
@@ -22,11 +23,13 @@ jobs:
   build: 
     needs: test
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: container
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies and build container app
         run: |
-          cd container
           npm install
           npm run build
         env:
