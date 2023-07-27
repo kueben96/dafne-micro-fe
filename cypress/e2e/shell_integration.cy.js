@@ -35,7 +35,7 @@ describe('Routing Test', () => {
     cy.visit(`${container_base_url}/dafne`);
     cy.window().then((window) => {
       const token = window.localStorage.getItem("jwtToken");
-      expect(token).to.be.null; // or .not.to.exist
+      expect(token).to.be.null;
     });
     cy.url().should('eq', `${container_base_url}/auth/login`);
   });
