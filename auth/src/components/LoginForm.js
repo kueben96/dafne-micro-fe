@@ -5,7 +5,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { grey, red } from '@mui/material/colors';
 const LoginForm = () => {
 
-    const faketoken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    const fakeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 
     const classes = formStyles()
     const theme = useTheme()
@@ -31,10 +31,10 @@ const LoginForm = () => {
         //     // Submit the form data to Keycloak for user registration
         // }
         // Store the JWT token in the localStorage
-        localStorage.setItem('jwtToken', faketoken);
+        localStorage.setItem('jwtToken', fakeToken);
 
         // Dispatch a custom event to notify other microfrontends
-        window.dispatchEvent(new CustomEvent('jwtReceived', { detail: faketoken }));
+        window.dispatchEvent(new CustomEvent('jwtReceived', { detail: fakeToken }));
     };
 
     return (
