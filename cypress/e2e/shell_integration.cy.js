@@ -16,7 +16,7 @@ describe('Routing Test', () => {
     cy.visit(`${container_base_url}/marketing`);
     cy.contains('Marketing App');
   });
-  it('Clicks on the Auth button and checks if login route is opened', () => {
+  it('Navigates to auth from marketing, logs in and navigates to dafne', () => {
     cy.visit(`${container_base_url}/marketing`);
     cy.contains('auth').click();
     cy.url().should('eq', `${container_base_url}/auth/login`);
@@ -31,7 +31,7 @@ describe('Routing Test', () => {
     cy.url().should('eq', `${container_base_url}/dafne/dashboard/processes`);
   });
 
-  it('Checks if /dafne route can be accessed when visiting it in unauthenticated mode', () => {
+  it('Checks if protected /dafne route can be accessed when visiting it in unauthenticated mode', () => {
     cy.visit(`${container_base_url}/dafne`);
     cy.window().then((window) => {
       const token = window.localStorage.getItem("jwtToken");
