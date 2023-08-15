@@ -25,7 +25,8 @@ const devConfig = {
             remotes: {
                 marketing: 'marketing@http://localhost:8081/remoteEntry.js',
                 auth: 'auth@http://localhost:8082/remoteEntry.js',
-                dafne: 'dafne@http://localhost:8083/remoteEntry.js'
+                dafne: 'dafne@http://localhost:8083/remoteEntry.js',
+                landing: 'landing@http://localhost:8084/_next/static/chunks/remoteEntry.js',
             },
             shared: packageJson.dependencies,
         })

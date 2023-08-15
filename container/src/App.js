@@ -11,7 +11,7 @@ const App = () => {
     const MarketingLazy = lazy(() => import('./components/MarketingApp'))
     const DaFneLazy = lazy(() => import('./components/DafneApp'))
     const AuthLazy = lazy(() => import('./components/AuthApp'))
-
+    const LandingLazy = lazy(() => import('landing/BB8'));
     const navigate = useNavigate()
     const location = useLocation()
     const { token, onLogin, onLogout } = useAuth();
@@ -34,16 +34,20 @@ const App = () => {
     }
 
     return (
-        <Routes>
-            <Route index element={<Navigate to={"/marketing"} />} />
-            <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
-            <Route path="/auth/*" element={renderMFE(AuthLazy)} />
-            <Route path="/dafne/*" element={
-                <ProtectedRoute>
-                    {renderMFE(DaFneLazy)}
-                </ProtectedRoute>
-            } />
-        </Routes>
+        <>
+            {renderMFE(LandingLazy)}
+            <Routes>
+                <Route index element={<Navigate to={"/marketing"} />} />
+                <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
+                <Route path="/auth/*" element={renderMFE(AuthLazy)} />
+                <Route path="/landing" element={renderMFE(LandingLazy)} />
+                <Route path="/dafne/*" element={
+                    <ProtectedRoute>
+                        {renderMFE(DaFneLazy)}
+                    </ProtectedRoute>
+                } />
+            </Routes>
+        </>
     )
 }
 export default App
