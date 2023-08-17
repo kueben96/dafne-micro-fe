@@ -57,7 +57,6 @@ const MarketingApp = () => {
 
     useEffect(() => unmountRef.current, []);
     return (
-
         <div ref={wrapperRef} id="marketing-mfe" />
     )
 }

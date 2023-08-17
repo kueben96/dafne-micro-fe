@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import BB8 from '../components/banner'
+import BB8 from '../components/BB8'
 
 export default function Home() {
   return (

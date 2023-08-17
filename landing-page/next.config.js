@@ -8,8 +8,8 @@ module.exports = {
         name: 'landing',
         filename: 'static/chunks/remoteEntry.js',
         exposes: {
-          './NextApp': './pages/_app.js',
-          "./BB8": "./components/banner.js",
+          './NextApp': './pages/index',
+          "./BB8": "./components/BB8",
         },
         shared: {
           // whatever else
@@ -20,3 +20,4 @@ module.exports = {
     return config;
   },
 };
+

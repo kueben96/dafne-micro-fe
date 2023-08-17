@@ -3,6 +3,7 @@ import { Routes, Route, Link, Navigate, useNavigate, useLocation, BrowserRouter 
 import { marketingRoutingPrefix, authRoutingPrefix, dafneRoutingPrefix } from './utils/constants'
 import { AuthContext, AuthProvider, useAuth } from './utils/AuthProvider'
 import ProtectedRoute from './utils/ProtectedRoute'
+import MicroFrontendErrorBoundary from './utils/MicroFrontendErrorBoundary'
 
 
 const App = () => {
@@ -27,9 +28,11 @@ const App = () => {
 
     const renderMFE = (MFE) => {
         return (
-            <React.Suspense fallback="Loading...">
-                <MFE />
-            </React.Suspense>
+            <MicroFrontendErrorBoundary>
+                <React.Suspense fallback="Loading...">
+                    <MFE />
+                </React.Suspense>
+            </MicroFrontendErrorBoundary>
         )
     }
 
