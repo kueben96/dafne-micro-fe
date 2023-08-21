@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
+// import { MyButton } from "landing";
 
 const App = () => {
+    const MyButton = lazy(() => import('landing/Button'));
     // TODO: implement more generic navigation
     // TODO: navigateToOtherMicroFrontend("/auth")
     // TODO: is there a solution to retrieve these functions from shell? 
@@ -11,12 +13,18 @@ const App = () => {
             new CustomEvent("[external] navigated",
                 { detail: '/auth/login' })
         );
+    }
 
+    const handleClick = () => {
+        console.log("clicked next button")
     }
     return (
         <div>
             <h1>Marketing App</h1>
             {/* Communicate back to Container/parent */}
+            <React.Suspense fallback="Loading...">
+                <MyButton onClick={handleClick} />
+            </React.Suspense>
             <Button onClick={navigateToAuthApp}>auth</Button>
             <Link to='/contribute'>Contribute</Link>
             <Link to='/about'>About</Link>

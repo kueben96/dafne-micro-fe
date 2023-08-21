@@ -23,6 +23,9 @@ const devConfig = {
             exposes: {
                 './MarketingApp': './src/bootstrap'
             },
+            remotes: {
+                landing: 'landing@http://localhost:8084/_next/static/chunks/remoteEntry.js',
+            },
             shared: packageJson.dependencies
         }),
         new HtmlWebpackPlugin({

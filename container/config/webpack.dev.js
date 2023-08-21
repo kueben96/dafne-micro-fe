@@ -28,10 +28,9 @@ const devConfig = {
                 dafne: 'dafne@http://localhost:8083/remoteEntry.js',
                 landing: 'landing@http://localhost:8084/_next/static/chunks/remoteEntry.js',
             },
-            // shared: packageJson.dependencies,
             shared: {
+                ...packageJson.dependencies,
                 react: {
-                    // Notice shared are NOT eager here.
                     eager: true,
                     requiredVersion: false,
                     singleton: true,

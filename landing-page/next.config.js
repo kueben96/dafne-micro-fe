@@ -8,8 +8,9 @@ module.exports = {
         name: 'landing',
         filename: 'static/chunks/remoteEntry.js',
         exposes: {
-          './NextApp': './pages/index',
+          './NextApp': './pages/index.js',
           "./BB8": "./components/BB8",
+          "./Button": "./components/Button",
         },
         shared: {
           // whatever else
