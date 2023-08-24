@@ -6,13 +6,13 @@ import ProtectedRoute from './utils/ProtectedRoute'
 import MicroFrontendErrorBoundary from './utils/MicroFrontendErrorBoundary'
 
 
+
 const App = () => {
     // TODO: if authenticated, then navigate index to dafne
 
     const MarketingLazy = lazy(() => import('./components/MarketingApp'))
     const DaFneLazy = lazy(() => import('./components/DafneApp'))
     const AuthLazy = lazy(() => import('./components/AuthApp'))
-    const LandingLazy = lazy(() => import('landing/BB8'));
     // TODO: render whole nextJS vertical split app for landing page
     //const LandingLazy = lazy(() => import('landing/BB8'));
     const navigate = useNavigate()
@@ -40,12 +40,10 @@ const App = () => {
 
     return (
         <>
-            {/* {renderMFE(LandingLazy)} */}
             <Routes>
                 <Route index element={<Navigate to={"/marketing"} />} />
                 <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
                 <Route path="/auth/*" element={renderMFE(AuthLazy)} />
-                <Route path="/landing" element={renderMFE(LandingLazy)} />
                 <Route path="/dafne/*" element={
                     <ProtectedRoute>
                         {renderMFE(DaFneLazy)}
