@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { Button, styled } from '@mui/material';
+import dynamic from 'next/dynamic';
 
 
 const useStyles = styled((theme) => ({
@@ -11,6 +12,10 @@ const useStyles = styled((theme) => ({
         fontSize: '2rem',
     }
 }));
+
+const RemoteButton = dynamic(() => import('theme/ReactButton'), {
+    ssr: false,
+});
 
 
 const ServicesCard = () => {
@@ -73,7 +78,8 @@ const ServicesCard = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Button color="primary">Button</Button>
+                    <Button color="primary">Learn More</Button>
+                    <RemoteButton />
                 </Grid>
             </CardContent>
         </Card>
