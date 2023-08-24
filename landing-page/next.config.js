@@ -11,6 +11,7 @@ module.exports = {
           './NextApp': './pages/index.js',
           "./BB8": "./components/BB8",
           "./Button": "./components/Button",
+          "./ServicesCard": "./components/ServicesCard",
         },
         shared: {
           // whatever else
