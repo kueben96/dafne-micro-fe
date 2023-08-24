@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import PageHeaderDashboard from "../../components/PageHeaderDashboard";
 import { useState } from "react";
 import ProcessesView from "./ProcessView";
@@ -11,34 +11,34 @@ import ProcessesView from "./ProcessView";
 // const tab = match?.params.tab;
 
 const DashboardPage = () => {
-    const [value, setValue] = useState<string>('processes');  
+  const [value, setValue] = useState<string>('processes');
 
-    const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-      setValue(newValue);
-    };
-  
-    // Render the view based on the selected tab value
-    const renderView = () => {
-      switch (value) {
-        case 'processes':
-          return <ProcessesView />;
-        case 'models':
-          return <h1>models view</h1>;
-        case 'data':
-          return <h1>data view</h1>;
-        default:
-          return null;
-      }
-    };
-  
-    return (
-      <>
-        <PageHeaderDashboard title="Dashboard" value={value} onChange={handleChange} />
-        <Box component="main">
-            {renderView()}
-        </Box>
-      </>
-    );
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
+    setValue(newValue);
   };
-  
-  export default DashboardPage;
+
+  // Render the view based on the selected tab value
+  const renderView = () => {
+    switch (value) {
+      case 'processes':
+        return <ProcessesView />;
+      case 'models':
+        return <h1>models view</h1>;
+      case 'data':
+        return <h1>data view</h1>;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <>
+      <PageHeaderDashboard title="Dashboard" value={value} onChange={handleChange} />
+      <Box component="main">
+        {renderView()}
+      </Box>
+    </>
+  );
+};
+
+export default DashboardPage;
