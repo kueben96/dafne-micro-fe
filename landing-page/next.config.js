@@ -13,6 +13,9 @@ module.exports = {
           "./Button": "./components/Button",
           "./ServicesCard": "./components/ServicesCard",
         },
+        remotes: {
+          theme: 'theme@http://localhost:8085/remoteEntry.js',
+        },
         shared: {
           // whatever else
         },

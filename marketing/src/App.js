@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { Button } from '@mui/material'
+import { Button, ThemeProvider } from '@mui/material'
 // import { MyButton } from "landing";
 
 const App = () => {
@@ -19,8 +19,36 @@ const App = () => {
     const handleClick = () => {
         console.log("clicked next button")
     }
+
+    const [theme, setTheme] =
+        React.useState(null);
+
+
+    React.useEffect(() => {
+        import('theme/theme')
+            .then((sharedTheme) =>
+                setTheme(
+                    sharedTheme.default
+                )
+            )
+            .catch((error) =>
+                console.error(
+                    'Error loading shared theme',
+                    error
+                )
+            );
+    }, []);
+
+
+    if (!theme) {
+        return (
+            <div>
+                Loading theme...
+            </div>
+        );
+    }
     return (
-        <div>
+        <ThemeProvider theme={theme}>
             <h1>Marketing App</h1>
             <React.Suspense fallback="Loading...">
                 <ServicesCard />
@@ -34,7 +62,7 @@ const App = () => {
             <Link to='/about'>About</Link>
             <Link to='/documentation'>Documentation</Link>
             <Outlet />
-        </div>
+        </ThemeProvider>
     )
 }
 

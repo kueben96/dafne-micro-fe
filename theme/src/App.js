@@ -1,6 +1,6 @@
 import { Button, ThemeProvider, Typography } from '@mui/material'
 import React from 'react'
-import { customTheme } from './shared-theme'
+import customTheme from './shared-theme'
 
 const App = () => {
     return (

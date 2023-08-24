@@ -35,11 +35,10 @@ module.exports = {
         new ModuleFederationPlugin(
             {
                 name: 'theme',
-                filename:
-                    'remoteEntry.js',
+                filename: 'remoteEntry.js',
                 exposes: {
-                    './theme':
-                        './src/shared-theme',
+                    './theme': './src/shared-theme',
+                    './palette': './src/shared-palette',
                 },
             }
         ),
