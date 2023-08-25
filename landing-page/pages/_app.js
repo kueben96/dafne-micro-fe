@@ -2,6 +2,8 @@ import { ThemeProvider, createTheme } from '@mui/material'
 import '../styles/globals.css'
 import dynamic from 'next/dynamic'
 import React, { useState, lazy } from 'react';
+import { Palette } from '@mui/icons-material';
+import { PaletteProvider } from '../context/context';
 
 function MyApp({ Component, pageProps }) {
 
@@ -48,9 +50,11 @@ function MyApp({ Component, pageProps }) {
   console.log("theme", theme)
 
   return (
-    <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <PaletteProvider>
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </PaletteProvider>
 
   )
 }

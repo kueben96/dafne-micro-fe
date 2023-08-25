@@ -14,7 +14,7 @@ const RemoteButton = dynamic(() => import('theme/ReactButton'), {
 
 
 const ServicesCard = () => {
-    const theme = useTheme();
+    // const theme = useTheme();
     return (
         <Card>
             <CardContent>
@@ -70,7 +70,7 @@ const ServicesCard = () => {
                                 {/* Icon */}
                             </Grid>
                             <Grid item>
-                                <Typography color={theme.palette.primary.main}>Feature 3</Typography>
+                                {/* <Typography color={theme.palette.primary.main}>Feature 3</Typography> */}
                             </Grid>
                         </Grid>
                     </Grid>

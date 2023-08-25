@@ -47,6 +47,7 @@ const App = () => {
             </div>
         );
     }
+
     return (
         <ThemeProvider theme={theme}>
             <h1>Marketing App</h1>
