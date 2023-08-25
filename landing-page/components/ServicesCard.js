@@ -3,15 +3,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { Button, styled } from '@mui/material';
+import { Button } from '@mui/material';
 import dynamic from 'next/dynamic';
+import { useTheme } from '@emotion/react';
 
-
-const useStyles = styled((theme) => ({
-    heading: {
-        fontSize: '2rem',
-    }
-}));
 
 const RemoteButton = dynamic(() => import('theme/ReactButton'), {
     ssr: false,
@@ -19,7 +14,7 @@ const RemoteButton = dynamic(() => import('theme/ReactButton'), {
 
 
 const ServicesCard = () => {
-    const classes = useStyles();
+    const theme = useTheme();
     return (
         <Card>
             <CardContent>
@@ -31,7 +26,8 @@ const ServicesCard = () => {
                                 {/* Your icon */}
                             </Grid>
                             <Grid item>
-                                <h1 className={classes.heading}>Custom Styled Heading</h1>
+                                <h1 style={{ color: 'red', fontSize: '25px' }}>Your Heading Text</h1>
+
                             </Grid>
                         </Grid>
                     </Grid>
@@ -74,7 +70,7 @@ const ServicesCard = () => {
                                 {/* Icon */}
                             </Grid>
                             <Grid item>
-                                <Typography>Feature 3</Typography>
+                                <Typography color={theme.palette.primary.main}>Feature 3</Typography>
                             </Grid>
                         </Grid>
                     </Grid>
