@@ -7,6 +7,7 @@ const devConfig = {
     mode: 'development',
     entry: './src/index.js',
     output: {
+        uniqueName: 'container',
         publicPath: '/'
     },
     devServer: {

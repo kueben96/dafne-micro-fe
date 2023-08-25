@@ -8,6 +8,7 @@ const devConfig = {
     mode: 'development',
     entry: './src/index.ts',
     output: {
+        uniqueName: 'dafne',
         publicPath: "http://localhost:8083/",
     },
     devServer: {

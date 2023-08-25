@@ -11,6 +11,7 @@ module.exports = {
         port: 8085,
     },
     output: {
+        uniqueName: 'theme',
         publicPath: 'http://localhost:8085/',
     },
     module: {

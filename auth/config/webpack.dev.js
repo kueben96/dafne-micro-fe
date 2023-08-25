@@ -7,6 +7,7 @@ const devConfig = {
     mode: 'development',
     entry: './src/index.js',
     output: {
+        uniqueName: 'auth',
         publicPath: "http://localhost:8082/",
     },
     devServer: {

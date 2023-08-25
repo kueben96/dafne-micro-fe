@@ -1,9 +1,8 @@
+import { PaletteProvider } from '../context/context';
 import { ThemeProvider, createTheme } from '@mui/material'
 import '../styles/globals.css'
 import dynamic from 'next/dynamic'
 import React, { useState, lazy } from 'react';
-import { Palette } from '@mui/icons-material';
-import { PaletteProvider } from '../context/context';
 
 function MyApp({ Component, pageProps }) {
 

@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { Button } from '@mui/material';
 import dynamic from 'next/dynamic';
-import { useTheme } from '@emotion/react';
 
 
 const RemoteButton = dynamic(() => import('theme/ReactButton'), {
@@ -14,7 +13,18 @@ const RemoteButton = dynamic(() => import('theme/ReactButton'), {
 
 
 const ServicesCard = () => {
-    // const theme = useTheme();
+    // const { palette, theme } = usePalette();
+    // if (!theme || !palette) {
+    //     return (
+    //         <Card>
+    //             <CardContent>
+    //                 Loading Theme...
+    //             </CardContent>
+    //         </Card>
+    //     );
+    // }
+
+    // console.log("theme", theme)
     return (
         <Card>
             <CardContent>
@@ -33,7 +43,7 @@ const ServicesCard = () => {
                     </Grid>
                     {/* Row 2: Description */}
                     <Grid item xs={12}>
-                        <Typography variant="body2" color="textSecondary">
+                        <Typography variant="body2" >
                             A Description Text with smaller font about 3 rows. A Description Text with smaller font about 3 rows. A Description Text with smaller font about 3 rows.
                         </Typography>
                     </Grid>
@@ -70,7 +80,7 @@ const ServicesCard = () => {
                                 {/* Icon */}
                             </Grid>
                             <Grid item>
-                                {/* <Typography color={theme.palette.primary.main}>Feature 3</Typography> */}
+                                {/* <Typography color={palette.primary.main}>Feature 3</Typography> */}
                             </Grid>
                         </Grid>
                     </Grid>

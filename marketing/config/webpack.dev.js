@@ -8,6 +8,7 @@ const devConfig = {
     mode: 'development',
     entry: './src/index.js',
     output: {
+        uniqueName: 'marketing',
         publicPath: "http://localhost:8081/",
     },
     devServer: {

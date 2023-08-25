@@ -22,6 +22,7 @@ module.exports = {
         extraOptions: {
           exposesPages: true
         },
+
       })
     );
 
