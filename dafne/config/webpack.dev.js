@@ -25,6 +25,9 @@ const devConfig = {
         new ModuleFederationPlugin({
             name: 'dafne',
             filename: 'remoteEntry.js',
+            remotes: {
+                theme: 'theme@http://localhost:8085/remoteEntry.js',
+            },
             exposes: {
                 './DafneApp': './src/bootstrap'
             },
