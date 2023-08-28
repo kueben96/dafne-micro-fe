@@ -2,17 +2,10 @@
 import { ThemeProvider, createTheme } from '@mui/material';
 import dynamic from 'next/dynamic';
 import App from 'next/app';
+import { lazy } from 'react';
+
 function MyApp({ Component, pageProps, users, theme }) {
 
-
-  //   // Load the remote theme here and add it to appProps
-  //   const remoteTheme = await import('theme/theme');
-  //   appProps.remoteTheme = remoteTheme.default;
-
-  //   return { ...appProps };
-  // }
-
-  // const { Component, pageProps, users } = this.props;
   console.log(users)
   console.log("remoteTheme")
   console.log(theme)
@@ -27,7 +20,7 @@ function MyApp({ Component, pageProps, users, theme }) {
 MyApp.getInitialProps = async () => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users')
   const data = await res.json()
-  const remoteTheme = await import('theme/theme');
+  const remoteTheme = await import('theme/palette');
   return { users: data, theme: remoteTheme }
 }
 

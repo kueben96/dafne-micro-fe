@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { Button, ThemeProvider, createTheme } from '@mui/material'
+import { Button, ThemeProvider, Typography, createTheme } from '@mui/material'
 // import { MyButton } from "landing";
 
 const App = () => {
@@ -29,7 +29,7 @@ const App = () => {
             .then((sharedTheme) =>
                 setTheme(
                     sharedTheme.default
-                )
+                ),
             )
             .catch((error) =>
                 console.error(
@@ -48,10 +48,9 @@ const App = () => {
         );
     }
 
-    const muiTheme = createTheme(theme)
 
     return (
-        <ThemeProvider theme={muiTheme}>
+        <ThemeProvider theme={theme}>
             <h1>Marketing App</h1>
             <React.Suspense fallback="Loading...">
                 <ServicesCard />
@@ -60,6 +59,7 @@ const App = () => {
             <React.Suspense fallback="Loading...">
                 <MyButton onClick={handleClick} />
             </React.Suspense>
+            <Typography variant='h1'>Marketing App</Typography>
             <Button onClick={navigateToAuthApp}>auth</Button>
             <Link to='/contribute'>Contribute</Link>
             <Link to='/about'>About</Link>
