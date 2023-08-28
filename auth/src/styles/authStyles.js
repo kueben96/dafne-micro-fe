@@ -37,7 +37,7 @@ export const Logo = styled('img')({
 export const LeftContainer = styled(Paper)(({ theme }) => ({
     height: '100%',
     flex: '0 1 auto',
-    background: `linear-gradient(120deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main} , ${theme.palette.neutral.white})`,
+    background: `linear-gradient(120deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main} , ${theme.palette.common.white})`,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -61,7 +61,7 @@ export const Header = styled(Typography)(({ theme }) => ({
 
 export const Subline = styled(Typography)(({ theme }) => ({
     fontSize: theme.typography.subtitle1.fontSize,
-    color: theme.palette.neutral.white,
+    color: theme.palette.common.white,
     marginTop: theme.spacing(5),
 }));
 

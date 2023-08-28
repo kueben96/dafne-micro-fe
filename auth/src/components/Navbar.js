@@ -14,7 +14,7 @@ const Navbar = () => {
         );
     }
     return (
-        <AppBar sx={{ backgroundColor: theme.palette.neutral.white }} position='relative'>
+        <AppBar sx={{ backgroundColor: theme?.palette.common.white }} position='relative'>
             {/* Solution with react-router-dom Link  */}
             {/* <CustomToolbar component={Link} to="/"></CustomToolbar> */}
             <CustomToolbar>

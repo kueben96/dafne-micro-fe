@@ -20,6 +20,9 @@ const devConfig = {
         new ModuleFederationPlugin({
             name: 'auth',
             filename: 'remoteEntry.js',
+            remotes: {
+                theme: 'theme@http://localhost:8085/remoteEntry.js',
+            },
             exposes: {
                 './AuthApp': './src/bootstrap'
             },

@@ -20,33 +20,6 @@ const App = () => {
         console.log("clicked next button")
     }
 
-    const [theme, setTheme] =
-        React.useState(null);
-
-
-    React.useEffect(() => {
-        import('theme/theme')
-            .then((sharedTheme) =>
-                setTheme(
-                    sharedTheme.default
-                ),
-            )
-            .catch((error) =>
-                console.error(
-                    'Error loading shared theme',
-                    error
-                )
-            );
-    }, []);
-
-
-    if (!theme) {
-        return (
-            <div>
-                Loading theme...
-            </div>
-        );
-    }
 
 
     return (
