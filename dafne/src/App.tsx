@@ -7,6 +7,8 @@ import ReproductionPage from './pages/ReproductionPage/index';
 import DashboardPage from './pages/DashboardPage';
 
 function App(): JSX.Element {
+  // const theme = importTheme();
+  // console.log(theme)
   return (
     <ThemeProvider theme={customTheme}>
       <Routes>
