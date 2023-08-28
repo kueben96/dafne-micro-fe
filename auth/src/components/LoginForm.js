@@ -39,7 +39,7 @@ const LoginForm = () => {
     return (
 
         <Box className={classes.formContainer}>
-            <LockOpenIcon className={classes.lockIcon} style={{ fontSize: 90, color: theme.palette.grey.light }} variant='filled' />
+            <LockOpenIcon className={classes.lockIcon} style={{ fontSize: 90, color: theme.palette.gray.light }} variant='filled' />
             <form onSubmit={handleSubmit} >
                 <Box mt={2} display="flex" justifyContent="flext-start" sx={{ width: '100%' }}>
                     <Typography variant='h4'>Account credentials</Typography>
