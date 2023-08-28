@@ -10,6 +10,9 @@ module.exports = {
         },
         port: 8085,
     },
+    resolve: {
+        modules: ["src", "node_modules"],
+    },
     output: {
         uniqueName: 'theme',
         publicPath: 'http://localhost:8085/',
@@ -20,7 +23,7 @@ module.exports = {
                 /* The following line to ask babel 
                      to compile any file with extension
                      .js */
-                test: /\.js?$/,
+                test: /\.m?js$/,
 
                 /* exclude node_modules directory from babel. 
                     Babel will not compile any files in this directory*/
@@ -53,17 +56,15 @@ module.exports = {
                 shared: {
                     react: {
                         singleton: true,
-                        version: '0',
                         requiredVersion: false,
                     },
                     'react-dom': {
                         requiredVersion: false,
                         singleton: true,
-                        version: '0',
                     },
-                    '@mui/material': {
-                        singleton: true, // Ensure only one instance is loaded
-                    },
+                    // '@mui/material': {
+                    //     singleton: true, // Ensure only one instance is loaded
+                    // },
                 }
             }
         ),
