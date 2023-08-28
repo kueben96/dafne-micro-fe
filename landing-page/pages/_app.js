@@ -1,61 +1,31 @@
-import { PaletteProvider } from '../context/context';
-import { ThemeProvider, createTheme } from '@mui/material'
-import '../styles/globals.css'
-import dynamic from 'next/dynamic'
-import React, { useState, lazy } from 'react';
+// pages/_app.js (for Next.js 12)
+import { ThemeProvider, createTheme } from '@mui/material';
+import App from 'next/app';
+import dynamic from 'next/dynamic';
 
-function MyApp({ Component, pageProps }) {
+class MyApp extends App {
+  static async getInitialProps({ Component, ctx }) {
+    const appProps = Component.getInitialProps
+      ? await Component.getInitialProps(ctx)
+      : {};
 
+    // Load the remote theme here and add it to appProps
+    const remoteTheme = await import('theme/theme');
+    appProps.remoteTheme = remoteTheme.default;
 
-
-  const [theme, setTheme] = React.useState(null);
-  const [palette, setPalette] = React.useState(null);
-
-  // React.useEffect(() => {
-  //   import('theme/theme')
-  //     .then((sharedTheme) => {
-  //       setTheme(sharedTheme.default);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error loading shared theme', error);
-  //     });
-  // }, []);
-
-
-  React.useEffect(() => {
-    import('theme/palette')
-      .then((sharedPalette) => {
-        setPalette(sharedPalette.default);
-        const customTheme = createTheme({
-          palette: palette ??
-          {
-            primary: {
-              dark: '#3C9085',
-              main: '#6CC1B5',
-            }
-          }
-        });
-        setTheme(customTheme);
-      })
-      .catch((error) => {
-        console.error('Error loading shared palette', error);
-      });
-  }, []);
-
-
-  if (!theme) {
-    return <div>Loading theme...</div>;
+    return { ...appProps };
   }
-  console.log("theme", theme)
 
-  return (
-    <PaletteProvider>
-      <ThemeProvider theme={theme}>
+  render() {
+    const { Component, pageProps, remoteTheme } = this.props;
+    const customTheme = createTheme(remoteTheme);
+    console.log(customTheme)
+    return (
+      <ThemeProvider theme={customTheme}>
         <Component {...pageProps} />
       </ThemeProvider>
-    </PaletteProvider>
-
-  )
+    );
+  }
 }
 
-export default MyApp
+export default MyApp;
