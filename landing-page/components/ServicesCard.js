@@ -8,21 +8,20 @@ const RemoteButton = dynamic(() => import('theme/ReactButton'), {
 
 const ServicesCard = () => {
     const theme = useTheme();
-    const [themeLoaded, setThemeLoaded] = useState(false);
 
-    useEffect(() => {
-        // Check if the theme.palette.secondary.main is available
-        if (theme?.palette.secondary.main) {
-            setThemeLoaded(true);
-        }
-    }, [theme]);
 
     const paragraphStyle = {
         color: theme.palette.secondary.main
     };
+    const blueStyle = {
+        color: theme.palette.primary.main
+    };
 
     return (
-        <p style={paragraphStyle}>Loreim kdadnaskndasnd</p>
+        <>
+            <p style={paragraphStyle}>Loreim kdadnaskndasnd</p>
+            <p style={blueStyle}>Loreim kdadnaskndasnd</p>
+        </>
     );
 };
 
