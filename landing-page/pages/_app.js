@@ -1,31 +1,34 @@
 // pages/_app.js (for Next.js 12)
 import { ThemeProvider, createTheme } from '@mui/material';
-import App from 'next/app';
 import dynamic from 'next/dynamic';
+import App from 'next/app';
+function MyApp({ Component, pageProps, users, theme }) {
 
-class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    const appProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
 
-    // Load the remote theme here and add it to appProps
-    const remoteTheme = await import('theme/theme');
-    appProps.remoteTheme = remoteTheme.default;
+  //   // Load the remote theme here and add it to appProps
+  //   const remoteTheme = await import('theme/theme');
+  //   appProps.remoteTheme = remoteTheme.default;
 
-    return { ...appProps };
-  }
+  //   return { ...appProps };
+  // }
 
-  render() {
-    const { Component, pageProps, remoteTheme } = this.props;
-    const customTheme = createTheme(remoteTheme);
-    console.log(customTheme)
-    return (
-      <ThemeProvider theme={customTheme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    );
-  }
+  // const { Component, pageProps, users } = this.props;
+  console.log(users)
+  console.log("remoteTheme")
+  console.log(theme)
+  const customTheme = createTheme();
+  console.log(customTheme)
+  return (
+    <ThemeProvider theme={customTheme}>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
+}
+MyApp.getInitialProps = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users')
+  const data = await res.json()
+  const remoteTheme = await import('theme/theme');
+  return { users: data, theme: remoteTheme }
 }
 
 export default MyApp;

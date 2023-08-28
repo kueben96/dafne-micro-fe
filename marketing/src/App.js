@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { Button, ThemeProvider } from '@mui/material'
+import { Button, ThemeProvider, createTheme } from '@mui/material'
 // import { MyButton } from "landing";
 
 const App = () => {
@@ -48,8 +48,10 @@ const App = () => {
         );
     }
 
+    const muiTheme = createTheme(theme)
+
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={muiTheme}>
             <h1>Marketing App</h1>
             <React.Suspense fallback="Loading...">
                 <ServicesCard />

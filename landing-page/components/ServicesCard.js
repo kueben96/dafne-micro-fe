@@ -18,7 +18,7 @@ const ServicesCard = () => {
     }, [theme]);
 
     const paragraphStyle = {
-        color: themeLoaded ? theme.palette.secondary.main : 'initial',
+        color: theme.palette.secondary.main
     };
 
     return (

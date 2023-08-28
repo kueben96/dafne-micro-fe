@@ -17,7 +17,9 @@ module.exports = {
           theme: 'theme@http://localhost:8085/remoteEntry.js',
         },
         shared: {
-          // whatever else
+          '@mui/material': {
+            singleton: true, // Ensure only one instance is loaded
+          },
         },
         extraOptions: {
           exposesPages: true

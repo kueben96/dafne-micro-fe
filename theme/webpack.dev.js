@@ -61,6 +61,9 @@ module.exports = {
                         singleton: true,
                         version: '0',
                     },
+                    '@mui/material': {
+                        singleton: true, // Ensure only one instance is loaded
+                    },
                 }
             }
         ),
