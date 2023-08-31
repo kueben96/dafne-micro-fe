@@ -19,7 +19,7 @@
         "headers": {
             "Content-Type": "application/json"
         },
-        "jsonBody": [
+        "jsonBody": 
           {
             "lastMessage": "Sample has been uploaded.",
             "run": 10,
@@ -27,6 +27,6 @@
             "status": "completed",
             "taskNum": 5
           }
-        ]
+        
     }
 }
