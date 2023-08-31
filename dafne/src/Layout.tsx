@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AppBarHeader from './components/Header'
 import DafneDrawer from './components/DafneDrawer'
 import { CssBaseline, Theme } from '@mui/material'
-import { styled } from '@mui/styles';
+import { styled } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 
 const Main = styled('main')(
