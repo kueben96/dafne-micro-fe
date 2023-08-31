@@ -1,0 +1,26 @@
+{
+    "request": {
+        "method": "POST",
+        "urlPattern": "/api/register",
+        "bodyPatterns": [
+            {
+                "equalToJson": {
+                    "email": "jenny.smith@test.com",
+                    "firstName": "Jenny",
+                    "industry": "University",
+                    "jobTitle": "Scientist",
+                    "lastName": "Smith"
+                }
+            }
+        ]
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "jsonBody": {
+            "access_token": "dfiufiwifwedsjdlskkfdskmnfnfknlmdsjsdmcjdskjcksdjc"
+        }
+    }
+}
