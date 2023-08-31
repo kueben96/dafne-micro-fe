@@ -1,0 +1,32 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPathTemplate": "/api/job/{job_id}/status",
+        "headers": {
+            "Authorization": {
+              "contains": 
+                "Bearer dfiufiwifwedsjdlskkfdskmnfnfknlmdsjsdmcjdskjcksdjc"
+            }
+        },
+       "pathParameters": {
+        "job_id" : {
+          "equalTo" : "userxyz_12345"
+        }
+       }
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "jsonBody": [
+          {
+            "lastMessage": "Sample has been uploaded.",
+            "run": 10,
+            "runs": 10,
+            "status": "completed",
+            "taskNum": 5
+          }
+        ]
+    }
+}
