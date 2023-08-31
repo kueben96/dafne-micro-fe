@@ -7,22 +7,22 @@ import dynamic from 'next/dynamic';
 // });
 
 const ServicesCard = () => {
-    const theme = useTheme();
+    // const theme = useTheme();
 
 
-    const paragraphStyle = {
-        color: theme.palette.secondary.main
-    };
-    const blueStyle = {
-        color: theme.palette.primary.main
-    };
+    // const paragraphStyle = {
+    //     color: theme.palette.secondary.main
+    // };
+    // const blueStyle = {
+    //     color: theme.palette.primary.main
+    // };
 
     return (
         <>
             <p>test</p>
-            <p style={paragraphStyle}>Loreim kdadnaskndasnd</p>
+            {/* <p style={paragraphStyle}>Loreim kdadnaskndasnd</p>
             <p style={blueStyle}>Loreim kdadnaskndasnd</p>
-            <Typography color="primary" variant="h1">Hi from ladning </Typography>
+            <Typography color="primary" variant="h1">Hi from ladning </Typography> */}
         </>
     );
 };

@@ -4,6 +4,7 @@ import { marketingRoutingPrefix, authRoutingPrefix, dafneRoutingPrefix } from '.
 import { AuthContext, AuthProvider, useAuth } from './utils/AuthProvider'
 import ProtectedRoute from './utils/ProtectedRoute'
 import MicroFrontendErrorBoundary from './utils/MicroFrontendErrorBoundary'
+// import NextjsRemotePage from 'landing/NextApp';
 
 
 
@@ -14,7 +15,6 @@ const App = () => {
     const DaFneLazy = lazy(() => import('./components/DafneApp'))
     const AuthLazy = lazy(() => import('./components/AuthApp'))
     // TODO: render whole nextJS vertical split app for landing page
-    //const LandingLazy = lazy(() => import('landing/BB8'));
     const navigate = useNavigate()
     const location = useLocation()
     const { token, onLogin, onLogout } = useAuth();
@@ -44,6 +44,7 @@ const App = () => {
                 <Route index element={<Navigate to={"/marketing"} />} />
                 <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
                 <Route path="/auth/*" element={renderMFE(AuthLazy)} />
+                {/* <Route path="/landing" element={renderMFE(NextApp)} /> */}
                 <Route path="/dafne/*" element={
                     <ProtectedRoute>
                         {renderMFE(DaFneLazy)}
