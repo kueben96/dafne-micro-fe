@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from "react";
+import { ReactElement, useEffect } from "react";
 import { matchRoutes, useLocation, useNavigate } from "react-router-dom";
 import { routes } from "../routing/routes";
 

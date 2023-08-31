@@ -1,22 +1,11 @@
 import React from 'react';
-import { DataGrid, GridCellParams, GridColDef, GridRowsProp, GridRowsState, GridSlotsComponent, GridToolbar } from '@mui/x-data-grid';
-import { Box, Button, Link, Theme, Typography, styled, useTheme } from '@mui/material';
-import { makeStyles } from '@mui/styles'
+import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
+import { Box, Button, Typography, useTheme } from '@mui/material';
 import { EmptyRowsImage } from '../assets/images';
+import { CustomDataGrid, TableCustomBox } from '../assets/theme/dafneStyles';
 
 
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        height: 400,
-        width: '100%',
-        '& .cell': {
-            textAlign: 'center',
-        },
-    },
-    columnHeaders: {
-        background: theme.palette.gray?.lighter,
-    },
-}));
+
 
 const CustomNoRowsOverlay = () => {
     const theme = useTheme()
@@ -36,19 +25,18 @@ interface ProcessesTableProps {
 
 
 const ProcessesTable: React.FC<ProcessesTableProps> = ({ rows, columns }) => {
-    const classes = useStyles();
 
     return (
-        <Box className={classes.root}>
-            <DataGrid
+        <TableCustomBox>
+            <CustomDataGrid
                 rows={rows ?? []}
                 columns={columns}
                 slots={{
                     noRowsOverlay: CustomNoRowsOverlay,
                 }}
-                classes={{ columnHeaders: classes.columnHeaders }}
+                classes={{ columnHeaders: 'column-headers' }}
             />
-        </Box>
+        </TableCustomBox>
     );
 };
 

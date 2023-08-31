@@ -1,4 +1,4 @@
-import { Stepper, Step, StepLabel, Theme } from '@mui/material';
+import { Stepper, Step, StepLabel, Theme, StepProps, StepLabelProps } from '@mui/material';
 import React from 'react';
 import CustomStepIcon from './CustomStepIcon';
 
@@ -20,13 +20,12 @@ const HorizontalStepper: React.FC<HorizontalStepperProps> = ({
   return (
     <Stepper sx={{ width: width }} activeStep={activeStep}>
       {steps.map((label, index) => {
-        const stepProps: any = {};
-        const labelProps: any = {};
+        const stepProps: StepProps = {};
+        const labelProps: StepLabelProps = {};
 
         if (isStepCompleted(index)) {
           stepProps.completed = true;
         }
-
         return (
           <Step key={label} {...stepProps}>
             <StepLabel
@@ -35,7 +34,7 @@ const HorizontalStepper: React.FC<HorizontalStepperProps> = ({
                 <CustomStepIcon
                   {...stepProps}
                   icon={index + 1}
-                  completed={stepProps.completed}
+                  completed={stepProps.completed || false}
                   active={activeStep === index}
                   theme={theme}
                 >

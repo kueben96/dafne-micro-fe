@@ -6,24 +6,28 @@ import ReproductionPage from './pages/ReproductionPage/index';
 import DashboardPage from './pages/DashboardPage';
 
 function App(): JSX.Element {
+  const themeRef = React.useRef(false);
   const [theme, setTheme] =
     React.useState(null);
 
 
   React.useEffect(() => {
-
-    import('theme/theme')
-      .then((sharedTheme) =>
-        setTheme(
-          sharedTheme.default
-        ),
-      )
-      .catch((error) =>
-        console.error(
-          'Error loading shared theme',
-          error
+    if (themeRef.current == false) {
+      import('theme/theme')
+        .then((sharedTheme) =>
+          setTheme(
+            sharedTheme.default
+          ),
         )
-      );
+        .catch((error) =>
+          console.error(
+            'Error loading shared theme',
+            error
+          )
+        );
+    }
+    themeRef.current = true;
+
   }, []);
 
 
@@ -34,6 +38,7 @@ function App(): JSX.Element {
       </div>
     );
   }
+  console.log(theme);
 
   return (
     <ThemeProvider theme={theme}>

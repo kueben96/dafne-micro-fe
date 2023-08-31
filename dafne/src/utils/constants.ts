@@ -7,11 +7,17 @@ export const metricOptionsReproduction: { value: string; label: string; info: st
     { value: 'ml-task', label: 'Machine Learning task', info: 'Info about ML' },
     { value: 'logistik', label: 'Logistic detection', info: 'Info about log' },
 ];
+
 export const reproductionEpochCount: number = 15;
+type ReproductionStep = 'Set generation settings' | 'Set row number' | 'View results';
 export const reproductionStep1: string = 'Set generation settings';
 export const reproductionStep2: string = 'Set row number';
 export const reproductionStep3: string = 'View results';
-export const reproductionHorizontalSteps: string[] = [reproductionStep1, reproductionStep2, reproductionStep3];
+export const reproductionHorizontalSteps: ReproductionStep[] = [
+    'Set generation settings',
+    'Set row number',
+    'View results',
+];
 
 export const ROUTES = {
     HOME: '/',

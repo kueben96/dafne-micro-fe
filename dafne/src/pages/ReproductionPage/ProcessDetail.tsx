@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ContentBox, ContentPaper, SizedBoxHorizontal } from '../../assets/theme/dafneStyles'
-import { Box, Button, IconButton, Typography, styled } from '@mui/material';
+import { Box, Button, IconButton, Typography, styled, useTheme } from '@mui/material';
 import { MetricScoreCard, QualityReportCard, SettingsOverviewCard } from './SummaryCard';
 import ProcessesTable from '../../components/ProcessesTable';
 import { HeaderEditable, HeaderSize } from '../../components/PageHeader';
@@ -74,13 +74,14 @@ const ProcessDetail: React.FC = () => {
 export default ProcessDetail
 
 const ProcessSummary: React.FC = () => {
+  const theme = useTheme();
   return (
     <ContentBox>
       <CardContainer>
         <SettingsOverviewCard />
-        <SizedBoxHorizontal space={0.5} />
+        <SizedBoxHorizontal theme={theme} space={0.5} />
         <MetricScoreCard />
-        <SizedBoxHorizontal space={0.5} />
+        <SizedBoxHorizontal theme={theme} space={0.5} />
         <QualityReportCard />
       </CardContainer>
     </ContentBox>
