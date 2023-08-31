@@ -38,7 +38,7 @@ function App(): JSX.Element {
       </div>
     );
   }
-  console.log(theme);
+
 
   return (
     <ThemeProvider theme={theme}>

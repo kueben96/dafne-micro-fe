@@ -11,8 +11,6 @@ interface DafneDrawerProps {
 
 const DafneDrawer: React.FC<DafneDrawerProps> = ({ handleDrawerToggle, isNavOpen }) => {
   const theme = useTheme();
-  console.log("theme drawer")
-  console.log(theme)
   return (
     <DrawerCustom
       theme={theme}
