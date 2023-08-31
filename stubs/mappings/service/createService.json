@@ -1,0 +1,54 @@
+{
+    "request": {
+        "method": "POST",
+        "urlPattern": "/api/metric",
+        "headers": {
+            "Authorization": {
+                "contains": "Bearer dfiufiwifwedsjdlskkfdskmnfnfknlmdsjsdmcjdskjcksdjc"
+            }
+        },
+        "bodyPatterns": [
+            {
+            "equalToJson": {
+                "epochs": 10,
+                "metrics": [
+                  {
+                    "identifier": "weightedstatistics-pamela",
+                    "metric": "standard",
+                    "params": {}
+                  }
+                ],
+                "model": {
+                  "identifier": "ctgan-pamela"
+                },
+                "name": "test",
+                "paths": {
+                  "download": {
+                    "bucket": "publicdataset",
+                    "path": "demo.pkl"
+                  },
+                  "upload": {
+                    "bucket": "userbucket",
+                    "path": "sebastian/directory/"
+                  }
+                },
+                "runs": 2,
+                "sample": 500
+              }
+          }
+        ]
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "jsonBody": [
+            {
+                "type": "string",
+                "content": "string",
+                "traceId": "string"
+              }
+        ]
+    }
+}
