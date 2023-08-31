@@ -1,0 +1,29 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPattern": "/api/data",
+        "headers": {
+            "Authorization": {
+              "contains": 
+                "Bearer dfiufiwifwedsjdlskkfdskmnfnfknlmdsjsdmcjdskjcksdjc"
+            }
+        }
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "jsonBody": [
+            {
+                "publicData": [
+                  "Bridges",
+                  "Walls of Hamburg"
+                ],
+                "userBucket": [
+                  "Bridges_modified"
+                ]
+              }
+        ]
+    }
+}
