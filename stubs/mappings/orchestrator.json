@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/orchestrator/service-status?user=alex"
+  },
+  "response": {
+    "jsonBody": {
+      "access_token": "working"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "status": 200
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/login",
+    "bodyPatterns": [{
+      "equalToJson": {
+          "user": "user",
+          "user_pass": "user_pass"
+      }
+    }]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "dfiufiwifwedsjdlskkfdskmnfnfknlmdsjsdmcjdskjcksdjc"
+    }
+  }
+}

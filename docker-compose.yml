@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  wiremock:
+    image: wiremock/wiremock
+    ports:
+      - "8086:8080"
+    network_mode: bridge
+    volumes:
+      - ./stubs:/home/wiremock
+    command: --verbose

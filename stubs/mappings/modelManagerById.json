@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/model-manager/models/by_id/an_id"
+  },
+  "response": {
+    "jsonBody": [
+      {
+        "type": "generative",
+        "id": "an_id",
+        "model": "MODEL"
+      }
+    ],
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "status": 200
+  }
+}
