@@ -31,7 +31,7 @@ const devConfig = {
             shared: {
                 ...packageJson.dependencies,
                 react: {
-                    eager: true,
+                    // eager: true,
                     requiredVersion: false,
                     singleton: true,
                 },

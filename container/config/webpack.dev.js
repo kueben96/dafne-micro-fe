@@ -19,6 +19,7 @@ const devConfig = {
             'Access-Control-Allow-Origin': '*',
         }
     },
+    devtool: 'source-map',
 
     plugins: [
         new ModuleFederationPlugin({
@@ -32,7 +33,7 @@ const devConfig = {
             shared: {
                 ...packageJson.dependencies,
                 react: {
-                    eager: true,
+                    // eager: true,
                     requiredVersion: false,
                     singleton: true,
                 },

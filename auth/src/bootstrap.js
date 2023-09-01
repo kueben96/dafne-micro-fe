@@ -18,7 +18,7 @@ const mount = ({
     root.render(
         <RouterProvider router={router} />
     )
-    return () => queueMicrotask(() => ReactDOM.unmountComponentAtNode(mountPoint));
+    return () => queueMicrotask(() => root.unmount());
 }
 // if in dev or isolation -> call mount immediately 
 

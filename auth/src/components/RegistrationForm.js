@@ -1,11 +1,11 @@
 import { Box, Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, styled, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
-import { formStyles } from '../styles/authStyles'
+// import { formStyles } from '../styles/authStyles'
 
 
 const RegistrationForm = () => {
 
-    const classes = formStyles()
+    // const classes = formStyles()
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -69,7 +69,8 @@ const RegistrationForm = () => {
 
     return (
 
-        <Box className={classes.formContainer}>
+        // <Box className={classes.formContainer}>
+        <Box >
             <form onSubmit={handleSubmit} >
                 <Box mt={2} display="flex" justifyContent="flext-start" sx={{ width: '100%' }}>
                     <Typography variant='h4'>Personal Data</Typography>

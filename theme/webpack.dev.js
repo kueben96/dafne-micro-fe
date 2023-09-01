@@ -1,12 +1,16 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const path = require('path');
+const deps = require("./package.json").dependencies;
 module.exports = {
     entry: './src/index',
     mode: 'development',
     devServer: {
-        static: {
-            directory: path.join(__dirname, 'dist'),
+        // static: {
+        //     directory: path.join(__dirname, 'dist'),
+        // },
+        historyApiFallback: {
+            historyApiFallback: true,
         },
         port: 8085,
     },
@@ -46,7 +50,7 @@ module.exports = {
         new ModuleFederationPlugin(
             {
                 name: 'theme',
-                library: { type: 'var', name: 'theme' },
+                // library: { type: 'var', name: 'theme' },
                 filename: 'remoteEntry.js',
                 exposes: {
                     './theme': './src/shared-theme',
@@ -54,17 +58,15 @@ module.exports = {
                     './ReactButton': './src/Button',
                 },
                 shared: {
+                    ...deps,
                     react: {
                         singleton: true,
-                        requiredVersion: false,
+                        requiredVersion: deps.react,
                     },
                     'react-dom': {
-                        requiredVersion: false,
+                        requiredVersion: deps["react-dom"],
                         singleton: true,
                     },
-                    // '@mui/material': {
-                    //     singleton: true, // Ensure only one instance is loaded
-                    // },
                 }
             }
         ),

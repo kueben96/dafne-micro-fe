@@ -1,28 +1,26 @@
-import { theme } from '../styles/theme';
-import { makeStyles } from '@mui/styles'
 import { styled, Toolbar, Paper, Typography, Button } from '@mui/material'
 
-export const formStyles = makeStyles((theme) => ({
-    formContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        width: '100%',
-        height: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '70%',
-        },
-        margin: '0 auto',
-        alignItems: 'center',
-        position: 'relative',
+// export const formStyles = makeStyles((theme) => ({
+//     formContainer: {
+//         display: 'flex',
+//         flexDirection: 'column',
+//         justifyContent: 'center',
+//         width: '100%',
+//         height: '100%',
+//         [theme.breakpoints.up('sm')]: {
+//             width: '70%',
+//         },
+//         margin: '0 auto',
+//         alignItems: 'center',
+//         position: 'relative',
 
-    },
-    lockIcon: {
-        position: 'absolute',
-        top: theme.spacing(2),
-        right: theme.spacing(0),
-    }
-}))
+//     },
+//     lockIcon: {
+//         position: 'absolute',
+//         top: theme.spacing(2),
+//         right: theme.spacing(0),
+//     }
+// }))
 
 export const CustomToolbar = styled(Toolbar)({
     height: 130,

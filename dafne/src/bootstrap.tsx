@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { RouterProvider } from 'react-router-dom';
 import { RoutingStrategy } from './routing/types';
+import { createRoot } from 'react-dom/client';
 import { createRouter } from './routing/router-factory';
 
 // mount function to start up the app
@@ -16,17 +16,16 @@ const mount = ({
     routingStrategy?: RoutingStrategy;
 }) => {
 
+    const root = createRoot(mountPoint);
     const router = createRouter({
         strategy: routingStrategy || 'browser',
         initialPathname: initialPathname || '/',
     })
 
-
-    ReactDOM.render(
-        <RouterProvider router={router} />,
-        mountPoint
+    root.render(
+        <RouterProvider router={router} />
     )
-    return () => queueMicrotask(() => ReactDOM.unmountComponentAtNode(mountPoint));
+    return () => queueMicrotask(() => root.unmount(mountPoint));
 };
 
 if (process.env.NODE_ENV == 'development') {
