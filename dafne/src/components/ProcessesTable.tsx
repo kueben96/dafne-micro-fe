@@ -29,6 +29,7 @@ const ProcessesTable: React.FC<ProcessesTableProps> = ({ rows, columns }) => {
     return (
         <TableCustomBox>
             <CustomDataGrid
+                autoHeight
                 rows={rows ?? []}
                 columns={columns}
                 slots={{
