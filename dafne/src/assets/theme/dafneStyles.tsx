@@ -31,13 +31,17 @@ export const ContentBox = styled(Box)(({ theme }: { theme: Theme }) => ({
 
 }));
 
-export const SizedBoxVertical = styled(Box)(({ theme, space = 2 }: { theme: Theme, space?: number }) => ({
+export const SizedBoxVertical = styled(Box)<{
+    space?: number;
+}>(({ theme, space = 2 }) => ({
     marginBottom: theme.spacing(space),
 }));
-
-export const SizedBoxHorizontal = styled(Box)(({ theme, space }: { theme: Theme, space: number }) => ({
+export const SizedBoxHorizontal = styled(Box)<{
+    space?: number;
+}>(({ theme, space = 2 }) => ({
     marginRight: theme.spacing(space),
 }));
+
 
 // ProcessesTable 
 
