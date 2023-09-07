@@ -12,6 +12,10 @@
         }
       }
     ],
+    "env": {
+      "node": true, 
+      "browser": true
+    },
     "rules": {
       "@typescript-eslint/ban-types": [
         "error",
@@ -22,6 +26,7 @@
           }
         }
       ]
-    }
+    },
+    "import/no-commonjs": "error" 
   }
   
