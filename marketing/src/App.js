@@ -41,7 +41,7 @@ const App = () => {
     }, []);
 
 
-
+    console.log("A CHANGE IN MARKETING")
 
     if (!theme) {
         return (
