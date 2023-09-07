@@ -4,8 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json')
 
-// const domain = process.env.PRODUCTION_DOMAIN;
-const domain = 'd25lrox5hu1urg.cloudfront.net';
+const domain = process.env.PRODUCTION_DOMAIN;
 
 const prodConfig = {
     mode: 'production',
@@ -21,7 +20,7 @@ const prodConfig = {
             name: 'marketing',
             filename: 'remoteEntry.js',
             remotes: {
-                theme: `theme@${domain}/remoteEntry.js`,
+                theme: `theme@${domain}/theme/latest/remoteEntry.js`,
             },
             exposes: {
                 './MarketingApp': './src/bootstrap'
