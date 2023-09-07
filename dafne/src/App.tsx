@@ -6,30 +6,30 @@ import ReproductionPage from './pages/ReproductionPage/index';
 import DashboardPage from './pages/DashboardPage';
 
 function App(): JSX.Element {
-  const themeRef = React.useRef(false);
+
   const [theme, setTheme] =
     React.useState(null);
 
-
   React.useEffect(() => {
+    let isMounted = true; // This flag tracks whether the component is mounted
 
-    if (themeRef.current == false) {
-      import('theme/theme')
-        .then((sharedTheme) =>
-          setTheme(
-            sharedTheme.default
-          ),
-        )
-        .catch((error) =>
-          console.error(
-            'Error loading shared theme',
-            error
-          )
-        );
-    }
-    themeRef.current = true;
+    import('theme/theme')
+      .then((sharedTheme) => {
+        if (isMounted) {
+          // Only set the state if the component is still mounted
+          setTheme(sharedTheme.default);
+        }
+      })
+      .catch((error) =>
+        console.error('Error loading shared theme', error)
+      );
 
+    // Return a cleanup function that sets isMounted to false when the component unmounts
+    return () => {
+      isMounted = false;
+    };
   }, []);
+
 
 
   if (!theme) {

@@ -21,19 +21,20 @@ const App = () => {
 
 
     React.useEffect(() => {
-        let isMounted = true;
+        let isMounted = true; // This flag tracks whether the component is mounted
+
         import('theme/theme')
-            .then((sharedTheme) =>
-                setTheme(
-                    sharedTheme.default
-                ),
-            )
+            .then((sharedTheme) => {
+                if (isMounted) {
+                    // Only set the state if the component is still mounted
+                    setTheme(sharedTheme.default);
+                }
+            })
             .catch((error) =>
-                console.error(
-                    'Error loading shared theme',
-                    error
-                )
+                console.error('Error loading shared theme', error)
             );
+
+        // Return a cleanup function that sets isMounted to false when the component unmounts
         return () => {
             isMounted = false;
         };
