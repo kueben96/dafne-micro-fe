@@ -4,6 +4,7 @@ import customTheme from './shared-theme'
 
 const App = () => {
 
+
     return (
         <ThemeProvider theme={customTheme}>
             <Typography variant="h6">Theme</Typography>
