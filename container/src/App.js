@@ -16,7 +16,6 @@ const App = () => {
     const MarketingLazy = lazy(() => import('./components/MarketingApp'))
     const DaFneLazy = lazy(() => import('./components/DafneApp'))
     const AuthLazy = lazy(() => import('./components/AuthApp'))
-    const NextjsRemotePage = lazy(() => import('landing/NextApp'))
     // TODO: render whole nextJS vertical split app for landing page
     const navigate = useNavigate()
     const location = useLocation()

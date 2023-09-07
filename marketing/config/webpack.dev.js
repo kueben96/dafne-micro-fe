@@ -26,7 +26,6 @@ const devConfig = {
             },
             remotes: {
                 theme: 'theme@http://localhost:8085/remoteEntry.js',
-                landing: 'landing@http://localhost:8084/_next/static/chunks/remoteEntry.js',
             },
             shared: {
                 ...packageJson.dependencies,
