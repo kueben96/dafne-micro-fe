@@ -1,9 +1,9 @@
 import React from 'react';
 import App from './App';
-import { createRoot } from 'react-dom/client';
-const container = document.getElementById('_theme-dev-root');
-const root = createRoot(container);
-
-root.render(
+import ReactDOM from 'react-dom'
+ReactDOM.render(
     <App />
+    ,
+    document.querySelector('#_theme-dev-root')
 )
+
