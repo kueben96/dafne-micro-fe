@@ -41,6 +41,8 @@ const App = () => {
     }, []);
 
 
+
+
     if (!theme) {
         return (
             <div>
@@ -54,7 +56,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <h1>Marketing App</h1>
             {/* Communicate back to Container/parent */}
-
+            <p>{theme.palette.primary.main}</p>
             <Typography variant='h1'>Marketing App</Typography>
             <Button onClick={navigateToAuthApp}>auth</Button>
             <Link to='/contribute'>Contribute</Link>
