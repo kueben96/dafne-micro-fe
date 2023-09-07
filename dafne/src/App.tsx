@@ -12,6 +12,7 @@ function App(): JSX.Element {
 
 
   React.useEffect(() => {
+
     if (themeRef.current == false) {
       import('theme/theme')
         .then((sharedTheme) =>

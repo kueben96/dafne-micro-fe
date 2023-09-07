@@ -4,11 +4,6 @@ import { marketingRoutingPrefix, authRoutingPrefix, dafneRoutingPrefix } from '.
 import { AuthContext, AuthProvider, useAuth } from './utils/AuthProvider'
 import ProtectedRoute from './utils/ProtectedRoute'
 import MicroFrontendErrorBoundary from './utils/MicroFrontendErrorBoundary'
-import { render } from 'react-dom'
-
-// import NextjsRemotePage from 'landing/NextApp';
-
-
 
 const App = () => {
     // TODO: if authenticated, then navigate index to dafne
@@ -48,7 +43,6 @@ const App = () => {
                 <Route index element={<Navigate to={"/marketing"} />} />
                 <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
                 <Route path="/auth/*" element={renderMFE(AuthLazy)} />
-                <Route path="/landing" element={renderMFE(NextjsRemotePage)} />
                 <Route path="/dafne/*" element={
                     <ProtectedRoute>
                         {renderMFE(DaFneLazy)}

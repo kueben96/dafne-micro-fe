@@ -6,17 +6,12 @@ module.exports = {
     entry: './src/index',
     mode: 'development',
     devServer: {
-        // static: {
-        //     directory: path.join(__dirname, 'dist'),
-        // },
-        historyApiFallback: {
-            historyApiFallback: true,
-        },
+
         port: 8085,
     },
-    resolve: {
-        modules: ["src", "node_modules"],
-    },
+    // resolve: {
+    //     modules: ["src", "node_modules"],
+    // },
     output: {
         uniqueName: 'theme',
         publicPath: 'http://localhost:8085/',
@@ -67,10 +62,10 @@ module.exports = {
                         requiredVersion: deps["react-dom"],
                         singleton: true,
                     },
-                    '@mui/material': {
-                        singleton: true,
-                        requiredVersion: deps["@mui/material"]
-                    }
+                    // '@mui/material': {
+                    //     singleton: true,
+                    //     requiredVersion: deps["@mui/material"]
+                    // }
                 }
             }
         ),

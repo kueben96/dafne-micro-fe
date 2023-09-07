@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { Button, ThemeProvider, Typography } from '@mui/material'
 
@@ -43,7 +43,7 @@ const App = () => {
     if (!theme) {
         return (
             <div>
-                Loading theme...
+                Error loading theme...
             </div>
         );
     }

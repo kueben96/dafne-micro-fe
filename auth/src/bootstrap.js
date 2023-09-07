@@ -1,7 +1,8 @@
 import React from 'react'
 import { RouterProvider } from 'react-router-dom'
 import { createRouter } from './routing/router-factory'
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom'
+
 
 // mount functin to start up the app
 const mount = ({
@@ -9,16 +10,16 @@ const mount = ({
     initialPathname,
     routingStrategy,
 } = {}) => {
-    const root = createRoot(mountPoint);
     const router = createRouter({
         strategy: routingStrategy || 'browser',
         initialPathname: initialPathname || '/',
     })
 
-    root.render(
-        <RouterProvider router={router} />
+    ReactDOM.render(
+        <RouterProvider router={router} />,
+        mountPoint
     )
-    return () => queueMicrotask(() => root.unmount());
+    return () => queueMicrotask(() => ReactDOM.unmountComponentAtNode(mountPoint));
 }
 // if in dev or isolation -> call mount immediately 
 
