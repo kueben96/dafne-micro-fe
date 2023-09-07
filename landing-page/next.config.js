@@ -17,9 +17,9 @@ module.exports = {
           theme: 'theme@http://localhost:8085/remoteEntry.js',
         },
         shared: {
-          // '@mui/material': {
-          //   singleton: true, // Ensure only one instance is loaded
-          // },
+          '@mui/material': {
+            singleton: true, // Ensure only one instance is loaded
+          },
           react: {
             requiredVersion: false,
             singleton: true,

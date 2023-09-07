@@ -1,9 +1,11 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import BB8 from '../components/BB8'
 import ServicesCard from '../components/ServicesCard'
+import { Typography } from '@mui/material'
+
 
 export default function Home() {
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,7 +15,7 @@ export default function Home() {
       </Head>
 
       <main >
-        <h1>Welcome to main</h1>
+        <Typography variant="h1">NextJS App Heading </Typography>
       </main>
       <ServicesCard />
 

@@ -43,7 +43,7 @@ const App = () => {
 
     return (
         <>
-            {renderMFE(NextjsRemotePage)}
+
 
             <Routes>
                 <Route index element={<Navigate to={"/marketing"} />} />

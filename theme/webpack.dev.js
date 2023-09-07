@@ -67,6 +67,10 @@ module.exports = {
                         requiredVersion: deps["react-dom"],
                         singleton: true,
                     },
+                    '@mui/material': {
+                        singleton: true,
+                        requiredVersion: deps["@mui/material"]
+                    }
                 }
             }
         ),
