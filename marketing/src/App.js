@@ -55,7 +55,7 @@ const App = () => {
     return (
         <ThemeProvider theme={theme}>
             <h1>Marketing App</h1>
-            <p>Test Test Test</p>
+            <p>Test Test Test Added Distribution id</p>
             {/* Communicate back to Container/parent */}
             <p>{theme.palette.primary.main}</p>
             <Typography variant='h1'>Marketing App</Typography>
