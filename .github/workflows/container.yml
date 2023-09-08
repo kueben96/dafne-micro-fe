@@ -13,7 +13,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npm run start:theme  
+      - run: npm run start:theme &
       - run: npm run start:marketing &
       - run: npm run start:auth &
       - run: npm run start:dafne &
