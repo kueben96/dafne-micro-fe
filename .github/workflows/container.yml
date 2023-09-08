@@ -18,7 +18,7 @@ jobs:
       - run: npm run start:auth &
       - run: npm run start:dafne &
       - run: npm run start:container & 
-      - run: sleep 5
+      - run: sleep 100
       - run: npx cypress run
   build: 
     needs: test
