@@ -3,7 +3,7 @@ import { Routes, Route, Link, Navigate, useNavigate, useLocation, BrowserRouter 
 import { marketingRoutingPrefix, authRoutingPrefix, dafneRoutingPrefix } from './utils/constants'
 import { AuthContext, AuthProvider, useAuth } from './utils/AuthProvider'
 import ProtectedRoute from './utils/ProtectedRoute'
-import MicroFrontendErrorBoundary from './utils/MicroFrontendErrorBoundary'
+import MicroFrontendErrorBoundary from './utils/MicrofrontendErrorBoundary'
 
 const App = () => {
     // TODO: if authenticated, then navigate index to dafne
@@ -37,8 +37,6 @@ const App = () => {
 
     return (
         <>
-
-
             <Routes>
                 <Route index element={<Navigate to={"/marketing"} />} />
                 <Route path="/marketing/*" element={renderMFE(MarketingLazy)} />
