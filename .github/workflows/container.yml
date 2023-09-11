@@ -14,10 +14,6 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm install
       - run: npm run start &
-      # - run: npm run start:marketing &
-      # - run: npm run start:auth &
-      # - run: npm run start:dafne &
-      # - run: npm run start:container & 
       - run: sleep 100s
       - run: npx cypress run
   build: 

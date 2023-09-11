@@ -1,34 +1,26 @@
 import { styled, Toolbar, Paper, Typography, Button } from '@mui/material'
 
-// export const formStyles = makeStyles((theme) => ({
-//     formContainer: {
-//         display: 'flex',
-//         flexDirection: 'column',
-//         justifyContent: 'center',
-//         width: '100%',
-//         height: '100%',
-//         [theme.breakpoints.up('sm')]: {
-//             width: '70%',
-//         },
-//         margin: '0 auto',
-//         alignItems: 'center',
-//         position: 'relative',
 
-//     },
-//     lockIcon: {
-//         position: 'absolute',
-//         top: theme.spacing(2),
-//         right: theme.spacing(0),
-//     }
-// }))
-
+export const formContainerStyles = (theme) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    [theme.breakpoints.up('sm')]: {
+        width: '70%',
+    },
+    margin: '0 auto',
+    alignItems: 'center',
+    position: 'relative',
+});
 export const CustomToolbar = styled(Toolbar)({
     height: 130,
     marginLeft: 130,
 });
 
 export const Logo = styled('img')({
-    width: 180, // Set the width of the logo as per your requirement
+    width: 180,
     cursor: 'pointer',
 });
 
