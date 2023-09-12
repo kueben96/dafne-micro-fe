@@ -1,10 +1,11 @@
 {
   "scripts": {
-    "start": "concurrently \"npm run start:container\" \"npm run start:auth\" \"npm run start:marketing\" \"npm run start:dafne\"",
+    "start": "concurrently \"npm run start:theme\" \"npm run start:container\" \"npm run start:auth\" \"npm run start:marketing\" \"npm run start:dafne\"  ",
     "start:container": "cd container && npm i && npm start",
     "start:auth": "cd auth  && npm i && npm start",
     "start:marketing": "cd marketing  && npm i && npm start",
     "start:dafne": "cd dafne  && npm i && npm start",
+    "start:theme": "cd theme  && npm i && npm start",
     "stop": "concurrently \"npm run stop:container\" \"npm run stop:auth\" \"npm run stop:marketing\" \"npm run stop:dafne\"",
     "stop:container": "cd container && npm stop",
     "stop:auth": "cd auth && npm stop",

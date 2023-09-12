@@ -25,6 +25,9 @@ const prodConfig = {
             exposes: {
                 './DafneApp': './src/bootstrap'
             },
+            remotes: {
+                theme: `theme@${domain}/theme/latest/remoteEntry.js`,
+            },
             shared: packageJson.dependencies,
         })
     ]

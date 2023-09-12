@@ -8,6 +8,7 @@ const devConfig = {
     mode: 'development',
     entry: './src/index.js',
     output: {
+        uniqueName: 'marketing',
         publicPath: "http://localhost:8081/",
     },
     devServer: {
@@ -23,7 +24,17 @@ const devConfig = {
             exposes: {
                 './MarketingApp': './src/bootstrap'
             },
-            shared: packageJson.dependencies
+            remotes: {
+                theme: 'theme@http://localhost:8085/remoteEntry.js',
+            },
+            shared: {
+                ...packageJson.dependencies,
+                react: {
+                    // eager: true,
+                    requiredVersion: false,
+                    singleton: true,
+                },
+            }
         }),
         new HtmlWebpackPlugin({
             template: './public/index.html'

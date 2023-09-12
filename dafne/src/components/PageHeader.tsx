@@ -1,7 +1,7 @@
-import { AppBar, Box, Container, IconButton, TextField, Toolbar, Typography } from '@mui/material';
+import { useTheme, Box, Container, IconButton, TextField, Toolbar, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import HeaderBreadcrumbs from './HeaderBreadcrumbs';
-import { SizedBoxVertical, pageHeaderStyles } from '../assets/theme/dafneStyles';
+import { PageHeaderAppBar } from '../assets/theme/dafneStyles';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
@@ -11,7 +11,6 @@ interface PageHeaderProps {
 }
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
-  const classes = pageHeaderStyles();
   const [isEditable, setIsEditable] = useState(false);
   const [originalTitle, setOriginalTitle] = useState(props.title);
   const [title, setTitle] = useState(props.title);
@@ -47,9 +46,11 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
     setIsEditable(false);
   };
 
+  const theme = useTheme();
+
   return (
-    <AppBar position="static" className={classes.appBar}>
-      <Toolbar className={classes.toolbar}>
+    <PageHeaderAppBar sx={{ paddingBottom: theme.spacing(2) }} position="static" >
+      <Toolbar>
         <Container>
           <Box display="flex" flexDirection="column" sx={{ flexGrow: 1 }}>
             <Box>
@@ -69,11 +70,10 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
             <Typography variant='body2'>
               Follow the steps to generate a synthetic dataset from an already existing dataset
             </Typography>
-            <SizedBoxVertical space={2} />
           </Box>
         </Container>
       </Toolbar>
-    </AppBar>
+    </PageHeaderAppBar>
   );
 };
 

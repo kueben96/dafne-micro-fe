@@ -69,17 +69,16 @@ interface FilterButtonProps {
     onClick: () => void;
 }
 
-const FilterButton: React.FC<FilterButtonProps> = ({ theme, selected, count, children, label, ...rest }) => {
-    return (
-        <StyledFilterButton className={selected ? 'selected' : ''} {...rest}>
-            {children}
-            <StyledFilterBadge selected={selected} theme={theme}>{count}</StyledFilterBadge>
-        </StyledFilterButton>
-    );
-};
+const FilterButton: React.FC<FilterButtonProps> = ({ theme, selected, count, children, ...rest }) => (
+    <StyledFilterButton className={selected ? 'selected' : ''} {...rest}>
+        {children}
+        <StyledFilterBadge selected={selected} theme={theme}>{count}</StyledFilterBadge>
+    </StyledFilterButton>
+);
 
+// TODO: implement table toolbar search functionality
 
-const TableToolBar = (props: any) => {
+const TableToolBar = () => {
 
     const theme = useTheme()
 
@@ -118,7 +117,7 @@ const TableToolBar = (props: any) => {
                     >{filter.label}</FilterButton>
                 ))}
             </Box>
-            <SearchBox {...props}>
+            <SearchBox theme={theme}>
                 <SearchInput placeholder="Search..." />
                 <SearchIconWrapper theme={theme}>
                     <SearchIcon style={{ color: theme.palette.gray?.light }} />

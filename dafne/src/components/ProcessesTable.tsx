@@ -1,22 +1,11 @@
 import React from 'react';
-import { DataGrid, GridCellParams, GridColDef, GridRowsProp, GridRowsState, GridSlotsComponent, GridToolbar } from '@mui/x-data-grid';
-import { Box, Button, Link, Theme, Typography, styled, useTheme } from '@mui/material';
-import { makeStyles } from '@mui/styles'
+import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
+import { Box, Button, Typography, useTheme } from '@mui/material';
 import { EmptyRowsImage } from '../assets/images';
+import { CustomDataGrid, TableCustomBox } from '../assets/theme/dafneStyles';
 
 
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        height: 400,
-        width: '100%',
-        '& .cell': {
-            textAlign: 'center',
-        },
-    },
-    columnHeaders: {
-        background: theme.palette.gray?.lighter,
-    },
-}));
+
 
 const CustomNoRowsOverlay = () => {
     const theme = useTheme()
@@ -36,20 +25,53 @@ interface ProcessesTableProps {
 
 
 const ProcessesTable: React.FC<ProcessesTableProps> = ({ rows, columns }) => {
-    const classes = useStyles();
+    const tableRef = React.useRef<HTMLDivElement | null>(null);
+
+    React.useEffect(() => {
+        const handleResize = () => {
+            // Your resize handling logic goes here.
+            // This function will be called when the table container's size changes.
+        };
+
+        // Create a ResizeObserver to watch for changes in the table container's size.
+        const resizeObserver = new ResizeObserver((entries) => {
+            // Call handleResize whenever the size changes.
+            handleResize();
+
+            // If needed, you can access the new size like this:
+            const [entry] = entries;
+            const { width, height } = entry.contentRect;
+            console.log(`New size: width=${width}, height=${height}`);
+        });
+
+        // Attach the ResizeObserver to the table container element.
+        if (tableRef.current) {
+            resizeObserver.observe(tableRef.current);
+        }
+
+        // Clean up the observer when the component unmounts.
+        return () => {
+            if (tableRef.current) {
+                resizeObserver.unobserve(tableRef.current);
+            }
+        };
+    }, []);
 
     return (
-        <Box className={classes.root}>
-            <DataGrid
+        <TableCustomBox ref={tableRef}>
+            <CustomDataGrid
+                autoHeight
                 rows={rows ?? []}
                 columns={columns}
                 slots={{
                     noRowsOverlay: CustomNoRowsOverlay,
                 }}
-                classes={{ columnHeaders: classes.columnHeaders }}
+                classes={{ columnHeaders: 'column-headers' }}
             />
-        </Box>
+        </TableCustomBox>
     );
+
+
 };
 
 export default ProcessesTable;

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
-import RegistrationForm from './components/RegistrationForm'
-import LoginForm from './components/LoginForm'
+
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
-import AuthPageLayout from './components/AuthPageLayout'
+import { ThemeProvider, useTheme } from '@mui/material'
 
 
 const App = () => {
@@ -19,19 +18,54 @@ const App = () => {
             navigate('/login');
         }
     };
+    const [theme, setTheme] =
+        React.useState(null);
+
+
+    React.useEffect(() => {
+        import('theme/theme')
+            .then((sharedTheme) =>
+                setTheme(
+                    sharedTheme.default
+                ),
+            )
+            .catch((error) =>
+                console.error(
+                    'Error loading shared theme',
+                    error
+                )
+            );
+    }, []);
+
+
+    if (!theme) {
+        return (
+            <div>
+                Loading theme...
+            </div>
+        );
+    }
+
+    if (theme) {
+        console.log(theme)
+    }
 
     return (
-        <Routes >
-            <Route index element={<Navigate to={"/login"} />} />
-            <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
-            <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
-        </Routes>
+        <ThemeProvider theme={theme}>
+            <Routes >
+                <Route index element={<Navigate to={"/login"} />} />
+                <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+                <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+            </Routes>
+        </ThemeProvider>
     )
 }
 
 export default App
 
-
+import AuthPageLayout from './components/AuthPageLayout'
+import RegistrationForm from './components/RegistrationForm'
+import LoginForm from './components/LoginForm'
 export const LoginPage = ({ onToggleMode, isLoginMode }) => (
     <AuthPageLayout isLoginMode={isLoginMode} onToggleMode={onToggleMode} >
         <LoginForm />

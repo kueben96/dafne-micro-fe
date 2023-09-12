@@ -1,7 +1,8 @@
 import React from 'react';
 import NavComponents from './NavComponents';
-import { Drawer } from '@mui/material';
-import { drawerStyles } from '../assets/theme/dafneStyles';
+import { DrawerCustom } from '../assets/theme/dafneStyles';
+import { useTheme } from '@mui/material'
+
 
 interface DafneDrawerProps {
   handleDrawerToggle: () => void;
@@ -9,20 +10,20 @@ interface DafneDrawerProps {
 }
 
 const DafneDrawer: React.FC<DafneDrawerProps> = ({ handleDrawerToggle, isNavOpen }) => {
-  const classes = drawerStyles();
+  const theme = useTheme();
   return (
-    <Drawer
-      className={classes.drawer}
+    <DrawerCustom
+      theme={theme}
       variant="persistent"
       anchor="left"
+      PaperProps={{ className: "drawer-paper" }}
       open={isNavOpen}
-      onClose={handleDrawerToggle}
-      classes={{
-        paper: classes.drawerPaper,
-      }}
+      onClose={handleDrawerToggle}   // classes={{
+    //   paper: classes.drawerPaper,
+    // }}
     >
       <NavComponents />
-    </Drawer>
+    </DrawerCustom>
   );
 };
 

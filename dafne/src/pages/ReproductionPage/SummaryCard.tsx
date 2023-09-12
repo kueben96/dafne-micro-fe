@@ -1,10 +1,9 @@
 import React from 'react';
-import { Box, IconButton, Theme, Typography, styled } from '@mui/material';
+import { Box, IconButton, Theme, Typography, styled, useTheme } from '@mui/material';
 import { SizedBoxVertical } from '../../assets/theme/dafneStyles';
 import { CircularProgressWithLabel } from '../../components/CicularProgressWithLabel';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import SearchIcon from '@mui/icons-material/Search';
-import { red } from '@mui/material/colors';
 
 const Card = styled(Box)(({ theme }: { theme: Theme }) => ({
   flex: 1,
@@ -102,11 +101,12 @@ export const SettingsOverviewCard: React.FC = () => {
 };
 
 export const MetricScoreCard: React.FC = () => {
+  const theme = useTheme();
   return (
     <SummaryCard title="Metric Score" flex={2}>
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
         <Typography variant='h6'>Statistical Similarity</Typography>
-        <SizedBoxVertical space={1} />
+        <SizedBoxVertical theme={theme} space={1} />
         <CircularProgressWithLabel value={95} />
       </Box>
     </SummaryCard>

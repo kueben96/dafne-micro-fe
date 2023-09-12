@@ -18,6 +18,7 @@ function NavigationManager({ children }) {
     // dispatched by shell container whenever user navigates to new URL within the app.
     // when this event is received --> check if new url matches of any of the "routes" inside auth
     // if so, coponent navigates using useNavigate to the new url
+
     useEffect(() => {
         function shellNavigationHandler(event) {
             const pathname = event.detail;

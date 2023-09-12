@@ -1,8 +1,7 @@
 import React from 'react';
 import StorageSharpIcon from '@mui/icons-material/StorageSharp';
 import FileUploadRoundedIcon from '@mui/icons-material/FileUploadRounded';
-import { Box, Typography, useTheme } from '@mui/material';
-import { Theme } from '@mui/system';
+import { Box, Typography, useTheme, Theme } from '@mui/material';
 
 interface DataSourceSelectionComponentProps {
   // TODO: ENUM HERE
@@ -14,7 +13,7 @@ interface DataSourceSelectionComponentProps {
 }
 
 const CustomIcon: React.FC<{ icon: React.ElementType; theme: Theme }> = ({ icon: IconComponent, theme }) => {
-  return <IconComponent sx={{ color: theme.palette.primary.dark }} />;
+  return <IconComponent sx={{ color: theme?.palette?.primary?.dark }} />;
 };
 
 const DataSourceSelectionComponent: React.FC<DataSourceSelectionComponentProps> = ({

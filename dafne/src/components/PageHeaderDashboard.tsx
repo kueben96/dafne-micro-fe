@@ -1,8 +1,7 @@
-import { AppBar, Box, Container, Divider, Tab, Tabs, Toolbar, Typography, styled } from '@mui/material'
-import React, { useState } from 'react'
+import { Box, Container, Divider, Tab, Tabs, Toolbar, Typography, styled } from '@mui/material'
+import React from 'react'
 import HeaderBreadcrumbs from './HeaderBreadcrumbs';
-import { pageHeaderStyles } from '../assets/theme/dafneStyles';
-
+import { PageHeaderAppBar } from '../assets/theme/dafneStyles';
 
 const AssetStatistic = styled(Box)(({ theme }) => ({
     display: 'flex',
@@ -23,13 +22,12 @@ interface PageHeaderDashboardProps {
     title: string;
     value: string;
     onChange: (event: React.ChangeEvent<{}>, newValue: string) => void;
-  }
+}
 const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
-    const classes = pageHeaderStyles()
-  
+
     return (
-        <AppBar position="static" className={classes.appBar}>
-            <Toolbar className={classes.toolbar}>
+        <PageHeaderAppBar position="static">
+            <Toolbar >
                 <Container>
                     <Box display="flex" flexDirection="column" sx={{ flexGrow: 1 }}>
                         <Box>
@@ -78,7 +76,7 @@ const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
                     </Box>
                 </Container>
             </Toolbar>
-        </AppBar>
+        </PageHeaderAppBar>
     )
 }
 

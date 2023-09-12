@@ -2,9 +2,35 @@ import { Box, Grid, ThemeProvider } from '@mui/material'
 import React, { useState } from 'react'
 import { Header, LeftContainer, ButtonDaFne, RightContainer, Subline } from '../styles/authStyles'
 import Navbar from './Navbar'
-import { theme } from '../styles/theme'
 
 const AuthPageLayout = ({ isLoginMode, onToggleMode, children }) => {
+    const [theme, setTheme] =
+        React.useState(null);
+
+
+    React.useEffect(() => {
+        import('theme/theme')
+            .then((sharedTheme) =>
+                setTheme(
+                    sharedTheme.default
+                ),
+            )
+            .catch((error) =>
+                console.error(
+                    'Error loading shared theme',
+                    error
+                )
+            );
+    }, []);
+
+
+    if (!theme) {
+        return (
+            <div>
+                Loading theme...
+            </div>
+        );
+    }
 
     return (
         <ThemeProvider theme={theme}>

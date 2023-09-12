@@ -1,9 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { RouterProvider } from 'react-router-dom'
 import { createRouter } from './routing/router-factory'
+import ReactDOM from 'react-dom'
 
-// mount functin to start up the app
+// mount function to start up the app
 
 const mount = ({
     mountPoint,

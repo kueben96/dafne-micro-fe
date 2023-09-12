@@ -19,6 +19,9 @@ const prodConfig = {
         new ModuleFederationPlugin({
             name: 'marketing',
             filename: 'remoteEntry.js',
+            remotes: {
+                theme: `theme@${domain}/theme/latest/remoteEntry.js`,
+            },
             exposes: {
                 './MarketingApp': './src/bootstrap'
             },

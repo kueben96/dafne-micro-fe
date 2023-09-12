@@ -1,32 +1,24 @@
-import { Box } from '@mui/material';
-import { makeStyles, styled } from '@mui/styles';
+import { Box, Drawer, AppBar } from '@mui/material';
+import { styled } from '@mui/material';
 import { Theme } from '@mui/material/styles';
+import { DataGrid } from '@mui/x-data-grid';
 
-export const pageHeaderStyles = makeStyles((theme: Theme) => ({
-    appBar: {
-        backgroundColor: "#fff",
-        boxShadow: 'none',
-        paddingTop: theme.spacing(2)
-    },
-    toolbar: {
+export const PageHeaderAppBar = styled(AppBar)(({ theme }) => ({
+    boxShadow: 'none',
+    paddingTop: theme.spacing(2),
+    '& .MuiToolbar-root': {
         display: "flex",
         justifyContent: "space-between",
-    },
+    }
 }));
 
-export const drawerStyles = makeStyles((theme: Theme) => ({
-    drawer: {
-        width: theme.layout?.drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
+export const DrawerCustom = styled(Drawer)(({ theme }: { theme: Theme }) => ({
+    width: theme.layout?.drawerWidth,
+    flexShrink: 0,
+    '.drawer-paper': {
         width: theme.layout?.drawerWidth,
         marginTop: theme.mixins.toolbar.minHeight,
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-    },
+    }
 }));
 
 export const ContentPaper = styled(Box)(({ theme }: { theme: Theme }) => ({
@@ -39,10 +31,34 @@ export const ContentBox = styled(Box)(({ theme }: { theme: Theme }) => ({
 
 }));
 
-export const SizedBoxVertical = styled(Box)(({ theme, space = 2 }: { theme: Theme, space?: number }) => ({
+export const SizedBoxVertical = styled(Box)<{
+    space?: number;
+}>(({ theme, space = 2 }) => ({
     marginBottom: theme.spacing(space),
 }));
-
-export const SizedBoxHorizontal = styled(Box)(({ theme, space }: { theme: Theme, space: number }) => ({
+export const SizedBoxHorizontal = styled(Box)<{
+    space?: number;
+}>(({ theme, space = 2 }) => ({
     marginRight: theme.spacing(space),
 }));
+
+
+// ProcessesTable 
+
+export const TableCustomBox = styled(Box)(({ theme }: { theme: Theme }) => ({
+    height: 400,
+    width: '100%',
+    '& .cell': {
+        textAlign: 'center',
+    },
+    '& .column-headers': {
+        background: theme.palette.gray?.lighter,
+    },
+}));
+
+export const CustomDataGrid = styled(DataGrid)(({ theme }: { theme: Theme }) => ({
+    '& .column-headers': {
+        background: theme.palette.gray?.lighter,
+    },
+}));
+

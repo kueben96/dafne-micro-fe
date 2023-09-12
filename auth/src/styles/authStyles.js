@@ -1,43 +1,33 @@
-import { theme } from '../styles/theme';
-import { makeStyles } from '@mui/styles'
 import { styled, Toolbar, Paper, Typography, Button } from '@mui/material'
 
-export const formStyles = makeStyles((theme) => ({
-    formContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        width: '100%',
-        height: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '70%',
-        },
-        margin: '0 auto',
-        alignItems: 'center',
-        position: 'relative',
 
+export const formContainerStyles = (theme) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    [theme.breakpoints.up('sm')]: {
+        width: '70%',
     },
-    lockIcon: {
-        position: 'absolute',
-        top: theme.spacing(2),
-        right: theme.spacing(0),
-    }
-}))
-
+    margin: '0 auto',
+    alignItems: 'center',
+    position: 'relative',
+});
 export const CustomToolbar = styled(Toolbar)({
     height: 130,
     marginLeft: 130,
 });
 
 export const Logo = styled('img')({
-    width: 180, // Set the width of the logo as per your requirement
+    width: 180,
     cursor: 'pointer',
 });
 
 export const LeftContainer = styled(Paper)(({ theme }) => ({
     height: '100%',
     flex: '0 1 auto',
-    background: `linear-gradient(120deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main} , ${theme.palette.neutral.white})`,
+    background: `linear-gradient(120deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main} , ${theme.palette.common.white})`,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -61,7 +51,7 @@ export const Header = styled(Typography)(({ theme }) => ({
 
 export const Subline = styled(Typography)(({ theme }) => ({
     fontSize: theme.typography.subtitle1.fontSize,
-    color: theme.palette.neutral.white,
+    color: theme.palette.common.white,
     marginTop: theme.spacing(5),
 }));
 

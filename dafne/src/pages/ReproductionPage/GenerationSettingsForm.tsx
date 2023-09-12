@@ -6,6 +6,9 @@ import { DataSourceSelectionStep, DropDownSelectionStep, ParameterSettingsStep, 
 import { metricOptionsReproduction, modelOptionsReproduction } from '../../utils/constants';
 
 const GenerationSettingsForm = () => {
+    // TODO: implement setCompleted logic 
+    // TODO: implement setSkipped logic
+    // each step content component should get the set completed function after it is selected
     const [selectedSource, setSelectedSource] = useState<{ variant: string; file: File | null }>({
         variant: 'catalogue',
         file: null,
@@ -51,24 +54,6 @@ const GenerationSettingsForm = () => {
         }
     ];
 
-    // const handleNext = () => {
-    //     let newSkipped = skipped;
-    //     if (isStepSkipped(activeStep, skipped)) {
-    //         newSkipped = new Set(newSkipped.values());
-    //         newSkipped.delete(activeStep);
-    //     }
-    //     const newCompleted = new Set(completed);
-
-    //     newCompleted.add(activeStep);
-
-    //     setActiveStep(prevActiveStep => prevActiveStep + 1);
-    //     setCompleted(newCompleted);
-    //     setSkipped(newSkipped);
-    // };
-
-    // const handleBack = () => {
-    //     setActiveStep(prevActiveStep => prevActiveStep - 1);
-    // };
 
     const handleReset = () => {
         setActiveStep(0);

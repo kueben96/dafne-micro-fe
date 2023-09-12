@@ -8,6 +8,7 @@ const devConfig = {
     mode: 'development',
     entry: './src/index.ts',
     output: {
+        uniqueName: 'dafne',
         publicPath: "http://localhost:8083/",
     },
     devServer: {
@@ -24,6 +25,9 @@ const devConfig = {
         new ModuleFederationPlugin({
             name: 'dafne',
             filename: 'remoteEntry.js',
+            remotes: {
+                theme: 'theme@http://localhost:8085/remoteEntry.js',
+            },
             exposes: {
                 './DafneApp': './src/bootstrap'
             },

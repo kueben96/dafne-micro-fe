@@ -7,6 +7,7 @@ const devConfig = {
     mode: 'development',
     entry: './src/index.js',
     output: {
+        uniqueName: 'container',
         publicPath: '/'
     },
     devServer: {
@@ -18,6 +19,7 @@ const devConfig = {
             'Access-Control-Allow-Origin': '*',
         }
     },
+    devtool: 'source-map',
 
     plugins: [
         new ModuleFederationPlugin({
@@ -25,9 +27,16 @@ const devConfig = {
             remotes: {
                 marketing: 'marketing@http://localhost:8081/remoteEntry.js',
                 auth: 'auth@http://localhost:8082/remoteEntry.js',
-                dafne: 'dafne@http://localhost:8083/remoteEntry.js'
+                dafne: 'dafne@http://localhost:8083/remoteEntry.js',
             },
-            shared: packageJson.dependencies,
+            shared: {
+                ...packageJson.dependencies,
+                react: {
+                    // eager: true,
+                    requiredVersion: false,
+                    singleton: true,
+                },
+            }
         })
     ]
 }

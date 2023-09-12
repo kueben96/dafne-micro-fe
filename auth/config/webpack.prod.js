@@ -22,6 +22,9 @@ const prodConfig = {
             exposes: {
                 './AuthApp': './src/bootstrap'
             },
+            remotes: {
+                theme: `theme@${domain}/theme/latest/remoteEntry.js`,
+            },
             shared: packageJson.dependencies,
         })
     ]
