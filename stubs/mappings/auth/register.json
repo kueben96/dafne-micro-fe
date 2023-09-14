@@ -7,7 +7,7 @@
                 "equalToJson": {
                     "email": "jenny.smith@test.com",
                     "firstName": "Jenny",
-                    "industry": "University",
+                    "industry": "Research",
                     "jobTitle": "Scientist",
                     "lastName": "Smith"
                 }

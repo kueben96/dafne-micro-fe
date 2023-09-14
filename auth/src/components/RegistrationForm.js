@@ -1,18 +1,25 @@
-import { Box, Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, styled, TextField, Typography } from '@mui/material'
+import { Box, Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, styled, TextField, Typography, Snackbar, Alert } from '@mui/material'
 import React, { useState } from 'react'
 import { formContainerStyles } from '../styles/authStyles';
 
 const RegistrationForm = () => {
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
+        firstName: 'Jenny',
+        lastName: 'Smith',
+        email: 'jenny.smith@test.com',
         password: '',
         repeatPassword: '',
-        jobTitle: '',
-        industry: '',
+        jobTitle: 'Scientist',
+        industry: 'Research',
         agreedToTerms: false,
     });
+
+    const [error, setError] = useState(null);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
 
     const industryOptions = ['Urban Planning', 'Urban Design', 'Data Science', 'Consulting', 'Software Development', 'Research']
 
@@ -54,14 +61,58 @@ const RegistrationForm = () => {
             ...prevFormData,
             [event.target.name]: event.target.value,
         }));
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (validateFormData()) {
-            // Submit the form data to Keycloak for user registration
+        if (event.target.name === 'agreedToTerms') {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                [event.target.name]: event.target.checked,
+            }));
         }
     };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log(formData)
+        if (validateFormData()) {
+            // Submit the form data to Keycloak for user registration
+
+            try {
+                const token = await handleRegisterService(formData);
+                localStorage.setItem('jwtToken', token);
+                // Dispatch a custom event to notify other microfrontends
+                window.dispatchEvent(new CustomEvent('jwtReceived', { detail: token }));
+            } catch (error) {
+                setError(error.message);
+                setSnackbarOpen(true);
+            }
+            console.log(formData)
+        }
+    };
+
+    const handleRegisterService = async (formData) => {
+        const response = await fetch('http://localhost:8086/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: JSON.stringify({
+                email: formData.email,
+                firstName: formData.firstName,
+                industry: formData.industry,
+                jobTitle: formData.jobTitle,
+                lastName: formData.lastName
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Register failed. Please check your credentials.');
+        }
+
+        const data = await response.json();
+        return data.access_token;
+    };
+
+
 
     return (
 
@@ -170,6 +221,19 @@ const RegistrationForm = () => {
                     </Button>
                 </Box>
             </form>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                open={snackbarOpen}
+                autoHideDuration={5000}
+                color='secondary'
+            >
+                <Alert color='secondary' onClose={handleSnackbarClose} severity="error" sx={{ width: '100%' }}>
+                    {error}
+                </Alert>
+            </Snackbar>
         </Box>
     )
 }
