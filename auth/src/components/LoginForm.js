@@ -1,8 +1,10 @@
-import { Box, TextField, Typography, Button, useTheme, Snackbar, Alert } from '@mui/material';
+import { Box, TextField, Typography, Button, useTheme } from '@mui/material';
 import React, { useState } from 'react'
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { formContainerStyles } from '../styles/authStyles';
 import { loginUser } from '../authService';
+import useSnackbar from '../useSnackbar';
+import FeedbackSnackbar from './FeedbackSnackbar';
 const LoginForm = () => {
 
     const theme = useTheme()
@@ -10,13 +12,10 @@ const LoginForm = () => {
         email: 'user',
         password: 'user_pass',
     });
-    const [error, setError] = useState(null);
-    const [successMessage, setSuccessMessage] = useState(null);
-    const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-    const handleSnackbarClose = () => {
-        setSnackbarOpen(false);
-    };
+    const { showSnackbar, closeSnackbar, isError, message, snackbarOpen } = useSnackbar();
+
+
     const handleInputChange = (event) => {
         setFormData((prevFormData) => ({
             ...prevFormData,
@@ -25,30 +24,17 @@ const LoginForm = () => {
 
     };
 
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         try {
-            const token = await loginUser({
+            await loginUser({
                 email: formData.email,
                 password: formData.password,
             });
 
-            // Store the JWT token in the localStorage
-            localStorage.setItem('jwtToken', token);
-
-            // Set the success message
-            setSuccessMessage('Login successful');
-
-            // Clear any previous error
-            setError(null);
-
-            // Show the success message in the Snackbar
-            setSnackbarOpen(true);
+            showSnackbar({ message: 'Login successful', isError: false });
         } catch (error) {
-            setError(error.message);
-            setSnackbarOpen(true);
+            showSnackbar({ message: error.message, isError: true })
         }
     };
 
@@ -91,24 +77,12 @@ const LoginForm = () => {
                     </Button>
                 </Box>
             </form>
-            <Snackbar
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
+            <FeedbackSnackbar
                 open={snackbarOpen}
-                autoHideDuration={5000}
-                onClose={handleSnackbarClose}
-            >
-                <Alert
-                    onClose={handleSnackbarClose}
-                    color={successMessage ? 'success' : 'secondary'}
-                    severity={successMessage ? 'success' : 'error'}
-                    sx={{ width: '100%' }}
-                >
-                    {successMessage || error}
-                </Alert>
-            </Snackbar>
+                onClose={closeSnackbar}
+                message={message}
+                isError={isError}
+            />
         </Box>
     )
 }

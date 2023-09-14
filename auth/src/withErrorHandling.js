@@ -23,7 +23,7 @@ const withErrorHandling = (WrappedComponent) => {
         };
 
         return (
-            <div>
+            <>
                 <WrappedComponent
                     {...props}
                     showError={showError}
@@ -57,7 +57,7 @@ const withErrorHandling = (WrappedComponent) => {
                         </Alert>
                     )}
                 </Snackbar>
-            </div>
+            </>
         );
     };
 };

@@ -1,7 +1,9 @@
-import { Box, Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, styled, TextField, Typography, Snackbar, Alert } from '@mui/material'
+import { Box, Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, styled, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { formContainerStyles } from '../styles/authStyles';
 import { registerUser } from '../authService';
+import FeedbackSnackbar from './FeedbackSnackbar';
+import useSnackbar from '../useSnackbar';
 
 const RegistrationForm = () => {
     const [formData, setFormData] = useState({
@@ -15,12 +17,7 @@ const RegistrationForm = () => {
         agreedToTerms: false,
     });
 
-    const [error, setError] = useState(null);
-    const [snackbarOpen, setSnackbarOpen] = useState(false);
-
-    const handleSnackbarClose = () => {
-        setSnackbarOpen(false);
-    };
+    const { showSnackbar, closeSnackbar, isError, message, snackbarOpen } = useSnackbar();
 
     const industryOptions = ['Urban Planning', 'Urban Design', 'Data Science', 'Consulting', 'Software Development', 'Research']
 
@@ -74,10 +71,9 @@ const RegistrationForm = () => {
         event.preventDefault();
         console.log(formData)
         if (validateFormData()) {
-            // Submit the form data to Keycloak for user registration
 
             try {
-                const token = await registerUser(
+                await registerUser(
                     {
                         email: formData.email,
                         firstName: formData.firstName,
@@ -86,14 +82,10 @@ const RegistrationForm = () => {
                         lastName: formData.lastName,
                     }
                 );
-                localStorage.setItem('jwtToken', token);
-                // Dispatch a custom event to notify other microfrontends
-                window.dispatchEvent(new CustomEvent('jwtReceived', { detail: token }));
+                showSnackbar({ message: 'Registration successful', isError: false })
             } catch (error) {
-                setError(error.message);
-                setSnackbarOpen(true);
+                showSnackbar({ message: error.message, isError: true })
             }
-            console.log(formData)
         }
     };
 
@@ -204,19 +196,12 @@ const RegistrationForm = () => {
                     </Button>
                 </Box>
             </form>
-            <Snackbar
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
+            <FeedbackSnackbar
                 open={snackbarOpen}
-                autoHideDuration={5000}
-                color='secondary'
-            >
-                <Alert color='secondary' onClose={handleSnackbarClose} severity="error" sx={{ width: '100%' }}>
-                    {error}
-                </Alert>
-            </Snackbar>
+                onClose={closeSnackbar}
+                message={message}
+                isError={isError}
+            />
         </Box>
     )
 }
