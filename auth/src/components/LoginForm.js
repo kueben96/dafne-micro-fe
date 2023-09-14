@@ -2,6 +2,7 @@ import { Box, TextField, Typography, Button, useTheme, Snackbar, Alert } from '@
 import React, { useState } from 'react'
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { formContainerStyles } from '../styles/authStyles';
+import { loginUser } from '../authService';
 const LoginForm = () => {
 
     const theme = useTheme()
@@ -28,7 +29,7 @@ const LoginForm = () => {
         event.preventDefault();
 
         try {
-            const token = await handleLogin({
+            const token = await loginUser({
                 email: formData.email,
                 password: formData.password,
             });
@@ -41,30 +42,10 @@ const LoginForm = () => {
         } catch (error) {
             setError(error.message);
             setSnackbarOpen(true);
+            //showSnackBar(error={error.message} severity="error")
         }
     };
 
-
-    const handleLogin = async ({ email, password }) => {
-        const response = await fetch('http://localhost:8086/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-            },
-            body: JSON.stringify({
-                user: email,
-                user_pass: password,
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Login failed. Please check your credentials.');
-        }
-
-        const data = await response.json();
-        return data.access_token;
-    };
 
     return (
 

@@ -1,6 +1,7 @@
 import { Box, Button, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, styled, TextField, Typography, Snackbar, Alert } from '@mui/material'
 import React, { useState } from 'react'
 import { formContainerStyles } from '../styles/authStyles';
+import { registerUser } from '../authService';
 
 const RegistrationForm = () => {
     const [formData, setFormData] = useState({
@@ -76,7 +77,15 @@ const RegistrationForm = () => {
             // Submit the form data to Keycloak for user registration
 
             try {
-                const token = await handleRegisterService(formData);
+                const token = await registerUser(
+                    {
+                        email: formData.email,
+                        firstName: formData.firstName,
+                        industry: formData.industry,
+                        jobTitle: formData.jobTitle,
+                        lastName: formData.lastName,
+                    }
+                );
                 localStorage.setItem('jwtToken', token);
                 // Dispatch a custom event to notify other microfrontends
                 window.dispatchEvent(new CustomEvent('jwtReceived', { detail: token }));
@@ -87,32 +96,6 @@ const RegistrationForm = () => {
             console.log(formData)
         }
     };
-
-    const handleRegisterService = async (formData) => {
-        const response = await fetch('http://localhost:8086/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-            },
-            body: JSON.stringify({
-                email: formData.email,
-                firstName: formData.firstName,
-                industry: formData.industry,
-                jobTitle: formData.jobTitle,
-                lastName: formData.lastName
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Register failed. Please check your credentials.');
-        }
-
-        const data = await response.json();
-        return data.access_token;
-    };
-
-
 
     return (
 
