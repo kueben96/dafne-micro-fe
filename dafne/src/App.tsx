@@ -4,6 +4,8 @@ import Layout from './Layout';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ReproductionPage from './pages/ReproductionPage/index';
 import DashboardPage from './pages/DashboardPage';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App(): JSX.Element {
 
@@ -42,15 +44,17 @@ function App(): JSX.Element {
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Navigate to="/dashboard/processes" />} />
-          <Route path="/dashboard/processes" element={<DashboardPage />} />
-          <Route path="/methods/reproduction" element={<ReproductionPage />} />
-        </Route>
-      </Routes>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Navigate to="/dashboard/processes" />} />
+            <Route path="/dashboard/processes" element={<DashboardPage />} />
+            <Route path="/methods/reproduction" element={<ReproductionPage />} />
+          </Route>
+        </Routes>
+      </ThemeProvider>
+    </Provider>
   );
 }
 
