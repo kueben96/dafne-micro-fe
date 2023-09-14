@@ -21,6 +21,7 @@ export async function registerUser({ email, firstName, industry, jobTitle, lastN
     }
 
     const data = await response.json();
+    shareTokenAsEvent(data.access_token);
     return data.access_token;
 }
 
@@ -42,5 +43,10 @@ export async function loginUser({ email, password }) {
     }
 
     const data = await response.json();
+    shareTokenAsEvent(data.access_token);
     return data.access_token;
+}
+
+const shareTokenAsEvent = (token) => {
+    window.dispatchEvent(new CustomEvent('jwtReceived', { detail: token }));
 }

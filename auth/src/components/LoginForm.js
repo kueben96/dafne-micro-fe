@@ -11,6 +11,7 @@ const LoginForm = () => {
         password: 'user_pass',
     });
     const [error, setError] = useState(null);
+    const [successMessage, setSuccessMessage] = useState(null);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     const handleSnackbarClose = () => {
@@ -37,12 +38,17 @@ const LoginForm = () => {
             // Store the JWT token in the localStorage
             localStorage.setItem('jwtToken', token);
 
-            // Dispatch a custom event to notify other microfrontends
-            window.dispatchEvent(new CustomEvent('jwtReceived', { detail: token }));
+            // Set the success message
+            setSuccessMessage('Login successful');
+
+            // Clear any previous error
+            setError(null);
+
+            // Show the success message in the Snackbar
+            setSnackbarOpen(true);
         } catch (error) {
             setError(error.message);
             setSnackbarOpen(true);
-            //showSnackBar(error={error.message} severity="error")
         }
     };
 
@@ -92,10 +98,15 @@ const LoginForm = () => {
                 }}
                 open={snackbarOpen}
                 autoHideDuration={5000}
-                color='secondary'
+                onClose={handleSnackbarClose}
             >
-                <Alert color='secondary' onClose={handleSnackbarClose} severity="error" sx={{ width: '100%' }}>
-                    {error}
+                <Alert
+                    onClose={handleSnackbarClose}
+                    color={successMessage ? 'success' : 'secondary'}
+                    severity={successMessage ? 'success' : 'error'}
+                    sx={{ width: '100%' }}
+                >
+                    {successMessage || error}
                 </Alert>
             </Snackbar>
         </Box>
