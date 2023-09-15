@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import PageHeaderDashboard from "../../components/PageHeaderDashboard";
 import { useState } from "react";
 import ProcessesView from "./ProcessView";
+import DataView from './DataView';
 // TODO: switch tabs based on url after router decision made
 // e.g. /dashboard/processes -> processes tab
 // e.g. /dashboard/models -> models tab
@@ -25,7 +26,7 @@ const DashboardPage = () => {
       case 'models':
         return <h1>models view</h1>;
       case 'data':
-        return <h1>data view</h1>;
+        return <DataView />
       default:
         return null;
     }

@@ -3,6 +3,8 @@ import { RouterProvider } from 'react-router-dom';
 import { RoutingStrategy } from './routing/types';
 import ReactDOM from 'react-dom';
 import { createRouter } from './routing/router-factory';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 // mount function to start up the app
 
@@ -22,7 +24,10 @@ const mount = ({
     })
 
     ReactDOM.render(
-        <RouterProvider router={router} />,
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
+        ,
         mountPoint
     )
     return () => queueMicrotask(() => ReactDOM.unmountComponentAtNode(mountPoint));

@@ -15,9 +15,15 @@ const baseQuery = fetchBaseQuery({
 
 // TODO: BASEQUERY WITH REAUTH
 
-export const apiSlice = createApi({
+export const apiGatewaySlice = createApi({
     // TODO: implement reauth endpoint, else replace with basequery
     baseQuery: baseQuery,
     tagTypes: ['Jobs', 'User', 'Data', 'Models'],
-    endpoints: builder => ({})
+    endpoints: (builder) => ({
+        fetchDatasets: builder.query({
+            query: () => 'data',
+        }),
+    }),
 })
+
+export const { useFetchDatasetsQuery } = apiGatewaySlice

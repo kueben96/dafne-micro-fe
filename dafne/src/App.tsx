@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from '@mui/material';
 import Layout from './Layout';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ReproductionPage from './pages/ReproductionPage/index';
 import DashboardPage from './pages/DashboardPage';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './redux/store';
+import { JWT_TOKEN_KEY } from './utils/constants';
+import jwtDecode from 'jwt-decode';
+import { useAppDispatch } from './redux/hooks';
+import { setUser } from './redux/userSlice';
 
 function App(): JSX.Element {
+
+  const dispatch = useAppDispatch()
 
   const [theme, setTheme] =
     React.useState(null);
 
-  React.useEffect(() => {
+  // const dispatch = useAppDispatch()
+
+  useEffect(() => {
     let isMounted = true; // This flag tracks whether the component is mounted
 
     import('theme/theme')
@@ -31,6 +39,11 @@ function App(): JSX.Element {
       isMounted = false;
     };
   }, []);
+  useEffect(() => {
+    // Fetch token from local storage
+    const token = localStorage.getItem(JWT_TOKEN_KEY);
+    dispatch(setUser(token as string))
+  }, [dispatch]);
 
 
 
@@ -44,17 +57,15 @@ function App(): JSX.Element {
 
 
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Navigate to="/dashboard/processes" />} />
-            <Route path="/dashboard/processes" element={<DashboardPage />} />
-            <Route path="/methods/reproduction" element={<ReproductionPage />} />
-          </Route>
-        </Routes>
-      </ThemeProvider>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Navigate to="/dashboard/processes" />} />
+          <Route path="/dashboard/processes" element={<DashboardPage />} />
+          <Route path="/methods/reproduction" element={<ReproductionPage />} />
+        </Route>
+      </Routes>
+    </ThemeProvider>
   );
 }
 

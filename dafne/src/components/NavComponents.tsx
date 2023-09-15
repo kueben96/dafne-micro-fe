@@ -18,7 +18,8 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../utils/constants';
-import useLogout from '../utils/hooks/useLogout';
+import { useAppDispatch } from '../redux/hooks';
+import { logOut } from '../redux/userSlice';
 
 const IconListItem = ({
   icon,
@@ -100,8 +101,7 @@ const ChildListItem = ({
 const NavComponents = () => {
   const location = useLocation();
   const { pathname } = location;
-  const logout = useLogout();
-
+  const dispatch = useAppDispatch();
   const CollapsableNavList = styled(List)(({ theme }) => ({
     width: 250,
     padding: theme.spacing(2),
@@ -109,7 +109,7 @@ const NavComponents = () => {
   }));
 
   const handleLogout = () => {
-    logout();
+    dispatch(logOut());
   };
 
   return (

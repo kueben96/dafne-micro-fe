@@ -8,6 +8,9 @@ export const metricOptionsReproduction: { value: string; label: string; info: st
     { value: 'logistik', label: 'Logistic detection', info: 'Info about log' },
 ];
 
+export const JWT_TOKEN_KEY = 'jwtToken';
+export const USER_LOGOUT_EVENT_KEY = 'userLogout';
+
 export const reproductionEpochCount: number = 15;
 type ReproductionStep = 'Set generation settings' | 'Set row number' | 'View results';
 export const reproductionStep1: string = 'Set generation settings';

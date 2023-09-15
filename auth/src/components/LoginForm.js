@@ -9,7 +9,7 @@ const LoginForm = () => {
 
     const theme = useTheme()
     const [formData, setFormData] = useState({
-        email: 'user',
+        email: 'jenny.smith@test.com',
         password: 'user_pass',
     });
 

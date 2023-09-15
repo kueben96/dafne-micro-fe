@@ -6,6 +6,7 @@ import { ContentPaper, SizedBoxVertical } from '../../../assets/theme/dafneStyle
 import ProcessesTable from '../../../components/ProcessesTable';
 import { GridCellParams, GridColDef } from '@mui/x-data-grid';
 import ProcessStatus from '../../../components/ProcessStatus';
+import { useFetchDatasetsQuery } from '../../../redux/apiGatewaySlice';
 
 interface ProcessesRowData {
     id: string;
