@@ -45,7 +45,81 @@
                 "jobId": "userxyz_12345",
                 "result": "num",
                 "resultQueue": "userxyz_12345_result-queue",
-                "status": "queued | running | completed | error",
+                "status": "running | completed | error",
+                "topic": "userxyz_jobs",
+                "type": "reproduction",
+                "userId": "userxyz",
+                "workQueue": "userxyz_12345_work-queue"
+            },
+            {
+                "createdAt": "2023-08-14T06:46:33.810555407",
+                "instruction": {
+                    "epochs": 10,
+                    "metrics": [
+                        {
+                            "identifier": "weightedstatistics-pamela",
+                            "metric": "standard",
+                            "params": {}
+                        }
+                    ],
+                    "model": {
+                        "identifier": "ctgan-pamela"
+                    },
+                    "name": "test",
+                    "paths": {
+                        "download": {
+                            "bucket": "publicdataset",
+                            "path": "demo.pkl"
+                        },
+                        "upload": {
+                            "bucket": "userbucket",
+                            "path": "sebastian/directory/"
+                        }
+                    },
+                    "runs": 2,
+                    "sample": 500
+                },
+                "jobId": "userxyz_123456",
+                "result": "num",
+                "resultQueue": "userxyz_123456_result-queue",
+                "status": "queued",
+                "topic": "userxyz_jobs",
+                "type": "reproduction",
+                "userId": "userxyz",
+                "workQueue": "userxyz_123456_work-queue"
+            },
+            {
+                "createdAt": "2023-08-14T06:46:33.810555407",
+                "instruction": {
+                    "epochs": 10,
+                    "metrics": [
+                        {
+                            "identifier": "weightedstatistics-pamela",
+                            "metric": "standard",
+                            "params": {}
+                        }
+                    ],
+                    "model": {
+                        "identifier": "ctgan-pamela"
+                    },
+                    "name": "test",
+                    "paths": {
+                        "download": {
+                            "bucket": "publicdataset",
+                            "path": "demo.pkl"
+                        },
+                        "upload": {
+                            "bucket": "userbucket",
+                            "path": "sebastian/directory/"
+                        }
+                    },
+                    "runs": 2,
+                    "sample": 500
+                },
+                "jobId": "userxyz_12345",
+                "result": "num",
+                "resultQueue": "userxyz_12345_result-queue",
+                "status": "running",
                 "topic": "userxyz_jobs",
                 "type": "reproduction",
                 "userId": "userxyz",
@@ -82,7 +156,44 @@
                 "jobId": "userxyz_12345",
                 "result": "num",
                 "resultQueue": "userxyz_12345_result-queue",
-                "status": "queued | running | completed | error",
+                "status": "completed",
+                "topic": "userxyz_jobs",
+                "type": "reproduction",
+                "userId": "userxyz",
+                "workQueue": "userxyz_12345_work-queue"
+            },
+            {
+                "createdAt": "2023-08-14T06:46:33.810555407",
+                "instruction": {
+                    "epochs": 10,
+                    "metrics": [
+                        {
+                            "identifier": "weightedstatistics-pamela",
+                            "metric": "standard",
+                            "params": {}
+                        }
+                    ],
+                    "model": {
+                        "identifier": "ctgan-pamela"
+                    },
+                    "name": "test",
+                    "paths": {
+                        "download": {
+                            "bucket": "publicdataset",
+                            "path": "demo.pkl"
+                        },
+                        "upload": {
+                            "bucket": "userbucket",
+                            "path": "sebastian/directory/"
+                        }
+                    },
+                    "runs": 2,
+                    "sample": 500
+                },
+                "jobId": "userxyz_12345",
+                "result": "num",
+                "resultQueue": "userxyz_12345_result-queue",
+                "status": "error",
                 "topic": "userxyz_jobs",
                 "type": "reproduction",
                 "userId": "userxyz",

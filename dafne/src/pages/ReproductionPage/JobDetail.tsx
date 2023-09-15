@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { ContentBox, ContentPaper, SizedBoxHorizontal } from '../../assets/theme/dafneStyles'
 import { Box, Button, IconButton, Typography, styled, useTheme } from '@mui/material';
 import { MetricScoreCard, QualityReportCard, SettingsOverviewCard } from './SummaryCard';
-import ProcessesTable from '../../components/ProcessesTable';
+import JobsTable from '../../components/JobsTable';
 import { HeaderEditable, HeaderSize } from '../../components/PageHeader';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import OpenWithSharpIcon from '@mui/icons-material/OpenWithSharp';
 
 
-// TODO: implement Editing Process Name and Table Name
+// TODO: implement Editing Job Name and Table Name
 const CardContainer = styled(Box)({
   display: 'flex',
   flexDirection: 'row',
@@ -20,7 +20,7 @@ const CardContainer = styled(Box)({
 const columns = [
   {
     field: 'id',
-    headerName: 'Process ID',
+    headerName: 'Job ID',
     flex: 1,
     headerClassName: 'header-cell',
   },
@@ -38,13 +38,13 @@ const columns = [
   }
 ]
 
-const ProcessDetail: React.FC = () => {
+const JobDetail: React.FC = () => {
 
   const [tableName, setTablename] = useState('MySyntheticDataset.csv');
 
   return (
     <>
-      <ProcessSummary />
+      <JobSummary />
       <ContentPaper>
         <ContentBox>
           <Box display="flex" flexDirection="row" justifyContent="space-between">
@@ -63,7 +63,7 @@ const ProcessDetail: React.FC = () => {
               <IconButton><OpenWithSharpIcon /></IconButton>
             </Box>
           </Box>
-          <ProcessesTable columns={columns} />
+          <JobsTable columns={columns} />
         </ContentBox>
       </ContentPaper>
     </>
@@ -71,9 +71,9 @@ const ProcessDetail: React.FC = () => {
   )
 }
 
-export default ProcessDetail
+export default JobDetail
 
-const ProcessSummary: React.FC = () => {
+const JobSummary: React.FC = () => {
   const theme = useTheme();
   return (
     <ContentBox>

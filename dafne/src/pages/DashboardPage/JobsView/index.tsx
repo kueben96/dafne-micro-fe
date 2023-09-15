@@ -3,12 +3,12 @@ import { Box, Container, Link, Typography, styled } from '@mui/material'
 import React from 'react'
 import TableToolBar from '../../../components/TableToolBar';
 import { ContentPaper, SizedBoxVertical } from '../../../assets/theme/dafneStyles';
-import ProcessesTable from '../../../components/ProcessesTable';
+import JobsTable from '../../../components/JobsTable';
 import { GridCellParams, GridColDef } from '@mui/x-data-grid';
 import ProcessStatus from '../../../components/ProcessStatus';
-import { useFetchDatasetsQuery } from '../../../redux/apiGatewaySlice';
+import { useFetchAllJobsQuery, useFetchDatasetsQuery } from '../../../redux/apiGatewaySlice';
 
-interface ProcessesRowData {
+interface JobsRowData {
     id: string;
     service: string;
     metric: string;
@@ -16,10 +16,10 @@ interface ProcessesRowData {
     score: number;
     dateCreated: Date;
 }
-const processesColumns: GridColDef<ProcessesRowData>[] = [
+const JobsColumns: GridColDef<JobsRowData>[] = [
     {
         field: 'id',
-        headerName: 'Process ID',
+        headerName: 'Job ID',
         flex: 1,
         headerClassName: 'header-cell',
     },
@@ -82,7 +82,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 
-const processesRows: ProcessesRowData[] = [
+const JobsRows: JobsRowData[] = [
     { id: "ahdskessi23ns", service: 'Reproduction', metric: 'ML Taks', status: 'Completed', score: 0.96, dateCreated: new Date('2022-04-01') },
     { id: "dserw2343244", service: 'Reproduction', metric: 'ML Taks', status: 'Error', score: 0.96, dateCreated: new Date('2022-04-01') },
     { id: "02377832hjsad", service: 'Reproduction', metric: 'ML Taks', status: 'Running', score: 0.96, dateCreated: new Date('2022-04-01') },
@@ -90,7 +90,22 @@ const processesRows: ProcessesRowData[] = [
 ];
 
 
-const ProcessesView = () => {
+
+
+
+const JobsView = () => {
+    const { data, error, isLoading } = useFetchAllJobsQuery({});
+
+    let content;
+
+    if (isLoading) {
+        return <p>"Loading..."</p>;
+    }
+    if (error) {
+        return <p>Error fetching a donations</p>;
+    }
+
+    console.log(data);
 
     return (
         <>
@@ -99,7 +114,7 @@ const ProcessesView = () => {
                     <Box display="flex" flexDirection="column">
                         <TableToolBar />
                         <SizedBoxVertical space={2} />
-                        <ProcessesTable columns={processesColumns} rows={processesRows} />
+                        <JobsTable columns={JobsColumns} rows={JobsRows} />
                     </Box>
                 </Container>
             </ContentPaper>
@@ -114,4 +129,4 @@ const ProcessesView = () => {
     )
 }
 
-export default ProcessesView
+export default JobsView

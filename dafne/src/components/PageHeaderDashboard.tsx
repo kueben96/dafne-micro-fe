@@ -69,7 +69,7 @@ const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
                             indicatorColor="primary"
                             aria-label="secondary tabs example"
                         >
-                            <Tab value="processes" label="Processes" sx={{ paddingLeft: 0 }} />
+                            <Tab value="jobs" label="Jobs" sx={{ paddingLeft: 0 }} />
                             <Tab value="models" label="Models" sx={{ paddingLeft: 0 }} />
                             <Tab value="data" label="Data" sx={{ paddingLeft: 0 }} />
                         </Tabs>

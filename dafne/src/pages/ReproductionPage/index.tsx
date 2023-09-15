@@ -8,7 +8,7 @@ import { isStepCompleted } from '../../utils/stepperUtils';
 import { RowNumberSelectionStep } from './steps';
 import GenerationFeedback from './GenerationFeedback';
 import { reproductionHorizontalSteps } from '../../utils/constants';
-import ProcessDetail from './ProcessDetail';
+import ProcessDetail from './JobDetail';
 
 
 
