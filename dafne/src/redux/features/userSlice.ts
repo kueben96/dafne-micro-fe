@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { JWT_TOKEN_KEY, USER_LOGOUT_EVENT_KEY } from "../utils/constants";
+import { JWT_TOKEN_KEY, USER_LOGOUT_EVENT_KEY } from "../../utils/constants";
 import jwt_decode from "jwt-decode";
 
 export interface IUser {

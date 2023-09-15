@@ -1,18 +1,12 @@
 {
     "request": {
-        "method": "DELETE",
-        "urlPathTemplate": "/api/job/{job_id}",
+        "method": "GET",
+        "urlPathTemplate": "/api/job",
         "headers": {
             "Authorization": {
-              "contains": 
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Implbm55LnNtaXRoQHRlc3QuY29tIiwiZmlyc3ROYW1lIjoiSmVubnkiLCJpbmR1c3RyeSI6IlJlc2VhcmNoIiwiam9iVGl0bGUiOiJTY2llbnRpc3QiLCJsYXN0TmFtZSI6IlNtaXRoIn0.MGMjeiRA6HnPTWxLU38wUjbOOYhl9f2e2mYS043pmLM"
+                "contains": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Implbm55LnNtaXRoQHRlc3QuY29tIiwiZmlyc3ROYW1lIjoiSmVubnkiLCJpbmR1c3RyeSI6IlJlc2VhcmNoIiwiam9iVGl0bGUiOiJTY2llbnRpc3QiLCJsYXN0TmFtZSI6IlNtaXRoIn0.MGMjeiRA6HnPTWxLU38wUjbOOYhl9f2e2mYS043pmLM"
             }
-        },
-        "pathParameters": {
-            "job_id" : {
-              "equalTo" : "userxyz_12345"
-            }
-           }
+        }
     },
     "response": {
         "status": 200,
@@ -21,17 +15,79 @@
         },
         "jsonBody": [
             {
-                "detail": [
-                  {
-                    "loc": [
-                      "string",
-                      0
+                "createdAt": "2023-08-14T06:46:33.810555407",
+                "instruction": {
+                    "epochs": 10,
+                    "metrics": [
+                        {
+                            "identifier": "weightedstatistics-pamela",
+                            "metric": "standard",
+                            "params": {}
+                        }
                     ],
-                    "msg": "string",
-                    "type": "string"
-                  }
-                ]
-              }
+                    "model": {
+                        "identifier": "ctgan-pamela"
+                    },
+                    "name": "test",
+                    "paths": {
+                        "download": {
+                            "bucket": "publicdataset",
+                            "path": "demo.pkl"
+                        },
+                        "upload": {
+                            "bucket": "userbucket",
+                            "path": "sebastian/directory/"
+                        }
+                    },
+                    "runs": 2,
+                    "sample": 500
+                },
+                "jobId": "userxyz_12345",
+                "result": "num",
+                "resultQueue": "userxyz_12345_result-queue",
+                "status": "queued | running | completed | error",
+                "topic": "userxyz_jobs",
+                "type": "reproduction",
+                "userId": "userxyz",
+                "workQueue": "userxyz_12345_work-queue"
+            },
+            {
+                "createdAt": "2023-08-14T06:46:33.810555407",
+                "instruction": {
+                    "epochs": 10,
+                    "metrics": [
+                        {
+                            "identifier": "weightedstatistics-pamela",
+                            "metric": "standard",
+                            "params": {}
+                        }
+                    ],
+                    "model": {
+                        "identifier": "ctgan-pamela"
+                    },
+                    "name": "test",
+                    "paths": {
+                        "download": {
+                            "bucket": "publicdataset",
+                            "path": "demo.pkl"
+                        },
+                        "upload": {
+                            "bucket": "userbucket",
+                            "path": "sebastian/directory/"
+                        }
+                    },
+                    "runs": 2,
+                    "sample": 500
+                },
+                "jobId": "userxyz_12345",
+                "result": "num",
+                "resultQueue": "userxyz_12345_result-queue",
+                "status": "queued | running | completed | error",
+                "topic": "userxyz_jobs",
+                "type": "reproduction",
+                "userId": "userxyz",
+                "workQueue": "userxyz_12345_work-queue"
+            }
         ]
     }
 }

@@ -4,12 +4,9 @@ import Layout from './Layout';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ReproductionPage from './pages/ReproductionPage/index';
 import DashboardPage from './pages/DashboardPage';
-import { Provider } from 'react-redux';
-import store from './redux/store';
 import { JWT_TOKEN_KEY } from './utils/constants';
-import jwtDecode from 'jwt-decode';
 import { useAppDispatch } from './redux/hooks';
-import { setUser } from './redux/userSlice';
+import { setUser } from './redux/features/userSlice';
 
 function App(): JSX.Element {
 
@@ -17,8 +14,6 @@ function App(): JSX.Element {
 
   const [theme, setTheme] =
     React.useState(null);
-
-  // const dispatch = useAppDispatch()
 
   useEffect(() => {
     let isMounted = true; // This flag tracks whether the component is mounted
@@ -39,6 +34,7 @@ function App(): JSX.Element {
       isMounted = false;
     };
   }, []);
+
   useEffect(() => {
     // Fetch token from local storage
     const token = localStorage.getItem(JWT_TOKEN_KEY);

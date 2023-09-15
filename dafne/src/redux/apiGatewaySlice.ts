@@ -23,7 +23,13 @@ export const apiGatewaySlice = createApi({
         fetchDatasets: builder.query({
             query: () => 'data',
         }),
+        fetchAllJobs: builder.query({
+            query: () => 'job',
+        }),
     }),
 })
 
-export const { useFetchDatasetsQuery } = apiGatewaySlice
+export const {
+    useFetchDatasetsQuery,
+    useFetchAllJobsQuery
+} = apiGatewaySlice

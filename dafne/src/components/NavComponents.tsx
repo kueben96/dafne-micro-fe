@@ -19,7 +19,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../utils/constants';
 import { useAppDispatch } from '../redux/hooks';
-import { logOut } from '../redux/userSlice';
+import { logOut } from '../redux/features/userSlice';
 
 const IconListItem = ({
   icon,
