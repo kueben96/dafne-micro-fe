@@ -6,7 +6,8 @@ import ReproductionPage from './pages/ReproductionPage/index';
 import DashboardPage from './pages/DashboardPage';
 import { JWT_TOKEN_KEY } from './utils/constants';
 import { useAppDispatch } from './redux/hooks';
-import { setUser } from './redux/features/userSlice';
+import { setUser, setUserJobs } from './redux/features/userSlice';
+import { useFetchAllJobsQuery } from './redux/apiGatewaySlice';
 
 function App(): JSX.Element {
 
@@ -35,11 +36,28 @@ function App(): JSX.Element {
     };
   }, []);
 
+  const { data, error, isLoading } = useFetchAllJobsQuery();
+
+
   useEffect(() => {
     // Fetch token from local storage
     const token = localStorage.getItem(JWT_TOKEN_KEY);
+
     dispatch(setUser(token as string))
+
   }, [dispatch]);
+
+  useEffect(() => {
+    const token = localStorage.getItem(JWT_TOKEN_KEY);
+    dispatch(setUser(token as string));
+  }, [dispatch]);
+
+  useEffect(() => {
+    // Check if data is available and dispatch setUserJobs
+    if (data) {
+      dispatch(setUserJobs(data));
+    }
+  }, [data, dispatch]);
 
 
 

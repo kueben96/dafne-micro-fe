@@ -23,11 +23,12 @@ export const apiGatewaySlice = createApi({
     endpoints: (builder) => ({
         fetchDatasets: builder.query({
             query: () => 'data',
+
         }),
         fetchAllJobs: builder.query<IJob[], void>({
             query: () => 'job',
         }),
-        getJobDetailById: builder.query({
+        getJobDetailById: builder.query<IJob, void>({
             query: job_id => `/job/${job_id}`,
         }),
         // TODO: delete job by id

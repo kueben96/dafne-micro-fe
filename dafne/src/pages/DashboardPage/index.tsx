@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box } from "@mui/material";
 import PageHeaderDashboard from "../../components/PageHeaderDashboard";
 import { useState } from "react";
 import JobsView from "./JobsView";
 import DataView from './DataView';
+import { useFetchAllJobsQuery } from '../../redux/apiGatewaySlice';
+import { IJob } from '../../types';
+import { useAppDispatch } from '../../redux/hooks';
+import { setUserJobs } from '../../redux/features/userSlice';
 // TODO: switch tabs based on url after router decision made
 // e.g. /dashboard/Jobs -> Jobs tab
 // e.g. /dashboard/models -> models tab
@@ -12,6 +16,9 @@ import DataView from './DataView';
 // const tab = match?.params.tab;
 
 const DashboardPage = () => {
+
+
+
   const [value, setValue] = useState<string>('jobs');
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
