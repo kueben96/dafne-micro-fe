@@ -1,26 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { JWT_TOKEN_KEY, USER_LOGOUT_EVENT_KEY } from "../../utils/constants";
 import jwt_decode from "jwt-decode";
+import { IUser } from "../../types";
 
-export interface IUser {
-    _id: number;
-    email: string;
-    firstName: string;
-    lastName: string;
-    industry: string;
-    jobTitle: string;
-    // TODO: Add related jobs and models if needed
-    // TODO: Add Notifications
-}
-
-interface DecodedToken {
+interface _DecodedToken {
     email: string;
     firstName: string;
     lastName: string;
     industry: string;
     jobTitle: string;
 }
-
 
 // Define the initial state
 interface UserState {
@@ -43,7 +32,7 @@ const userSlice = createSlice({
             if (token) {
                 try {
                     // Parse the token and extract user information
-                    var decodedToken: DecodedToken = jwt_decode(token);
+                    var decodedToken: _DecodedToken = jwt_decode(token);
                     const { email, firstName, lastName, industry, jobTitle } = decodedToken;
 
                     const _id = 1; // Replace with the user's id from your authentication system

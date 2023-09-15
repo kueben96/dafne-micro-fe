@@ -5,18 +5,12 @@ import TableToolBar from '../../../components/TableToolBar';
 import { ContentPaper, SizedBoxVertical } from '../../../assets/theme/dafneStyles';
 import JobsTable from '../../../components/JobsTable';
 import { GridCellParams, GridColDef } from '@mui/x-data-grid';
-import ProcessStatus from '../../../components/ProcessStatus';
-import { useFetchAllJobsQuery, useFetchDatasetsQuery } from '../../../redux/apiGatewaySlice';
+import { useFetchAllJobsQuery, useFetchDatasetsQuery, useGetJobDetailByIdQuery, useGetJobStatusByIdQuery } from '../../../redux/apiGatewaySlice';
+import { IJob, IJobsRowData } from '../../../types';
+import JobStatus from '../../../components/ProcessStatus';
 
-interface JobsRowData {
-    id: string;
-    service: string;
-    metric: string;
-    status: string;
-    score: number;
-    dateCreated: Date;
-}
-const JobsColumns: GridColDef<JobsRowData>[] = [
+
+const JobsColumns: GridColDef<IJobsRowData>[] = [
     {
         field: 'id',
         headerName: 'Job ID',
@@ -43,7 +37,7 @@ const JobsColumns: GridColDef<JobsRowData>[] = [
         headerClassName: 'header-cell',
         renderCell: (params: GridCellParams) => {
             const { value } = params;
-            return <ProcessStatus status={value as string} />;
+            return <JobStatus status={value as string} />;
         }
     },
     {
@@ -82,30 +76,14 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 
-const JobsRows: JobsRowData[] = [
+const JobsRows: IJobsRowData[] = [
     { id: "ahdskessi23ns", service: 'Reproduction', metric: 'ML Taks', status: 'Completed', score: 0.96, dateCreated: new Date('2022-04-01') },
     { id: "dserw2343244", service: 'Reproduction', metric: 'ML Taks', status: 'Error', score: 0.96, dateCreated: new Date('2022-04-01') },
     { id: "02377832hjsad", service: 'Reproduction', metric: 'ML Taks', status: 'Running', score: 0.96, dateCreated: new Date('2022-04-01') },
     { id: "9023903khs", service: 'Reproduction', metric: 'ML Taks', status: 'Paused', score: 0.96, dateCreated: new Date('2022-04-01') },
 ];
 
-
-
-
-
 const JobsView = () => {
-    const { data, error, isLoading } = useFetchAllJobsQuery({});
-
-    let content;
-
-    if (isLoading) {
-        return <p>"Loading..."</p>;
-    }
-    if (error) {
-        return <p>Error fetching a donations</p>;
-    }
-
-    console.log(data);
 
     return (
         <>

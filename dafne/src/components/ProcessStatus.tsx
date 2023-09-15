@@ -1,11 +1,11 @@
 import { Box, useTheme } from '@mui/material';
 import React from 'react';
 
-interface ProcessStatusProps {
+interface JobStatus {
   status: string;
 }
 
-const ProcessStatus: React.FC<ProcessStatusProps> = (props) => {
+const ProcessStatus: React.FC<JobStatus> = (props) => {
   const theme = useTheme();
   let color = '';
   let label = '';

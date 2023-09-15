@@ -43,7 +43,7 @@ export const SizedBoxHorizontal = styled(Box)<{
 }));
 
 
-// ProcessesTable 
+// Jobs Table 
 
 export const TableCustomBox = styled(Box)(({ theme }: { theme: Theme }) => ({
     height: 400,

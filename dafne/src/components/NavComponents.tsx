@@ -121,7 +121,7 @@ const NavComponents = () => {
         children={
           <div>
             <ChildListItem
-              text="Processes"
+              text="Jobs"
               path={ROUTES.DASHBOARD.PROCESSES}
               isActive={pathname === ROUTES.DASHBOARD.PROCESSES}
             />

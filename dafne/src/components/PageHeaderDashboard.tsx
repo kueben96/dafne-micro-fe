@@ -46,7 +46,7 @@ const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
                             <Box display="flex" flexDirection="column">
                                 <Box display="flex" flexDirection="row" >
                                     <AssetStatistic>
-                                        <Typography variant="subtitle2">Processes</Typography>
+                                        <Typography variant="subtitle2">Jobs</Typography>
                                         <Typography>1</Typography>
                                     </AssetStatistic>
                                     <Divider orientation="vertical" flexItem />

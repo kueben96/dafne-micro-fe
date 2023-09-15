@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { IJob } from '../types';
 
 const baseQuery = fetchBaseQuery({
     baseUrl: 'http://localhost:8086/api/',
@@ -23,13 +24,22 @@ export const apiGatewaySlice = createApi({
         fetchDatasets: builder.query({
             query: () => 'data',
         }),
-        fetchAllJobs: builder.query({
+        fetchAllJobs: builder.query<IJob[], void>({
             query: () => 'job',
+        }),
+        getJobDetailById: builder.query({
+            query: job_id => `/job/${job_id}`,
+        }),
+        // TODO: delete job by id
+        getJobStatusById: builder.query({
+            query: job_id => `/job/${job_id}/status`,
         }),
     }),
 })
 
 export const {
     useFetchDatasetsQuery,
-    useFetchAllJobsQuery
+    useFetchAllJobsQuery,
+    useGetJobDetailByIdQuery,
+    useGetJobStatusByIdQuery
 } = apiGatewaySlice
