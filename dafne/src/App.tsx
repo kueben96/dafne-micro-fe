@@ -53,7 +53,6 @@ function App(): JSX.Element {
   }, [dispatch]);
 
   useEffect(() => {
-    // Check if data is available and dispatch setUserJobs
     if (data) {
       dispatch(setUserJobs(data));
     }

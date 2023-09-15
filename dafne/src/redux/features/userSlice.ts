@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { JWT_TOKEN_KEY, USER_LOGOUT_EVENT_KEY } from "../../utils/constants";
 import jwt_decode from "jwt-decode";
-import { IJob, IUser } from "../../types";
+import { IJob, IJobsRowData, IUser } from "../../types";
 
 interface _DecodedToken {
     email: string;
@@ -15,7 +15,7 @@ interface _DecodedToken {
 interface UserState {
     user: IUser | null;
     token: string | null;
-    jobs: IJob[] | null;
+    jobs: IJobsRowData[] | null;
 }
 
 const initialState: UserState = {
@@ -67,7 +67,25 @@ const userSlice = createSlice({
             window.dispatchEvent(new CustomEvent(USER_LOGOUT_EVENT_KEY))
         },
         setUserJobs: (state, action: PayloadAction<IJob[]>) => {
-            state.jobs = action.payload;
+
+            const jobs = action.payload;
+            const userJobsRow: IJobsRowData[] = jobs.map((job) => {
+                const { jobId, createdAt, instruction, status, type } = job;
+                const { metrics, model } = instruction;
+                const { metric } = metrics[0];
+                const score = 0.98;
+
+                const dateCreated = new Date(createdAt);
+                return {
+                    id: jobId,
+                    service: type,
+                    metric,
+                    status,
+                    score,
+                    dateCreated,
+                };
+            });
+            state.jobs = userJobsRow;
         }
     },
 });

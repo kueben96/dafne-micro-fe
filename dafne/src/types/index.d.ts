@@ -62,7 +62,7 @@ interface IJob {
     jobId: string;
     result: string;
     resultQueue: string;
-    status: JobStatus;
+    status: string;
     topic: string;
     type: string;
     userId: string;
