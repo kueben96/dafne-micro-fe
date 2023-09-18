@@ -42,10 +42,10 @@
                     "runs": 2,
                     "sample": 500
                 },
-                "jobId": "userxyz_12345",
+                "jobId": "userxyz_123459",
                 "result": "num",
                 "resultQueue": "userxyz_12345_result-queue",
-                "status": "running | completed | error",
+                "status": "running",
                 "topic": "userxyz_jobs",
                 "type": "reproduction",
                 "userId": "userxyz",
@@ -116,7 +116,7 @@
                     "runs": 2,
                     "sample": 500
                 },
-                "jobId": "userxyz_12345",
+                "jobId": "userxyz_123457",
                 "result": "num",
                 "resultQueue": "userxyz_12345_result-queue",
                 "status": "running",
@@ -190,7 +190,7 @@
                     "runs": 2,
                     "sample": 500
                 },
-                "jobId": "userxyz_12345",
+                "jobId": "userxyz_123458",
                 "result": "num",
                 "resultQueue": "userxyz_12345_result-queue",
                 "status": "error",

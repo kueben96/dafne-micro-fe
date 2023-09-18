@@ -1,3 +1,5 @@
+import { JobType } from "./enums";
+
 declare module '*.jpg';
 declare module '*.png';
 declare module 'theme/theme';
@@ -11,18 +13,10 @@ export interface IUser {
     lastName: string;
     industry: string;
     jobTitle: string;
-    // TODO: Add related jobs and models if needed
-    // TODO: Add Notifications
 }
 
-// Job Types
 
-enum JobStatus {
-    Queued = "queued",
-    Running = "running",
-    Completed = "completed",
-    Error = "error",
-}
+
 
 interface IJobsRowData {
     id: string;

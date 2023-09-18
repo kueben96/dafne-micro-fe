@@ -1,5 +1,6 @@
-import { Box, useTheme } from '@mui/material';
+import { Box, capitalize, useTheme } from '@mui/material';
 import React from 'react';
+import { JobStatus, mapStatusToReadable } from '../types/enums';
 
 interface JobStatus {
   status: string;
@@ -10,21 +11,21 @@ const ProcessStatus: React.FC<JobStatus> = (props) => {
   let color = '';
   let label = '';
   switch (props.status) {
-    case 'Completed':
+    case JobStatus.Completed:
       color = theme.palette.success?.main || '';
-      label = 'Completed';
+      label = mapStatusToReadable(JobStatus.Completed);
       break;
-    case 'Running':
+    case JobStatus.Running:
       color = theme.palette.primary?.main || '';
-      label = 'Running';
+      label = mapStatusToReadable(JobStatus.Running)
       break;
-    case 'Error':
+    case JobStatus.Error:
       color = theme.palette.error?.main || '';
-      label = 'Error';
+      label = mapStatusToReadable(JobStatus.Error);
       break;
-    case 'Paused':
+    case JobStatus.Queued:
       color = theme.palette.gray?.light || '';
-      label = 'Paused';
+      label = mapStatusToReadable(JobStatus.Queued);
       break;
     default:
       color = 'default';

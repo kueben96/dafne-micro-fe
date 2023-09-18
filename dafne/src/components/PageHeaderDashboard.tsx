@@ -22,7 +22,11 @@ interface PageHeaderDashboardProps {
     title: string;
     value: string;
     onChange: (event: React.ChangeEvent<{}>, newValue: string) => void;
+    jobsCount: number;
+    modelsCount: number;
+    datasetsCount: number;
 }
+
 const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
 
     return (
@@ -47,17 +51,17 @@ const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
                                 <Box display="flex" flexDirection="row" >
                                     <AssetStatistic>
                                         <Typography variant="subtitle2">Jobs</Typography>
-                                        <Typography>1</Typography>
+                                        <Typography>{props.jobsCount}</Typography>
                                     </AssetStatistic>
                                     <Divider orientation="vertical" flexItem />
                                     <AssetStatistic>
                                         <Typography variant="subtitle2">Datasets</Typography>
-                                        <Typography>2</Typography>
+                                        <Typography>{props.datasetsCount}</Typography>
                                     </AssetStatistic>
                                     <Divider orientation="vertical" flexItem />
                                     <AssetStatistic>
                                         <Typography variant="subtitle2">Models</Typography>
-                                        <Typography>1</Typography>
+                                        <Typography>{props.modelsCount}</Typography>
                                     </AssetStatistic>
                                 </Box>
                             </Box>

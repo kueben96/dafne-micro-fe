@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IJob } from '../types';
+import { mapServiceTypeToReadable, mapStatusToReadable } from '../types/enums';
 
 const baseQuery = fetchBaseQuery({
     baseUrl: 'http://localhost:8086/api/',
@@ -27,6 +28,15 @@ export const apiGatewaySlice = createApi({
         }),
         fetchAllJobs: builder.query<IJob[], void>({
             query: () => 'job',
+            transformResponse: (response: IJob[]) => {
+                return response.map(job => {
+                    return {
+                        ...job,
+                        // status: mapStatusToReadable(job.status),
+                        type: mapServiceTypeToReadable(job.type)
+                    }
+                })
+            }
         }),
         getJobDetailById: builder.query<IJob, void>({
             query: job_id => `/job/${job_id}`,
@@ -44,3 +54,7 @@ export const {
     useGetJobDetailByIdQuery,
     useGetJobStatusByIdQuery
 } = apiGatewaySlice
+
+
+
+

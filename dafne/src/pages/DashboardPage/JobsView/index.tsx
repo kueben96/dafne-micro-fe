@@ -78,13 +78,12 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 const JobsView: React.FC<JobsViewProps> = ({ userJobs }) => {
+
     const JobsRows: IJobsRowData[] = userJobs.map(job => {
         const { jobId, createdAt, instruction, status, type } = job;
-        const { metrics, model } = instruction;
         const { identifier } = instruction.metrics[0];
         const score = 0.98;
         const dateCreated = new Date(createdAt);
-
         return {
             id: jobId,
             service: type,

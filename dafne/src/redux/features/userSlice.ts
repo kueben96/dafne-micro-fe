@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { JWT_TOKEN_KEY, USER_LOGOUT_EVENT_KEY } from "../../utils/constants";
 import jwt_decode from "jwt-decode";
-import { IJob, IJobsRowData, IUser } from "../../types";
+import { IJob, IUser } from "../../types";
+import { RootState } from "../store";
 
 interface _DecodedToken {
     email: string;
@@ -16,12 +17,18 @@ interface UserState {
     user: IUser | null;
     token: string | null;
     jobs: IJob[] | null;
+    jobsCount: number;
+    modelsCount: number;
+    datasetsCount: number;
 }
 
 const initialState: UserState = {
     user: null,
     token: null,
     jobs: null,
+    jobsCount: 0,
+    modelsCount: 2,
+    datasetsCount: 2,
 };
 
 const userSlice = createSlice({
@@ -66,35 +73,17 @@ const userSlice = createSlice({
             localStorage.removeItem(JWT_TOKEN_KEY);
             window.dispatchEvent(new CustomEvent(USER_LOGOUT_EVENT_KEY))
         },
-        // setUserJobsAsRowDataType: (state, action: PayloadAction<IJob[]>) => {
-        //     // TODO: irgendwo auch das ganze objekt storen für detaiL?
 
-        //     const jobs = action.payload;
-        //     const userJobsRow: IJobsRowData[] = jobs.map((job) => {
-        //         const { jobId, createdAt, instruction, status, type } = job;
-        //         const { identifier } = instruction.metrics[0];
-
-        //         const score = 0.98;
-
-        //         const dateCreated = new Date(createdAt).toISOString();
-        //         return {
-        //             id: jobId,
-        //             service: type,
-        //             metric: identifier,
-        //             status,
-        //             score,
-        //             dateCreated,
-        //         };
-        //     });
-        //     state.userJobsRowData = userJobsRow;
         // },
         setUserJobs: (state, action: PayloadAction<IJob[]>) => {
             const jobs = action.payload;
             state.jobs = jobs;
+            state.jobsCount = jobs.length;
         },
     },
 });
 
 export const { setUser, logOut, setUserJobs } = userSlice.actions;
+export const selectJobsCount = (state: RootState) => state.user.jobsCount;
 
 export default userSlice.reducer;
