@@ -67,19 +67,20 @@ const userSlice = createSlice({
             window.dispatchEvent(new CustomEvent(USER_LOGOUT_EVENT_KEY))
         },
         setUserJobs: (state, action: PayloadAction<IJob[]>) => {
+            // TODO: irgendwo auch das ganze objekt storen für detaiL?
 
             const jobs = action.payload;
             const userJobsRow: IJobsRowData[] = jobs.map((job) => {
                 const { jobId, createdAt, instruction, status, type } = job;
-                const { metrics, model } = instruction;
-                const { metric } = metrics[0];
+                const { identifier } = instruction.metrics[0];
+
                 const score = 0.98;
 
-                const dateCreated = new Date(createdAt);
+                const dateCreated = new Date(createdAt).toISOString();
                 return {
                     id: jobId,
                     service: type,
-                    metric,
+                    metric: identifier,
                     status,
                     score,
                     dateCreated,

@@ -30,7 +30,7 @@ interface IJobsRowData {
     metric: string;
     status: string;
     score: number;
-    dateCreated: Date;
+    dateCreated: string;
 }
 
 interface IJob {
