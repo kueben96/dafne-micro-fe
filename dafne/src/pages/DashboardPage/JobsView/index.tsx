@@ -1,14 +1,15 @@
+import React from 'react';
 import { Box, Container, Link, Typography, styled } from '@mui/material'
-
-import React from 'react'
 import TableToolBar from '../../../components/TableToolBar';
 import { ContentPaper, SizedBoxVertical } from '../../../assets/theme/dafneStyles';
 import JobsTable from '../../../components/JobsTable';
 import { GridCellParams, GridColDef } from '@mui/x-data-grid';
-import { useFetchAllJobsQuery, useFetchDatasetsQuery, useGetJobDetailByIdQuery, useGetJobStatusByIdQuery } from '../../../redux/apiGatewaySlice';
-import { IJob, IJobsRowData } from '../../../types';
+import { IJobsRowData, IJob } from '../../../types';
 import JobStatus from '../../../components/ProcessStatus';
 
+interface JobsViewProps {
+    userJobs: IJob[];
+}
 
 const JobsColumns: GridColDef<IJobsRowData>[] = [
     {
@@ -70,20 +71,29 @@ const JobsColumns: GridColDef<IJobsRowData>[] = [
     },
 ];
 
+
 const StyledLink = styled(Link)(({ theme }) => ({
     color: theme.palette.primary?.main,
     marginRight: theme.spacing(2),
 }));
 
+const JobsView: React.FC<JobsViewProps> = ({ userJobs }) => {
+    const JobsRows: IJobsRowData[] = userJobs.map(job => {
+        const { jobId, createdAt, instruction, status, type } = job;
+        const { metrics, model } = instruction;
+        const { identifier } = instruction.metrics[0];
+        const score = 0.98;
+        const dateCreated = new Date(createdAt);
 
-const JobsRows: IJobsRowData[] = [
-    { id: "ahdskessi23ns", service: 'Reproduction', metric: 'ML Taks', status: 'Completed', score: 0.96, dateCreated: new Date('2022-04-01') },
-    { id: "dserw2343244", service: 'Reproduction', metric: 'ML Taks', status: 'Error', score: 0.96, dateCreated: new Date('2022-04-01') },
-    { id: "02377832hjsad", service: 'Reproduction', metric: 'ML Taks', status: 'Running', score: 0.96, dateCreated: new Date('2022-04-01') },
-    { id: "9023903khs", service: 'Reproduction', metric: 'ML Taks', status: 'Paused', score: 0.96, dateCreated: new Date('2022-04-01') },
-];
-
-const JobsView = () => {
+        return {
+            id: jobId,
+            service: type,
+            metric: identifier,
+            status,
+            score,
+            dateCreated,
+        };
+    });
 
     return (
         <>
@@ -104,7 +114,7 @@ const JobsView = () => {
                 </Container>
             </ContentPaper>
         </>
-    )
+    );
 }
 
-export default JobsView
+export default JobsView;

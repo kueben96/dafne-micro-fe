@@ -15,13 +15,13 @@ interface _DecodedToken {
 interface UserState {
     user: IUser | null;
     token: string | null;
-    jobs: IJobsRowData[] | null;
+    jobs: IJob[] | null;
 }
 
 const initialState: UserState = {
     user: null,
     token: null,
-    jobs: null
+    jobs: null,
 };
 
 const userSlice = createSlice({
@@ -66,28 +66,32 @@ const userSlice = createSlice({
             localStorage.removeItem(JWT_TOKEN_KEY);
             window.dispatchEvent(new CustomEvent(USER_LOGOUT_EVENT_KEY))
         },
+        // setUserJobsAsRowDataType: (state, action: PayloadAction<IJob[]>) => {
+        //     // TODO: irgendwo auch das ganze objekt storen für detaiL?
+
+        //     const jobs = action.payload;
+        //     const userJobsRow: IJobsRowData[] = jobs.map((job) => {
+        //         const { jobId, createdAt, instruction, status, type } = job;
+        //         const { identifier } = instruction.metrics[0];
+
+        //         const score = 0.98;
+
+        //         const dateCreated = new Date(createdAt).toISOString();
+        //         return {
+        //             id: jobId,
+        //             service: type,
+        //             metric: identifier,
+        //             status,
+        //             score,
+        //             dateCreated,
+        //         };
+        //     });
+        //     state.userJobsRowData = userJobsRow;
+        // },
         setUserJobs: (state, action: PayloadAction<IJob[]>) => {
-            // TODO: irgendwo auch das ganze objekt storen für detaiL?
-
             const jobs = action.payload;
-            const userJobsRow: IJobsRowData[] = jobs.map((job) => {
-                const { jobId, createdAt, instruction, status, type } = job;
-                const { identifier } = instruction.metrics[0];
-
-                const score = 0.98;
-
-                const dateCreated = new Date(createdAt).toISOString();
-                return {
-                    id: jobId,
-                    service: type,
-                    metric: identifier,
-                    status,
-                    score,
-                    dateCreated,
-                };
-            });
-            state.jobs = userJobsRow;
-        }
+            state.jobs = jobs;
+        },
     },
 });
 

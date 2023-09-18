@@ -1,35 +1,28 @@
-import React, { useEffect } from 'react'
+// Import necessary modules and components
+import React, { useState } from 'react';
 import { Box } from "@mui/material";
 import PageHeaderDashboard from "../../components/PageHeaderDashboard";
-import { useState } from "react";
 import JobsView from "./JobsView";
 import DataView from './DataView';
 import { useFetchAllJobsQuery } from '../../redux/apiGatewaySlice';
-import { IJob } from '../../types';
 import { useAppDispatch } from '../../redux/hooks';
 import { setUserJobs } from '../../redux/features/userSlice';
-// TODO: switch tabs based on url after router decision made
-// e.g. /dashboard/Jobs -> Jobs tab
-// e.g. /dashboard/models -> models tab
-// e.g. /dashboard/data -> data tab
-// const match = useMatch('/dashboard/:tab');
-// const tab = match?.params.tab;
 
 const DashboardPage = () => {
-
-
-
   const [value, setValue] = useState<string>('jobs');
-
   const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
   };
 
+  // Fetch userJobs data
+  const { data: userJobs, isLoading, isError } = useFetchAllJobsQuery();
+  // Provide a default value (an empty array) when userJobs is undefined
+  const userJobsArray = userJobs ?? [];
   // Render the view based on the selected tab value
   const renderView = () => {
     switch (value) {
       case 'jobs':
-        return <JobsView />;
+        return <JobsView userJobs={userJobsArray} />;
       case 'models':
         return <h1>models view</h1>;
       case 'data':
