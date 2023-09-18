@@ -3,7 +3,8 @@ import { NavigationManager } from '../utils/NavigationManager';
 import DashboardPage from '../pages/DashboardPage';
 import ReproductionPage from '../pages/ReproductionPage';
 import App from '../App';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Routes } from 'react-router-dom';
+import { ROUTES } from '../utils/constants';
 
 export const routes = [
     {
@@ -16,14 +17,14 @@ export const routes = [
         children: [
             {
                 index: true,
-                element: <Navigate to="/dashboard/processes" />
+                element: <Navigate to={ROUTES.DASHBOARD.JOBS} />
             },
             {
-                path: "/dashboard/processes",
+                path: ROUTES.DASHBOARD.JOBS,
                 element: <DashboardPage />
             },
             {
-                path: "/methods/reproduction",
+                path: ROUTES.METHODS.REPRODUCTION,
                 element: <ReproductionPage />
             },
         ],

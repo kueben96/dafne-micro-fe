@@ -26,7 +26,7 @@ export const ROUTES = {
     HOME: '/',
     DASHBOARD: {
         PATH: '/dashboard',
-        PROCESSES: '/dashboard/processes',
+        JOBS: '/dashboard/jobs',
         DATA: '/dashboard/data',
         MODELS: '/dashboard/models',
     },

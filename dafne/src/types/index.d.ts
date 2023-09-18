@@ -66,3 +66,28 @@ interface IJob {
     userId: string;
     workQueue: string;
 }
+
+interface ICreateServiceInstruction {
+    epochs: number;
+    metrics: {
+        identifier: string;
+        metric: string;
+        params: Record<string, unknown>;
+    }[];
+    model: {
+        identifier: string;
+    };
+    name: string;
+    paths: {
+        download: {
+            bucket: string;
+            path: string;
+        };
+        upload: {
+            bucket: string;
+            path: string;
+        };
+    };
+    runs: number;
+    sample: number;
+}
