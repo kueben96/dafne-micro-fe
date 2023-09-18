@@ -2,6 +2,7 @@ import { Box, Container, Divider, Tab, Tabs, Toolbar, Typography, styled } from 
 import React from 'react'
 import HeaderBreadcrumbs from './HeaderBreadcrumbs';
 import { PageHeaderAppBar } from '../assets/theme/dafneStyles';
+import { IUser } from '../types';
 
 const AssetStatistic = styled(Box)(({ theme }) => ({
     display: 'flex',
@@ -22,6 +23,7 @@ interface PageHeaderDashboardProps {
     title: string;
     value: string;
     onChange: (event: React.ChangeEvent<{}>, newValue: string) => void;
+    user: IUser;
     jobsCount: number;
     modelsCount: number;
     datasetsCount: number;
@@ -44,8 +46,8 @@ const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
                         </Box>
                         <Box display="flex" flexDirection="row" justifyContent="space-between">
                             <Box display="flex" flexDirection="column" >
-                                <Typography>Hanna Schmidt ab384bjs32</Typography>
-                                <Typography variant="subtitle1">Product Manager - Data Analytics</Typography>
+                                <Typography>{props.user.firstName + ' ' + props.user.lastName}</Typography>
+                                <Typography variant="subtitle1">{props.user.jobTitle + ' - ' + props.user.industry}</Typography>
                             </Box>
                             <Box display="flex" flexDirection="column">
                                 <Box display="flex" flexDirection="row" >

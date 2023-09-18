@@ -15,6 +15,8 @@ import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import LogoImg from '../assets/images/logo.png';
 import { styled } from '@mui/material/styles';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../redux/features/userSlice';
 
 const Logo = styled('img')({
   height: '20px',
@@ -28,6 +30,8 @@ const UserContainer = styled('div')({
 
 const AppBarHeader: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDrawerToggle }) => {
   const theme = useTheme();
+
+  const user = useSelector(selectUser)
 
   return (
     <AppBar sx={{ backgroundColor: theme.palette?.common?.white, zIndex: theme.zIndex.drawer + 1 }} position="relative">
@@ -54,7 +58,7 @@ const AppBarHeader: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDraw
             <IconButton>
               <Avatar sx={{ width: 30, height: 30 }} alt="User" src="/avatar.jpg" />
             </IconButton>
-            <Typography variant="body1">Hanna Schmidt</Typography>
+            <Typography variant="body1">{user?.firstName + ' ' + user?.lastName}</Typography>
           </Box>
         </UserContainer>
       </Toolbar>

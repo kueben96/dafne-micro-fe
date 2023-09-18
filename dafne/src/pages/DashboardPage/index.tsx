@@ -6,7 +6,7 @@ import JobsView from "./JobsView";
 import DataView from './DataView';
 import { useFetchAllJobsQuery } from '../../redux/apiGatewaySlice';
 import { useAppDispatch } from '../../redux/hooks';
-import { selectJobsCount, setUserJobs } from '../../redux/features/userSlice';
+import { selectJobsCount, selectUser } from '../../redux/features/userSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
@@ -19,10 +19,12 @@ const DashboardPage = () => {
 
   const { data: userJobs, isLoading, isError } = useFetchAllJobsQuery();
 
+  const user = useSelector(selectUser);
   const userJobsArray = userJobs ?? [];
   const jobsCount = useSelector(selectJobsCount);
   const datasetsCount = useSelector((state: RootState) => state.user.datasetsCount);
   const modelsCount = useSelector((state: RootState) => state.user.modelsCount);
+
 
   // Render the view based on the selected tab value
   const renderView = () => {
@@ -40,7 +42,7 @@ const DashboardPage = () => {
 
   return (
     <>
-      <PageHeaderDashboard title="Dashboard" value={value} onChange={handleChange} jobsCount={jobsCount} datasetsCount={datasetsCount} modelsCount={modelsCount} />
+      <PageHeaderDashboard title="Dashboard" value={value} onChange={handleChange} user={user!} jobsCount={jobsCount} datasetsCount={datasetsCount} modelsCount={modelsCount} />
       <Box component="main">
         {renderView()}
       </Box>

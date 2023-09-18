@@ -13,7 +13,7 @@ const HeaderBreadcrumbs: React.FC = () => {
       <Link underline="hover" color="inherit" href="/">
         Dashboard
       </Link>
-      <Typography variant="subtitle1">Processes</Typography>
+      <Typography variant="subtitle1">Jobs</Typography>
     </CustomBreadcrumbs>
   );
 };

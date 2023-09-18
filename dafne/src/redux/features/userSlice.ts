@@ -23,7 +23,14 @@ interface UserState {
 }
 
 const initialState: UserState = {
-    user: null,
+    user: {
+        _id: 0, // Replace with an appropriate default value
+        email: '',
+        firstName: '',
+        lastName: '',
+        industry: '',
+        jobTitle: ''
+    },
     token: null,
     jobs: null,
     jobsCount: 0,
@@ -85,5 +92,6 @@ const userSlice = createSlice({
 
 export const { setUser, logOut, setUserJobs } = userSlice.actions;
 export const selectJobsCount = (state: RootState) => state.user.jobsCount;
+export const selectUser = (state: RootState) => state.user.user;
 
 export default userSlice.reducer;

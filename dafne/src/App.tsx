@@ -47,10 +47,6 @@ function App(): JSX.Element {
 
   }, [dispatch]);
 
-  useEffect(() => {
-    const token = localStorage.getItem(JWT_TOKEN_KEY);
-    dispatch(setUser(token as string));
-  }, [dispatch]);
 
   useEffect(() => {
     if (data) {
