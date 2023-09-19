@@ -28,7 +28,7 @@ describe('Routing Test', () => {
       expect(token).to.exist;
     });
 
-    cy.url().should('eq', `${container_base_url}/dafne/dashboard/processes`);
+    cy.url().should('eq', `${container_base_url}/dafne/dashboard/jobs`);
   });
 
   it('Checks if protected /dafne route can be accessed when visiting it in unauthenticated mode', () => {

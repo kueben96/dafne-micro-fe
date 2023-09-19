@@ -3,7 +3,7 @@ import { NavigationManager } from '../utils/NavigationManager';
 import DashboardPage from '../pages/DashboardPage';
 import ReproductionPage from '../pages/ReproductionPage';
 import App from '../App';
-import { Navigate, Routes } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { ROUTES } from '../utils/constants';
 
 export const routes = [

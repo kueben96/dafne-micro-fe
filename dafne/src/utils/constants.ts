@@ -25,13 +25,13 @@ export const reproductionHorizontalSteps: ReproductionStep[] = [
 export const ROUTES = {
     HOME: '/',
     DASHBOARD: {
-        PATH: '/dashboard',
+        INDEX: '/dashboard',
         JOBS: '/dashboard/jobs',
         DATA: '/dashboard/data',
         MODELS: '/dashboard/models',
     },
     METHODS: {
-        PATH: '/methods',
+        INDEX: '/methods',
         REPRODUCTION: '/methods/reproduction',
         FUSION: '/methods/fusion',
         RULE_BASED: '/methods/rule-based',

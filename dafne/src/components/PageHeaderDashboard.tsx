@@ -21,7 +21,7 @@ const AssetStatistic = styled(Box)(({ theme }) => ({
 
 interface PageHeaderDashboardProps {
     title: string;
-    value: string;
+    path: string;
     onChange: (event: React.ChangeEvent<{}>, newValue: string) => void;
     user: IUser;
     jobsCount: number;
@@ -69,7 +69,7 @@ const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
                             </Box>
                         </Box>
                         <Tabs
-                            value={props.value}
+                            value={props.path}
                             onChange={props.onChange}
                             textColor="primary"
                             indicatorColor="primary"

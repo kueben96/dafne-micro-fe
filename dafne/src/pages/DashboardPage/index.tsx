@@ -9,11 +9,13 @@ import { useAppDispatch } from '../../redux/hooks';
 import { selectJobsCount, selectUser } from '../../redux/features/userSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { useNavigate } from 'react-router-dom';
 
 const DashboardPage = () => {
-  const [value, setValue] = useState<string>('jobs');
+  const [tabValue, setTabValue] = useState<string>('jobs');
+  const navigate = useNavigate();
   const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-    setValue(newValue);
+    setTabValue(newValue);
   };
 
 
@@ -22,13 +24,13 @@ const DashboardPage = () => {
   const user = useSelector(selectUser);
   const userJobsArray = userJobs ?? [];
   const jobsCount = useSelector(selectJobsCount);
-  const datasetsCount = useSelector((state: RootState) => state.user.datasetsCount);
-  const modelsCount = useSelector((state: RootState) => state.user.modelsCount);
+  const datasetsCount = useSelector((state: RootState) => state?.user.datasetsCount);
+  const modelsCount = useSelector((state: RootState) => state?.user.modelsCount);
 
 
   // Render the view based on the selected tab value
   const renderView = () => {
-    switch (value) {
+    switch (tabValue) {
       case 'jobs':
         return <JobsView userJobs={userJobsArray} />;
       case 'models':
@@ -42,7 +44,7 @@ const DashboardPage = () => {
 
   return (
     <>
-      <PageHeaderDashboard title="Dashboard" value={value} onChange={handleChange} user={user!} jobsCount={jobsCount} datasetsCount={datasetsCount} modelsCount={modelsCount} />
+      <PageHeaderDashboard title="Dashboard" path={tabValue} onChange={handleChange} user={user!} jobsCount={jobsCount} datasetsCount={datasetsCount} modelsCount={modelsCount} />
       <Box component="main">
         {renderView()}
       </Box>
