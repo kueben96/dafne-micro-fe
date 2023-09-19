@@ -52,12 +52,12 @@ const IconListItem = ({
         sx={{ color: isActive ? 'primary.main' : 'inherit' }}
       >
         <ListItemIcon
-          sx={{ color: isActive ? 'primary.main' : 'inherit' }}
+          sx={{ color: isActive ? 'primary.main' : 'gray.light' }}
         >
           {icon}
         </ListItemIcon>
         <ListItemText primary={text} />
-        {children && (open ? <ExpandLess /> : <ExpandMore />)}
+        {children && (open ? <ExpandLess sx={{ color: 'gray.light' }} /> : <ExpandMore sx={{ color: 'gray.light' }} />)}
       </ListItemButton>
       {children && (
         <Collapse in={open} timeout="auto" unmountOnExit>
@@ -89,11 +89,11 @@ const ChildListItem = ({
       onClick={handleNavigation}
       sx={{
         bgcolor: isActive ? 'primary.main' : 'transparent',
-        opacity: isActive ? 0.7 : 1,
+        opacity: isActive ? 0.6 : 1,
       }}
     >
       <ListItemIcon />
-      <ListItemText primary={text} />
+      <ListItemText primary={text} sx={{ fontWeight: 'light' }} />
     </ListItemButton>
   );
 };
@@ -113,11 +113,11 @@ const NavComponents = () => {
   };
 
   return (
-    <CollapsableNavList>
+    <CollapsableNavList sx={{ paddingLeft: 0, paddingRight: 0 }}>
       <IconListItem
         icon={<SpeedOutlinedIcon />}
         text="Dashboard"
-        isActive={pathname.startsWith(ROUTES.DASHBOARD.PATH)}
+        isActive={pathname.startsWith(ROUTES.DASHBOARD.INDEX)}
         children={
           <div>
             <ChildListItem
@@ -141,7 +141,7 @@ const NavComponents = () => {
       <IconListItem
         icon={<DashboardOutlinedIcon />}
         text="Methods"
-        isActive={pathname.startsWith(ROUTES.METHODS.PATH)}
+        isActive={pathname.startsWith(ROUTES.METHODS.INDEX)}
         children={
           <div>
             <ChildListItem

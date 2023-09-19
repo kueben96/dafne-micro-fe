@@ -13,28 +13,7 @@ function App(): JSX.Element {
 
   const dispatch = useAppDispatch()
 
-  const [theme, setTheme] =
-    React.useState(null);
 
-  useEffect(() => {
-    let isMounted = true; // This flag tracks whether the component is mounted
-
-    import('theme/theme')
-      .then((sharedTheme) => {
-        if (isMounted) {
-          // Only set the state if the component is still mounted
-          setTheme(sharedTheme.default);
-        }
-      })
-      .catch((error) =>
-        console.error('Error loading shared theme', error)
-      );
-
-    // Return a cleanup function that sets isMounted to false when the component unmounts
-    return () => {
-      isMounted = false;
-    };
-  }, []);
 
   const { data, error, isLoading } = useFetchAllJobsQuery();
 
@@ -57,25 +36,10 @@ function App(): JSX.Element {
 
 
 
-  if (!theme) {
-    return (
-      <div>
-        Loading theme...
-      </div>
-    );
-  }
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Navigate to={ROUTES.DASHBOARD.JOBS} />} />
-          <Route path={ROUTES.DASHBOARD.JOBS} element={<DashboardPage />} />
-          <Route path="/methods/reproduction" element={<ReproductionPage />} />
-        </Route>
-      </Routes>
-    </ThemeProvider>
+    <></>
   );
 }
 
