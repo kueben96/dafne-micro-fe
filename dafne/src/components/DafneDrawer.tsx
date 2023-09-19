@@ -18,9 +18,7 @@ const DafneDrawer: React.FC<DafneDrawerProps> = ({ handleDrawerToggle, isNavOpen
       anchor="left"
       PaperProps={{ className: "drawer-paper" }}
       open={isNavOpen}
-      onClose={handleDrawerToggle}   // classes={{
-    //   paper: classes.drawerPaper,
-    // }}
+      onClose={handleDrawerToggle}
     >
       <NavComponents />
     </DrawerCustom>

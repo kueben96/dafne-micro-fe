@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationManager } from '../utils/NavigationManager';
 import DashboardPage from '../pages/DashboardPage';
 import ReproductionPage from '../pages/ReproductionPage';
-import App from '../App';
+import AppInitializer from '../AppInitializer';
 import { Navigate } from 'react-router-dom';
 import { ROUTES } from '../utils/constants';
 import Layout from '../Layout';
@@ -11,9 +11,11 @@ export const routes = [
     {
         path: "/",
         element: (
-            <NavigationManager>
-                <Layout />
-            </NavigationManager>
+            <AppInitializer>
+                <NavigationManager>
+                    <Layout />
+                </NavigationManager>
+            </AppInitializer>
         ),
         children: [
             {
