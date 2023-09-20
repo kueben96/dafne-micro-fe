@@ -84,16 +84,18 @@ export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = (
 
 interface DropDownSelectionStepProps {
   selectionItems: InstructionOptionDropdown[];
-  setSelectedHook: (selectedValue: string) => void;
+  setSelectedHook: (selectedValue: string[]) => void;
+  multipleSelection?: boolean;
 }
 
-export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({ selectionItems, setSelectedHook }) => {
-  const [value, setValue] = useState('');
+export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({ selectionItems, setSelectedHook, multipleSelection = false }) => {
+  const [value, setValue] = useState<string[]>([]);
 
-  const handleChange = (event: SelectChangeEvent<string>) => {
+  const handleChange = (event: SelectChangeEvent<string[]>) => {
     const selectedValue = event.target.value;
     setValue(selectedValue);
-    setSelectedHook(selectedValue);
+    setSelectedHook(value);
+    console.log(value)
   };
 
   return (
@@ -105,6 +107,7 @@ export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({ se
         value={value}
         label="Model"
         onChange={handleChange}
+        multiple={multipleSelection}
       >
         {selectionItems &&
           selectionItems.map((option, index) => (

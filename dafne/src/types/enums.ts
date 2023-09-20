@@ -7,7 +7,13 @@ export enum JobStatus {
 
 export enum JobType {
     Reproduction = "reproduction",
-    // Add other types as needed
+}
+export enum ReproductionModel {
+    CTGAN = "ctgan-pamela",
+    TVAE = "tvae-pamela",
+}
+export enum ReproductionMetric {
+    WeightedStatistics = "weightedstatistics-pamela",
 }
 
 export const mapStatusToReadable = (status: string): string => {

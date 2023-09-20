@@ -21,8 +21,8 @@ const GenerationSettingsForm: React.FC = () => {
         variant: 'catalogue',
         file: null,
     });
-    const [selectedMetric, setSelectedMetric] = useState<string | null>(null);
-    const [selectedModel, setSelectedModel] = useState<string | null>(null);
+    const [selectedMetric, setSelectedMetric] = useState<string[] | null>(null);
+    const [selectedModel, setSelectedModel] = useState<string[] | null>(null);
     const theme = useTheme();
     const [activeStep, setActiveStep] = useState(0);
     const [completed, setCompleted] = useState(new Set<number>());
@@ -64,9 +64,10 @@ const GenerationSettingsForm: React.FC = () => {
                 <DropDownSelectionStep
                     setSelectedHook={setSelectedMetric}
                     selectionItems={metricOptionsReproduction}
+                    multipleSelection={true}
                 />
             ),
-            completedContent: <StepSummaryField label={selectedMetric ?? ''} />
+            completedContent: <StepSummaryField label={selectedMetric?.toString() ?? ''} />
         },
         {
             label: 'Select model',
@@ -76,7 +77,7 @@ const GenerationSettingsForm: React.FC = () => {
                     selectionItems={modelOptionsReproduction}
                 />
             ),
-            completedContent: <StepSummaryField label={selectedModel ?? ''} />
+            completedContent: <StepSummaryField label={selectedModel ? selectedModel[0] : ''} />
         },
         {
             label: 'Set parameters',
