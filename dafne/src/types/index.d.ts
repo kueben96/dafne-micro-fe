@@ -41,6 +41,10 @@ interface IModel {
     sample: number;
 }
 
+interface IMetric {
+    //TODO: TBD
+}
+
 type JobsRowData = {
     id: string;
     service: string;
