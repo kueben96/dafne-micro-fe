@@ -26,8 +26,22 @@ export interface IUser {
     jobTitle: string;
 }
 
-
-
+interface IModel {
+    identifier: string;
+    name: string;
+    paths: {
+        download: {
+            bucket: string;
+            path: string;
+        };
+        upload: {
+            bucket: string;
+            path: string;
+        };
+    };
+    runs: number;
+    sample: number;
+}
 
 interface IJobsRowData {
     id: string;
@@ -47,22 +61,7 @@ interface IJob {
             metric: string;
             params: Record<string, any>;
         }>;
-        model: {
-            identifier: string;
-            name: string;
-            paths: {
-                download: {
-                    bucket: string;
-                    path: string;
-                };
-                upload: {
-                    bucket: string;
-                    path: string;
-                };
-            };
-            runs: number;
-            sample: number;
-        };
+        model: IModel;
     };
     jobId: string;
     result: string;
@@ -74,6 +73,7 @@ interface IJob {
     workQueue: string;
 }
 
+
 interface ICreateServiceInstruction {
     epochs: number;
     metrics: {
@@ -81,20 +81,5 @@ interface ICreateServiceInstruction {
         metric: string;
         params: Record<string, unknown>;
     }[];
-    model: {
-        identifier: string;
-        name: string;
-        paths: {
-            download: {
-                bucket: string;
-                path: string;
-            };
-            upload: {
-                bucket: string;
-                path: string;
-            };
-        };
-        runs: number;
-        sample: number;
-    };
+    model: IModel;
 }
