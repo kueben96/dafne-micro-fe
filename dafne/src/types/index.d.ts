@@ -83,18 +83,18 @@ interface ICreateServiceInstruction {
     }[];
     model: {
         identifier: string;
-    };
-    name: string;
-    paths: {
-        download: {
-            bucket: string;
-            path: string;
+        name: string;
+        paths: {
+            download: {
+                bucket: string;
+                path: string;
+            };
+            upload: {
+                bucket: string;
+                path: string;
+            };
         };
-        upload: {
-            bucket: string;
-            path: string;
-        };
+        runs: number;
+        sample: number;
     };
-    runs: number;
-    sample: number;
 }

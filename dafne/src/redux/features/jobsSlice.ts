@@ -14,20 +14,20 @@ const initialJobsState: JobsState = {
         metrics: [],
         model: {
             identifier: '',
-        },
-        name: 'test',
-        paths: {
-            download: {
-                bucket: 'publicdataset',
-                path: 'demo.pkl',
+            name: 'test',
+            paths: {
+                download: {
+                    bucket: 'publicdataset',
+                    path: 'demo.pkl',
+                },
+                upload: {
+                    bucket: 'userbucket',
+                    path: 'sebastian/directory/',
+                },
             },
-            upload: {
-                bucket: 'userbucket',
-                path: 'sebastian/directory/',
-            },
+            runs: 2,
+            sample: 500,
         },
-        runs: 2,
-        sample: 500,
     }
 }
 

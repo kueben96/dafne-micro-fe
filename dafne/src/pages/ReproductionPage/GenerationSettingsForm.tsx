@@ -41,6 +41,7 @@ const GenerationSettingsForm: React.FC = () => {
                 }
             ],
             model: {
+                ...instruction.model,
                 identifier: selectedModel,
             }
         }));
