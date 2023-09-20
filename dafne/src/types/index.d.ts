@@ -15,9 +15,7 @@ type InstructionOptionDropdown = {
     info: string;
     apiName: string;
 };
-
-// User Types
-export interface IUser {
+interface IUser {
     _id: number;
     email: string;
     firstName: string;
@@ -43,7 +41,7 @@ interface IModel {
     sample: number;
 }
 
-interface IJobsRowData {
+type JobsRowData = {
     id: string;
     service: string;
     metric: string;

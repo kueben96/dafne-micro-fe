@@ -4,14 +4,14 @@ import TableToolBar from '../../../components/TableToolBar';
 import { ContentPaper, SizedBoxVertical } from '../../../assets/theme/dafneStyles';
 import JobsTable from '../../../components/JobsTable';
 import { GridCellParams, GridColDef } from '@mui/x-data-grid';
-import { IJobsRowData, IJob } from '../../../types';
+import { JobsRowData, IJob } from '../../../types';
 import JobStatus from '../../../components/ProcessStatus';
 
 interface JobsViewProps {
     userJobs: IJob[];
 }
 
-const JobsColumns: GridColDef<IJobsRowData>[] = [
+const JobsColumns: GridColDef<JobsRowData>[] = [
     {
         field: 'id',
         headerName: 'Job ID',
@@ -79,7 +79,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
 
 const JobsView: React.FC<JobsViewProps> = ({ userJobs }) => {
 
-    const JobsRows: IJobsRowData[] = userJobs.map(job => {
+    const JobsRows: JobsRowData[] = userJobs.map(job => {
         const { jobId, createdAt, instruction, status, type } = job;
         const { identifier } = instruction.metrics[0];
         const score = 0.98;
