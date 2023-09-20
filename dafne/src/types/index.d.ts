@@ -37,12 +37,24 @@ interface IModel {
             path: string;
         };
     };
+    weightsPath?: string;
     runs: number;
     sample: number;
 }
 
 interface IMetric {
-    //TODO: TBD
+    endpoints: Record<string, string>;
+    created_at: string;
+    creator: string;
+    description: string;
+    id: number;
+    identifier: string;
+    image: string;
+    mount_path: string;
+    name: string;
+    params: Record<string, unknown>;
+    target_port: number;
+    type_name: string;
 }
 
 type JobsRowData = {

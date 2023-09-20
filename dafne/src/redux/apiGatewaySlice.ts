@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { ICreateServiceInstruction, IJob } from '../types';
+import { ICreateServiceInstruction, IJob, IMetric, IModel } from '../types';
 import { mapServiceTypeToReadable, mapStatusToReadable } from '../types/enums';
 
 const baseQuery = fetchBaseQuery({
@@ -45,6 +45,12 @@ export const apiGatewaySlice = createApi({
         getJobStatusById: builder.query({
             query: job_id => `/job/${job_id}/status`,
         }),
+        getModels: builder.query<IModel[], void>({
+            query: () => 'model',
+        }),
+        getMetrics: builder.query<IMetric[], void>({
+            query: () => 'metric',
+        }),
         createServiceWithInstruction: builder.mutation<string, ICreateServiceInstruction>({
             query: (instructionObject) => ({
                 url: 'service/create',
@@ -61,6 +67,8 @@ export const {
     useFetchAllJobsQuery,
     useGetJobDetailByIdQuery,
     useGetJobStatusByIdQuery,
+    useGetMetricsQuery,
+    useGetModelsQuery,
     useCreateServiceWithInstructionMutation
 } = apiGatewaySlice
 

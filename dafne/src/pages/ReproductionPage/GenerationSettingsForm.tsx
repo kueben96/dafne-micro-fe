@@ -8,6 +8,7 @@ import { ICreateServiceInstruction } from '../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setInstruction } from '../../redux/features/jobsSlice';
+import { useGetMetricsQuery, useGetModelsQuery } from '../../redux/apiGatewaySlice';
 
 
 const GenerationSettingsForm: React.FC = () => {
@@ -28,27 +29,33 @@ const GenerationSettingsForm: React.FC = () => {
     const [completed, setCompleted] = useState(new Set<number>());
     const [skipped, setSkipped] = useState(new Set<number>());
 
-    // TODO: Lösung dafür, wenn weitere Metriken hinzugefügt werden können
-    useEffect(() => {
-        dispatch(setInstruction({
-            ...instruction,
-            // source: selectedSource, // Assuming 'source' is the property in the instruction for selectedSource
-            metrics: [
-                {
-                    identifier: selectedMetric,
-                    name: 'standard',
-                    params: {}
-                }
-            ],
-            model: {
-                ...instruction.model,
-                identifier: selectedModel,
-            }
-        }));
-    }, [selectedSource, selectedMetric, selectedModel]);
+    const { data: metrics, isLoading: isLoadingMetrics, error: metricError } = useGetMetricsQuery();
+    const { data: models, isLoading: isLoadingModels, error: modelsError } = useGetModelsQuery();
 
-    console.log("instruction")
-    console.log(instruction)
+    console.log("metrics")
+    console.log(metrics)
+    console.log("models")
+    console.log(models)
+
+
+    // TODO: Lösung dafür, wenn weitere Metriken hinzugefügt werden können
+    // useEffect(() => {
+    //     dispatch(setInstruction({
+    //         ...instruction,
+    //         // source: selectedSource, // Assuming 'source' is the property in the instruction for selectedSource
+    //         metrics: [
+    //             {
+    //                 identifier: selectedMetric,
+    //                 name: 'standard',
+    //                 params: {}
+    //             }
+    //         ],
+    //         model: {
+    //             ...instruction.model,
+    //             identifier: selectedModel,
+    //         }
+    //     }));
+    // }, [selectedSource, selectedMetric, selectedModel]);
 
     const steps = [
         {
