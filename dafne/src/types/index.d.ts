@@ -9,6 +9,13 @@ declare module "*.png" {
 declare module 'theme/theme';
 declare module 'react-dom/client'
 
+type InstructionOptionDropdown = {
+    value: string;
+    label: string;
+    info: string;
+    apiName: string;
+};
+
 // User Types
 export interface IUser {
     _id: number;

@@ -9,11 +9,15 @@ import { RowNumberSelectionStep } from './steps';
 import GenerationFeedback from './GenerationFeedback';
 import { reproductionHorizontalSteps } from '../../utils/constants';
 import ProcessDetail from './JobDetail';
+import { useSelector } from 'react-redux';
+import { setInstruction } from '../../redux/features/jobsSlice';
+import { RootState } from '../../redux/store';
 
 
 
 
 const ReproductionPage: React.FC = () => {
+
   const horizontalSteps = reproductionHorizontalSteps;
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
@@ -22,7 +26,13 @@ const ReproductionPage: React.FC = () => {
   const [generationCompleted, setGenerationCompleted] = useState(false);
   const [showProcessSteps, setShowProcessSteps] = useState(true);
 
+
+  const generationInstruction = useSelector((state: RootState) => state.jobs.instruction);
+
   const handleNext = () => {
+    // TODO: handle generate button click
+    // TODO: if button is last buttond or of type generate? 
+    // 
     const newCompleted = new Set(stepCompleted);
     if (!isStepCompleted(activeStep, stepCompleted)) {
       newCompleted.add(activeStep);

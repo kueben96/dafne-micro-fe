@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { apiGatewaySlice } from './apiGatewaySlice';
 import userReducer from './features/userSlice';
+import jobsReducer from './features/jobsSlice';
 
 export const store = configureStore({
     reducer: {
         // Add your API reducer to the store
         [apiGatewaySlice.reducerPath]: apiGatewaySlice.reducer,
         user: userReducer,
+        jobs: jobsReducer,
         // Add other reducers if needed
     },
     middleware: (getDefaultMiddleware) =>

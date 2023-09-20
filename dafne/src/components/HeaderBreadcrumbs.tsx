@@ -14,12 +14,10 @@ function capitalizeFirstLetter(str: string) {
 const HeaderBreadcrumbs: React.FC = () => {
   const pathname = useLocation().pathname;
   const pathSegments = pathname.split('/').filter(Boolean);
-  console.log(pathSegments);
 
   return (
     <CustomBreadcrumbs aria-label="breadcrumb">
       {pathSegments.slice(0, -1).map((segment, index) => (
-        console.log(segment),
         < Link
           key={index}
           underline="hover"

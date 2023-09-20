@@ -20,11 +20,27 @@ export const routes = [
         children: [
             {
                 index: true,
-                element: <Navigate to={ROUTES.DASHBOARD.JOBS} />
+                element: <Navigate to={ROUTES.DASHBOARD.INDEX} />
+            },
+            {
+                path: ROUTES.DASHBOARD.INDEX,
+                element: <DashboardPage />
+            },
+            {
+                path: ROUTES.DASHBOARD.MODELS,
+                element: <DashboardPage />
+            },
+            {
+                path: ROUTES.DASHBOARD.DATA,
+                element: <DashboardPage />
             },
             {
                 path: ROUTES.DASHBOARD.JOBS,
                 element: <DashboardPage />
+            },
+            {
+                path: ROUTES.METHODS.REPRODUCTION,
+                element: <ReproductionPage />
             },
             {
                 path: ROUTES.METHODS.REPRODUCTION,

@@ -64,7 +64,7 @@ const Layout = () => {
             <CssBaseline />
             <AppBarHeader handleDrawerToggle={handleNavToggle} />
             <DafneDrawer handleDrawerToggle={handleNavToggle} isNavOpen={isNavOpen} />
-            <Main open={isNavOpen}>
+            <Main theme={theme} open={isNavOpen}>
                 <Outlet />
             </Main>
         </ThemeProvider>

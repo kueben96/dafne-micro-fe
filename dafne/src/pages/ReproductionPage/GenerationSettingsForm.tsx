@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stepper, Box, Step, StepLabel, StepContent, Typography, Button, Paper, useTheme } from '@mui/material';
 import CustomStepIcon from '../../components/CustomStepIcon';
 import { isStepCompleted, isStepSkipped } from '../../utils/stepperUtils';
 import { DataSourceSelectionStep, DropDownSelectionStep, ParameterSettingsStep, StepSummaryField } from './steps';
 import { metricOptionsReproduction, modelOptionsReproduction } from '../../utils/constants';
+import { ICreateServiceInstruction } from '../../types';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { setInstruction } from '../../redux/features/jobsSlice';
 
-const GenerationSettingsForm = () => {
+
+const GenerationSettingsForm: React.FC = () => {
+
+    const dispatch = useDispatch();
+    const instruction = useSelector((state: RootState) => state.jobs.instruction);
     // TODO: implement setCompleted logic 
     // TODO: implement setSkipped logic
     // each step content component should get the set completed function after it is selected
@@ -19,6 +27,27 @@ const GenerationSettingsForm = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [completed, setCompleted] = useState(new Set<number>());
     const [skipped, setSkipped] = useState(new Set<number>());
+
+    // TODO: Lösung dafür, wenn weitere Metriken hinzugefügt werden können
+    useEffect(() => {
+        dispatch(setInstruction({
+            ...instruction,
+            // source: selectedSource, // Assuming 'source' is the property in the instruction for selectedSource
+            metrics: [
+                {
+                    identifier: selectedMetric,
+                    name: 'standard',
+                    params: {}
+                }
+            ],
+            model: {
+                identifier: selectedModel,
+            }
+        }));
+    }, [selectedSource, selectedMetric, selectedModel]);
+
+    console.log("instruction")
+    console.log(instruction)
 
     const steps = [
         {

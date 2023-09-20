@@ -83,7 +83,6 @@ const customTheme = createTheme({
 const importTheme = async (): Promise<ThemeOptions> => {
     try {
         const sharedTheme = await import('theme/theme');
-        console.log('sharedTheme', sharedTheme);
         return sharedTheme.default;
     } catch (error) {
         console.error('Error loading shared theme', error);

@@ -1,6 +1,7 @@
 import { Box, FormControl, FormControlLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, TextField, Typography } from '@mui/material'
 import React, { ChangeEvent, useRef, useState } from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
+import { InstructionOptionDropdown } from '../../types';
 
 interface StepSummaryFieldProps {
   label: string | null;
@@ -82,7 +83,7 @@ export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = (
 }
 
 interface DropDownSelectionStepProps {
-  selectionItems: { value: string; label: string }[];
+  selectionItems: InstructionOptionDropdown[];
   setSelectedHook: (selectedValue: string) => void;
 }
 
@@ -107,7 +108,7 @@ export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({ se
       >
         {selectionItems &&
           selectionItems.map((option, index) => (
-            <MenuItem key={index} value={option.value}>
+            <MenuItem key={index} value={option.apiName}>
               {option.label}
             </MenuItem>
           ))}
