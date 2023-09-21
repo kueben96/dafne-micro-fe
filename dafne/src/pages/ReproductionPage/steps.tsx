@@ -1,5 +1,5 @@
 import { Box, FormControl, FormControlLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, TextField, Typography } from '@mui/material'
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
 import { InstructionOptionDropdown } from '../../types';
 
@@ -84,18 +84,17 @@ export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = (
 
 interface DropDownSelectionStepProps {
   selectionItems: InstructionOptionDropdown[];
-  setSelectedHook: (selectedValue: string[]) => void;
+  setSelectedHook: React.Dispatch<React.SetStateAction<string[] | string>>
   multipleSelection?: boolean;
 }
-
 export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({
   selectionItems,
   setSelectedHook,
   multipleSelection = false,
 }) => {
-  const [value, setValue] = useState<string[]>([]);
+  const [value, setValue] = useState<string[] | string>([]);
 
-  const handleChange = (event: SelectChangeEvent<string[]>) => {
+  const handleChange = (event: SelectChangeEvent<string[] | string>) => {
     const selectedValue = event.target.value;
     setValue(selectedValue);
     setSelectedHook(selectedValue);

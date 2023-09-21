@@ -22,8 +22,9 @@ const GenerationSettingsForm: React.FC = () => {
         variant: 'catalogue',
         file: null,
     });
-    const [selectedMetric, setSelectedMetric] = useState<string[] | null>(null);
-    const [selectedModel, setSelectedModel] = useState<string[] | null>(null);
+    const [selectedMetric, setSelectedMetric] = useState<string[]>([]);
+    const [selectedModel, setSelectedModel] = useState<string[]>([]);
+
     const theme = useTheme();
     const [activeStep, setActiveStep] = useState(0);
     const [completed, setCompleted] = useState(new Set<number>());
@@ -57,6 +58,8 @@ const GenerationSettingsForm: React.FC = () => {
             };
         });
     }
+    console.log(selectedMetric)
+    console.log(selectedModel)
 
     // TODO: Lösung dafür, wenn weitere Metriken hinzugefügt werden können
     // useEffect(() => {
