@@ -1,5 +1,5 @@
 import { Box, FormControl, FormControlLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, TextField, Typography } from '@mui/material'
-import React, { ChangeEvent, useRef, useState } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
 import { InstructionOptionDropdown } from '../../types';
 
@@ -88,15 +88,23 @@ interface DropDownSelectionStepProps {
   multipleSelection?: boolean;
 }
 
-export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({ selectionItems, setSelectedHook, multipleSelection = false }) => {
+export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({
+  selectionItems,
+  setSelectedHook,
+  multipleSelection = false,
+}) => {
   const [value, setValue] = useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<string[]>) => {
     const selectedValue = event.target.value;
     setValue(selectedValue);
-    setSelectedHook(value);
-    console.log(value)
+    setSelectedHook(selectedValue);
   };
+
+  useEffect(() => {
+    // Ensure that the selected values are synchronized with the parent component
+    setSelectedHook(value);
+  }, [value, setSelectedHook]);
 
   return (
     <FormControl fullWidth>
@@ -109,16 +117,17 @@ export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({ se
         onChange={handleChange}
         multiple={multipleSelection}
       >
-        {selectionItems &&
-          selectionItems.map((option, index) => (
-            <MenuItem key={index} value={option.apiName}>
-              {option.label}
-            </MenuItem>
-          ))}
+        {selectionItems.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );
 };
+
+export default DropDownSelectionStep;
 
 export const ParameterSettingsStep: React.FC = () => {
   const [value, setValue] = useState('default');

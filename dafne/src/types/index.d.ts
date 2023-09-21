@@ -9,12 +9,7 @@ declare module "*.png" {
 declare module 'theme/theme';
 declare module 'react-dom/client'
 
-type InstructionOptionDropdown = {
-    value: string;
-    label: string;
-    info: string;
-    apiName: string;
-};
+
 interface IUser {
     _id: number;
     email: string;
@@ -87,13 +82,21 @@ interface IJob {
     workQueue: string;
 }
 
+interface IMetricServiceInstruction {
+    identifier: string;
+    metric: string;
+    params: Record<string, unknown>;
+}
+
+type InstructionOptionDropdown = {
+    value: string;
+    label: string;
+    info: string;
+    identifier: string;
+};
 
 interface ICreateServiceInstruction {
     epochs: number;
-    metrics: {
-        identifier: string;
-        metric: string;
-        params: Record<string, unknown>;
-    }[];
+    metrics: IMetricServiceInstruction[];
     model: IModel;
 }

@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ICreateServiceInstruction } from "../../types";
-import { JobStatus } from "../../types/enums";
-
+import { ICreateServiceInstruction, IMetric, IModel } from "../../types";
 
 interface JobsState {
     instruction: ICreateServiceInstruction;
-
+    availableMetrics: IMetric[] | null;
+    availableModels: IModel[] | null;
 }
 
 const initialJobsState: JobsState = {
@@ -28,7 +27,9 @@ const initialJobsState: JobsState = {
             runs: 2,
             sample: 500,
         },
-    }
+    },
+    availableMetrics: null,
+    availableModels: null,
 }
 
 const jobsSlice = createSlice({

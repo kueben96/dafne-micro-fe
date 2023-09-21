@@ -3,8 +3,8 @@ import { Stepper, Box, Step, StepLabel, StepContent, Typography, Button, Paper, 
 import CustomStepIcon from '../../components/CustomStepIcon';
 import { isStepCompleted, isStepSkipped } from '../../utils/stepperUtils';
 import { DataSourceSelectionStep, DropDownSelectionStep, ParameterSettingsStep, StepSummaryField } from './steps';
-import { metricOptionsReproduction, modelOptionsReproduction } from '../../utils/constants';
-import { ICreateServiceInstruction } from '../../types';
+import { getMetricDisplayName } from '../../utils/constants';
+import { ICreateServiceInstruction, IMetric, IModel, InstructionOptionDropdown } from '../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setInstruction } from '../../redux/features/jobsSlice';
@@ -32,11 +32,31 @@ const GenerationSettingsForm: React.FC = () => {
     const { data: metrics, isLoading: isLoadingMetrics, error: metricError } = useGetMetricsQuery();
     const { data: models, isLoading: isLoadingModels, error: modelsError } = useGetModelsQuery();
 
-    console.log("metrics")
-    console.log(metrics)
-    console.log("models")
-    console.log(models)
 
+    let metricSelectionItems: InstructionOptionDropdown[] = [];
+    let modelSelectionItems: InstructionOptionDropdown[] = [];
+
+    if (metrics) {
+        metricSelectionItems = (metrics as IMetric[]).flatMap((metric: IMetric) => {
+            return Object.keys(metric.endpoints).map((keyName) => ({
+                value: keyName,
+                label: getMetricDisplayName(keyName, metric.identifier),
+                identifier: metric.identifier,
+                info: metric.description,
+            }));
+        });
+    }
+
+    if (models) {
+        modelSelectionItems = (models as IModel[]).map((model: IModel) => {
+            return {
+                value: model.name,
+                label: model.name,
+                identifier: model.identifier,
+                info: model.name,
+            };
+        });
+    }
 
     // TODO: Lösung dafür, wenn weitere Metriken hinzugefügt werden können
     // useEffect(() => {
@@ -70,7 +90,7 @@ const GenerationSettingsForm: React.FC = () => {
             content: (
                 <DropDownSelectionStep
                     setSelectedHook={setSelectedMetric}
-                    selectionItems={metricOptionsReproduction}
+                    selectionItems={metricSelectionItems!}
                     multipleSelection={true}
                 />
             ),
@@ -81,7 +101,7 @@ const GenerationSettingsForm: React.FC = () => {
             content: (
                 <DropDownSelectionStep
                     setSelectedHook={setSelectedModel}
-                    selectionItems={modelOptionsReproduction}
+                    selectionItems={modelSelectionItems!}
                 />
             ),
             completedContent: <StepSummaryField label={selectedModel ? selectedModel[0] : ''} />
