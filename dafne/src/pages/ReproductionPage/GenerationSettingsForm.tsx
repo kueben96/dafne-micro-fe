@@ -4,7 +4,7 @@ import CustomStepIcon from '../../components/CustomStepIcon';
 import { isStepCompleted, isStepSkipped } from '../../utils/stepperUtils';
 import { DataSourceSelectionStep, DropDownSelectionStep, ParameterSettingsStep, StepSummaryField } from './steps';
 import { getMetricDisplayName } from '../../utils/constants';
-import { ICreateServiceInstruction, IMetric, IModel, InstructionOptionDropdown } from '../../types';
+import { ICreateServiceInstruction, IMetric, IMetricServiceInstruction, IModel, InstructionOptionDropdown } from '../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setInstruction } from '../../redux/features/jobsSlice';
@@ -58,27 +58,28 @@ const GenerationSettingsForm: React.FC = () => {
             };
         });
     }
-    console.log(selectedMetric)
-    console.log(selectedModel)
+
+    const setMetricInstructions = (metrics: string[]): IMetricServiceInstruction[] => {
+        console.log('Input metrics array:', metrics);
+        const metricInstructions: IMetricServiceInstruction[] = metrics.map((metric) => ({
+            identifier: 'standard',
+            metric: metric,
+            params: {},
+        }));
+        return metricInstructions;
+    };
 
     // TODO: Lösung dafür, wenn weitere Metriken hinzugefügt werden können
-    // useEffect(() => {
-    //     dispatch(setInstruction({
-    //         ...instruction,
-    //         // source: selectedSource, // Assuming 'source' is the property in the instruction for selectedSource
-    //         metrics: [
-    //             {
-    //                 identifier: selectedMetric,
-    //                 name: 'standard',
-    //                 params: {}
-    //             }
-    //         ],
-    //         model: {
-    //             ...instruction.model,
-    //             identifier: selectedModel,
-    //         }
-    //     }));
-    // }, [selectedSource, selectedMetric, selectedModel]);
+    useEffect(() => {
+        dispatch(setInstruction({
+            ...instruction,
+            metrics: setMetricInstructions(selectedMetric),
+            model: {
+                ...instruction.model,
+                identifier: selectedModel,
+            }
+        }));
+    }, [selectedMetric, selectedModel]);
 
     const steps = [
         {

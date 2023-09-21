@@ -3,7 +3,7 @@ import { InstructionOptionDropdown } from "../types";
 export const metricKeyNameMappings: Record<string, string> = {
     logisticDetection: "Logistic detection",
     mlefficacy: "MLEfficacy",
-    standard: "Standard",
+    standard: "Statistical Similarity",
 };
 
 export function getMetricDisplayName(keyName: string, metricIdentifier?: string) {
@@ -14,15 +14,6 @@ export function getMetricDisplayName(keyName: string, metricIdentifier?: string)
     return `${keyName} - ${metricIdentifier}`;
 }
 
-export const modelOptionsReproduction: InstructionOptionDropdown[] = [
-    { value: 'ctgan', label: 'CTGAN', info: 'Info about CTGAN', apiName: 'ctgan-pamela' },
-    { value: 'tvae', label: 'TVAE', info: 'Info about TVAE', apiName: 'tvae-pamela' }
-];
-export const metricOptionsReproduction: InstructionOptionDropdown[] = [
-    { value: 'statistic', label: 'Statistical similarity', info: 'Info about statistic', apiName: 'weightedstatistics-pamela' },
-    { value: 'ml-task', label: 'Machine Learning task', info: 'Info about ML', apiName: 'mltask-pamela' },
-    { value: 'logistik', label: 'Logistic detection', info: 'Info about log', apiName: 'logistik-pamela' },
-];
 
 export const JWT_TOKEN_KEY = 'jwtToken';
 export const USER_LOGOUT_EVENT_KEY = 'userLogout';
