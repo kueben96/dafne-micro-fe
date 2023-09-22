@@ -29,9 +29,8 @@
                   }
                 ],
                 "model": {
-                  "identifier": "ctgan-pamela"
-                },
-                "name": "test",
+                 "identifier": "ctgan-pamela",
+                "name": "Ctgan",
                 "paths": {
                   "download": {
                     "bucket": "publicdataset",
@@ -45,6 +44,7 @@
                 "runs": 2,
                 "sample": 500
               }
+            }
           }
         ]
     },

@@ -19,9 +19,9 @@
                 "creator": "Pamela",
                 "description": "test aus postman",
                 "endpoints": {
-                    "logisticDetection": "/logisticDetection",
+                    "standard": "/evaluation",
                     "mlefficacy": "/mlefficacy",
-                    "standard": "/evaluation"
+                    "logisticDetection": "/logisticDetection"
                 },
                 "id": 2,
                 "identifier": "weightedstatistics-pamela",

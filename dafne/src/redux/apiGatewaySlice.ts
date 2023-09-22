@@ -43,7 +43,7 @@ export const apiGatewaySlice = createApi({
         }),
         // TODO: delete job by id
         getJobStatusById: builder.query({
-            query: job_id => `/job/${job_id}/status`,
+            query: job_id => `/xjob/${job_id}/status`,
         }),
         getModels: builder.query<IModel[], void>({
             query: () => 'model',
@@ -55,7 +55,10 @@ export const apiGatewaySlice = createApi({
             query: (instructionObject) => ({
                 url: 'service/create',
                 method: 'POST',
-                instructionObject
+                body: instructionObject,
+                headers: {
+                    'Content-Type': 'application/json', // Specify JSON content type
+                },
             }),
         }),
 
