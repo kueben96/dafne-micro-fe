@@ -92,7 +92,7 @@ export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({
   setSelectedHook,
   multipleSelection = false,
 }) => {
-  const [value, setValue] = useState<string[] | string>([]);
+  const [value, setValue] = useState<string[] | string>(multipleSelection ? [] : '');
 
   const handleChange = (event: SelectChangeEvent<string[] | string>) => {
     const selectedValue = event.target.value;
@@ -101,7 +101,6 @@ export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({
   };
 
   useEffect(() => {
-    // Ensure that the selected values are synchronized with the parent component
     setSelectedHook(value);
   }, [value, setSelectedHook]);
 
