@@ -23,7 +23,7 @@ const GenerationSettingsForm: React.FC = () => {
         file: null,
     });
     const [selectedMetrics, setSelectedMetric] = useState<string[]>([]);
-    const [selectedModel, setSelectedModel] = useState<string[]>([]);
+    const [selectedModel, setSelectedModel] = useState<string>('');
 
     const theme = useTheme();
     const [activeStep, setActiveStep] = useState(0);
@@ -40,7 +40,7 @@ const GenerationSettingsForm: React.FC = () => {
     if (metrics) {
         metricSelectionItems = (metrics as IMetric[]).flatMap((metric: IMetric) => {
             return Object.keys(metric.endpoints).map((keyName) => ({
-                value: keyName + '-' + metric.identifier,
+                value: keyName + ',' + metric.identifier,
                 label: getMetricDisplayName(keyName, metric.identifier),
                 identifier: metric.identifier,
                 info: metric.description,
@@ -51,7 +51,7 @@ const GenerationSettingsForm: React.FC = () => {
     if (models) {
         modelSelectionItems = (models as IModel[]).map((model: IModel) => {
             return {
-                value: model.identifier,
+                value: model.identifier + ',' + model.name,
                 label: model.name,
                 identifier: model.identifier,
                 info: model.name,
@@ -61,7 +61,7 @@ const GenerationSettingsForm: React.FC = () => {
 
     const setMetricInstructions = (selectedMetrics: string[]): IMetricServiceInstruction[] => {
         const metricInstructions: IMetricServiceInstruction[] = selectedMetrics.map((metric) => {
-            const [endpoint, identifier] = metric.split('-');
+            const [endpoint, identifier] = metric.split(',');
             return {
                 identifier: identifier,
                 metric: endpoint,
@@ -70,21 +70,26 @@ const GenerationSettingsForm: React.FC = () => {
         });
         return metricInstructions;
     };
-
-    // TODO: Lösung dafür, wenn weitere Metriken hinzugefügt werden können
+    const setModelInstructions = (selectedModel: string): IModel => {
+        const [identifier, name] = selectedModel.split(',');
+        const modelInstruction: IModel = {
+            ...instruction.model,
+            identifier: identifier,
+            name: name,
+        };
+        return modelInstruction;
+    }
     useEffect(() => {
         dispatch(setInstruction({
             ...instruction,
             metrics: setMetricInstructions(selectedMetrics),
-            model: {
-                ...instruction.model,
-                identifier: selectedModel,
-            }
+            model: setModelInstructions(selectedModel),
         }));
     }, [selectedMetrics, selectedModel]);
 
     console.log("instruction")
     console.log(instruction)
+
 
     const steps = [
         {
@@ -98,7 +103,7 @@ const GenerationSettingsForm: React.FC = () => {
             label: 'Select metric',
             content: (
                 <DropDownSelectionStep
-                    setSelectedHook={setSelectedMetric}
+                    setSelectedMultipleHook={setSelectedMetric}
                     selectionItems={metricSelectionItems!}
                     multipleSelection={true}
                 />

@@ -84,12 +84,14 @@ export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = (
 
 interface DropDownSelectionStepProps {
   selectionItems: InstructionOptionDropdown[];
-  setSelectedHook: React.Dispatch<React.SetStateAction<string[] | string>>
+  setSelectedHook?: React.Dispatch<React.SetStateAction<string>>
+  setSelectedMultipleHook?: React.Dispatch<React.SetStateAction<string[]>>
   multipleSelection?: boolean;
 }
 export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({
   selectionItems,
   setSelectedHook,
+  setSelectedMultipleHook,
   multipleSelection = false,
 }) => {
   const [value, setValue] = useState<string[] | string>(multipleSelection ? [] : '');
@@ -97,12 +99,19 @@ export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({
   const handleChange = (event: SelectChangeEvent<string[] | string>) => {
     const selectedValue = event.target.value;
     setValue(selectedValue);
-    setSelectedHook(selectedValue);
+    if (setSelectedMultipleHook) {
+      setSelectedMultipleHook(selectedValue as string[]);
+    } else if (setSelectedHook)
+      setSelectedHook(selectedValue as string);
   };
 
   useEffect(() => {
-    setSelectedHook(value);
-  }, [value, setSelectedHook]);
+    if (setSelectedMultipleHook) {
+      setSelectedMultipleHook(value as string[]);
+    } else if (setSelectedHook)
+      setSelectedHook(value as string);
+  }, [value, setSelectedHook, setSelectedMultipleHook]);
+
 
   return (
     <FormControl fullWidth>
@@ -110,6 +119,7 @@ export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({
       <Select
         labelId="model-select-label"
         id="model-select"
+        defaultValue={[""]}
         value={value}
         label="Model"
         onChange={handleChange}
