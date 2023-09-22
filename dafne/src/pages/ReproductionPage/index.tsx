@@ -28,28 +28,19 @@ const ReproductionPage: React.FC = () => {
   const [generationCompleted, setGenerationCompleted] = useState(false);
   const [showProcessSteps, setShowProcessSteps] = useState(true);
 
-
-  const generationInstruction: ICreateServiceInstruction = useSelector((state: RootState) => state.jobs.instruction);
-  const instruction = useSelector((state: RootState) => state.jobs.instruction);
+  const generationInstruction = useSelector((state: RootState) => state.jobs.instruction);
   const [createService, { isLoading, isError, isSuccess }] = useCreateServiceWithInstructionMutation();
   const handleCreateService = async () => {
-    console.log('handleCreateService');
-    console.log("instruction");
-    console.log(instruction);
+
 
     try {
-      const response = await createService(instruction); // Await the mutation call
-      // Handle successful response here
+      const response = await createService(generationInstruction); // Await the mutation call
       console.log('Service created:', response); // Access response data property
     } catch (error) {
-      // Handle error here
       console.error('Error creating service:', error);
     }
   };
   const handleNext = () => {
-    // TODO: handle generate button click
-    // TODO: if button is last buttond or of type generate? 
-    // 
     const newCompleted = new Set(stepCompleted);
     if (!isStepCompleted(activeStep, stepCompleted)) {
       newCompleted.add(activeStep);
