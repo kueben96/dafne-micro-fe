@@ -22,7 +22,7 @@ const GenerationSettingsForm: React.FC = () => {
         variant: 'catalogue',
         file: null,
     });
-    const [selectedMetric, setSelectedMetric] = useState<string[]>([]);
+    const [selectedMetrics, setSelectedMetric] = useState<string[]>([]);
     const [selectedModel, setSelectedModel] = useState<string[]>([]);
 
     const theme = useTheme();
@@ -40,7 +40,7 @@ const GenerationSettingsForm: React.FC = () => {
     if (metrics) {
         metricSelectionItems = (metrics as IMetric[]).flatMap((metric: IMetric) => {
             return Object.keys(metric.endpoints).map((keyName) => ({
-                value: keyName,
+                value: keyName + '-' + metric.identifier,
                 label: getMetricDisplayName(keyName, metric.identifier),
                 identifier: metric.identifier,
                 info: metric.description,
@@ -51,7 +51,7 @@ const GenerationSettingsForm: React.FC = () => {
     if (models) {
         modelSelectionItems = (models as IModel[]).map((model: IModel) => {
             return {
-                value: model.name,
+                value: model.identifier,
                 label: model.name,
                 identifier: model.identifier,
                 info: model.name,
@@ -59,13 +59,15 @@ const GenerationSettingsForm: React.FC = () => {
         });
     }
 
-    const setMetricInstructions = (metrics: string[]): IMetricServiceInstruction[] => {
-        console.log('Input metrics array:', metrics);
-        const metricInstructions: IMetricServiceInstruction[] = metrics.map((metric) => ({
-            identifier: 'standard',
-            metric: metric,
-            params: {},
-        }));
+    const setMetricInstructions = (selectedMetrics: string[]): IMetricServiceInstruction[] => {
+        const metricInstructions: IMetricServiceInstruction[] = selectedMetrics.map((metric) => {
+            const [endpoint, identifier] = metric.split('-');
+            return {
+                identifier: identifier,
+                metric: endpoint,
+                params: {}
+            };
+        });
         return metricInstructions;
     };
 
@@ -73,13 +75,16 @@ const GenerationSettingsForm: React.FC = () => {
     useEffect(() => {
         dispatch(setInstruction({
             ...instruction,
-            metrics: setMetricInstructions(selectedMetric),
+            metrics: setMetricInstructions(selectedMetrics),
             model: {
                 ...instruction.model,
                 identifier: selectedModel,
             }
         }));
-    }, [selectedMetric, selectedModel]);
+    }, [selectedMetrics, selectedModel]);
+
+    console.log("instruction")
+    console.log(instruction)
 
     const steps = [
         {
@@ -98,7 +103,7 @@ const GenerationSettingsForm: React.FC = () => {
                     multipleSelection={true}
                 />
             ),
-            completedContent: <StepSummaryField label={selectedMetric?.toString() ?? ''} />
+            completedContent: <StepSummaryField label={selectedMetrics?.toString() ?? ''} />
         },
         {
             label: 'Select model',

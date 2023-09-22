@@ -117,7 +117,7 @@ export const DropDownSelectionStep: React.FC<DropDownSelectionStepProps> = ({
         multiple={multipleSelection}
       >
         {selectionItems.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
+          <MenuItem key={option.label} value={option.value}>
             {option.label}
           </MenuItem>
         ))}
