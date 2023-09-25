@@ -37,10 +37,10 @@ const JobDetail: React.FC = () => {
         console.log('JSON Data:', data);
         // Assuming the first row of data contains column names
         const [columnNames, ...rowData] = data;
-        setCols(columnNames.map((colName) => ({ field: colName, headerName: colName })) as GridColDef[]);
-        const formattedRows = rowData.map((row, index) => ({
+        setCols(columnNames.map((colName: any) => ({ field: colName, headerName: colName })) as GridColDef[]);
+        const formattedRows = rowData.map((row: { [x: string]: any; }, index: any) => ({
           id: index, // You can use a unique identifier here
-          ...columnNames.reduce((acc, colName, colIndex) => {
+          ...columnNames.reduce((acc: { [x: string]: any; }, colName: string | number, colIndex: string | number) => {
             acc[colName] = row[colIndex];
             return acc;
           }, {}),
