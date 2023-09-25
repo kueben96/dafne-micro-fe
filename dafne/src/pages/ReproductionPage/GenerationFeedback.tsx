@@ -26,6 +26,7 @@ const GenerationFeedback: React.FC<GenerationFeedbackProps> = ({ completed, setC
     const [progress, setProgress] = useState(0);
     const reproductionEpochCount = 10;
 
+
     useEffect(() => {
         const simulateAPI = () => {
             // Simulate an API response
@@ -42,7 +43,7 @@ const GenerationFeedback: React.FC<GenerationFeedbackProps> = ({ completed, setC
 
             // Check for completion
             if (jobStatus.run === jobStatus.runs && jobStatus.status === "completed") {
-                // Raise the "generationCompleted" event
+                setCompleted(true);
                 window.dispatchEvent(new Event("generationCompleted"));
             }
         };
@@ -52,7 +53,7 @@ const GenerationFeedback: React.FC<GenerationFeedbackProps> = ({ completed, setC
             if (!completed) {
                 simulateAPI();
             }
-        }, 5000); // 5000 milliseconds = 5 seconds
+        }, 500); // 5000 milliseconds = 5 seconds
 
         return () => {
             // Cleanup: clear the interval when the component unmounts
@@ -79,9 +80,6 @@ interface ProgressSectionProps {
 }
 const ProgressSection: React.FC<ProgressSectionProps> = ({ progress, totalEpochs, completed, theme }) => {
 
-    window.addEventListener('generationCompleted', () => {
-        console.log("Event generationCompleted")
-    });
 
     return (
         <Box display="flex" flexDirection="column" >
