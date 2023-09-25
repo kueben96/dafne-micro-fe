@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ContentBox, ContentPaper, SizedBoxHorizontal } from '../../assets/theme/dafneStyles'
 import { Box, Button, IconButton, Typography, styled, useTheme } from '@mui/material';
 import { MetricScoreCard, QualityReportCard, SettingsOverviewCard } from './SummaryCard';
@@ -6,6 +6,7 @@ import JobsTable from '../../components/JobsTable';
 import { HeaderEditable, HeaderSize } from '../../components/PageHeader';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import OpenWithSharpIcon from '@mui/icons-material/OpenWithSharp';
+import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
 
 
 // TODO: implement Editing Job Name and Table Name
@@ -17,30 +18,41 @@ const CardContainer = styled(Box)({
 });
 
 
-const columns = [
-  {
-    field: 'id',
-    headerName: 'Job ID',
-    flex: 1,
-    headerClassName: 'header-cell',
-  },
-  {
-    field: 'service',
-    headerName: 'Service',
-    flex: 1,
-    headerClassName: 'header-cell',
-  },
-  {
-    field: 'metric',
-    headerName: 'Metric',
-    flex: 1,
-    headerClassName: 'header-cell',
-  }
-]
-
 const JobDetail: React.FC = () => {
 
   const [tableName, setTablename] = useState('MySyntheticDataset.csv');
+
+  const [rows, setRows] = useState<GridRowsProp>([]);
+  const [cols, setCols] = useState<GridColDef[]>([]); // Initialize cols as an empty array
+
+
+  useEffect(() => {
+    // Fetch data from demo.json (assuming it's in the public directory)
+    fetch('http://localhost:8086/demopkl_sample_100.json')
+      .then((response) => {
+        console.log('Response status:', response);
+        return response.json();
+      })
+      .then((data) => {
+        console.log('JSON Data:', data);
+        // Assuming the first row of data contains column names
+        const [columnNames, ...rowData] = data;
+        setCols(columnNames.map((colName) => ({ field: colName, headerName: colName })) as GridColDef[]);
+        const formattedRows = rowData.map((row, index) => ({
+          id: index, // You can use a unique identifier here
+          ...columnNames.reduce((acc, colName, colIndex) => {
+            acc[colName] = row[colIndex];
+            return acc;
+          }, {}),
+        }));
+        setRows(formattedRows);
+        console.log('Formatted Rows:', rows);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
 
   return (
     <>
@@ -63,7 +75,7 @@ const JobDetail: React.FC = () => {
               <IconButton><OpenWithSharpIcon /></IconButton>
             </Box>
           </Box>
-          <JobsTable columns={columns} />
+          <JobsTable columns={cols} rows={rows} />
         </ContentBox>
       </ContentPaper>
     </>

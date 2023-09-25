@@ -105,7 +105,6 @@ export const MetricScoreCard: React.FC = () => {
   return (
     <SummaryCard title="Metric Score" flex={2}>
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
-        <Typography variant='h6'>Statistical Similarity</Typography>
         <SizedBoxVertical theme={theme} space={1} />
         <CircularProgressWithLabel value={95} />
       </Box>

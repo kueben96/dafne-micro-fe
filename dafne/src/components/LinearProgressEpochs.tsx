@@ -3,17 +3,17 @@ import React from 'react';
 
 interface CustomLinearProgressProps {
   progress: number;
-  totalEpochs: number;
+  totalepochs: number;
   current: number;
   theme: Theme;
 }
 
-const CustomLinearProgress = styled(Box)<CustomLinearProgressProps>(({ theme, progress, current, totalEpochs }) => ({
+const CustomLinearProgress = styled(Box)<CustomLinearProgressProps>(({ theme, progress, current, totalepochs }) => ({
   marginRight: theme.spacing(0.5),
   padding: theme.spacing(2, 0),
   backgroundColor: current <= progress ? theme.palette?.primary?.dark : theme.palette?.gray?.lighter,
   display: 'inline-block',
-  width: `calc(100% / ${totalEpochs})`,
+  width: `calc(100% / ${totalepochs})`,
   height: '18px',
   borderRadius: '1px',
 }));
@@ -30,7 +30,7 @@ const LinearProgressEpochs: React.FC<LinearProgressEpochsProps> = ({ progress, l
   const blocks = [];
 
   for (let i = 1; i <= epochsCount; i++) {
-    blocks.push(<CustomLinearProgress key={i} current={i} progress={progress} theme={theme} totalEpochs={epochsCount} />);
+    blocks.push(<CustomLinearProgress key={i} current={i} progress={progress} theme={theme} totalepochs={epochsCount} />);
   }
 
   return (

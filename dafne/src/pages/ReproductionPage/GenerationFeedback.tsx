@@ -43,6 +43,7 @@ const GenerationFeedback: React.FC<GenerationFeedbackProps> = ({ completed, setC
 
             // Check for completion
             if (jobStatus.run === jobStatus.runs && jobStatus.status === "completed") {
+
                 setCompleted(true);
                 window.dispatchEvent(new Event("generationCompleted"));
             }
@@ -53,7 +54,9 @@ const GenerationFeedback: React.FC<GenerationFeedbackProps> = ({ completed, setC
             if (!completed) {
                 simulateAPI();
             }
-        }, 500); // 5000 milliseconds = 5 seconds
+
+            //TODO: set interval to 30 seconds when doing the real API call
+        }, 50);
 
         return () => {
             // Cleanup: clear the interval when the component unmounts
@@ -63,7 +66,7 @@ const GenerationFeedback: React.FC<GenerationFeedbackProps> = ({ completed, setC
 
     return (
         <>
-            <ProgressSection progress={progress} totalEpochs={reproductionEpochCount} completed={completed} theme={theme} />
+            <ProgressSection progress={progress} totalepochs={reproductionEpochCount} completed={completed} theme={theme} />
             <SizedBoxVertical />
         </>
     )
@@ -74,11 +77,11 @@ export default GenerationFeedback;
 
 interface ProgressSectionProps {
     progress: number;
-    totalEpochs: number;
+    totalepochs: number;
     completed: boolean;
     theme: Theme;
 }
-const ProgressSection: React.FC<ProgressSectionProps> = ({ progress, totalEpochs, completed, theme }) => {
+const ProgressSection: React.FC<ProgressSectionProps> = ({ progress, totalepochs, completed, theme }) => {
 
 
     return (
@@ -91,7 +94,7 @@ const ProgressSection: React.FC<ProgressSectionProps> = ({ progress, totalEpochs
             <Box display="flex" flexDirection="row" width="100%" justifyContent="center" paddingBottom={2}>
                 <Typography >{completed ? "Completed" : "Training your model..."}</Typography>
             </Box>
-            <LinearProgressEpochs progress={progress} epochsCount={totalEpochs} />
+            <LinearProgressEpochs progress={progress} epochsCount={totalepochs} />
         </Box>
     )
 }
