@@ -13,9 +13,6 @@ import { useSelector } from 'react-redux';
 import { setInstruction } from '../../redux/features/jobsSlice';
 import { RootState } from '../../redux/store';
 import { useCreateServiceWithInstructionMutation } from '../../redux/apiGatewaySlice';
-import { ICreateServiceInstruction } from '../../types';
-
-
 
 
 const ReproductionPage: React.FC = () => {
@@ -30,10 +27,11 @@ const ReproductionPage: React.FC = () => {
 
   const generationInstruction = useSelector((state: RootState) => state.jobs.instruction);
   const [createService, { isLoading, isError, isSuccess }] = useCreateServiceWithInstructionMutation();
+
+
   const handleCreateService = async () => {
-
-
     try {
+      handleNext();
       const response = await createService(generationInstruction); // Await the mutation call
       console.log('Service created:', response); // Access response data property
     } catch (error) {
