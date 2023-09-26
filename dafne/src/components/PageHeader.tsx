@@ -143,6 +143,7 @@ export const HeaderEditable: React.FC<HeaderEditableProps> = ({
             sx={{ paddingTop: 1, paddingBottom: 1 }}
           >
             {title}
+
           </Typography>
           <IconButton onClick={onEditClick}>
             <BorderColorOutlinedIcon sx={{ padding: '1px' }} />

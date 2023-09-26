@@ -6,6 +6,7 @@ import AppInitializer from '../AppInitializer';
 import { Navigate } from 'react-router-dom';
 import { ROUTES } from '../utils/constants';
 import Layout from '../Layout';
+import JobDetailPage from '../pages/DashboardPage/JobsView/JobDetailPage';
 
 export const routes = [
     {
@@ -37,6 +38,10 @@ export const routes = [
             {
                 path: ROUTES.DASHBOARD.JOBS,
                 element: <DashboardPage />
+            },
+            {
+                path: ROUTES.DASHBOARD.JOB_DETAIL,
+                element: <JobDetailPage />
             },
             {
                 path: ROUTES.METHODS.REPRODUCTION,

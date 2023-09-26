@@ -21,26 +21,21 @@ const CardContainer = styled(Box)({
 });
 
 
-const JobDetail: React.FC = () => {
+const JobDetail: React.FC<{ jobStatus: IJobStatus; isLoading: boolean }> = ({ jobStatus, isLoading }) => {
 
   const [rows, setRows] = useState<GridRowsProp>([]);
   const [cols, setCols] = useState<GridColDef[]>([]); // Initialize cols as an empty array
 
-  const { data: jobStatus, isLoading, error } = useGetJobStatusByIdQuery("userxyz_12345")
-  if (jobStatus) {
-    console.log(jobStatus)
-  }
+  // const { data: jobStatus, isLoading, error } = useGetJobStatusByIdQuery("userxyz_12345")
 
 
   useEffect(() => {
     // Fetch data from demo.json (assuming it's in the public directory)
     fetch('http://localhost:8086/demopkl_sample_100.json')
       .then((response) => {
-        console.log('Response status:', response);
         return response.json();
       })
       .then((data) => {
-        console.log('JSON Data:', data);
         // Assuming the first row of data contains column names
         const [columnNames, ...rowData] = data;
         setCols(columnNames.map((colName: any) => ({ field: colName, headerName: colName })) as GridColDef[]);
@@ -52,7 +47,6 @@ const JobDetail: React.FC = () => {
           }, {}),
         }));
         setRows(formattedRows);
-        console.log('Formatted Rows:', rows);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);

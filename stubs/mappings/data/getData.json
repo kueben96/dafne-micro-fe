@@ -17,11 +17,12 @@
         "jsonBody": [
             {
                 "publicData": [
-                  "Bridges",
-                  "Walls of Hamburg"
+                  "demo.pkl",
+                  "pronto_cycle_share_station.csv",
+                  "testdir/toolshed.png"
                 ],
                 "userBucket": [
-                  "Bridges_modified"
+                  "sebastian/demo.pkl"
                 ]
               }
         ]

@@ -34,6 +34,7 @@ export const ROUTES = {
     DASHBOARD: {
         INDEX: '/dashboard',
         JOBS: '/dashboard/jobs',
+        JOB_DETAIL: '/dashboard/jobs/:id',
         DATA: '/dashboard/data',
         MODELS: '/dashboard/models',
     },

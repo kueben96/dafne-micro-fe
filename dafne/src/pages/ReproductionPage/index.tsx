@@ -10,7 +10,6 @@ import GenerationFeedback from './GenerationFeedback';
 import { reproductionHorizontalSteps } from '../../utils/constants';
 import ProcessDetail from './JobDetail';
 import { useSelector } from 'react-redux';
-import { setInstruction } from '../../redux/features/jobsSlice';
 import { RootState } from '../../redux/store';
 import { useCreateServiceWithInstructionMutation } from '../../redux/apiGatewaySlice';
 
