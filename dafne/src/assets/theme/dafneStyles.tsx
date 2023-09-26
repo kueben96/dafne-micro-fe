@@ -1,3 +1,4 @@
+import { AutoMode } from '@mui/icons-material';
 import { Box, Drawer, AppBar } from '@mui/material';
 import { styled } from '@mui/material';
 import { Theme } from '@mui/material/styles';
@@ -45,8 +46,8 @@ export const SizedBoxHorizontal = styled(Box)<{
 
 // Jobs Table 
 
-export const TableCustomBox = styled(Box)(({ theme }: { theme: Theme }) => ({
-    height: 400,
+export const TableCustomBox = styled(Box)(({ theme, height }: { theme: Theme, height?: number }) => ({
+    height: height ?? 400,
     width: '100%',
     '& .cell': {
         textAlign: 'center',

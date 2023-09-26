@@ -86,7 +86,7 @@ const JobDetail: React.FC = () => {
                   <IconButton><OpenWithSharpIcon /></IconButton>
                 </Box>
               </Box>
-              <JobsTable columns={cols} rows={rows} />
+              <JobsTable tableType='datasets' columns={cols} rows={rows} />
             </ContentBox>
           </ContentPaper>
         </>

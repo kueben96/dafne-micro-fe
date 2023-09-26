@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { EmptyRowsImage } from '../assets/images';
@@ -21,23 +21,17 @@ const CustomNoRowsOverlay = () => {
 interface JobsTableProps {
     columns: GridColDef[];
     rows?: GridRowsProp;
+    tableType: 'jobs' | 'datasets';
 }
 
 
-const JobsTable: React.FC<JobsTableProps> = ({ rows, columns }) => {
+const JobsTable: React.FC<JobsTableProps> = ({ rows, columns, tableType }) => {
     const tableRef = React.useRef<HTMLDivElement | null>(null);
+    const theme = useTheme();
 
-    React.useEffect(() => {
-        const handleResize = () => {
-            // Your resize handling logic goes here.
-            // This function will be called when the table container's size changes.
-        };
-
+    useEffect(() => {
         // Create a ResizeObserver to watch for changes in the table container's size.
         const resizeObserver = new ResizeObserver((entries) => {
-            // Call handleResize whenever the size changes.
-            handleResize();
-
             // If needed, you can access the new size like this:
             const [entry] = entries;
             const { width, height } = entry.contentRect;
@@ -57,12 +51,22 @@ const JobsTable: React.FC<JobsTableProps> = ({ rows, columns }) => {
         };
     }, []);
 
+
     return (
-        <TableCustomBox ref={tableRef}>
+        <TableCustomBox theme={theme} ref={tableRef} height={tableType == "datasets" ? 600 : 400}>
             <CustomDataGrid
                 autoHeight
                 rows={rows ?? []}
                 columns={columns}
+                pagination
+                pageSizeOptions={[10, 50, 100]}
+                initialState={
+                    {
+                        pagination: {
+                            paginationModel: { pageSize: 10 }
+                        }
+                    }
+                }
                 slots={{
                     noRowsOverlay: CustomNoRowsOverlay,
                 }}

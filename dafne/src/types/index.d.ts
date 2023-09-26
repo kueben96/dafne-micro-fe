@@ -82,7 +82,6 @@ interface IJob {
     workQueue: string;
 }
 
-type JobStateType = "queued | running | completed | error"
 interface IJobStatus {
     job: IJob;
     lastMessage: string;
