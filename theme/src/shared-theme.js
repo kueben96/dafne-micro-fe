@@ -74,6 +74,7 @@ const customTheme = createTheme({
     palette: palette,
     layout: {
         drawerWidth: 240,
+        appBarHeight: 20,
     },
 });
 

@@ -9,8 +9,10 @@ const Main = styled('main')(
     // TODO: check if there is still enough space for content only add margin if overlaps
     // TODO: think of layout concept after implementing main content
     ({ theme, open }: { theme: Theme; open: boolean }) => ({
+        marginTop: 60,
         ... (open && {
             marginLeft: theme?.layout?.drawerWidth,
+
         }),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
@@ -62,8 +64,8 @@ const Layout = () => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <AppBarHeader handleDrawerToggle={handleNavToggle} />
             <DafneDrawer handleDrawerToggle={handleNavToggle} isNavOpen={isNavOpen} />
+            <AppBarHeader handleDrawerToggle={handleNavToggle} />
             <Main theme={theme} open={isNavOpen}>
                 <Outlet />
             </Main>

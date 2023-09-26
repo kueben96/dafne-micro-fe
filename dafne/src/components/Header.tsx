@@ -34,7 +34,7 @@ const AppBarHeader: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDraw
   const user = useSelector(selectUser)
 
   return (
-    <AppBar sx={{ backgroundColor: theme.palette?.common?.white, zIndex: theme.zIndex.drawer + 1 }} position="relative">
+    <AppBar sx={{ backgroundColor: theme.palette?.common?.white, zIndex: theme.zIndex.drawer + 1 }} position="fixed">
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <IconButton color="primary" onClick={handleDrawerToggle}>

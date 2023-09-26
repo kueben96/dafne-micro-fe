@@ -20,6 +20,7 @@ declare module '@mui/material/styles' {
     interface CustomThemeOptions extends ThemeOptions {
         layout?: {
             drawerWidth?: number;
+            appBarHeight?: number;
         },
         palette: PaletteOptions;
     }
