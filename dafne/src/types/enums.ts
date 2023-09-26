@@ -1,4 +1,4 @@
-export enum JobStatus {
+export enum JobState {
     Queued = "queued",
     Running = "running",
     Completed = "completed",
@@ -18,13 +18,13 @@ export enum ReproductionMetric {
 
 export const mapStatusToReadable = (status: string): string => {
     switch (status) {
-        case JobStatus.Queued:
+        case JobState.Queued:
             return "Queued";
-        case JobStatus.Running:
+        case JobState.Running:
             return "Running";
-        case JobStatus.Completed:
+        case JobState.Completed:
             return "Completed";
-        case JobStatus.Error:
+        case JobState.Error:
             return "Error";
         default:
             return "Unknown";
@@ -38,5 +38,16 @@ export const mapServiceTypeToReadable = (type: string): string => {
         // Add other type mappings as needed
         default:
             return "Unknown";
+    }
+};
+export const mapModelToReadable = (type: string): string => {
+    switch (type) {
+        case ReproductionModel.CTGAN:
+            return "CTGAN";
+        case ReproductionModel.TVAE:
+            return "TVAE";
+        // Add other type mappings as needed
+        default:
+            return type;
     }
 };

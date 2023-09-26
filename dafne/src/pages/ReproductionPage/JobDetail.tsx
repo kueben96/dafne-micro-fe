@@ -7,6 +7,9 @@ import { HeaderEditable, HeaderSize } from '../../components/PageHeader';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import OpenWithSharpIcon from '@mui/icons-material/OpenWithSharp';
 import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
+import { useGetJobStatusByIdQuery } from '../../redux/apiGatewaySlice';
+import { IJobStatus } from '../../types';
+import { mapModelToReadable } from '../../types/enums';
 
 
 // TODO: implement Editing Job Name and Table Name
@@ -20,10 +23,13 @@ const CardContainer = styled(Box)({
 
 const JobDetail: React.FC = () => {
 
-  const [tableName, setTablename] = useState('MySyntheticDataset.csv');
-
   const [rows, setRows] = useState<GridRowsProp>([]);
   const [cols, setCols] = useState<GridColDef[]>([]); // Initialize cols as an empty array
+
+  const { data: jobStatus, isLoading, error } = useGetJobStatusByIdQuery("userxyz_12345")
+  if (jobStatus) {
+    console.log(jobStatus)
+  }
 
 
   useEffect(() => {
@@ -54,30 +60,37 @@ const JobDetail: React.FC = () => {
   }, []);
 
 
+
   return (
     <>
-      <JobSummary />
-      <ContentPaper>
-        <ContentBox>
-          <Box display="flex" flexDirection="row" justifyContent="space-between">
-            <Box display="flex" flexDirection="column">
-              <Typography variant='body1' color="gray.main">Preview</Typography>
-              <HeaderEditable title={tableName} headerSize={HeaderSize.SmallHeader} />
-            </Box>
-            <Box > {/* Updated line */}
-              <Button
-                sx={{ fontSize: 14, padding: '4px', alignSelf: 'flex-start', textTransform: 'capitalize' }}
-                variant="outlined"
-                startIcon={<FileDownloadOutlinedIcon sx={{ fontSize: 10, padding: 0 }} />}
-              >
-                Download
-              </Button>
-              <IconButton><OpenWithSharpIcon /></IconButton>
-            </Box>
-          </Box>
-          <JobsTable columns={cols} rows={rows} />
-        </ContentBox>
-      </ContentPaper>
+
+      {isLoading && <div>Loading Job Status...</div>}
+      {jobStatus &&
+        <>
+          <JobSummary jobStatus={jobStatus} />
+          <ContentPaper>
+            <ContentBox>
+              <Box display="flex" flexDirection="row" justifyContent="space-between">
+                <Box display="flex" flexDirection="column">
+                  <Typography variant='body1' color="gray.main">Preview</Typography>
+                  <HeaderEditable title={jobStatus.job.instruction.model.paths.upload.path} headerSize={HeaderSize.SmallHeader} />
+                </Box>
+                <Box > {/* Updated line */}
+                  <Button
+                    sx={{ fontSize: 14, padding: '4px', alignSelf: 'flex-start', textTransform: 'capitalize' }}
+                    variant="outlined"
+                    startIcon={<FileDownloadOutlinedIcon sx={{ fontSize: 10, padding: 0 }} />}
+                  >
+                    Download
+                  </Button>
+                  <IconButton><OpenWithSharpIcon /></IconButton>
+                </Box>
+              </Box>
+              <JobsTable columns={cols} rows={rows} />
+            </ContentBox>
+          </ContentPaper>
+        </>
+      }
     </>
 
   )
@@ -85,14 +98,19 @@ const JobDetail: React.FC = () => {
 
 export default JobDetail
 
-const JobSummary: React.FC = () => {
+const JobSummary: React.FC<{ jobStatus: IJobStatus }> = ({ jobStatus }) => {
   const theme = useTheme();
+  const sampleNumber = jobStatus.job.instruction.model.sample;
+  const sourceData = jobStatus.job.instruction.model.paths.download.path;
+  const model = mapModelToReadable(jobStatus.job.instruction.model.identifier);
+  //TODO: update with metric score when response is updated
+  const metric = 92;
   return (
     <ContentBox>
       <CardContainer>
-        <SettingsOverviewCard />
+        <SettingsOverviewCard rowNumber={sampleNumber} sourceDataset={sourceData} model={model} />
         <SizedBoxHorizontal theme={theme} space={0.5} />
-        <MetricScoreCard />
+        <MetricScoreCard metricScore={metric} />
         <SizedBoxHorizontal theme={theme} space={0.5} />
         <QualityReportCard />
       </CardContainer>

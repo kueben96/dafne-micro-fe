@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { ICreateServiceInstruction, IJob, IMetric, IModel } from '../types';
+import { ICreateServiceInstruction, IJob, IJobStatus, IMetric, IModel } from '../types';
 import { mapServiceTypeToReadable, mapStatusToReadable } from '../types/enums';
 
 const baseQuery = fetchBaseQuery({
@@ -42,8 +42,8 @@ export const apiGatewaySlice = createApi({
             query: job_id => `/job/${job_id}`,
         }),
         // TODO: delete job by id
-        getJobStatusById: builder.query({
-            query: job_id => `/xjob/${job_id}/status`,
+        getJobStatusById: builder.query<IJobStatus, string>({
+            query: job_id => `/job/${job_id}/status`,
         }),
         getModels: builder.query<IModel[], void>({
             query: () => 'model',

@@ -73,8 +73,14 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ title, actions, childr
   );
 };
 
+interface SettingsOverviewCardProps {
+  rowNumber: number;
+  sourceDataset: string;
+  model: string;
+  parameters?: string;
+}
 
-export const SettingsOverviewCard: React.FC = () => {
+export const SettingsOverviewCard: React.FC<SettingsOverviewCardProps> = ({ rowNumber, sourceDataset, model, parameters }) => {
   return (
     <SummaryCard title="Settings overview" flex={4}>
       <Box display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" >
@@ -92,7 +98,7 @@ export const SettingsOverviewCard: React.FC = () => {
           <Typography variant="h6">CTGAN</Typography>
         </Box>
         <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
-          <Typography variant="body2" color="gray.main">Parameters</Typography>
+          <Typography variant="body2" color="gray.main">{parameters ?? 'Default'}</Typography>
           <Typography variant="h6">Default</Typography>
         </Box>
       </Box>
@@ -100,13 +106,13 @@ export const SettingsOverviewCard: React.FC = () => {
   );
 };
 
-export const MetricScoreCard: React.FC = () => {
+export const MetricScoreCard: React.FC<{ metricScore: number }> = ({ metricScore }) => {
   const theme = useTheme();
   return (
     <SummaryCard title="Metric Score" flex={2}>
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
         <SizedBoxVertical theme={theme} space={1} />
-        <CircularProgressWithLabel value={95} />
+        <CircularProgressWithLabel value={metricScore} />
       </Box>
     </SummaryCard>
   );

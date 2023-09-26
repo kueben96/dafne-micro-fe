@@ -1,35 +1,32 @@
 import { Box, capitalize, useTheme } from '@mui/material';
 import React from 'react';
-import { JobStatus, mapStatusToReadable } from '../types/enums';
+import { JobState, mapStatusToReadable } from '../types/enums';
 
-interface JobStatus {
-  status: string;
-}
 
-const ProcessStatus: React.FC<JobStatus> = (props) => {
+const ProcessStatus: React.FC<{ status: JobState }> = ({ status }) => {
   const theme = useTheme();
   let color = '';
   let label = '';
-  switch (props.status) {
-    case JobStatus.Completed:
+  switch (status) {
+    case JobState.Completed:
       color = theme.palette.success?.main || '';
-      label = mapStatusToReadable(JobStatus.Completed);
+      label = mapStatusToReadable(JobState.Completed);
       break;
-    case JobStatus.Running:
+    case JobState.Running:
       color = theme.palette.primary?.main || '';
-      label = mapStatusToReadable(JobStatus.Running)
+      label = mapStatusToReadable(JobState.Running)
       break;
-    case JobStatus.Error:
+    case JobState.Error:
       color = theme.palette.error?.main || '';
-      label = mapStatusToReadable(JobStatus.Error);
+      label = mapStatusToReadable(JobState.Error);
       break;
-    case JobStatus.Queued:
+    case JobState.Queued:
       color = theme.palette.gray?.light || '';
-      label = mapStatusToReadable(JobStatus.Queued);
+      label = mapStatusToReadable(JobState.Queued);
       break;
     default:
       color = 'default';
-      label = props.status;
+      label = status;
       break;
   }
   return (

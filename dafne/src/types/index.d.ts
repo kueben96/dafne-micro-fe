@@ -1,4 +1,4 @@
-import { JobType } from "./enums";
+import { JobState, JobType } from "./enums";
 
 declare module '*.jpg';
 declare module "*.png" {
@@ -75,11 +75,21 @@ interface IJob {
     jobId: string;
     result: string;
     resultQueue: string;
-    status: string;
+    status: JobState;
     topic: string;
     type: string;
     userId: string;
     workQueue: string;
+}
+
+type JobStateType = "queued | running | completed | error"
+interface IJobStatus {
+    job: IJob;
+    lastMessage: string;
+    run: number;
+    runs: number;
+    status: JobState;
+    taskNum: number;
 }
 
 interface IMetricServiceInstruction {

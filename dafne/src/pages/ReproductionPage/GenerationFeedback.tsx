@@ -6,6 +6,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { SizedBoxVertical } from '../../assets/theme/dafneStyles';
 
 
+// TODO: replace by IJobStatus
 interface JobStatusResponse {
     lastMessage: string;
     run: number;

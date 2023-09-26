@@ -6,6 +6,7 @@ import JobsTable from '../../../components/JobsTable';
 import { GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { JobsRowData, IJob } from '../../../types';
 import JobStatus from '../../../components/ProcessStatus';
+import { JobState } from '../../../types/enums';
 
 interface JobsViewProps {
     userJobs: IJob[];
@@ -38,7 +39,7 @@ const JobsColumns: GridColDef<JobsRowData>[] = [
         headerClassName: 'header-cell',
         renderCell: (params: GridCellParams) => {
             const { value } = params;
-            return <JobStatus status={value as string} />;
+            return <JobStatus status={value as JobState} />;
         }
     },
     {
