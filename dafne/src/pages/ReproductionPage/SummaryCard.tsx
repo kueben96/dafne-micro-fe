@@ -87,19 +87,19 @@ export const SettingsOverviewCard: React.FC<SettingsOverviewCardProps> = ({ rowN
         <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
           <Typography variant="body2" color="gray.main">Rows number</Typography>
           <SizedBoxVertical space={0.5} />
-          <Typography variant="h6">1798</Typography>
+          <Typography variant="h6">{rowNumber}</Typography>
         </Box>
         <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
           <Typography variant="body2" color="gray.main">Source Dataset</Typography>
-          <Typography variant="h6">DemoDataset.csv</Typography>
+          <Typography variant="h6">{sourceDataset}</Typography>
         </Box>
         <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
           <Typography variant="body2" color="gray.main">Model</Typography>
-          <Typography variant="h6">CTGAN</Typography>
+          <Typography variant="h6">{model}</Typography>
         </Box>
         <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
           <Typography variant="body2" color="gray.main">{parameters ?? 'Default'}</Typography>
-          <Typography variant="h6">Default</Typography>
+          <Typography variant="h6">{parameters ?? 'Default'}</Typography>
         </Box>
       </Box>
     </SummaryCard>

@@ -104,7 +104,7 @@ const JobSummary: React.FC<{ jobStatus: IJobStatus }> = ({ jobStatus }) => {
   const sourceData = jobStatus.job.instruction.model.paths.download.path;
   const model = mapModelToReadable(jobStatus.job.instruction.model.identifier);
   //TODO: update with metric score when response is updated
-  const metric = 92;
+  const metric = 20;
   return (
     <ContentBox>
       <CardContainer>
