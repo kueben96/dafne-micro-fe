@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Collapse, Container, useTheme } from '@mui/material';
 import PageHeader from '../../components/PageHeader';
 import { ContentPaper, SizedBoxVertical } from '../../assets/theme/dafneStyles';
@@ -12,6 +12,7 @@ import ProcessDetail from './JobDetail';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useCreateServiceWithInstructionMutation, useGetJobStatusByIdQuery } from '../../redux/apiGatewaySlice';
+import { IJobStatus } from '../../types';
 
 
 const ReproductionPage: React.FC = () => {
@@ -27,22 +28,33 @@ const ReproductionPage: React.FC = () => {
   const generationInstruction = useSelector((state: RootState) => state.jobs.instruction);
   const [createService, { isLoading, isError, isSuccess }] = useCreateServiceWithInstructionMutation();
 
+  const isLastStep = (activeStep: number, steps: string[]) => activeStep === steps.length - 2;
+
+  const isGeneratingStep = (activeStep: number, steps: string[]) => activeStep === steps.length - 1;
+
+  const [jobStatus, setJobStatus] = useState<IJobStatus | null>(null);
+  const [jobId, setJobId] = useState<string | null>(null);
 
   const handleCreateService = async () => {
     try {
       handleNext();
       const response = await createService(generationInstruction); // Await the mutation call
+      //TODO: Type the service created Response
       console.log('Service created:', response); // Access response data property
+
+      const id = response.data[0].content.jobId
+      console.log('Job ID:', id);
+      setJobId(id);
     } catch (error) {
       console.error('Error creating service:', error);
     }
   };
+
   const handleNext = () => {
     const newCompleted = new Set(stepCompleted);
     if (!isStepCompleted(activeStep, stepCompleted)) {
       newCompleted.add(activeStep);
     } else if (isLastStep(activeStep, horizontalSteps)) {
-      console.log("createService")
       handleCreateService();
     }
     else {
@@ -60,9 +72,7 @@ const ReproductionPage: React.FC = () => {
     setStepsCompleted(false);
   };
 
-  const isLastStep = (activeStep: number, steps: string[]) => activeStep === steps.length - 2;
 
-  const isGeneratingStep = (activeStep: number, steps: string[]) => activeStep === steps.length - 1;
 
   function renderStepContent(step: number) {
     switch (step) {
@@ -119,14 +129,10 @@ const ReproductionPage: React.FC = () => {
     );
   };
 
-  const getJobStatus = () => {
-    const { data: jobStatus, isLoading, error } = useGetJobStatusByIdQuery("userxyz_12345")
-    return { jobStatus, isLoading };
-  }
 
   return (
     <>
-      <PageHeader title="Create New Reproduction Job" subtitle='Follow the steps to generate a synthetic dataset from an already existing dataset' />
+      <PageHeader editable={true} title="Create New Reproduction Job" subtitle='Follow the steps to generate a synthetic dataset from an already existing dataset' />
       <Collapse in={showProcessSteps} timeout="auto" unmountOnExit>
         <ContentPaper>
           <Container>
@@ -153,11 +159,10 @@ const ReproductionPage: React.FC = () => {
         </ContentPaper>
       </Collapse>
       <SizedBoxVertical />
-      {stepsCompleted && (
-        <ProcessDetail />
+      {stepsCompleted && jobId !== null && (
+        <ProcessDetail jobId={jobId} />
       )}
     </>
   );
 };
-
 export default ReproductionPage;

@@ -87,10 +87,6 @@ const GenerationSettingsForm: React.FC = () => {
         }));
     }, [selectedMetrics, selectedModel]);
 
-    console.log("instruction")
-    console.log(instruction)
-
-
     const steps = [
         {
             label: 'Select source dataset',

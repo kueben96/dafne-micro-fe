@@ -21,13 +21,19 @@ const CardContainer = styled(Box)({
 });
 
 
-const JobDetail: React.FC<{ jobStatus: IJobStatus; isLoading?: boolean }> = ({ jobStatus, isLoading }) => {
+const JobDetail: React.FC<{ jobStatus?: IJobStatus; jobId?: string; isLoading?: boolean; }> = ({ jobStatus, isLoading, jobId }) => {
 
   const [rows, setRows] = useState<GridRowsProp>([]);
   const [cols, setCols] = useState<GridColDef[]>([]); // Initialize cols as an empty array
 
-  // const { data: jobStatus, isLoading, error } = useGetJobStatusByIdQuery("userxyz_12345")
 
+  const getJobStatusData = () => {
+    if (jobStatus && isLoading) {
+      return jobStatus
+    } else if (!jobStatus && jobId) {
+      return useGetJobStatusByIdQuery(jobId)
+    }
+  }
 
   useEffect(() => {
     // Fetch data from demo.json (assuming it's in the public directory)
@@ -52,7 +58,6 @@ const JobDetail: React.FC<{ jobStatus: IJobStatus; isLoading?: boolean }> = ({ j
         console.error('Error fetching data:', error);
       });
   }, []);
-
 
 
   return (
