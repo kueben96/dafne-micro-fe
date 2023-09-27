@@ -11,17 +11,17 @@ import { reproductionHorizontalSteps } from '../../utils/constants';
 import ProcessDetail from './JobDetail';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { useCreateServiceWithInstructionMutation } from '../../redux/apiGatewaySlice';
+import { useCreateServiceWithInstructionMutation, useGetJobStatusByIdQuery } from '../../redux/apiGatewaySlice';
 
 
 const ReproductionPage: React.FC = () => {
 
   const horizontalSteps = reproductionHorizontalSteps;
   const theme = useTheme();
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
   const [stepCompleted, setStepCompleted] = useState(new Set<number>());
   const [rowNumber, setSelectedRowNumber] = useState(300);
-  const [generationCompleted, setGenerationCompleted] = useState(false);
+  const [stepsCompleted, setStepsCompleted] = useState(false);
   const [showProcessSteps, setShowProcessSteps] = useState(true);
 
   const generationInstruction = useSelector((state: RootState) => state.jobs.instruction);
@@ -57,7 +57,7 @@ const ReproductionPage: React.FC = () => {
   };
 
   const handleCancel = () => {
-    setGenerationCompleted(false);
+    setStepsCompleted(false);
   };
 
   const isLastStep = (activeStep: number, steps: string[]) => activeStep === steps.length - 2;
@@ -71,7 +71,7 @@ const ReproductionPage: React.FC = () => {
       case 1:
         return <RowNumberSelectionStep defaultRowNumber={rowNumber} setSelectedRowNumber={setSelectedRowNumber} />;
       case 2:
-        return <GenerationFeedback completed={generationCompleted} setCompleted={setGenerationCompleted} />;
+        return <GenerationFeedback completed={stepsCompleted} setCompleted={setStepsCompleted} />;
       default:
         return <div>Not Found</div>;
     }
@@ -88,7 +88,7 @@ const ReproductionPage: React.FC = () => {
   };
 
   const renderNextButton = () => {
-    if (generationCompleted) {
+    if (stepsCompleted) {
       return (
         <Button variant="outlined" onClick={() => setShowProcessSteps(false)}>
           Close
@@ -96,7 +96,7 @@ const ReproductionPage: React.FC = () => {
       );
     }
 
-    if (activeStep === horizontalSteps.length - 1 && !generationCompleted) {
+    if (activeStep === horizontalSteps.length - 1 && !stepsCompleted) {
       return (
         <Button variant="outlined" color="secondary" onClick={handleCancel}>
           Cancel
@@ -119,9 +119,14 @@ const ReproductionPage: React.FC = () => {
     );
   };
 
+  const getJobStatus = () => {
+    const { data: jobStatus, isLoading, error } = useGetJobStatusByIdQuery("userxyz_12345")
+    return { jobStatus, isLoading };
+  }
+
   return (
     <>
-      <PageHeader title="MyReproductionProcess1" />
+      <PageHeader title="Create New Reproduction Job" subtitle='Follow the steps to generate a synthetic dataset from an already existing dataset' />
       <Collapse in={showProcessSteps} timeout="auto" unmountOnExit>
         <ContentPaper>
           <Container>
@@ -148,7 +153,7 @@ const ReproductionPage: React.FC = () => {
         </ContentPaper>
       </Collapse>
       <SizedBoxVertical />
-      {generationCompleted && (
+      {stepsCompleted && (
         <ProcessDetail />
       )}
     </>

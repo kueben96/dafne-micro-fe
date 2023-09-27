@@ -8,6 +8,9 @@ import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 interface PageHeaderProps {
   title: string;
+  subtitle?: string;
+  editable?: boolean;
+  titleChildren?: React.ReactNode;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
@@ -57,19 +60,32 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
               <HeaderBreadcrumbs />
             </Box>
             <Box display="flex" flexDirection="row" alignItems="center">
-              <HeaderEditable
-                isEditable={isEditable}
-                title={title}
-                onTitleChange={handleTitleChange}
-                onTitleKeyPress={handleTitleKeyPress}
-                onEditClick={handleEditClick}
-                onSaveClick={handleSaveClick}
-                onCancelClick={handleCancelClick}
-              />
+              {props.editable ? (
+                <HeaderEditable
+                  isEditable={isEditable}
+                  title={title}
+                  onTitleChange={handleTitleChange}
+                  onTitleKeyPress={handleTitleKeyPress}
+                  onEditClick={handleEditClick}
+                  onSaveClick={handleSaveClick}
+                  onCancelClick={handleCancelClick}
+                />
+
+              ) : (
+                <Typography
+                  variant='h4'
+                  fontWeight="bold"
+                  component="div"
+                  sx={{ paddingTop: 1, paddingBottom: 1 }}>{title}</Typography>
+              )
+              }
+              {props.titleChildren}
             </Box>
-            <Typography variant='body2'>
-              Follow the steps to generate a synthetic dataset from an already existing dataset
-            </Typography>
+            {props.subtitle && (
+              <Typography variant='body2'>
+                {props.subtitle}
+              </Typography>
+            )}
           </Box>
         </Container>
       </Toolbar>

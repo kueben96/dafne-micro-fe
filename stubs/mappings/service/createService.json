@@ -57,7 +57,7 @@
             {
                 "type": "result",
                 "content": {
-                  "jobId": "userxyz_388178128913782"
+                  "jobId": "userxyz_12345"
                 },
                 "traceId": "jede_kommunikation_hat_trace_id_zum_nachverfolgen_vor_errorn"
               }

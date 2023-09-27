@@ -21,7 +21,7 @@ const CardContainer = styled(Box)({
 });
 
 
-const JobDetail: React.FC<{ jobStatus: IJobStatus; isLoading: boolean }> = ({ jobStatus, isLoading }) => {
+const JobDetail: React.FC<{ jobStatus: IJobStatus; isLoading?: boolean }> = ({ jobStatus, isLoading }) => {
 
   const [rows, setRows] = useState<GridRowsProp>([]);
   const [cols, setCols] = useState<GridColDef[]>([]); // Initialize cols as an empty array
