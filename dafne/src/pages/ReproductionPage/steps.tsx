@@ -2,6 +2,7 @@ import { Box, FormControl, FormControlLabel, InputLabel, MenuItem, Radio, RadioG
 import React, { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
 import { InstructionOptionDropdown } from '../../types';
+import { SizedBoxVertical } from '../../assets/theme/dafneStyles';
 
 interface StepSummaryFieldProps {
   label: string | null;
@@ -160,14 +161,18 @@ export const ParameterSettingsStep: React.FC = () => {
   );
 };
 
-interface RowNumberSelectionStepProps {
+interface OutputDataSelectionStepProps {
   defaultRowNumber: number;
   setSelectedRowNumber: (rowNumber: number) => void;
+  outputDatasetName: string; // New prop for output dataset name
+  setOutputDatasetName: (name: string) => void; // New prop setter
 }
 
-export const RowNumberSelectionStep: React.FC<RowNumberSelectionStepProps> = ({
+export const OutputDataSelectionStep: React.FC<OutputDataSelectionStepProps> = ({
   defaultRowNumber,
   setSelectedRowNumber,
+  outputDatasetName, // New prop
+  setOutputDatasetName, // New prop setter
 }) => {
   const [selectedOption, setSelectedOption] = useState('inherit');
   const [inputValue, setInputValue] = useState(defaultRowNumber.toString());
@@ -200,8 +205,14 @@ export const RowNumberSelectionStep: React.FC<RowNumberSelectionStepProps> = ({
     }
   };
 
+  const handleNameInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const name = event.target.value;
+    setOutputDatasetName(name); // Update output dataset name when input changes
+  };
+
   return (
     <Box display="flex" flexDirection="column">
+      <SizedBoxVertical />
       <Typography>How many rows do you want to generate?</Typography>
       <FormControl>
         <RadioGroup
@@ -225,6 +236,14 @@ export const RowNumberSelectionStep: React.FC<RowNumberSelectionStepProps> = ({
           inputProps={{ style: { color: selectedOption === 'inherit' ? 'grey' : 'black' } }}
         />
       </FormControl>
+      <SizedBoxVertical />
+      <Typography>Enter name of target dataset</Typography>
+      <TextField
+        type="text" // Use "text" type for string input
+        value={outputDatasetName} // Bind the value to the prop
+        sx={{ maxWidth: 400 }}
+        onChange={handleNameInputChange} // Handle input changes
+      />
     </Box>
   );
 };

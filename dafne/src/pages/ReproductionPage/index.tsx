@@ -5,7 +5,7 @@ import { ContentPaper, SizedBoxVertical } from '../../assets/theme/dafneStyles';
 import HorizontalStepper from '../../components/HorizontalStepper';
 import GenerationSettingsForm from './GenerationSettingsForm';
 import { isStepCompleted } from '../../utils/stepperUtils';
-import { RowNumberSelectionStep } from './steps';
+import { OutputDataSelectionStep } from './steps';
 import GenerationFeedback from './GenerationFeedback';
 import { reproductionHorizontalSteps } from '../../utils/constants';
 import ProcessDetail from './JobDetail';
@@ -22,6 +22,7 @@ const ReproductionPage: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [stepCompleted, setStepCompleted] = useState(new Set<number>());
   const [rowNumber, setSelectedRowNumber] = useState(300);
+  const [outputDatasetName, setOutputDatasetName] = useState('');
   const [stepsCompleted, setStepsCompleted] = useState(false);
   const [showProcessSteps, setShowProcessSteps] = useState(true);
 
@@ -31,8 +32,6 @@ const ReproductionPage: React.FC = () => {
   const isLastStep = (activeStep: number, steps: string[]) => activeStep === steps.length - 2;
 
   const isGeneratingStep = (activeStep: number, steps: string[]) => activeStep === steps.length - 1;
-
-  const [jobStatus, setJobStatus] = useState<IJobStatus | null>(null);
   const [jobId, setJobId] = useState<string | null>(null);
 
   const handleCreateService = async () => {
@@ -41,7 +40,6 @@ const ReproductionPage: React.FC = () => {
       const response = await createService(generationInstruction); // Await the mutation call
       //TODO: Type the service created Response
       console.log('Service created:', response); // Access response data property
-
       const id = response.data[0].content.jobId
       console.log('Job ID:', id);
       setJobId(id);
@@ -79,7 +77,12 @@ const ReproductionPage: React.FC = () => {
       case 0:
         return <GenerationSettingsForm />;
       case 1:
-        return <RowNumberSelectionStep defaultRowNumber={rowNumber} setSelectedRowNumber={setSelectedRowNumber} />;
+        return <OutputDataSelectionStep
+          defaultRowNumber={rowNumber}
+          setSelectedRowNumber={setSelectedRowNumber}
+          outputDatasetName={outputDatasetName}
+          setOutputDatasetName={setOutputDatasetName}
+        />;
       case 2:
         return <GenerationFeedback completed={stepsCompleted} setCompleted={setStepsCompleted} />;
       default:
