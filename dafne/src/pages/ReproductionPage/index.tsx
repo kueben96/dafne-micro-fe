@@ -9,37 +9,58 @@ import { OutputDataSelectionStep } from './steps';
 import GenerationFeedback from './GenerationFeedback';
 import { reproductionHorizontalSteps } from '../../utils/constants';
 import ProcessDetail from './JobDetail';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useCreateServiceWithInstructionMutation, useGetJobStatusByIdQuery } from '../../redux/apiGatewaySlice';
 import { IJobStatus } from '../../types';
+import { setInstruction } from '../../redux/features/jobsSlice';
 
 
 const ReproductionPage: React.FC = () => {
 
-  const horizontalSteps = reproductionHorizontalSteps;
   const theme = useTheme();
+  const horizontalSteps = reproductionHorizontalSteps;
   const [activeStep, setActiveStep] = useState(0);
   const [stepCompleted, setStepCompleted] = useState(new Set<number>());
-  const [rowNumber, setSelectedRowNumber] = useState(300);
-  const [outputDatasetName, setOutputDatasetName] = useState('');
   const [stepsCompleted, setStepsCompleted] = useState(false);
   const [showProcessSteps, setShowProcessSteps] = useState(true);
 
+
+  const [rowNumber, setSelectedRowNumber] = useState(500);
+  const [outputDatasetName, setOutputDatasetName] = useState('MyTestDataset');
+  const [customJobName, setCustomJobName] = useState('MyReproductionJob1');
   const generationInstruction = useSelector((state: RootState) => state.jobs.instruction);
   const [createService, { isLoading, isError, isSuccess }] = useCreateServiceWithInstructionMutation();
+  const dispatch = useDispatch();
+
 
   const isLastStep = (activeStep: number, steps: string[]) => activeStep === steps.length - 2;
 
   const isGeneratingStep = (activeStep: number, steps: string[]) => activeStep === steps.length - 1;
   const [jobId, setJobId] = useState<string | null>(null);
 
+  useEffect(() => {
+    dispatch(setInstruction({
+      ...generationInstruction,
+      model: {
+        ...generationInstruction.model,
+        paths: {
+          ...generationInstruction.model.paths,
+          upload: {
+            ...generationInstruction.model.paths.upload,
+            path: `sebastian/directory/${outputDatasetName}.json`
+          }
+        },
+        sample: rowNumber,
+      }
+    }));
+  }, [outputDatasetName, rowNumber]);
+
   const handleCreateService = async () => {
     try {
       handleNext();
       const response = await createService(generationInstruction); // Await the mutation call
       //TODO: Type the service created Response
-      console.log('Service created:', response); // Access response data property
       const id = response.data[0].content.jobId
       console.log('Job ID:', id);
       setJobId(id);
@@ -132,10 +153,13 @@ const ReproductionPage: React.FC = () => {
     );
   };
 
-
   return (
     <>
-      <PageHeader editable={true} title="Create New Reproduction Job" subtitle='Follow the steps to generate a synthetic dataset from an already existing dataset' />
+      <PageHeader
+        editable={true}
+        onEditTitle={setCustomJobName}
+        title={customJobName}
+        subtitle='Follow the steps to generate a synthetic dataset from an already existing dataset' />
       <Collapse in={showProcessSteps} timeout="auto" unmountOnExit>
         <ContentPaper>
           <Container>
@@ -169,3 +193,4 @@ const ReproductionPage: React.FC = () => {
   );
 };
 export default ReproductionPage;
+

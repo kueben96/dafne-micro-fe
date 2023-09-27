@@ -10,6 +10,7 @@ interface PageHeaderProps {
   title: string;
   subtitle?: string;
   editable?: boolean;
+  onEditTitle?: (title: string) => void;
   titleChildren?: React.ReactNode;
 }
 
@@ -45,6 +46,7 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
     if (title !== originalTitle) {
       setTitle(title);
       setOriginalTitle(title);
+      props.onEditTitle?.(title);
     }
     setIsEditable(false);
   };
@@ -82,7 +84,7 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
               {props.titleChildren}
             </Box>
             {props.subtitle && (
-              <Typography variant='body2'>
+              <Typography variant='h6'>
                 {props.subtitle}
               </Typography>
             )}
