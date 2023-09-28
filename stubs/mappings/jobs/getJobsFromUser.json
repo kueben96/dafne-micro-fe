@@ -14,191 +14,187 @@
             "Content-Type": "application/json"
         },
         "jsonBody": [
-            {
-                "createdAt": "2023-08-14T06:46:33.810555407",
-                "instruction": {
+                {
+                  "createdAt": "2023-08-14T06:46:33.810555407",
+                  "finishedAt": "2023-08-16T06:46:33.810555407",
+                  "instruction": {
                     "epochs": 10,
                     "metrics": [
-                        {
-                            "identifier": "weightedstatistics-pamela",
-                            "metric": "standard",
-                            "params": {}
-                        }
+                      {
+                        "identifier": "weightedstatistics-pamela",
+                        "metric": "standard",
+                        "params": {}
+                      }
                     ],
                     "model": {
-                        "identifier": "ctgan-pamela"
-                    },
-                    "name": "test",
-                    "paths": {
+                      "identifier": "ctgan-pamela",
+                      "name": "CTGAN with mlefficacy metric",
+                      "paths": {
                         "download": {
-                            "bucket": "publicdataset",
-                            "path": "demo.pkl"
+                          "bucket": "publicdataset",
+                          "path": "/demo-data/news.csv"
                         },
                         "upload": {
-                            "bucket": "userbucket",
-                            "path": "sebastian/directory/"
+                          "bucket": "userbucket",
+                          "path": "/1b839e1a-28df-46ca-96ab-07d922c592fd/data/generated/uploadFile.csv"
                         }
-                    },
-                    "runs": 2,
-                    "sample": 500
-                },
-                "jobId": "userxyz_123459",
-                "result": "num",
-                "resultQueue": "userxyz_12345_result-queue",
-                "status": "running",
-                "topic": "userxyz_jobs",
-                "type": "reproduction",
-                "userId": "userxyz",
-                "workQueue": "userxyz_12345_work-queue"
-            },
-            {
-                "createdAt": "2023-08-14T06:46:33.810555407",
-                "instruction": {
+                      },
+                      "runs": 2,
+                      "sample": 500
+                    }
+                  },
+                  "jobId": "1b839e1a-28df-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4",
+                  "jobName": "CTGAN with mlefficacy",
+                  "result": {
+                    "newModelIdentifier": "1b839e1a-28df-46ca-96ab-07d922c592fd-setByUser",
+                    "resultDataPath": "/userbucket/1b839e1a-28df-46ca-96ab-07d922c592fd/data/generated/uploadFile.csv",
+                    "score": 0.95,
+                    "weightsPath": "/userbucket/1b839e1a-28df-46ca-96ab-07d922c592fd/models/1b839e1a-28df-46ca-96ab-07d922c592fd-setByUser_weights.json"
+                  },
+                  "resultQueue": "1b839e1a-28df-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4_result-queue",
+                  "status": "completed",
+                  "topic": "1b839e1a-28df-46ca-96ab-07d922c592fd_jobs",
+                  "type": "reproduction",
+                  "userId": "1b839e1a-28df-46ca-96ab-07d922c592fd",
+                  "workQueue": "1b839e1a-28df-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4_work-queue"
+                
+              },
+                {
+                  "createdAt": "2023-08-14T06:46:33.810555407",
+                  "finishedAt": "2023-08-16T06:46:33.810555407",
+                  "instruction": {
                     "epochs": 10,
                     "metrics": [
-                        {
-                            "identifier": "weightedstatistics-pamela",
-                            "metric": "standard",
-                            "params": {}
-                        }
+                      {
+                        "identifier": "weightedstatistics-pamela",
+                        "metric": "standard",
+                        "params": {}
+                      }
                     ],
                     "model": {
-                        "identifier": "ctgan-pamela"
-                    },
-                    "name": "test",
-                    "paths": {
+                      "identifier": "ctgan-pamela",
+                      "name": "CTGAN with mlefficacy metric",
+                      "paths": {
                         "download": {
-                            "bucket": "publicdataset",
-                            "path": "demo.pkl"
+                          "bucket": "publicdataset",
+                          "path": "/demo-data/news.csv"
                         },
                         "upload": {
-                            "bucket": "userbucket",
-                            "path": "sebastian/directory/"
+                          "bucket": "userbucket",
+                          "path": "/1b839e1a-28df-46ca-96ab-07d922c592fd/data/generated/uploadFile.csv"
                         }
-                    },
-                    "runs": 2,
-                    "sample": 500
-                },
-                "jobId": "userxyz_123456",
-                "result": "num",
-                "resultQueue": "userxyz_123456_result-queue",
-                "status": "queued",
-                "topic": "userxyz_jobs",
-                "type": "reproduction",
-                "userId": "userxyz",
-                "workQueue": "userxyz_123456_work-queue"
-            },
-            {
-                "createdAt": "2023-08-14T06:46:33.810555407",
-                "instruction": {
+                      },
+                      "runs": 2,
+                      "sample": 500
+                    }
+                  },
+                  "jobId": "1b839e1a-4262-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4",
+                  "jobName": "CTGAN with mlefficacy",
+                  "result": {
+                    "newModelIdentifier": "1b839e1a-28df-46ca-96ab-07d922c592fd-setByUser",
+                    "resultDataPath": "/userbucket/1b839e1a-28df-46ca-96ab-07d922c592fd/data/generated/uploadFile.csv",
+                    "score": 0.95,
+                    "weightsPath": "/userbucket/1b839e1a-28df-46ca-96ab-07d922c592fd/models/1b839e1a-28df-46ca-96ab-07d922c592fd-setByUser_weights.json"
+                  },
+                  "resultQueue": "1b839e1a-28df-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4_result-queue",
+                  "status": "error",
+                  "topic": "1b839e1a-28df-46ca-96ab-07d922c592fd_jobs",
+                  "type": "reproduction",
+                  "userId": "1b839e1a-28df-46ca-96ab-07d922c592fd",
+                  "workQueue": "1b839e1a-28df-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4_work-queue"
+                
+              },
+                {
+                  "createdAt": "2023-08-14T06:46:33.810555407",
+                  "finishedAt": "2023-08-16T06:46:33.810555407",
+                  "instruction": {
                     "epochs": 10,
                     "metrics": [
-                        {
-                            "identifier": "weightedstatistics-pamela",
-                            "metric": "standard",
-                            "params": {}
-                        }
+                      {
+                        "identifier": "weightedstatistics-pamela",
+                        "metric": "standard",
+                        "params": {}
+                      }
                     ],
                     "model": {
-                        "identifier": "ctgan-pamela"
-                    },
-                    "name": "test",
-                    "paths": {
+                      "identifier": "ctgan-pamela",
+                      "name": "CTGAN with mlefficacy metric",
+                      "paths": {
                         "download": {
-                            "bucket": "publicdataset",
-                            "path": "demo.pkl"
+                          "bucket": "publicdataset",
+                          "path": "/demo-data/news.csv"
                         },
                         "upload": {
-                            "bucket": "userbucket",
-                            "path": "sebastian/directory/"
+                          "bucket": "userbucket",
+                          "path": "/1b839e1a-28df-46ca-96ab-07d922c592fd/data/generated/uploadFile.csv"
                         }
-                    },
-                    "runs": 2,
-                    "sample": 500
-                },
-                "jobId": "userxyz_123457",
-                "result": "num",
-                "resultQueue": "userxyz_12345_result-queue",
-                "status": "running",
-                "topic": "userxyz_jobs",
-                "type": "reproduction",
-                "userId": "userxyz",
-                "workQueue": "userxyz_12345_work-queue"
-            },
-            {
-                "createdAt": "2023-08-14T06:46:33.810555407",
-                "instruction": {
+                      },
+                      "runs": 2,
+                      "sample": 500
+                    }
+                  },
+                  "jobId": "1b839e1a-4262-46ca-4245-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4",
+                  "jobName": "CTGAN with mlefficacy",
+                  "result": {
+                    "newModelIdentifier": "1b839e1a-28df-46ca-96ab-07d922c592fd-setByUser",
+                    "resultDataPath": "/userbucket/1b839e1a-28df-46ca-96ab-07d922c592fd/data/generated/uploadFile.csv",
+                    "score": 0.95,
+                    "weightsPath": "/userbucket/1b839e1a-28df-46ca-96ab-07d922c592fd/models/1b839e1a-28df-46ca-96ab-07d922c592fd-setByUser_weights.json"
+                  },
+                  "resultQueue": "1b839e1a-28df-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4_result-queue",
+                  "status": "queued",
+                  "topic": "1b839e1a-28df-46ca-96ab-07d922c592fd_jobs",
+                  "type": "reproduction",
+                  "userId": "1b839e1a-28df-46ca-96ab-07d922c592fd",
+                  "workQueue": "1b839e1a-28df-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4_work-queue"
+                
+              },
+                {
+                  "createdAt": "2023-08-14T06:46:33.810555407",
+                  "finishedAt": "2023-08-16T06:46:33.810555407",
+                  "instruction": {
                     "epochs": 10,
                     "metrics": [
-                        {
-                            "identifier": "weightedstatistics-pamela",
-                            "metric": "standard",
-                            "params": {}
-                        }
+                      {
+                        "identifier": "weightedstatistics-pamela",
+                        "metric": "standard",
+                        "params": {}
+                      }
                     ],
                     "model": {
-                        "identifier": "ctgan-pamela"
-                    },
-                    "name": "test",
-                    "paths": {
+                      "identifier": "ctgan-pamela",
+                      "name": "CTGAN with mlefficacy metric",
+                      "paths": {
                         "download": {
-                            "bucket": "publicdataset",
-                            "path": "demo.pkl"
+                          "bucket": "publicdataset",
+                          "path": "/demo-data/news.csv"
                         },
                         "upload": {
-                            "bucket": "userbucket",
-                            "path": "sebastian/directory/"
+                          "bucket": "userbucket",
+                          "path": "/1b839e1a-28df-46ca-96ab-07d922c592fd/data/generated/uploadFile.csv"
                         }
-                    },
-                    "runs": 2,
-                    "sample": 500
-                },
-                "jobId": "userxyz_12345",
-                "result": "num",
-                "resultQueue": "userxyz_12345_result-queue",
-                "status": "completed",
-                "topic": "userxyz_jobs",
-                "type": "reproduction",
-                "userId": "userxyz",
-                "workQueue": "userxyz_12345_work-queue"
-            },
-            {
-                "createdAt": "2023-08-14T06:46:33.810555407",
-                "instruction": {
-                    "epochs": 10,
-                    "metrics": [
-                        {
-                            "identifier": "weightedstatistics-pamela",
-                            "metric": "standard",
-                            "params": {}
-                        }
-                    ],
-                    "model": {
-                        "identifier": "ctgan-pamela"
-                    },
-                    "name": "test",
-                    "paths": {
-                        "download": {
-                            "bucket": "publicdataset",
-                            "path": "demo.pkl"
-                        },
-                        "upload": {
-                            "bucket": "userbucket",
-                            "path": "sebastian/directory/"
-                        }
-                    },
-                    "runs": 2,
-                    "sample": 500
-                },
-                "jobId": "userxyz_123458",
-                "result": "num",
-                "resultQueue": "userxyz_12345_result-queue",
-                "status": "error",
-                "topic": "userxyz_jobs",
-                "type": "reproduction",
-                "userId": "userxyz",
-                "workQueue": "userxyz_12345_work-queue"
-            }
+                      },
+                      "runs": 2,
+                      "sample": 500
+                    }
+                  },
+                  "jobId": "1b839e1a-4262-46ca-4455-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4",
+                  "jobName": "CTGAN with mlefficacy",
+                  "result": {
+                    "newModelIdentifier": "1b839e1a-28df-46ca-96ab-07d922c592fd-setByUser",
+                    "resultDataPath": "/userbucket/1b839e1a-28df-46ca-96ab-07d922c592fd/data/generated/uploadFile.csv",
+                    "score": 0.95,
+                    "weightsPath": "/userbucket/1b839e1a-28df-46ca-96ab-07d922c592fd/models/1b839e1a-28df-46ca-96ab-07d922c592fd-setByUser_weights.json"
+                  },
+                  "resultQueue": "1b839e1a-28df-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4_result-queue",
+                  "status": "running",
+                  "topic": "1b839e1a-28df-46ca-96ab-07d922c592fd_jobs",
+                  "type": "reproduction",
+                  "userId": "1b839e1a-28df-46ca-96ab-07d922c592fd",
+                  "workQueue": "1b839e1a-28df-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4_work-queue"
+                
+              }
+          
         ]
     }
 }

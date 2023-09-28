@@ -22,6 +22,8 @@ interface IUser {
     jobTitle: string;
 }
 
+
+// TODO: missing properties from getModel like params 
 interface IModel {
     identifier: string;
     name: string;
@@ -66,17 +68,16 @@ type JobsRowData = {
 
 interface IJob {
     createdAt: string;
-    instruction: {
-        epochs: number;
-        metrics: Array<{
-            identifier: string;
-            metric: string;
-            params: Record<string, any>;
-        }>;
-        model: IModel;
-    };
+    finishedAt: string;
+    instruction: ICreateServiceInstruction;
     jobId: string;
-    result: string;
+    jobName: string; // Added to match the "jobName" field in the response
+    result?: {
+        newModelIdentifier: string;
+        resultDataPath: string;
+        score: number;
+        weightsPath: string;
+    };
     resultQueue: string;
     status: JobState;
     topic: string;
