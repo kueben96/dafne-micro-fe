@@ -29,21 +29,21 @@
                   }
                 ],
                 "model": {
-                 "identifier": "ctgan-pamela",
-                "name": "Ctgan",
+                 "identifier": "ctgan-pamela"
+                },
+                "name": "MyReproductionJob1",
                 "paths": {
                   "download": {
                     "bucket": "publicdataset",
-                    "path": "demo.pkl"
+                    "path": "/demo-data/news.csv"
                   },
                   "upload": {
                     "bucket": "userbucket",
-                    "path": "sebastian/directory/"
+                    "path": "/1b839e1a-28df-46ca-96ab-07d922c592fd/data/generated/uploadFile.csv"
                   }
                 },
                 "runs": 2,
                 "sample": 500
-              }
             }
           }
         ]
@@ -54,13 +54,10 @@
             "Content-Type": "application/json"
         },
         "jsonBody": [
-            {
-                "type": "result",
-                "content": {
-                  "jobId": "userxyz_12345"
-                },
-                "traceId": "jede_kommunikation_hat_trace_id_zum_nachverfolgen_vor_errorn"
-              }
+          {
+            "content": "1b839e1a-28df-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4",
+            "type": "result"
+          }
         ]
     }
 }

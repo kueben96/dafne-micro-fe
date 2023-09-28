@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useCreateServiceWithInstructionMutation, useGetJobStatusByIdQuery } from '../../redux/apiGatewaySlice';
 import { setInstruction } from '../../redux/features/jobsSlice';
+import { selectUser } from '../../redux/features/userSlice';
 
 
 const ReproductionPage: React.FC = () => {
@@ -26,7 +27,7 @@ const ReproductionPage: React.FC = () => {
 
 
   const [rowNumber, setSelectedRowNumber] = useState(500);
-  const [outputDatasetName, setOutputDatasetName] = useState('MyTestDataset');
+  const [outputDatasetName, setOutputDatasetName] = useState('uploadFile.csv');
   const [customJobName, setCustomJobName] = useState('MyReproductionJob1');
   const generationInstruction = useSelector((state: RootState) => state.jobs.instruction);
   const [createService, { isLoading, isError, isSuccess }] = useCreateServiceWithInstructionMutation();
@@ -37,6 +38,7 @@ const ReproductionPage: React.FC = () => {
 
   const isGeneratingStep = (activeStep: number, steps: string[]) => activeStep === steps.length - 1;
   const [jobId, setJobId] = useState<string | null>(null);
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     dispatch(setInstruction({
@@ -44,24 +46,25 @@ const ReproductionPage: React.FC = () => {
       model: {
         ...generationInstruction.model,
       },
+      name: customJobName,
       paths: {
         ...generationInstruction.paths,
         upload: {
           ...generationInstruction.paths.upload,
-          path: `sebastian/directory/${outputDatasetName}.json`
+          path: `/${user?._id}/data/generated/${outputDatasetName}`
         }
       },
       sample: rowNumber,
     }
     ));
-  }, [outputDatasetName, rowNumber]);
+  }, [outputDatasetName, rowNumber, customJobName]);
 
   const handleCreateService = async () => {
     try {
       handleNext();
       const response = await createService(generationInstruction); // Await the mutation call
       //TODO: Type the service created Response
-      const id = response.data[0].content.jobId
+      const id = response.data[0].content
       console.log('Job ID:', id);
       setJobId(id);
     } catch (error) {

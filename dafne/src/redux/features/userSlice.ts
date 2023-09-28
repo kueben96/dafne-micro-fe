@@ -68,7 +68,7 @@ const userSlice = createSlice({
 
 
                     const user: IUser = {
-                        _id: decodedToken.sid,
+                        _id: "1b839e1a-28df-46ca-96ab-07d922c592fd",
                         email: decodedToken.email,
                         preferred_username: decodedToken.preferred_username,
                         firstName: decodedToken.given_name,

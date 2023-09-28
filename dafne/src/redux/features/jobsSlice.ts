@@ -18,7 +18,7 @@ const initialJobsState: JobsState = {
         paths: {
             download: {
                 bucket: 'publicdataset',
-                path: 'demo.pkl',
+                path: '/demo-data/news.csv',
             },
             upload: {
                 bucket: 'userbucket',
