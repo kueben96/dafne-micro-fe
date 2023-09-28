@@ -89,7 +89,7 @@ const JobsView: React.FC<JobsViewProps> = ({ userJobs }) => {
     const JobsRows: JobsRowData[] = userJobs.map(job => {
         const { jobId, createdAt, instruction, status, type } = job;
         const metric = instruction.metrics.map(metric => metric.metric).join(', ');
-        const model = instruction.model.name;
+        const model = instruction.name;
         const score = 0.98;
         const dateCreated = new Date(createdAt);
         return {

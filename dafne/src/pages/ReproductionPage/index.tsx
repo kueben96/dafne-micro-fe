@@ -43,16 +43,17 @@ const ReproductionPage: React.FC = () => {
       ...generationInstruction,
       model: {
         ...generationInstruction.model,
-        paths: {
-          ...generationInstruction.model.paths,
-          upload: {
-            ...generationInstruction.model.paths.upload,
-            path: `sebastian/directory/${outputDatasetName}.json`
-          }
-        },
-        sample: rowNumber,
-      }
-    }));
+      },
+      paths: {
+        ...generationInstruction.paths,
+        upload: {
+          ...generationInstruction.paths.upload,
+          path: `sebastian/directory/${outputDatasetName}.json`
+        }
+      },
+      sample: rowNumber,
+    }
+    ));
   }, [outputDatasetName, rowNumber]);
 
   const handleCreateService = async () => {

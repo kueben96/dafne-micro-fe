@@ -4,11 +4,12 @@ import CustomStepIcon from '../../components/CustomStepIcon';
 import { isStepCompleted, isStepSkipped } from '../../utils/stepperUtils';
 import { DataSourceSelectionStep, DropDownSelectionStep, ParameterSettingsStep, StepSummaryField } from './steps';
 import { getMetricDisplayName } from '../../utils/constants';
-import { ICreateServiceInstruction, IMetric, IMetricServiceInstruction, IModel, InstructionOptionDropdown } from '../../types';
+import { ICreateServiceInstruction, IMetric, IMetricServiceInstruction, IModel, IModelInstruction, InstructionOptionDropdown } from '../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setInstruction } from '../../redux/features/jobsSlice';
 import { useGetMetricsQuery, useGetModelsQuery } from '../../redux/apiGatewaySlice';
+import { mapModelToReadable } from '../../types/enums';
 
 
 const GenerationSettingsForm: React.FC = () => {
@@ -51,10 +52,10 @@ const GenerationSettingsForm: React.FC = () => {
     if (models) {
         modelSelectionItems = (models as IModel[]).map((model: IModel) => {
             return {
-                value: model.identifier + ',' + model.name,
+                value: model.weightsPath ? model.identifier + "," + model.weightsPath : model.identifier,
                 label: model.name,
                 identifier: model.identifier,
-                info: model.name,
+                info: model.description,
             };
         });
     }
@@ -70,12 +71,12 @@ const GenerationSettingsForm: React.FC = () => {
         });
         return metricInstructions;
     };
-    const setModelInstructions = (selectedModel: string): IModel => {
-        const [identifier, name] = selectedModel.split(',');
-        const modelInstruction: IModel = {
+    const setModelInstructions = (selectedModel: string): IModelInstruction => {
+        const [identifier, weightsPath] = selectedModel.split(',');
+        const modelInstruction: IModelInstruction = {
             ...instruction.model,
             identifier: identifier,
-            name: name,
+            weightsPath: weightsPath,
         };
         return modelInstruction;
     }

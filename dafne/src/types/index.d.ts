@@ -22,22 +22,26 @@ interface IUser {
 
 // TODO: missing properties from getModel like params 
 interface IModel {
-    identifier: string;
     name: string;
-    paths: {
-        download: {
-            bucket: string;
-            path: string;
-        };
-        upload: {
-            bucket: string;
-            path: string;
-        };
-    };
-    weightsPath?: string;
-    runs: number;
-    sample: number;
+    type_name: string;
+    image: string;
+    mount_path: string;
+    params: Record<string, any>;
+    weightsPath: string | null;
+    endpoints: Record<string, any>;
+    creator: string;
+    description: string;
+    id: number;
+    identifier: string;
+    created_at: string;
 }
+
+interface IModelInstruction {
+    identifier: string;
+    weightsPath?: string | null;
+    params?: Record<string, any> | null;
+}
+
 
 interface IMetric {
     endpoints: Record<string, string>;
@@ -109,5 +113,19 @@ type InstructionOptionDropdown = {
 interface ICreateServiceInstruction {
     epochs: number;
     metrics: IMetricServiceInstruction[];
-    model: IModel;
+    model: IModelInstruction;
+    name: string;
+    paths: {
+        download: {
+            bucket: string;
+            path: string;
+        };
+        upload: {
+            bucket: string;
+            path: string;
+        };
+    };
+    weightsPath?: string;
+    runs: number;
+    sample: number;
 }

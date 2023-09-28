@@ -69,6 +69,16 @@
                         "identifier": "weightedstatistics-pamela",
                         "metric": "standard",
                         "params": {}
+                      },
+                      {
+                        "identifier": "weightedstatistics-pamela",
+                        "metric": "mlefficacy",
+                        "params": {}
+                      },
+                      {
+                        "identifier": "weightedstatistics-pamela",
+                        "metric": "logisticDetection",
+                        "params": {}
                       }
                     ],
                     "model": {
