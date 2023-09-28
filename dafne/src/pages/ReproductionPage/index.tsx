@@ -12,7 +12,6 @@ import ProcessDetail from './JobDetail';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useCreateServiceWithInstructionMutation, useGetJobStatusByIdQuery } from '../../redux/apiGatewaySlice';
-import { IJobStatus } from '../../types';
 import { setInstruction } from '../../redux/features/jobsSlice';
 
 

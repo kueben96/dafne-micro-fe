@@ -1,5 +1,3 @@
-import { InstructionOptionDropdown } from "../types";
-
 export const metricKeyNameMappings: Record<string, string> = {
     logisticDetection: "Logistic detection",
     mlefficacy: "MLEfficacy",
@@ -18,13 +16,10 @@ export function getMetricDisplayName(keyName: string, metricIdentifier?: string)
 export const JWT_TOKEN_KEY = 'jwtToken';
 export const USER_LOGOUT_EVENT_KEY = 'userLogout';
 
-type ReproductionStep = 'Set generation settings' | 'Set row number' | 'View results';
-export const reproductionStep1: string = 'Set generation settings';
-export const reproductionStep2: string = 'Set row number';
-export const reproductionStep3: string = 'View results';
+type ReproductionStep = 'Set generation settings' | 'Set output data preferences' | 'View results';
 export const reproductionHorizontalSteps: ReproductionStep[] = [
     'Set generation settings',
-    'Set row number',
+    'Set output data preferences',
     'View results',
 ];
 
