@@ -57,6 +57,7 @@ interface IMetric {
 type JobsRowData = {
     id: string;
     service: string;
+    model: string;
     metric: string;
     status: string;
     score: number;

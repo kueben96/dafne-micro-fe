@@ -26,8 +26,14 @@ const JobsColumns: GridColDef<JobsRowData>[] = [
         headerClassName: 'header-cell',
     },
     {
+        field: 'model',
+        headerName: 'Model',
+        flex: 1,
+        headerClassName: 'header-cell',
+    },
+    {
         field: 'metric',
-        headerName: 'Metric',
+        headerName: 'Metrics',
         flex: 1,
         headerClassName: 'header-cell',
     },
@@ -82,13 +88,15 @@ const JobsView: React.FC<JobsViewProps> = ({ userJobs }) => {
 
     const JobsRows: JobsRowData[] = userJobs.map(job => {
         const { jobId, createdAt, instruction, status, type } = job;
-        const { identifier } = instruction.metrics[0];
+        const metric = instruction.metrics.map(metric => metric.metric).join(', ');
+        const model = instruction.model.name;
         const score = 0.98;
         const dateCreated = new Date(createdAt);
         return {
             id: jobId,
             service: type,
-            metric: identifier,
+            model: model,
+            metric: metric,
             status,
             score,
             dateCreated,
@@ -102,7 +110,7 @@ const JobsView: React.FC<JobsViewProps> = ({ userJobs }) => {
                     <Box display="flex" flexDirection="column">
                         <TableToolBar />
                         <SizedBoxVertical space={2} />
-                        <JobsTable columns={JobsColumns} rows={JobsRows} />
+                        <JobsTable columns={JobsColumns} rows={JobsRows} tableType={'jobs'} />
                     </Box>
                 </Container>
             </ContentPaper>
