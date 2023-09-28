@@ -47,16 +47,20 @@ const CardContent = styled(Box)(({ theme }: { theme: Theme }) => ({
 
 interface SummaryCardProps {
   title: string;
+  subtitle?: string;
   actions?: { icon: React.ReactNode }[];
   children?: React.ReactNode;
   flex: number;
 }
 
-export const SummaryCard: React.FC<SummaryCardProps> = ({ title, actions, children, flex }) => {
+export const SummaryCard: React.FC<SummaryCardProps> = ({ title, actions, children, flex, subtitle }) => {
   return (
     <Card style={{ flex }}>
       <Header>
         <HeaderTitle variant='subtitle1'>{title}</HeaderTitle>
+        {subtitle && (
+          <Typography variant='body2' color='gray.main'>{subtitle}</Typography>
+        )}
         {actions && (
           <ActionButtonContainer>
             {actions.map((action, index) => (
@@ -106,13 +110,13 @@ export const SettingsOverviewCard: React.FC<SettingsOverviewCardProps> = ({ rowN
   );
 };
 
-export const MetricScoreCard: React.FC<{ metricScore: number }> = ({ metricScore }) => {
+export const MetricScoreCard: React.FC<{ metricScore?: number }> = ({ metricScore }) => {
   const theme = useTheme();
   return (
     <SummaryCard title="Metric Score" flex={2}>
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
         <SizedBoxVertical theme={theme} space={1} />
-        <CircularProgressWithLabel value={metricScore} />
+        <CircularProgressWithLabel value={metricScore!} />
       </Box>
     </SummaryCard>
   );

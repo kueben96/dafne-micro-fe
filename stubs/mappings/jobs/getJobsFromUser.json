@@ -27,7 +27,8 @@
             }
           ],
           "model": {
-            "identifier": "ctgan-pamela",
+            "identifier": "ctgan-pamela"
+          },
             "name": "CTGAN with mlefficacy metric",
             "paths": {
               "download": {
@@ -41,7 +42,6 @@
             },
             "runs": 2,
             "sample": 500
-          }
         },
         "jobId": "1b839e1a-28df-46ca-96ab-07d922c592fd_bbcdfdd0-7c83-421c-a575-e09209cd3ca4",
         "jobName": "CTGAN with mlefficacy",

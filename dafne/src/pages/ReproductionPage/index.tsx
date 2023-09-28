@@ -20,7 +20,7 @@ const ReproductionPage: React.FC = () => {
 
   const theme = useTheme();
   const horizontalSteps = reproductionHorizontalSteps;
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(2);
   const [stepCompleted, setStepCompleted] = useState(new Set<number>());
   const [stepsCompleted, setStepsCompleted] = useState(false);
   const [showProcessSteps, setShowProcessSteps] = useState(true);
@@ -189,9 +189,12 @@ const ReproductionPage: React.FC = () => {
         </ContentPaper>
       </Collapse>
       <SizedBoxVertical />
-      {stepsCompleted && jobId !== null && (
-        <ProcessDetail jobId={jobId} />
-      )}
+      {/* {stepsCompleted && jobId !== null && (
+        // TODO: show details on completed
+        // problem: in real world, generation would take couple of minutes
+        // so no user would wait on this page
+        // <ProcessDetail jobId={jobId} />
+      )} */}
     </>
   );
 };

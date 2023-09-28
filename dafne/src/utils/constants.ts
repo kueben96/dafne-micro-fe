@@ -16,11 +16,10 @@ export function getMetricDisplayName(keyName: string, metricIdentifier?: string)
 export const JWT_TOKEN_KEY = 'jwtToken';
 export const USER_LOGOUT_EVENT_KEY = 'userLogout';
 
-type ReproductionStep = 'Set generation settings' | 'Set output data preferences' | 'View results';
-export const reproductionHorizontalSteps: ReproductionStep[] = [
+export const reproductionHorizontalSteps: string[] = [
     'Set generation settings',
     'Set output data preferences',
-    'View results',
+    'Train Model',
 ];
 
 

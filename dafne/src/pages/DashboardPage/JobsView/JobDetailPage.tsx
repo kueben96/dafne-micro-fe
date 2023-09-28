@@ -32,7 +32,10 @@ const JobDetailPage = () => {
 
     return (
         <>
-            <PageHeader title={title} subtitle="Reproduction results" titleChildren={StatusComponent} />
+            <PageHeader title={title}
+                subtitle="Reproduction results"
+                titleChildren={StatusComponent}
+                subsubtitle={jobStatus?.job.jobId} />
             {
                 jobStatus &&
                 <JobDetail jobStatus={jobStatus} isLoading={isLoading} />
