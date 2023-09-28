@@ -10,9 +10,12 @@ declare module 'theme/theme';
 declare module 'react-dom/client'
 
 
+
+
 interface IUser {
-    _id: number;
+    _id: string;
     email: string;
+    preferred_username: string;
     firstName: string;
     lastName: string;
     industry: string;

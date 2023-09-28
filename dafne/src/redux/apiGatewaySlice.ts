@@ -5,7 +5,7 @@ import { mapServiceTypeToReadable, mapStatusToReadable } from '../types/enums';
 const baseQuery = fetchBaseQuery({
     baseUrl: 'http://localhost:8086/api/',
     credentials: 'include',
-    // add token to headers if it exists for restricted api calls
+    // TODO: implement reauth endpoint, else replace with basequery
     prepareHeaders: (headers) => {
         const token = localStorage.getItem("jwtToken")
         if (token) {

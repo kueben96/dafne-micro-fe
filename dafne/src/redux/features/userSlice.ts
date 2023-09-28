@@ -5,11 +5,34 @@ import { IJob, IUser } from "../../types";
 import { RootState } from "../store";
 
 interface _DecodedToken {
+    exp: number;
+    iat: number;
+    jti: string;
+    iss: string;
+    aud: string;
+    sub: string;
+    typ: string;
+    azp: string;
+    session_state: string;
+    acr: string;
+    realm_access: {
+        roles: string[];
+    };
+    resource_access: {
+        [resource: string]: {
+            roles: string[];
+        };
+    };
+    scope: string;
+    sid: string;
+    'da-real-gs'?: string[]; // Made optional since it's not always present
+    email_verified: boolean;
+    name: string;
+    groups: string[];
+    preferred_username: string;
+    given_name: string;
+    family_name: string;
     email: string;
-    firstName: string;
-    lastName: string;
-    industry: string;
-    jobTitle: string;
 }
 
 // Define the initial state
@@ -23,14 +46,7 @@ interface UserState {
 }
 
 const initialState: UserState = {
-    user: {
-        _id: 0, // Replace with an appropriate default value
-        email: '',
-        firstName: '',
-        lastName: '',
-        industry: '',
-        jobTitle: ''
-    },
+    user: null,
     token: null,
     jobs: null,
     jobsCount: 0,
@@ -47,21 +63,19 @@ const userSlice = createSlice({
 
             if (token) {
                 try {
-                    // Parse the token and extract user information
                     var decodedToken: _DecodedToken = jwt_decode(token);
-                    const { email, firstName, lastName, industry, jobTitle } = decodedToken;
+                    console.log(decodedToken);
 
-                    const _id = 1; // Replace with the user's id from your authentication system
+
                     const user: IUser = {
-                        _id,
-                        email,
-                        firstName,
-                        lastName,
-                        industry,
-                        jobTitle,
-                    };
-
-                    // Update the state with the user object and token
+                        _id: decodedToken.sid,
+                        email: decodedToken.email,
+                        preferred_username: decodedToken.preferred_username,
+                        firstName: decodedToken.given_name,
+                        lastName: decodedToken.family_name,
+                        industry: 'Research',
+                        jobTitle: 'Scientist',
+                    }
                     state.user = user;
                     state.token = token;
                 } catch (error) {
