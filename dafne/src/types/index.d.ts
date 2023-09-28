@@ -9,9 +9,6 @@ declare module "*.png" {
 declare module 'theme/theme';
 declare module 'react-dom/client'
 
-
-
-
 interface IUser {
     _id: string;
     email: string;
