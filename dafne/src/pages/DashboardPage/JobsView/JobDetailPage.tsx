@@ -9,8 +9,11 @@ import { useGetJobStatusByIdQuery } from '../../../redux/apiGatewaySlice'
 
 const JobDetailPage = () => {
     const { id } = useParams<{ id: string }>()
-    const title = id ? `${id}` : 'userxyz_12345';
+
     const { data: jobStatus, isLoading, error } = useGetJobStatusByIdQuery(id ?? "userxyz_12345")
+
+
+    const title = jobStatus ? jobStatus.job.jobName : 'Job Detail with Job Name'
 
     const StatusComponent =
         <>
@@ -20,6 +23,12 @@ const JobDetailPage = () => {
                 <ProcessStatus status={jobStatus.status as JobState} />
             }
         </>
+
+    if (isLoading) {
+        return (
+            <div>isLoading...</div>
+        )
+    }
 
     return (
         <>

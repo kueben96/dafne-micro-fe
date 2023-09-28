@@ -73,7 +73,7 @@ interface IJob {
     finishedAt: string;
     instruction: ICreateServiceInstruction;
     jobId: string;
-    jobName: string; // Added to match the "jobName" field in the response
+    jobName: string;
     result?: {
         newModelIdentifier: string;
         resultDataPath: string;

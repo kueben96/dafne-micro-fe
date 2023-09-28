@@ -72,7 +72,7 @@ const JobDetail: React.FC<{ jobStatus?: IJobStatus; jobId?: string; isLoading?: 
               <Box display="flex" flexDirection="row" justifyContent="space-between">
                 <Box display="flex" flexDirection="column">
                   <Typography variant='body1' color="gray.main">Preview</Typography>
-                  <HeaderEditable title={jobStatus.job.instruction.model.paths.upload.path} headerSize={HeaderSize.SmallHeader} />
+                  <HeaderEditable title={jobStatus.job.instruction.paths.upload.path} headerSize={HeaderSize.SmallHeader} />
                 </Box>
                 <Box > {/* Updated line */}
                   <Button
@@ -99,11 +99,11 @@ export default JobDetail
 
 const JobSummary: React.FC<{ jobStatus: IJobStatus }> = ({ jobStatus }) => {
   const theme = useTheme();
-  const sampleNumber = jobStatus.job.instruction.model.sample;
-  const sourceData = jobStatus.job.instruction.model.paths.download.path;
+  const sampleNumber = jobStatus.job.instruction.sample;
+  const sourceData = jobStatus.job.instruction.paths.download.path;
   const model = mapModelToReadable(jobStatus.job.instruction.model.identifier);
   //TODO: update with metric score when response is updated
-  const metric = 20;
+  const metric = jobStatus.job.result?.score;
   return (
     <ContentBox>
       <CardContainer>
