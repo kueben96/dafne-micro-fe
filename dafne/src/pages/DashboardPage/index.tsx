@@ -6,7 +6,7 @@ import JobsView from "./JobsView";
 import DataView from './DataView';
 import { useFetchAllJobsQuery, useFetchDatasetsQuery } from '../../redux/apiGatewaySlice';
 import { useAppDispatch } from '../../redux/hooks';
-import { selectJobsCount, selectUser } from '../../redux/features/userSlice';
+import { selectDatasets, selectJobsCount, selectUser } from '../../redux/features/userSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useNavigate } from 'react-router-dom';
@@ -20,11 +20,11 @@ const DashboardPage = () => {
 
 
   const { data: userJobs, isLoading, isError } = useFetchAllJobsQuery();
-  const { data: datasets, isLoading: isLoadingDatasets, isError: isErrorDatasets } = useFetchDatasetsQuery();
 
   const user = useSelector(selectUser);
   const userJobsArray = userJobs ?? [];
-  const datasetsObject = datasets ?? [];
+
+  const datasetsObject = useSelector(selectDatasets)
   const jobsCount = useSelector(selectJobsCount);
   const datasetsCount = useSelector((state: RootState) => state?.user.datasetsCount);
   const modelsCount = useSelector((state: RootState) => state?.user.modelsCount);

@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch } from './redux/hooks';
-import { setUser, setUserJobs } from './redux/features/userSlice';
-import { useFetchAllJobsQuery } from './redux/apiGatewaySlice';
+import { setDatasets, setUser, setUserJobs } from './redux/features/userSlice';
+import { useFetchAllJobsQuery, useFetchDatasetsQuery } from './redux/apiGatewaySlice';
 import { JWT_TOKEN_KEY } from './utils/constants';
 
 const AppInitializer: React.FC = ({ children }) => {
   const dispatch = useAppDispatch();
-  const { data } = useFetchAllJobsQuery();
+  const { data: userJobs } = useFetchAllJobsQuery();
+  const { data: datasets } = useFetchDatasetsQuery();
+
 
   useEffect(() => {
     const token = localStorage.getItem(JWT_TOKEN_KEY);
@@ -17,10 +19,15 @@ const AppInitializer: React.FC = ({ children }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (data) {
-      dispatch(setUserJobs(data));
+    if (userJobs) {
+      dispatch(setUserJobs(userJobs));
     }
-  }, [data, dispatch]);
+  }, [userJobs, dispatch]);
+  useEffect(() => {
+    if (datasets) {
+      dispatch(setDatasets(datasets));
+    }
+  }, [datasets, dispatch]);
 
   return <>{children}</>;
 };

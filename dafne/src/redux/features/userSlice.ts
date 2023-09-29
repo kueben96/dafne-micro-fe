@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { JWT_TOKEN_KEY, USER_LOGOUT_EVENT_KEY } from "../../utils/constants";
 import jwt_decode from "jwt-decode";
-import { IJob, IUser } from "../../types";
+import { IDatasetItem, IJob, IUser } from "../../types";
 import { RootState } from "../store";
 
 interface _DecodedToken {
@@ -40,6 +40,7 @@ interface UserState {
     user: IUser | null;
     token: string | null;
     jobs: IJob[] | null;
+    datasets: IDatasetItem[] | null;
     jobsCount: number;
     modelsCount: number;
     datasetsCount: number;
@@ -49,9 +50,10 @@ const initialState: UserState = {
     user: null,
     token: null,
     jobs: null,
+    datasets: null,
     jobsCount: 0,
     modelsCount: 2,
-    datasetsCount: 2,
+    datasetsCount: 0,
 };
 
 const userSlice = createSlice({
@@ -94,18 +96,24 @@ const userSlice = createSlice({
             localStorage.removeItem(JWT_TOKEN_KEY);
             window.dispatchEvent(new CustomEvent(USER_LOGOUT_EVENT_KEY))
         },
-
-        // },
         setUserJobs: (state, action: PayloadAction<IJob[]>) => {
             const jobs = action.payload;
             state.jobs = jobs;
             state.jobsCount = jobs.length;
         },
+        setDatasets: (state, action: PayloadAction<IDatasetItem[]>) => {
+            const datasets = action.payload;
+            state.datasets = datasets;
+            state.datasetsCount = datasets.length;
+        },
     },
 });
 
-export const { setUser, logOut, setUserJobs } = userSlice.actions;
+export const { setUser, logOut, setUserJobs, setDatasets } = userSlice.actions;
+export const selectJobs = (state: RootState) => state.user.jobs;
 export const selectJobsCount = (state: RootState) => state.user.jobsCount;
 export const selectUser = (state: RootState) => state.user.user;
+export const selectDatasetCount = (state: RootState) => state.user.datasetsCount;
+export const selectDatasets = (state: RootState) => state.user.datasets;
 
 export default userSlice.reducer;
