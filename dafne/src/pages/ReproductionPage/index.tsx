@@ -20,7 +20,7 @@ const ReproductionPage: React.FC = () => {
 
   const theme = useTheme();
   const horizontalSteps = reproductionHorizontalSteps;
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
   const [stepCompleted, setStepCompleted] = useState(new Set<number>());
   const [stepsCompleted, setStepsCompleted] = useState(false);
   const [showProcessSteps, setShowProcessSteps] = useState(true);

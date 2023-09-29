@@ -4,14 +4,15 @@ import JobsTable from '../../components/JobsTable';
 import { GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { ContentPaper, StyledLink } from '../../assets/theme/dafneStyles';
 import { Chip, Container } from '@mui/material';
-import { IDatasetItem, } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 import { DatasetType, getFileNameFromPath } from '../../types/enums';
 import FaceIcon from '@mui/icons-material/Face';
 import PublicIcon from '@mui/icons-material/Public';
+import { useSelector } from 'react-redux';
+import { selectDatasets } from '../../redux/features/userSlice';
 
-const DataView: React.FC<{ dataSets: IDatasetItem[] }> = ({ dataSets }) => {
-
+const DataViewComponent: React.FC<{ isDialog?: boolean }> = ({ isDialog }) => {
+    const dataSets = useSelector(selectDatasets) ?? [];
     interface DatasetsRowData {
         id: string;
         name: string;
@@ -95,19 +96,27 @@ const DataView: React.FC<{ dataSets: IDatasetItem[] }> = ({ dataSets }) => {
     ];
 
 
-
     return (
-        <ContentPaper>
-            <Container>
-
+        <>
+            {isDialog ? (
                 <JobsTable
-                    tableType='dataset'
+                    tableType='jobs'
                     columns={DatasetsColumns}
                     rows={DatasetsRows}
                 />
-            </Container>
-        </ContentPaper>
-    )
+            ) : (
+                <ContentPaper>
+                    <Container>
+                        <JobsTable
+                            tableType='dataset'
+                            columns={DatasetsColumns}
+                            rows={DatasetsRows}
+                        />
+                    </Container>
+                </ContentPaper>
+            )}
+        </>
+    );
 }
 
-export default DataView
+export default DataViewComponent

@@ -1,8 +1,9 @@
-import { Box, FormControl, FormControlLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, TextField, Typography } from '@mui/material'
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, TextField, Typography } from '@mui/material'
 import React, { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import DataSourceSelectionComponent from './DataSourceSelectionComponent'
 import { InstructionOptionDropdown } from '../../types';
 import { SizedBoxVertical } from '../../assets/theme/dafneStyles';
+import DataViewComponent from '../DashboardPage/DataView';
 
 interface StepSummaryFieldProps {
   label: string | null;
@@ -39,7 +40,14 @@ export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = (
   const [selected, setSelected] = useState('catalogue');
   const [selectedFileCatalogue, setSelectedFileCatalogue] = useState<File>(new File([''], 'DemoDataset.csv'));
   const [selectedFileUpload, setSelectedFileUpload] = useState<File | null>(null);
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = (value: string) => {
+    setOpen(false);
+  };
   const handleCatalogueSelection = () => {
     setSelectedFileCatalogue(new File([''], 'Catalogue Change.csv'));
     setSelected('catalogue');
@@ -69,7 +77,7 @@ export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = (
     <Box display="flex" flexDirection="row">
       <DataSourceSelectionComponent
         variant="catalogueSelection"
-        onClick={handleCatalogueSelection}
+        onClick={handleClickOpen}
         selected={selected === 'catalogue'}
         selectedFileNameCatalogue={selectedFileCatalogue?.name}
       />
@@ -79,6 +87,16 @@ export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = (
         selected={selected === 'upload'}
         selectedFileNameComputer={selectedFileUpload?.name}
       />
+      <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth="xl">
+        <DialogTitle>Select a dataset from the data catalogue</DialogTitle>
+        <DialogContent>
+          <DataViewComponent isDialog={true} />
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={() => { }}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

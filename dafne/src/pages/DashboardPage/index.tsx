@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Box } from "@mui/material";
 import PageHeaderDashboard from "../../components/PageHeaderDashboard";
 import JobsView from "./JobsView";
-import DataView from './DataView';
+import DataViewComponent from './DataView';
 import { useFetchAllJobsQuery, useFetchDatasetsQuery } from '../../redux/apiGatewaySlice';
 import { useAppDispatch } from '../../redux/hooks';
 import { selectDatasets, selectJobs, selectJobsCount, selectUser } from '../../redux/features/userSlice';
@@ -20,7 +20,7 @@ const DashboardPage = () => {
 
   const user = useSelector(selectUser);
   const userJobsArray = useSelector(selectJobs) ?? [];
-  const datasetsArray = useSelector(selectDatasets) ?? [];
+
   const jobsCount = useSelector(selectJobsCount);
   const datasetsCount = useSelector((state: RootState) => state?.user.datasetsCount);
   const modelsCount = useSelector((state: RootState) => state?.user.modelsCount);
@@ -34,7 +34,7 @@ const DashboardPage = () => {
       case 'models':
         return <h1>models view</h1>;
       case 'data':
-        return <DataView dataSets={datasetsArray} />
+        return <DataViewComponent />
       default:
         return null;
     }
