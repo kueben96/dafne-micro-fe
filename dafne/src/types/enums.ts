@@ -4,6 +4,10 @@ export enum JobState {
     Completed = "completed",
     Error = "error",
 }
+export enum DatasetType {
+    User = "userbucket",
+    Public = "publicdataset",
+}
 
 export enum JobType {
     Reproduction = "reproduction",

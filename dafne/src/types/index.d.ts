@@ -1,4 +1,4 @@
-import { JobState, JobType } from "./enums";
+import { DatasetType, JobState, JobType } from "./enums";
 
 declare module '*.jpg';
 declare module "*.png" {
@@ -18,16 +18,13 @@ interface IUser {
     industry: string;
     jobTitle: string;
 }
-interface IDatasets {
-    publicData: IDatasetItem[];
-    userBucket: IDatasetItem[];
-}
 
 interface IDatasetItem {
+    bucketName: DatasetType;
     etag?: string;
     lastModified: string;
     metadata?: Record<string, any>;
-    path: string;
+    objectName: string;
     size: number;
     storageClass?: string;
 }

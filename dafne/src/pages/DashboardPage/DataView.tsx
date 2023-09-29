@@ -1,53 +1,37 @@
 import React from 'react'
 import { useFetchDatasetsQuery } from '../../redux/apiGatewaySlice';
 import JobsTable from '../../components/JobsTable';
-import { GridColDef } from '@mui/x-data-grid';
+import { GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { ContentPaper, StyledLink } from '../../assets/theme/dafneStyles';
 import { Container } from '@mui/material';
-import { IDatasetItem, IDatasets } from '../../types';
+import { IDatasetItem, } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
+import { DatasetType } from '../../types/enums';
 
-const DataView: React.FC<{ dataSets: IDatasets }> = ({ dataSets }) => {
+const DataView: React.FC<{ dataSets: IDatasetItem[] }> = ({ dataSets }) => {
 
     interface DatasetsRowData {
         id: string;
         name: string;
         path: string;
-        type: string;
+        type: DatasetType;
         size: number;
         lastModified: Date;
     }
 
-    const DatasetsRows: DatasetsRowData[] = dataSets
-        ? (Object.keys(dataSets) as (keyof IDatasets)[]).flatMap((datasetType) => {
-            const datasetItems = dataSets[datasetType];;
-            if (Array.isArray(datasetItems)) {
-                return datasetItems.map((dataset) => ({
-                    id: uuidv4(),
-                    name: dataset.path,
-                    path: dataset.path,
-                    type: datasetType,
-                    size: dataset.size,
-                    lastModified: new Date(dataset.lastModified),
-                }));
-            }
-            return [];
-        })
-        : [];
-
-    console.log(DatasetsRows)
+    const DatasetsRows: DatasetsRowData[] = dataSets.map((dataset) => {
+        return {
+            id: uuidv4(),
+            name: dataset.objectName,
+            path: dataset.objectName,
+            type: dataset.bucketName,
+            size: dataset.size,
+            lastModified: new Date(dataset.lastModified),
+        }
+    })
 
 
 
-    // const DatasetsRows = Object.keys(dataSets).map((key) => {
-    //     return {
-    //         name: 
-    //         path: dataSets[key].path,
-    //         type: key,
-    //         size: dataSets[key].size,
-    //         lastModified: dataSets[key].lastModified,
-    //     }
-    // }
 
     const DatasetsColumns: GridColDef<DatasetsRowData>[] = [
         {
@@ -83,14 +67,18 @@ const DataView: React.FC<{ dataSets: IDatasets }> = ({ dataSets }) => {
             headerName: 'Action',
             flex: 1,
             headerClassName: 'header-cell',
-            renderCell: () => (
+            renderCell: (params: GridCellParams) => (
                 <>
-                    <StyledLink underline="none" href="#">Delete</StyledLink>
-                    <StyledLink underline="none" href="#">Details</StyledLink>
-                </>
-            ),
 
-        },
+                    <StyledLink underline="none" href="#">View</StyledLink>
+                    {params.row.type == DatasetType.User &&
+                        <StyledLink underline="none" href="#">Delete</StyledLink>
+                    }
+                </>
+            )
+
+
+        }
 
     ];
 
@@ -101,7 +89,7 @@ const DataView: React.FC<{ dataSets: IDatasets }> = ({ dataSets }) => {
             <Container>
 
                 <JobsTable
-                    tableType='datasets'
+                    tableType='dataset'
                     columns={DatasetsColumns}
                     rows={DatasetsRows}
                 />

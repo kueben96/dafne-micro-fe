@@ -5,8 +5,6 @@ import { EmptyRowsImage } from '../assets/images';
 import { CustomDataGrid, TableCustomBox } from '../assets/theme/dafneStyles';
 
 
-
-
 const CustomNoRowsOverlay = () => {
     const theme = useTheme()
     return (
@@ -53,7 +51,7 @@ const JobsTable: React.FC<JobsTableProps> = ({ rows, columns, tableType }) => {
 
 
     return (
-        <TableCustomBox theme={theme} ref={tableRef} height={tableType == "dataset" ? 600 : 400}>
+        <TableCustomBox theme={theme} ref={tableRef} height={tableType == "dataset" ? 700 : 400}>
             <CustomDataGrid
                 autoHeight
                 rows={rows ?? []}

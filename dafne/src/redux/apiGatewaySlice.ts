@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { ICreateServiceInstruction, IJob, IJobStatus, IMetric, IModel, IDatasetItem, IDatasets } from '../types';
+import { ICreateServiceInstruction, IJob, IJobStatus, IMetric, IModel, IDatasetItem } from '../types';
 import { mapServiceTypeToReadable, mapStatusToReadable } from '../types/enums';
 
 const baseQuery = fetchBaseQuery({
@@ -22,25 +22,20 @@ export const apiGatewaySlice = createApi({
     baseQuery: baseQuery,
     tagTypes: ['Jobs', 'User', 'Data', 'Models'],
     endpoints: (builder) => ({
-        fetchDatasets: builder.query<IDatasets, void>({
+        fetchDatasets: builder.query<IDatasetItem[], void>({
             query: () => 'data',
             transformResponse: (rawResponse: any) => {
-                const parsedResponse: IDatasets = {
-                    publicData: rawResponse.publicData.map((item: any) => {
-                        return {
-                            lastModified: item._last_modified,
-                            path: item._object_name,
-                            size: item._size,
-                        }
-                    }) as IDatasetItem[],
-                    userBucket: rawResponse.userBucket.map((item: any) => {
-                        return {
-                            lastModified: item._last_modified,
-                            path: item._object_name,
-                            size: item._size,
-                        }
-                    }) as IDatasetItem[]
-                };
+                const parsedResponse: IDatasetItem[] = rawResponse.files.map((dataset: any) => {
+                    return {
+                        bucketName: dataset._bucket_name,
+                        objectName: dataset._object_name,
+                        etag: dataset._etag,
+                        lastModified: dataset._last_modified,
+                        metadata: dataset._metadata,
+                        size: dataset._size,
+                        storageClass: dataset._storage_class
+                    } as IDatasetItem;
+                });
                 return parsedResponse;
             }
         }),

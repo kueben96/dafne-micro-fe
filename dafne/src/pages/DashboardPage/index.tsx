@@ -10,7 +10,6 @@ import { selectJobsCount, selectUser } from '../../redux/features/userSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useNavigate } from 'react-router-dom';
-import { IDatasets } from '../../types';
 
 const DashboardPage = () => {
   const [tabValue, setTabValue] = useState<string>('jobs');
@@ -25,7 +24,7 @@ const DashboardPage = () => {
 
   const user = useSelector(selectUser);
   const userJobsArray = userJobs ?? [];
-  const datasetsObject = datasets ?? {} as IDatasets;
+  const datasetsObject = datasets ?? [];
   const jobsCount = useSelector(selectJobsCount);
   const datasetsCount = useSelector((state: RootState) => state?.user.datasetsCount);
   const modelsCount = useSelector((state: RootState) => state?.user.modelsCount);

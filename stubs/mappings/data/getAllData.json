@@ -13,52 +13,174 @@
     "headers": {
       "Content-Type": "application/json"
     },
-    "jsonBody": 
-      {
-        "publicData": [
-          {
-            "_bucket_name": "publicdataset",
-            "_etag": "2ffbc731ff4d312615544a81d6a1577a",
-            "_is_delete_marker": false,
-            "_last_modified": "2023-06-05T08:36:04.244000+00:00",
-            "_metadata": {},
-            "_object_name": "demo.pkl",
-            "_size": 2151885,
-            "_storage_class": "STANDARD"
-          },
-          {
-            "_bucket_name": "publicdataset",
-            "_etag": "2ffbc731ff4d312615544a81sdf577a",
-            "_is_delete_marker": false,
-            "_last_modified": "2023-06-05T08:36:04.244000+00:00",
-            "_metadata": {},
-            "_object_name": "bridge_data.pkl",
-            "_size": 2151885,
-            "_storage_class": "STANDARD"
-          },
-          {
-            "_bucket_name": "publicdataset",
-            "_etag": "2ffbc731ff4d312615544a81sdf577a",
-            "_is_delete_marker": false,
-            "_last_modified": "2023-06-05T08:36:04.244000+00:00",
-            "_metadata": {},
-            "_object_name": "students_data.pkl",
-            "_size": 2151885,
-            "_storage_class": "STANDARD"
-          }
-        ],
-        "userBucket": [
-          {
-            "_bucket_name": "userbucket",
-            "_etag": "5b760d10e4ec7dcc9a7c090588aec0c1",
-            "_is_delete_marker": false,
-            "_last_modified": "2023-09-07T14:11:35.691000+00:00",
-            "_metadata": {},
-            "_object_name": "sebastian/directory/demopkl_sample_100.json",
-            "_size": 541,
-            "_storage_class": "STANDARD"
-          }
-        ]
-      }
+    "jsonBody": {
+      "files": [
+        {
+          "_bucket_name": "publicdataset",
+          "_object_name": "demo.pkl",
+          "_last_modified": "2023-06-05T08:36:04.244000+00:00",
+          "_etag": "2ffbc731ff4d312615544a81d6a1577a",
+          "_size": 2151885,
+          "_metadata": {},
+          "_version_id": null,
+          "_is_latest": null,
+          "_storage_class": "STANDARD",
+          "_owner_id": null,
+          "_owner_name": null,
+          "_content_type": null,
+          "_is_delete_marker": false
+        },
+        {
+          "_bucket_name": "publicdataset",
+          "_object_name": "pronto_cycle_share_station.csv",
+          "_last_modified": "2023-09-02T11:22:25.856000+00:00",
+          "_etag": "e850bdfe92e189cd5dd2575b85fc8977",
+          "_size": 4908,
+          "_metadata": {},
+          "_version_id": null,
+          "_is_latest": null,
+          "_storage_class": "STANDARD",
+          "_owner_id": null,
+          "_owner_name": null,
+          "_content_type": null,
+          "_is_delete_marker": false
+        },
+        {
+          "_bucket_name": "publicdataset",
+          "_object_name": "testdir/toolshed.png",
+          "_last_modified": "2023-09-02T10:46:15.906000+00:00",
+          "_etag": "efe3948bb884824faa9f30cfcec2b1b0",
+          "_size": 120816,
+          "_metadata": {},
+          "_version_id": null,
+          "_is_latest": null,
+          "_storage_class": "STANDARD",
+          "_owner_id": null,
+          "_owner_name": null,
+          "_content_type": null,
+          "_is_delete_marker": false
+        },
+        {
+          "_bucket_name": "publicdataset",
+          "_object_name": "toolshed.png",
+          "_last_modified": "2023-04-14T12:58:24.602000+00:00",
+          "_etag": "efe3948bb884824faa9f30cfcec2b1b0",
+          "_size": 120816,
+          "_metadata": {},
+          "_version_id": null,
+          "_is_latest": null,
+          "_storage_class": "STANDARD",
+          "_owner_id": null,
+          "_owner_name": null,
+          "_content_type": null,
+          "_is_delete_marker": false
+        },
+        {
+          "_bucket_name": "userbucket",
+          "_object_name": "sebastian/logging.conf",
+          "_last_modified": "2023-09-07T14:11:35.691000+00:00",
+          "_etag": "5b760d10e4ec7dcc9a7c090588aec0c1",
+          "_size": 541,
+          "_metadata": {},
+          "_version_id": null,
+          "_is_latest": null,
+          "_storage_class": "STANDARD",
+          "_owner_id": null,
+          "_owner_name": null,
+          "_content_type": null,
+          "_is_delete_marker": false
+        },
+        {
+          "_bucket_name": "userbucket",
+          "_object_name": "sebastian/test.txt",
+          "_last_modified": "2023-09-07T13:54:16.290000+00:00",
+          "_etag": "d41d8cd98f00b204e9800998ecf8427e",
+          "_size": 0,
+          "_metadata": {},
+          "_version_id": null,
+          "_is_latest": null,
+          "_storage_class": "STANDARD",
+          "_owner_id": null,
+          "_owner_name": null,
+          "_content_type": null,
+          "_is_delete_marker": false
+        },
+        {
+          "_bucket_name": "userbucket",
+          "_object_name": "sebastian/testdirectory/generated_3.json",
+          "_last_modified": "2023-08-18T09:08:06.949000+00:00",
+          "_etag": "588fb326915e6a686e444c0c075eaea3",
+          "_size": 8135830,
+          "_metadata": {},
+          "_version_id": null,
+          "_is_latest": null,
+          "_storage_class": "STANDARD",
+          "_owner_id": null,
+          "_owner_name": null,
+          "_content_type": null,
+          "_is_delete_marker": false
+        },
+        {
+          "_bucket_name": "userbucket",
+          "_object_name": "sebastian/testdirectory/weights_generated_3.json",
+          "_last_modified": "2023-08-18T09:08:08.004000+00:00",
+          "_etag": "45ea608adb3968a48ec07276917152c0-4",
+          "_size": 39762176,
+          "_metadata": {},
+          "_version_id": null,
+          "_is_latest": null,
+          "_storage_class": "STANDARD",
+          "_owner_id": null,
+          "_owner_name": null,
+          "_content_type": null,
+          "_is_delete_marker": false
+        },
+        {
+          "_bucket_name": "userbucket",
+          "_object_name": "sebastian/uploadFile.txt",
+          "_last_modified": "2023-04-14T12:14:50.164000+00:00",
+          "_etag": "a2fc5d6af2092a0a65f8f5fb05c9c47f",
+          "_size": 15,
+          "_metadata": {},
+          "_version_id": null,
+          "_is_latest": null,
+          "_storage_class": "STANDARD",
+          "_owner_id": null,
+          "_owner_name": null,
+          "_content_type": null,
+          "_is_delete_marker": false
+        },
+        {
+          "_bucket_name": "userbucket",
+          "_object_name": "sebastian/uploadtest.txt",
+          "_last_modified": "2023-09-07T14:27:58.281000+00:00",
+          "_etag": "d41d8cd98f00b204e9800998ecf8427e",
+          "_size": 0,
+          "_metadata": {},
+          "_version_id": null,
+          "_is_latest": null,
+          "_storage_class": "STANDARD",
+          "_owner_id": null,
+          "_owner_name": null,
+          "_content_type": null,
+          "_is_delete_marker": false
+        },
+        {
+          "_bucket_name": "userbucket",
+          "_object_name": "sebastianlogging.conf",
+          "_last_modified": "2023-09-07T13:43:19.382000+00:00",
+          "_etag": "5b760d10e4ec7dcc9a7c090588aec0c1",
+          "_size": 541,
+          "_metadata": {},
+          "_version_id": null,
+          "_is_latest": null,
+          "_storage_class": "STANDARD",
+          "_owner_id": null,
+          "_owner_name": null,
+          "_content_type": null,
+          "_is_delete_marker": false
+        }
+      ]
+    }
   }
 }
