@@ -3,10 +3,12 @@ import { useFetchDatasetsQuery } from '../../redux/apiGatewaySlice';
 import JobsTable from '../../components/JobsTable';
 import { GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { ContentPaper, StyledLink } from '../../assets/theme/dafneStyles';
-import { Container } from '@mui/material';
+import { Chip, Container } from '@mui/material';
 import { IDatasetItem, } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
-import { DatasetType } from '../../types/enums';
+import { DatasetType, getFileNameFromPath } from '../../types/enums';
+import FaceIcon from '@mui/icons-material/Face';
+import PublicIcon from '@mui/icons-material/Public';
 
 const DataView: React.FC<{ dataSets: IDatasetItem[] }> = ({ dataSets }) => {
 
@@ -22,7 +24,7 @@ const DataView: React.FC<{ dataSets: IDatasetItem[] }> = ({ dataSets }) => {
     const DatasetsRows: DatasetsRowData[] = dataSets.map((dataset) => {
         return {
             id: uuidv4(),
-            name: dataset.objectName,
+            name: getFileNameFromPath(dataset.objectName),
             path: dataset.objectName,
             type: dataset.bucketName,
             size: dataset.size,
@@ -30,14 +32,14 @@ const DataView: React.FC<{ dataSets: IDatasetItem[] }> = ({ dataSets }) => {
         }
     })
 
-
+    console.log(DatasetsRows)
 
 
     const DatasetsColumns: GridColDef<DatasetsRowData>[] = [
         {
             field: 'name',
             headerName: 'Name',
-            flex: 1,
+            flex: 1.2,
         },
         {
             field: 'path',
@@ -46,9 +48,22 @@ const DataView: React.FC<{ dataSets: IDatasetItem[] }> = ({ dataSets }) => {
         },
         {
             field: 'type',
-            headerName: 'Type',
+            headerName: 'Origin',
             flex: 1,
-            // TODO: renderCell with ChipWithIcon for public/private
+            renderCell: (params: GridCellParams) => {
+                const { value } = params;
+                return (
+                    <>
+                        {value === DatasetType.User && (
+                            <Chip variant="outlined" color="secondary" icon={<FaceIcon />} label='User' />
+                        )}
+                        {value === DatasetType.Public && (
+                            <Chip variant="outlined" color="primary" icon={<PublicIcon />} label="Public" />
+                        )}
+                    </>
+                );
+
+            }
         },
         {
             field: 'size',
@@ -69,15 +84,12 @@ const DataView: React.FC<{ dataSets: IDatasetItem[] }> = ({ dataSets }) => {
             headerClassName: 'header-cell',
             renderCell: (params: GridCellParams) => (
                 <>
-
                     <StyledLink underline="none" href="#">View</StyledLink>
                     {params.row.type == DatasetType.User &&
                         <StyledLink underline="none" href="#">Delete</StyledLink>
                     }
                 </>
             )
-
-
         }
 
     ];
