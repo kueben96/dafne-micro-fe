@@ -21,7 +21,7 @@ const CustomNoRowsOverlay = () => {
 interface JobsTableProps {
     columns: GridColDef[];
     rows?: GridRowsProp;
-    tableType: 'jobs' | 'datasets';
+    tableType: 'jobs' | 'dataset' | 'datasets';
 }
 
 
@@ -53,7 +53,7 @@ const JobsTable: React.FC<JobsTableProps> = ({ rows, columns, tableType }) => {
 
 
     return (
-        <TableCustomBox theme={theme} ref={tableRef} height={tableType == "datasets" ? 600 : 400}>
+        <TableCustomBox theme={theme} ref={tableRef} height={tableType == "dataset" ? 600 : 400}>
             <CustomDataGrid
                 autoHeight
                 rows={rows ?? []}

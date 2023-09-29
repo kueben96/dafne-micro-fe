@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setInstruction } from '../../redux/features/jobsSlice';
 import { useGetMetricsQuery, useGetModelsQuery } from '../../redux/apiGatewaySlice';
-import { mapModelToReadable } from '../../types/enums';
 
 
 const GenerationSettingsForm: React.FC = () => {

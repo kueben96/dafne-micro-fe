@@ -18,7 +18,19 @@ interface IUser {
     industry: string;
     jobTitle: string;
 }
+interface IDatasets {
+    publicData: IDatasetItem[];
+    userBucket: IDatasetItem[];
+}
 
+interface IDatasetItem {
+    etag?: string;
+    lastModified: string;
+    metadata?: Record<string, any>;
+    path: string;
+    size: number;
+    storageClass?: string;
+}
 
 // TODO: missing properties from getModel like params 
 interface IModel {

@@ -1,30 +1,64 @@
 {
-    "request": {
-        "method": "GET",
-        "urlPattern": "/api/data",
-        "headers": {
-            "Authorization": {
-              "contains": 
-                "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyX1ZjcUhoNWxJc29WeDhZa2JDS0d2U1EzUGxJQ0N1RE1vSHQ5VU1qQy1NIn0.eyJleHAiOjE2OTU4MjM4NzYsImlhdCI6MTY5NTgyMzU3NiwianRpIjoiNjE1NTEzNGYtMmU2OS00YTFhLTkzZmUtM2M5NmU5MjUzYjZjIiwiaXNzIjoiaHR0cDovL2RhZm5lLmluZm8va2V5Y2xvYWsvcmVhbG1zL2RhZm5lIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjY3YWUyNDk4LWRiYzgtNGNlNi1hMGEyLWEwYTA5ZDJjNjBlMiIsInR5cCI6IkJlYXJlciIsImF6cCI6Im9yY2hlc3RyYXRvciIsInNlc3Npb25fc3RhdGUiOiI4NGVjMWY4Mi1lMTljLTRjYjItOTIxNy04ZmEzNDYwYjhiMzQiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1kYWZuZSIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJzaG93LWdyb3VwcyBwcm9maWxlIGVtYWlsIiwic2lkIjoiODRlYzFmODItZTE5Yy00Y2IyLTkyMTctOGZhMzQ2MGI4YjM0IiwiZGEtcmVhbC1ncyI6WyIvcHJvZ3JhbW1lciJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6Ikplbm55IFNtaXRoIiwiZ3JvdXBzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1kYWZuZSIsInVtYV9hdXRob3JpemF0aW9uIl0sInByZWZlcnJlZF91c2VybmFtZSI6Implbm55LnNtaXRoQGRhZm5lLmRlIiwiZ2l2ZW5fbmFtZSI6Ikplbm55IiwiZmFtaWx5X25hbWUiOiJTbWl0aCIsImVtYWlsIjoiamVubnkuc21pdGhAZGFmbmUuZGUifQ.UqafgN7IRQyPW3XG1facaLnRXc5hhhrVrCWHMJL-wWmC40mijFjYRIYK7_HkBBqmd4Q7xN0xz4yLKveUXE3h4EA8Olvc1V78VI4vzZf_TRpDIQxBAn1axZ_brnXwLfJ58MNTnx45zjmAZTHXsn794bGkgcwP9X797ITPzY3PriQV0ky_ArmcnEvBTxzF6Nv1KhDxPfHm46UiHqulhrRTQJb89mniYYnlIWIBdFIGzi5TICGZ8D1k6jNErm1LD4XfDipqWuK4vkkHTwWp50BMoP-px4iZKwI3oEwfSzAPNragkrovho3DHqtXYf_cU_OAwKC1KCqxeiHaMBtXBcpL4w"
-            }
-        }
-    },
-    "response": {
-        "status": 200,
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "jsonBody": [
-            {
-                "publicData": [
-                  "demo.pkl",
-                  "pronto_cycle_share_station.csv",
-                  "testdir/toolshed.png"
-                ],
-                "userBucket": [
-                  "sebastian/demo.pkl"
-                ]
-              }
-        ]
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/data",
+    "headers": {
+      "Authorization": {
+        "contains": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyX1ZjcUhoNWxJc29WeDhZa2JDS0d2U1EzUGxJQ0N1RE1vSHQ5VU1qQy1NIn0.eyJleHAiOjE2OTU4MjM4NzYsImlhdCI6MTY5NTgyMzU3NiwianRpIjoiNjE1NTEzNGYtMmU2OS00YTFhLTkzZmUtM2M5NmU5MjUzYjZjIiwiaXNzIjoiaHR0cDovL2RhZm5lLmluZm8va2V5Y2xvYWsvcmVhbG1zL2RhZm5lIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjY3YWUyNDk4LWRiYzgtNGNlNi1hMGEyLWEwYTA5ZDJjNjBlMiIsInR5cCI6IkJlYXJlciIsImF6cCI6Im9yY2hlc3RyYXRvciIsInNlc3Npb25fc3RhdGUiOiI4NGVjMWY4Mi1lMTljLTRjYjItOTIxNy04ZmEzNDYwYjhiMzQiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1kYWZuZSIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJzaG93LWdyb3VwcyBwcm9maWxlIGVtYWlsIiwic2lkIjoiODRlYzFmODItZTE5Yy00Y2IyLTkyMTctOGZhMzQ2MGI4YjM0IiwiZGEtcmVhbC1ncyI6WyIvcHJvZ3JhbW1lciJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6Ikplbm55IFNtaXRoIiwiZ3JvdXBzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1kYWZuZSIsInVtYV9hdXRob3JpemF0aW9uIl0sInByZWZlcnJlZF91c2VybmFtZSI6Implbm55LnNtaXRoQGRhZm5lLmRlIiwiZ2l2ZW5fbmFtZSI6Ikplbm55IiwiZmFtaWx5X25hbWUiOiJTbWl0aCIsImVtYWlsIjoiamVubnkuc21pdGhAZGFmbmUuZGUifQ.UqafgN7IRQyPW3XG1facaLnRXc5hhhrVrCWHMJL-wWmC40mijFjYRIYK7_HkBBqmd4Q7xN0xz4yLKveUXE3h4EA8Olvc1V78VI4vzZf_TRpDIQxBAn1axZ_brnXwLfJ58MNTnx45zjmAZTHXsn794bGkgcwP9X797ITPzY3PriQV0ky_ArmcnEvBTxzF6Nv1KhDxPfHm46UiHqulhrRTQJb89mniYYnlIWIBdFIGzi5TICGZ8D1k6jNErm1LD4XfDipqWuK4vkkHTwWp50BMoP-px4iZKwI3oEwfSzAPNragkrovho3DHqtXYf_cU_OAwKC1KCqxeiHaMBtXBcpL4w"
+      }
     }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": 
+      {
+        "publicData": [
+          {
+            "_bucket_name": "publicdataset",
+            "_etag": "2ffbc731ff4d312615544a81d6a1577a",
+            "_is_delete_marker": false,
+            "_last_modified": "2023-06-05T08:36:04.244000+00:00",
+            "_metadata": {},
+            "_object_name": "demo.pkl",
+            "_size": 2151885,
+            "_storage_class": "STANDARD"
+          },
+          {
+            "_bucket_name": "publicdataset",
+            "_etag": "2ffbc731ff4d312615544a81sdf577a",
+            "_is_delete_marker": false,
+            "_last_modified": "2023-06-05T08:36:04.244000+00:00",
+            "_metadata": {},
+            "_object_name": "bridge_data.pkl",
+            "_size": 2151885,
+            "_storage_class": "STANDARD"
+          },
+          {
+            "_bucket_name": "publicdataset",
+            "_etag": "2ffbc731ff4d312615544a81sdf577a",
+            "_is_delete_marker": false,
+            "_last_modified": "2023-06-05T08:36:04.244000+00:00",
+            "_metadata": {},
+            "_object_name": "students_data.pkl",
+            "_size": 2151885,
+            "_storage_class": "STANDARD"
+          }
+        ],
+        "userBucket": [
+          {
+            "_bucket_name": "userbucket",
+            "_etag": "5b760d10e4ec7dcc9a7c090588aec0c1",
+            "_is_delete_marker": false,
+            "_last_modified": "2023-09-07T14:11:35.691000+00:00",
+            "_metadata": {},
+            "_object_name": "sebastian/directory/demopkl_sample_100.json",
+            "_size": 541,
+            "_storage_class": "STANDARD"
+          }
+        ]
+      }
+  }
 }

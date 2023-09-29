@@ -1,5 +1,5 @@
 import { AutoMode } from '@mui/icons-material';
-import { Box, Drawer, AppBar } from '@mui/material';
+import { Box, Drawer, AppBar, Link } from '@mui/material';
 import { styled } from '@mui/material';
 import { Theme } from '@mui/material/styles';
 import { DataGrid } from '@mui/x-data-grid';
@@ -63,3 +63,7 @@ export const CustomDataGrid = styled(DataGrid)(({ theme }: { theme: Theme }) => 
     },
 }));
 
+export const StyledLink = styled(Link)(({ theme }) => ({
+    color: theme.palette.primary?.main,
+    marginRight: theme.spacing(2),
+}));

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { ICreateServiceInstruction, IJob, IJobStatus, IMetric, IModel } from '../types';
+import { ICreateServiceInstruction, IJob, IJobStatus, IMetric, IModel, IDatasetItem, IDatasets } from '../types';
 import { mapServiceTypeToReadable, mapStatusToReadable } from '../types/enums';
 
 const baseQuery = fetchBaseQuery({
@@ -22,9 +22,27 @@ export const apiGatewaySlice = createApi({
     baseQuery: baseQuery,
     tagTypes: ['Jobs', 'User', 'Data', 'Models'],
     endpoints: (builder) => ({
-        fetchDatasets: builder.query({
+        fetchDatasets: builder.query<IDatasets, void>({
             query: () => 'data',
-
+            transformResponse: (rawResponse: any) => {
+                const parsedResponse: IDatasets = {
+                    publicData: rawResponse.publicData.map((item: any) => {
+                        return {
+                            lastModified: item._last_modified,
+                            path: item._object_name,
+                            size: item._size,
+                        }
+                    }) as IDatasetItem[],
+                    userBucket: rawResponse.userBucket.map((item: any) => {
+                        return {
+                            lastModified: item._last_modified,
+                            path: item._object_name,
+                            size: item._size,
+                        }
+                    }) as IDatasetItem[]
+                };
+                return parsedResponse;
+            }
         }),
         fetchAllJobs: builder.query<IJob[], void>({
             query: () => 'job',

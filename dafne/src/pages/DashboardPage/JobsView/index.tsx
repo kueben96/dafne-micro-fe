@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container, Link, Typography, styled } from '@mui/material'
 import TableToolBar from '../../../components/TableToolBar';
-import { ContentPaper, SizedBoxVertical } from '../../../assets/theme/dafneStyles';
+import { ContentPaper, SizedBoxVertical, StyledLink } from '../../../assets/theme/dafneStyles';
 import JobsTable from '../../../components/JobsTable';
 import { GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { JobsRowData, IJob } from '../../../types';
@@ -79,10 +79,7 @@ const JobsColumns: GridColDef<JobsRowData>[] = [
 ];
 
 
-const StyledLink = styled(Link)(({ theme }) => ({
-    color: theme.palette.primary?.main,
-    marginRight: theme.spacing(2),
-}));
+
 
 const JobsView: React.FC<JobsViewProps> = ({ userJobs }) => {
 

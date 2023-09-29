@@ -4,12 +4,13 @@ import { Box } from "@mui/material";
 import PageHeaderDashboard from "../../components/PageHeaderDashboard";
 import JobsView from "./JobsView";
 import DataView from './DataView';
-import { useFetchAllJobsQuery } from '../../redux/apiGatewaySlice';
+import { useFetchAllJobsQuery, useFetchDatasetsQuery } from '../../redux/apiGatewaySlice';
 import { useAppDispatch } from '../../redux/hooks';
 import { selectJobsCount, selectUser } from '../../redux/features/userSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useNavigate } from 'react-router-dom';
+import { IDatasets } from '../../types';
 
 const DashboardPage = () => {
   const [tabValue, setTabValue] = useState<string>('jobs');
@@ -20,9 +21,11 @@ const DashboardPage = () => {
 
 
   const { data: userJobs, isLoading, isError } = useFetchAllJobsQuery();
+  const { data: datasets, isLoading: isLoadingDatasets, isError: isErrorDatasets } = useFetchDatasetsQuery();
 
   const user = useSelector(selectUser);
   const userJobsArray = userJobs ?? [];
+  const datasetsObject = datasets ?? {} as IDatasets;
   const jobsCount = useSelector(selectJobsCount);
   const datasetsCount = useSelector((state: RootState) => state?.user.datasetsCount);
   const modelsCount = useSelector((state: RootState) => state?.user.modelsCount);
@@ -36,7 +39,7 @@ const DashboardPage = () => {
       case 'models':
         return <h1>models view</h1>;
       case 'data':
-        return <DataView />
+        return <DataView dataSets={datasetsObject} />
       default:
         return null;
     }

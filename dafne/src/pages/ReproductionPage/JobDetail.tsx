@@ -85,7 +85,7 @@ const JobDetail: React.FC<{ jobStatus?: IJobStatus; jobId?: string; isLoading?: 
                   <IconButton><OpenWithSharpIcon /></IconButton>
                 </Box>
               </Box>
-              <JobsTable tableType='datasets' columns={cols} rows={rows} />
+              <JobsTable tableType='dataset' columns={cols} rows={rows} />
             </ContentBox>
           </ContentPaper>
         </>
