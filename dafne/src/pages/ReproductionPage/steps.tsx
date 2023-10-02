@@ -53,12 +53,7 @@ export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps>
       setOpen(false);
     };
     const handleCatalogueSelection = () => {
-      // setSelectedFileCatalogue(new File([''], 'Catalogue Change.csv'));
       setSelected('catalogue');
-      // setSelectedSource({
-      //   variant: 'catalogue',
-      //   file: selectedFileCatalogue,
-      // });
     };
 
     const handleFileUpload = (event: Event) => {
@@ -90,6 +85,7 @@ export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps>
           onClick={openFileInput}
           selected={selected === 'upload'}
           selectedFileNameComputer={selectedFileUpload?.name}
+          disabled={true}
         />
         <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth="xl">
           <DialogTitle>Select a dataset from the data catalogue</DialogTitle>

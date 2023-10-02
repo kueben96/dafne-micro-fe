@@ -10,10 +10,16 @@ interface DataSourceSelectionComponentProps {
   onClick: () => void;
   selectedFileNameCatalogue?: string;
   selectedFileNameComputer?: string;
+  disabled?: boolean;
 }
 
-const CustomIcon: React.FC<{ icon: React.ElementType; theme: Theme }> = ({ icon: IconComponent, theme }) => {
-  return <IconComponent sx={{ color: theme?.palette?.primary?.dark }} />;
+const CustomIcon: React.FC<{ icon: React.ElementType; theme: Theme, disabled?: boolean }> = ({ icon: IconComponent, theme, disabled }) => {
+  return (
+    <IconComponent
+      sx={{
+        color: disabled ? theme?.palette?.gray?.light : theme?.palette?.primary?.dark,
+      }}
+    />)
 };
 
 const DataSourceSelectionComponent: React.FC<DataSourceSelectionComponentProps> = ({
@@ -22,20 +28,23 @@ const DataSourceSelectionComponent: React.FC<DataSourceSelectionComponentProps> 
   onClick,
   selectedFileNameCatalogue,
   selectedFileNameComputer = 'Upload your own data set (.csv, .xlsx, .xls and json types are supported)',
+  disabled = false,
 }) => {
+
   const theme = useTheme();
+  const disabledColor = `1px solid ${theme?.palette?.gray?.light}20`
 
   const handleClick = () => {
-    if (onClick) {
+    if (!disabled && onClick) {
       onClick();
     }
   };
 
   const getIcon = () => {
     if (variant === 'catalogueSelection') {
-      return <CustomIcon icon={StorageSharpIcon} theme={theme} />;
+      return <CustomIcon icon={StorageSharpIcon} theme={theme} disabled={disabled} />;
     } else if (variant === 'computerSelection') {
-      return <CustomIcon icon={FileUploadRoundedIcon} theme={theme} />;
+      return <CustomIcon icon={FileUploadRoundedIcon} theme={theme} disabled={disabled} />;
     } else {
       return null;
     }
@@ -68,8 +77,12 @@ const DataSourceSelectionComponent: React.FC<DataSourceSelectionComponentProps> 
         width: 400,
         margin: theme.spacing(0.5),
         padding: theme.spacing(4, 1),
-        border: `1px solid ${theme?.palette?.primary?.dark}`,
-        backgroundColor: selected ? `${theme?.palette?.primary?.main}20` : `${theme?.palette?.gray?.lighter}50`,
+        border: disabled ? disabledColor : `1px solid ${theme?.palette?.primary?.dark}`,
+        backgroundColor: disabled
+          ? disabledColor // Use gray background if disabled
+          : selected
+            ? `${theme?.palette?.primary?.main}20`
+            : `${theme?.palette?.gray?.lighter}50`,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
