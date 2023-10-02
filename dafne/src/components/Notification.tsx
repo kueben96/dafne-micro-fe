@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { useNotification } from '../useNotification';
 import { Box, IconButton, Snackbar, Typography, useTheme } from '@mui/material';
+import { SizedBoxVertical } from '../assets/theme/dafneStyles';
 
 
 const Notification = () => {
@@ -45,8 +46,7 @@ const Notification = () => {
             >
 
                 <Box display="flex" flexDirection="row">
-
-                    <CheckRoundedIcon
+                    <CheckIcon
                         sx={{
                             color: 'success.main',
                             flexShrink: 0,
@@ -57,11 +57,12 @@ const Notification = () => {
                     />
                     <Box display="flex" flexDirection="column">
                         <Typography variant='h6'>{notification.header}</Typography>
+                        <SizedBoxVertical space={0.5} />
                         <Typography variant='body1'>
                             {notification.message}
                         </Typography>
                     </Box>
-                    <IconButton onClick={clearNotification}>
+                    <IconButton onClick={clearNotification} sx={{ alignSelf: "start" }} >
                         <CloseIcon sx={{ color: theme.palette.gray?.light }} />
                     </IconButton>
                 </Box>
