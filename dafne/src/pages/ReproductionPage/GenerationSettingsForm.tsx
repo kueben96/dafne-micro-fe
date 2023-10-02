@@ -7,9 +7,10 @@ import { getMetricDisplayName } from '../../utils/constants';
 import { ICreateServiceInstruction, IDatasetItem, IMetric, IMetricServiceInstruction, IModel, IModelInstruction, IPathInstruction, InstructionOptionDropdown } from '../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { setInstruction } from '../../redux/features/jobsSlice';
+import { selectInitialPublicDataset, setInstruction } from '../../redux/features/jobsSlice';
 import { useGetMetricsQuery, useGetModelsQuery } from '../../redux/apiGatewaySlice';
 import { selectDatasets } from '../../redux/features/userSlice';
+import { DatasetType } from '../../types/enums';
 
 
 const GenerationSettingsForm: React.FC = () => {
@@ -19,13 +20,7 @@ const GenerationSettingsForm: React.FC = () => {
     // TODO: implement setCompleted logic 
     // TODO: implement setSkipped logic
     // each step content component should get the set completed function after it is selected
-    const [selectedSource, setSelectedSource] = useState<{ variant: string; file: File | null }>({
-        variant: 'catalogue',
-        file: null,
-    });
-    const [selectedInputDatasetPath, setSelectedInputDatasetPath] = useState<string | null>(null);
-    const [selectedMetrics, setSelectedMetric] = useState<string[]>([]);
-    const [selectedModel, setSelectedModel] = useState<string>('');
+
 
     const theme = useTheme();
     const [activeStep, setActiveStep] = useState(0);
@@ -36,6 +31,23 @@ const GenerationSettingsForm: React.FC = () => {
     const { data: metrics, isLoading: isLoadingMetrics, error: metricError } = useGetMetricsQuery();
     const { data: models, isLoading: isLoadingModels, error: modelsError } = useGetModelsQuery();
 
+    const [selectedSource, setSelectedSource] = useState<{ variant: string; file: File | null }>({
+        variant: 'catalogue',
+        file: null,
+    });
+
+
+    const initialSelectedInputDatasetPath = useSelector(selectInitialPublicDataset)
+
+    useEffect(() => {
+        if (initialSelectedInputDatasetPath !== null && initialSelectedInputDatasetPath !== undefined) {
+            setSelectedInputDatasetPath(initialSelectedInputDatasetPath);
+        }
+    }, [initialSelectedInputDatasetPath]);
+
+    const [selectedInputDatasetPath, setSelectedInputDatasetPath] = useState<string | null>(null);
+    const [selectedMetrics, setSelectedMetric] = useState<string[]>([]);
+    const [selectedModel, setSelectedModel] = useState<string>('');
 
     let metricSelectionItems: InstructionOptionDropdown[] = [];
     let modelSelectionItems: InstructionOptionDropdown[] = [];
@@ -115,7 +127,8 @@ const GenerationSettingsForm: React.FC = () => {
             content: (
                 <DataSourceSelectionStep
                     setSelectedRowPath={setSelectedInputDatasetPath}
-                    setSelectedSource={setSelectedSource} />
+                    setSelectedSource={setSelectedSource}
+                    selectedRowPath={selectedInputDatasetPath!} />
             ),
             completedContent: <StepSummaryField label={selectedSource.file?.name || ''} />
         },

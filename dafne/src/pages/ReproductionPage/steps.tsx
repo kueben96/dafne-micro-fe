@@ -32,76 +32,78 @@ export const StepSummaryField: React.FC<StepSummaryFieldProps> = ({ label = '' }
 
 interface DataSourceSelectionStepProps {
   setSelectedSource: React.Dispatch<React.SetStateAction<{ variant: string; file: File | null }>>;
-  setSelectedRowPath?: (path: string) => void
+  setSelectedRowPath?: (path: string) => void,
+  selectedRowPath?: string,
 }
 
 
-export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = ({ setSelectedSource, setSelectedRowPath }) => {
+export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps>
+  = ({ setSelectedSource, setSelectedRowPath, selectedRowPath }) => {
 
-  // TODO: implement data catalogue selection
-  const [selected, setSelected] = useState('catalogue');
-  const [selectedFileCatalogue, setSelectedFileCatalogue] = useState<File>(new File([''], 'DemoDataset.csv'));
-  const [selectedFileUpload, setSelectedFileUpload] = useState<File | null>(null);
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+    // TODO: implement data catalogue selection
+    const [selected, setSelected] = useState('catalogue');
+    // const [selectedFileCatalogue, setSelectedFileCatalogue] = useState<File>(new File([''], 'DemoDataset.csv'));
+    const [selectedFileUpload, setSelectedFileUpload] = useState<File | null>(null);
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleCatalogueSelection = () => {
-    setSelectedFileCatalogue(new File([''], 'Catalogue Change.csv'));
-    setSelected('catalogue');
-    setSelectedSource({
-      variant: 'catalogue',
-      file: selectedFileCatalogue,
-    });
-  };
+    const handleClose = () => {
+      setOpen(false);
+    };
+    const handleCatalogueSelection = () => {
+      // setSelectedFileCatalogue(new File([''], 'Catalogue Change.csv'));
+      setSelected('catalogue');
+      // setSelectedSource({
+      //   variant: 'catalogue',
+      //   file: selectedFileCatalogue,
+      // });
+    };
 
-  const handleFileUpload = (event: Event) => {
-    const file = (event.target as HTMLInputElement).files?.[0] || null;
-    setSelectedFileUpload(file);
-    setSelected('upload');
-    setSelectedSource({
-      variant: 'upload',
-      file: file ?? null,
-    });
-  };
-  const openFileInput = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.onchange = handleFileUpload;
-    input.click();
-  };
+    const handleFileUpload = (event: Event) => {
+      const file = (event.target as HTMLInputElement).files?.[0] || null;
+      setSelectedFileUpload(file);
+      setSelected('upload');
+      setSelectedSource({
+        variant: 'upload',
+        file: file ?? null,
+      });
+    };
+    const openFileInput = () => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.onchange = handleFileUpload;
+      input.click();
+    };
 
-  return (
-    <Box display="flex" flexDirection="row">
-      <DataSourceSelectionComponent
-        variant="catalogueSelection"
-        onClick={handleClickOpen}
-        selected={selected === 'catalogue'}
-        selectedFileNameCatalogue={selectedFileCatalogue?.name}
-      />
-      <DataSourceSelectionComponent
-        variant="computerSelection"
-        onClick={openFileInput}
-        selected={selected === 'upload'}
-        selectedFileNameComputer={selectedFileUpload?.name}
-      />
-      <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth="xl">
-        <DialogTitle>Select a dataset from the data catalogue</DialogTitle>
-        <DialogContent>
-          <DataViewComponent isDialog={true} setSelectedRowPath={setSelectedRowPath} />
-        </DialogContent>
+    return (
+      <Box display="flex" flexDirection="row">
+        <DataSourceSelectionComponent
+          variant="catalogueSelection"
+          onClick={handleClickOpen}
+          selected={selected === 'catalogue'}
+          selectedFileNameCatalogue={selectedRowPath}
+        />
+        <DataSourceSelectionComponent
+          variant="computerSelection"
+          onClick={openFileInput}
+          selected={selected === 'upload'}
+          selectedFileNameComputer={selectedFileUpload?.name}
+        />
+        <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth="xl">
+          <DialogTitle>Select a dataset from the data catalogue</DialogTitle>
+          <DialogContent>
+            <DataViewComponent isDialog={true} setSelectedRowPath={setSelectedRowPath} />
+          </DialogContent>
 
-        <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
-        </DialogActions>
-      </Dialog>
-    </Box>
-  );
-}
+          <DialogActions>
+            <Button onClick={handleClose}>Close</Button>
+          </DialogActions>
+        </Dialog>
+      </Box>
+    );
+  }
 
 interface DropDownSelectionStepProps {
   selectionItems: InstructionOptionDropdown[];

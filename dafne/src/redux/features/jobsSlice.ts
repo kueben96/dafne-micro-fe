@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ICreateServiceInstruction, IMetric, IModel } from "../../types";
+import { RootState } from "../store";
 
 interface JobsState {
     instruction: ICreateServiceInstruction;
@@ -44,4 +45,9 @@ const jobsSlice = createSlice({
 });
 
 export default jobsSlice.reducer;
+export const selectInitialPublicDataset
+    = (state: RootState) => {
+        const dataSet = state.user.datasets?.find(dataset => dataset.bucketName === 'publicdataset');
+        return dataSet?.objectName;
+    }
 export const { setInstruction } = jobsSlice.actions;
