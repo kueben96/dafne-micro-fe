@@ -32,9 +32,11 @@ export const StepSummaryField: React.FC<StepSummaryFieldProps> = ({ label = '' }
 
 interface DataSourceSelectionStepProps {
   setSelectedSource: React.Dispatch<React.SetStateAction<{ variant: string; file: File | null }>>;
+  setSelectedRowPath?: (path: string) => void
 }
 
-export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = ({ setSelectedSource }) => {
+
+export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = ({ setSelectedSource, setSelectedRowPath }) => {
 
   // TODO: implement data catalogue selection
   const [selected, setSelected] = useState('catalogue');
@@ -45,7 +47,7 @@ export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = (
     setOpen(true);
   };
 
-  const handleClose = (value: string) => {
+  const handleClose = () => {
     setOpen(false);
   };
   const handleCatalogueSelection = () => {
@@ -90,11 +92,11 @@ export const DataSourceSelectionStep: React.FC<DataSourceSelectionStepProps> = (
       <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth="xl">
         <DialogTitle>Select a dataset from the data catalogue</DialogTitle>
         <DialogContent>
-          <DataViewComponent isDialog={true} />
+          <DataViewComponent isDialog={true} setSelectedRowPath={setSelectedRowPath} />
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={() => { }}>Close</Button>
+          <Button onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
     </Box>

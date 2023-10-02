@@ -124,17 +124,19 @@ interface ICreateServiceInstruction {
     metrics: IMetricServiceInstruction[];
     model: IModelInstruction;
     name: string;
-    paths: {
-        download: {
-            bucket: string;
-            path: string;
-        };
-        upload: {
-            bucket: string;
-            path: string;
-        };
-    };
+    paths: IPathInstruction;
     weightsPath?: string;
     runs: number;
     sample: number;
+}
+
+interface IPathInstruction {
+    download: {
+        bucket: string;
+        path: string;
+    };
+    upload: {
+        bucket: string;
+        path: string;
+    };
 }

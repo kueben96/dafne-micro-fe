@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
+import { GridColDef, GridRowsProp, useGridApiRef } from '@mui/x-data-grid';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { EmptyRowsImage } from '../assets/images';
 import { CustomDataGrid, TableCustomBox } from '../assets/theme/dafneStyles';
@@ -19,11 +19,12 @@ const CustomNoRowsOverlay = () => {
 interface JobsTableProps {
     columns: GridColDef[];
     rows?: GridRowsProp;
-    tableType: 'jobs' | 'dataset' | 'datasets';
+    tableType: 'jobs' | 'dataset' | 'datasets' | 'dialog';
+    setSelectedRowId?: (id: string) => void;
 }
 
 
-const JobsTable: React.FC<JobsTableProps> = ({ rows, columns, tableType }) => {
+const JobsTable: React.FC<JobsTableProps> = ({ rows, columns, tableType, setSelectedRowId }) => {
     const tableRef = React.useRef<HTMLDivElement | null>(null);
     const theme = useTheme();
 
@@ -49,15 +50,41 @@ const JobsTable: React.FC<JobsTableProps> = ({ rows, columns, tableType }) => {
         };
     }, []);
 
+    const getTableHeight = () => {
+        switch (tableType) {
+            case 'jobs':
+                return 400;
+            case 'dataset':
+                return 700;
+            case 'dialog':
+                return 600;
+            default:
+                return 400;
+        }
+    }
+
+
+    // todo: add prop setselectedrowid
+    let selectedRowId = null;
 
     return (
-        <TableCustomBox theme={theme} ref={tableRef} height={tableType == "dataset" ? 700 : 400}>
+        <TableCustomBox theme={theme} ref={tableRef} height={getTableHeight()}>
             <CustomDataGrid
                 autoHeight
                 rows={rows ?? []}
                 columns={columns}
                 pagination
                 pageSizeOptions={[10, 50, 100]}
+                // checkboxSelection={tableType === 'dialog' ? true : false}
+                onRowSelectionModelChange={
+
+                    (e) => {
+                        console.log(e)
+                        selectedRowId = e[0]
+                        setSelectedRowId?.(e[0].toString()); // 
+                        console.log(selectedRowId)
+                    }
+                }
                 initialState={
                     {
                         pagination: {

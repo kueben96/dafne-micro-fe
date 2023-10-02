@@ -4,11 +4,12 @@ import CustomStepIcon from '../../components/CustomStepIcon';
 import { isStepCompleted, isStepSkipped } from '../../utils/stepperUtils';
 import { DataSourceSelectionStep, DropDownSelectionStep, ParameterSettingsStep, StepSummaryField } from './steps';
 import { getMetricDisplayName } from '../../utils/constants';
-import { ICreateServiceInstruction, IMetric, IMetricServiceInstruction, IModel, IModelInstruction, InstructionOptionDropdown } from '../../types';
+import { ICreateServiceInstruction, IDatasetItem, IMetric, IMetricServiceInstruction, IModel, IModelInstruction, IPathInstruction, InstructionOptionDropdown } from '../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setInstruction } from '../../redux/features/jobsSlice';
 import { useGetMetricsQuery, useGetModelsQuery } from '../../redux/apiGatewaySlice';
+import { selectDatasets } from '../../redux/features/userSlice';
 
 
 const GenerationSettingsForm: React.FC = () => {
@@ -22,6 +23,7 @@ const GenerationSettingsForm: React.FC = () => {
         variant: 'catalogue',
         file: null,
     });
+    const [selectedInputDatasetPath, setSelectedInputDatasetPath] = useState<string | null>(null);
     const [selectedMetrics, setSelectedMetric] = useState<string[]>([]);
     const [selectedModel, setSelectedModel] = useState<string>('');
 
@@ -30,12 +32,15 @@ const GenerationSettingsForm: React.FC = () => {
     const [completed, setCompleted] = useState(new Set<number>());
     const [skipped, setSkipped] = useState(new Set<number>());
 
+    const dataSets = useSelector(selectDatasets) ?? [];
     const { data: metrics, isLoading: isLoadingMetrics, error: metricError } = useGetMetricsQuery();
     const { data: models, isLoading: isLoadingModels, error: modelsError } = useGetModelsQuery();
 
 
     let metricSelectionItems: InstructionOptionDropdown[] = [];
     let modelSelectionItems: InstructionOptionDropdown[] = [];
+
+
 
     if (metrics) {
         metricSelectionItems = (metrics as IMetric[]).flatMap((metric: IMetric) => {
@@ -59,6 +64,22 @@ const GenerationSettingsForm: React.FC = () => {
         });
     }
 
+    if (selectedInputDatasetPath) {
+        const selectedDataset = dataSets.find((dataset) => dataset.objectName === selectedInputDatasetPath);
+        console.log("selectedDataset in generations setting form")
+        console.log(selectedDataset)
+    }
+
+    const setPathInstruction = (selectedRowPath: string): IPathInstruction => {
+        const selectedDataset: IDatasetItem | undefined = dataSets.find((dataset) => dataset.objectName === selectedRowPath);
+        return {
+            ...instruction.paths,
+            download: {
+                bucket: selectedDataset?.bucketName || '',
+                path: selectedDataset?.objectName || ''
+            }
+        }
+    }
     const setMetricInstructions = (selectedMetrics: string[]): IMetricServiceInstruction[] => {
         const metricInstructions: IMetricServiceInstruction[] = selectedMetrics.map((metric) => {
             const [endpoint, identifier] = metric.split(',');
@@ -84,14 +105,17 @@ const GenerationSettingsForm: React.FC = () => {
             ...instruction,
             metrics: setMetricInstructions(selectedMetrics),
             model: setModelInstructions(selectedModel),
+            paths: setPathInstruction(selectedInputDatasetPath!),
         }));
-    }, [selectedMetrics, selectedModel]);
+    }, [selectedMetrics, selectedModel, selectedInputDatasetPath]);
 
     const steps = [
         {
             label: 'Select source dataset',
             content: (
-                <DataSourceSelectionStep setSelectedSource={setSelectedSource} />
+                <DataSourceSelectionStep
+                    setSelectedRowPath={setSelectedInputDatasetPath}
+                    setSelectedSource={setSelectedSource} />
             ),
             completedContent: <StepSummaryField label={selectedSource.file?.name || ''} />
         },
