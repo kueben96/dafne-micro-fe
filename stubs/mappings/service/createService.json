@@ -35,7 +35,7 @@
                 "paths": {
                   "download": {
                     "bucket": "publicdataset",
-                    "path": "/demo-data/news.csv"
+                    "path": "demo.pkl"
                   },
                   "upload": {
                     "bucket": "userbucket",
