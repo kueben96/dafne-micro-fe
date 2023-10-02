@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { apiGatewaySlice } from './apiGatewaySlice';
 import userReducer from './features/userSlice';
 import jobsReducer from './features/jobsSlice';
+import { NotificationReducer } from './features/notificationsSlice';
 
 export const store = configureStore({
     reducer: {
@@ -9,6 +10,8 @@ export const store = configureStore({
         [apiGatewaySlice.reducerPath]: apiGatewaySlice.reducer,
         user: userReducer,
         jobs: jobsReducer,
+        notification: NotificationReducer
+
         // Add other reducers if needed
     },
     middleware: (getDefaultMiddleware) =>

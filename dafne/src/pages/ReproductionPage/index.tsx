@@ -12,7 +12,7 @@ import ProcessDetail from './JobDetail';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useCreateServiceWithInstructionMutation, useGetJobStatusByIdQuery } from '../../redux/apiGatewaySlice';
-import { setInstruction } from '../../redux/features/jobsSlice';
+import { resetInstruction, setInstruction } from '../../redux/features/jobsSlice';
 import { selectUser } from '../../redux/features/userSlice';
 
 
@@ -24,7 +24,6 @@ const ReproductionPage: React.FC = () => {
   const [stepCompleted, setStepCompleted] = useState(new Set<number>());
   const [stepsCompleted, setStepsCompleted] = useState(false);
   const [showProcessSteps, setShowProcessSteps] = useState(true);
-
 
   const [rowNumber, setSelectedRowNumber] = useState(500);
   const [outputDatasetName, setOutputDatasetName] = useState('uploadFile.csv');
@@ -67,6 +66,7 @@ const ReproductionPage: React.FC = () => {
       const id = response.data[0].content
       console.log('Job ID:', id);
       setJobId(id);
+      dispatch(resetInstruction())
     } catch (error) {
       console.error('Error creating service:', error);
     }

@@ -41,6 +41,9 @@ const jobsSlice = createSlice({
         setInstruction: (state, action: PayloadAction<ICreateServiceInstruction>) => {
             state.instruction = state.instruction = { ...state.instruction, ...action.payload };
         },
+        resetInstruction: (state) => {
+            state.instruction = { ...initialJobsState.instruction };
+        }
     }
 });
 
@@ -50,4 +53,4 @@ export const selectInitialPublicDataset
         const dataSet = state.user.datasets?.find(dataset => dataset.bucketName === 'publicdataset');
         return dataSet?.objectName;
     }
-export const { setInstruction } = jobsSlice.actions;
+export const { setInstruction, resetInstruction } = jobsSlice.actions;

@@ -4,6 +4,7 @@ import DafneDrawer from './components/DafneDrawer'
 import { CssBaseline, Theme, ThemeProvider } from '@mui/material'
 import { styled } from '@mui/material';
 import { Outlet } from 'react-router-dom';
+import Notification from './components/Notification';
 
 const Main = styled('main')(
     // TODO: check if there is still enough space for content only add margin if overlaps
@@ -66,6 +67,7 @@ const Layout = () => {
             <CssBaseline />
             <DafneDrawer handleDrawerToggle={handleNavToggle} isNavOpen={isNavOpen} />
             <AppBarHeader handleDrawerToggle={handleNavToggle} />
+            <Notification />
             <Main theme={theme} open={isNavOpen}>
                 <Outlet />
             </Main>

@@ -17,6 +17,7 @@ import LogoImg from '../assets/images/logo.png';
 import { styled } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../redux/features/userSlice';
+import { useNotification } from '../useNotification';
 
 const Logo = styled('img')({
   height: '20px',
@@ -32,6 +33,7 @@ const AppBarHeader: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDraw
   const theme = useTheme();
 
   const user = useSelector(selectUser)
+  const { displayNotification } = useNotification()
 
   return (
     <AppBar sx={{ backgroundColor: theme.palette?.common?.white, zIndex: theme.zIndex.drawer + 1 }} position="fixed">
@@ -49,7 +51,13 @@ const AppBarHeader: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDraw
           <IconButton sx={{ color: theme.palette?.gray?.main }}>
             <HelpOutlineOutlinedIcon />
           </IconButton>
-          <IconButton sx={{ color: theme.palette?.gray?.main }}>
+          <IconButton sx={{ color: theme.palette?.gray?.main }}
+            onClick={() =>
+              displayNotification({
+                header: "You are generating your first synthetic dataset!",
+                message: "Your dataset and model are saved in your account dashboard for one more week. ",
+                type: "success"
+              })}>
             <Badge badgeContent={1} color="secondary">
               <NotificationsOutlinedIcon sx={{ color: theme.palette?.gray?.main }} />
             </Badge>
