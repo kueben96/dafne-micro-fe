@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Container, Link, Typography, styled } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material';
 import TableToolBar from '../../../components/TableToolBar';
 import { ContentPaper, SizedBoxVertical, StyledLink } from '../../../assets/theme/dafneStyles';
 import JobsTable from '../../../components/JobsTable';
@@ -9,12 +9,13 @@ import JobStatus from '../../../components/ProcessStatus';
 import { JobState } from '../../../types/enums';
 import { useSelector } from 'react-redux';
 import { selectJobs } from '../../../redux/features/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 interface JobsViewProps {
     userJobs?: IJob[];
 }
 
-const JobsColumns: GridColDef<JobsRowData>[] = [
+const JobsColumns = (navigate: (url: string) => void): GridColDef<JobsRowData>[] => [
     {
         field: 'id',
         headerName: 'Job ID',
@@ -43,12 +44,11 @@ const JobsColumns: GridColDef<JobsRowData>[] = [
         field: 'status',
         headerName: 'Status',
         flex: 1,
-
         headerClassName: 'header-cell',
         renderCell: (params: GridCellParams) => {
             const { value } = params;
             return <JobStatus status={value as JobState} />;
-        }
+        },
     },
     {
         field: 'score',
@@ -70,31 +70,38 @@ const JobsColumns: GridColDef<JobsRowData>[] = [
         headerName: 'Action',
         flex: 1,
         headerClassName: 'header-cell',
-        renderCell: () => (
-            <>
-                <StyledLink underline="none" href="#">Delete</StyledLink>
-                <StyledLink underline="none" href="#">Details</StyledLink>
-            </>
-        ),
-
+        renderCell: (params: GridCellParams) => {
+            const { id } = params;
+            return (
+                <>
+                    <StyledLink underline="none" href="#">
+                        Delete
+                    </StyledLink>
+                    <StyledLink
+                        underline="none"
+                        href="#"
+                        onClick={() => {
+                            navigate(`/dashboard/jobs/${id}`);
+                        }}
+                    >
+                        Details
+                    </StyledLink>
+                </>
+            );
+        },
     },
 ];
 
-
-
-
 const JobsView: React.FC<JobsViewProps> = () => {
-
     const userJobsArray: IJob[] = useSelector(selectJobs) ?? [];
     const [selectedFilter, setSelectedFilter] = useState('all');
-
 
     const JobsRows: JobsRowData[] = userJobsArray.map(job => {
         const { jobId, createdAt, instruction, status, type } = job;
         const metric = instruction.metrics.map(metric => metric.metric).join(', ');
-        const model = instruction.model.weightsPath ?
-            instruction.model.identifier + "," + instruction.model.weightsPath :
-            instruction.model.identifier;
+        const model = instruction.model.weightsPath
+            ? instruction.model.identifier + ',' + instruction.model.weightsPath
+            : instruction.model.identifier;
         const score = 0.98;
         const dateCreated = new Date(createdAt);
         return {
@@ -107,24 +114,21 @@ const JobsView: React.FC<JobsViewProps> = () => {
             dateCreated,
         };
     });
-    const filterJobs = (filter: string) => {
-        if (filter === 'all') {
-            return JobsRows;
-        }
-        return JobsRows.filter(job => job.status === filter);
-    };
-    const filteredJobs = filterJobs(selectedFilter);
+
+    const navigate = useNavigate();
 
     return (
         <>
             <ContentPaper>
                 <Container>
                     <Box display="flex" flexDirection="column">
-                        <TableToolBar
-                            handleFilterJobs={setSelectedFilter}
-                            selectedFilter={selectedFilter} />
+                        <TableToolBar handleFilterJobs={setSelectedFilter} selectedFilter={selectedFilter} />
                         <SizedBoxVertical space={2} />
-                        <JobsTable columns={JobsColumns} rows={filteredJobs} tableType={'jobs'} />
+                        <JobsTable
+                            columns={JobsColumns(navigate)}
+                            rows={JobsRows}
+                            tableType={'jobs'}
+                        />
                     </Box>
                 </Container>
             </ContentPaper>
@@ -137,6 +141,6 @@ const JobsView: React.FC<JobsViewProps> = () => {
             </ContentPaper>
         </>
     );
-}
+};
 
 export default JobsView;
