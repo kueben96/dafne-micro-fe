@@ -136,7 +136,6 @@ const TableToolBar: React.FC<{
                 </SearchIconWrapper>
             </SearchBox>
             <Box>
-                <Button sx={{ ...buttonStyles, marginRight: theme.spacing(0.5) }} variant="outlined"><DeleteIcon /></Button>
                 <Button sx={buttonStyles} variant="contained"
                     startIcon={<AddIcon />}>
                     Add new
