@@ -1,16 +1,16 @@
 import { useDispatch } from "react-redux";
-import { NotificationActions, NotificationState } from "./redux/features/notificationsSlice";
+import { NotificationActions, Notification } from "./redux/features/notificationsSlice";
 
 export const useNotification = () => {
     const dispatch = useDispatch();
 
-    const displayNotification = (notification: NotificationState) => {
+    const displayNotification = (notification: Notification) => {
         dispatch(NotificationActions.addNotification(notification));
     };
 
-    const clearNotification = () => {
-        dispatch(NotificationActions.clearNotification());
+    const removeNotification = (notificationId: string) => {
+        dispatch(NotificationActions.removeNotification(notificationId));
     };
 
-    return { displayNotification, clearNotification } as const;
+    return { displayNotification, removeNotification } as const;
 };

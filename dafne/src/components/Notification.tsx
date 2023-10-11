@@ -6,17 +6,19 @@ import WarningIcon from '@mui/icons-material/Warning';
 import InfoIcon from '@mui/icons-material/Info';
 import CloseIcon from '@mui/icons-material/Close';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { useNotification } from '../useNotification';
-import { Box, IconButton, Snackbar, Typography, useTheme } from '@mui/material';
+import { AlertColor, Box, IconButton, Snackbar, Typography, useTheme } from '@mui/material';
 import { SizedBoxVertical } from '../assets/theme/dafneStyles';
+import { NotificationActions } from '../redux/features/notificationsSlice';
 
 
 const Notification = () => {
 
-    const notification = useSelector((state: RootState) => state.notification);
-    const { clearNotification } = useNotification();
+    const notifications = useSelector((state: RootState) => state.notifications.notifications);
+    const dispatch = useDispatch()
+    const { removeNotification } = useNotification();
 
 
     const theme = useTheme();
@@ -25,11 +27,15 @@ const Notification = () => {
         if (reason === 'clickaway') {
             return;
         }
-    };
+        // Dispatch an action to remove the first notification in the list
+        if (notifications.length > 0) {
+            dispatch(NotificationActions.removeNotification(notifications[0].id));
+        }
+    }
 
-    const getIcon = () => {
+    const getIcon = (type: AlertColor) => {
         const iconStyle = { marginRight: theme.spacing(3), marginLeft: theme.spacing(1) };
-        switch (notification.type) {
+        switch (type) {
             case 'success':
                 return <CheckIcon sx={{ ...iconStyle, color: 'success.main' }} />;
             case 'error':
@@ -44,40 +50,40 @@ const Notification = () => {
     };
 
 
-
     return (
         <React.Fragment>
-            <Snackbar
-                autoHideDuration={notification.timeout}
-                open={notification.open}
-                onClose={handleClose}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                sx={{
-                    backgroundColor: theme.palette.background?.paper,
-                    display: "flex", marginTop: 5.5,
-                    borderRadius: 0.5,
-                    boxShadow: 3,
-                    padding: theme.spacing(2, 1),
-                    maxWidth: 300,
-                }}
-            >
-
-                <Box display="flex" flexDirection="row">
-                    {getIcon()}
-                    <Box display="flex" flexDirection="column">
-                        <Typography variant='h6'>{notification.header}</Typography>
-                        <SizedBoxVertical space={0.5} />
-                        <Typography variant='body1'>
-                            {notification.message}
-                        </Typography>
+            {notifications.map((notification, index) => (
+                <Snackbar
+                    key={notification.id}
+                    autoHideDuration={notification.timeout}
+                    open={true}
+                    onClose={handleClose}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                    sx={{
+                        backgroundColor: theme.palette.background?.paper,
+                        display: "flex",
+                        marginTop: 5.5,
+                        borderRadius: 0.5,
+                        boxShadow: 3,
+                        padding: theme.spacing(2, 1),
+                        maxWidth: 300,
+                    }}
+                >
+                    <Box display="flex" flexDirection="row">
+                        {getIcon(notification.type)}
+                        <Box display="flex" flexDirection="column">
+                            <Typography variant='h6'>{notification.header}</Typography>
+                            <Typography variant='body1'>
+                                {notification.message}
+                            </Typography>
+                        </Box>
+                        <IconButton onClick={() => dispatch(NotificationActions.removeNotification(notification.id))} sx={{ alignSelf: "start" }}>
+                            <CloseIcon sx={{ color: theme.palette.gray?.light }} />
+                        </IconButton>
                     </Box>
-                    <IconButton onClick={clearNotification} sx={{ alignSelf: "start" }} >
-                        <CloseIcon sx={{ color: theme.palette.gray?.light }} />
-                    </IconButton>
-                </Box>
-            </Snackbar>
+                </Snackbar>
+            ))}
         </React.Fragment>
-
     );
 }
 

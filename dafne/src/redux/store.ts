@@ -10,7 +10,7 @@ export const store = configureStore({
         [apiGatewaySlice.reducerPath]: apiGatewaySlice.reducer,
         user: userReducer,
         jobs: jobsReducer,
-        notification: NotificationReducer
+        notifications: NotificationReducer
 
         // Add other reducers if needed
     },

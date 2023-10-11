@@ -63,8 +63,6 @@ const JobsTable: React.FC<JobsTableProps> = ({ rows, columns, tableType, setSele
         }
     }
 
-
-    // todo: add prop setselectedrowid
     let selectedRowId = null;
 
     return (

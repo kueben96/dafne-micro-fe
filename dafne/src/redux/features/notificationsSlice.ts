@@ -3,34 +3,37 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ReactNode } from "react";
 
 export interface NotificationState {
-    open?: boolean;
-    type?: AlertColor;// 'success' | 'info' | 'warning' | 'error';
+    notifications: Notification[];
+}
+
+export interface Notification {
+    id?: string;
+    type: AlertColor; // 'success' | 'info' | 'warning' | 'error';
     header?: string;
-    message?: string;
+    message: string;
     timeout?: number;
     actionButton?: ReactNode;
 }
 
-export const notificationInitialState: NotificationState = {
-    open: false,
-    type: "info",
-    message: "",
-    timeout: 100000,
-    actionButton: null
+const notificationInitialState: NotificationState = {
+    notifications: [],
 };
 
-export const NotificationSlice = createSlice({
+const NotificationSlice = createSlice({
     name: "notification",
     initialState: notificationInitialState,
     reducers: {
-        addNotification: (_state, action: PayloadAction<NotificationState>) => ({
-            ...notificationInitialState,
-            ...action.payload,
-            open: true
-        }),
-        clearNotification: (state) => ({ ...state, open: false })
-    }
+        addNotification: (state, action: PayloadAction<Notification>) => {
+            state.notifications.push({ ...action.payload, id: Date.now().toString() });
+        },
+        removeNotification: (state, action: PayloadAction<string>) => {
+            state.notifications = state.notifications.filter(
+                (notification) => notification.id !== action.payload
+            );
+        },
+    },
 });
 
+export const selectNotificationsCount = (state: NotificationState) => state.notifications.length;
 export const NotificationActions = NotificationSlice.actions;
 export const NotificationReducer = NotificationSlice.reducer;

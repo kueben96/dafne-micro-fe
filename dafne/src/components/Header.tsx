@@ -18,6 +18,8 @@ import { styled } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../redux/features/userSlice';
 import { useNotification } from '../useNotification';
+import { selectNotificationsCount } from '../redux/features/notificationsSlice';
+import { RootState } from '../redux/store';
 
 const Logo = styled('img')({
   height: '20px',
@@ -33,6 +35,9 @@ const AppBarHeader: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDraw
   const theme = useTheme();
 
   const user = useSelector(selectUser)
+  const notificationsCount = useSelector((state: RootState) => state.notifications.notifications.length);
+  console.log(notificationsCount)
+  console.log("notificationsCount")
   const { displayNotification } = useNotification()
 
   return (
@@ -53,12 +58,15 @@ const AppBarHeader: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDraw
           </IconButton>
           <IconButton sx={{ color: theme.palette?.gray?.main }}
             onClick={() =>
-              displayNotification({
-                header: "You are generating your first synthetic dataset!",
-                message: "Your dataset and model are saved in your account dashboard for one more week. ",
-                type: "warning"
-              })}>
-            <Badge badgeContent={1} color="secondary">
+              displayNotification(
+                {
+                  type: "success",
+                  header: "Your dataset is ready!",
+                  message: "You can download it from your dashboard.",
+                  timeout: 10000,
+                }
+              )}>
+            <Badge badgeContent={notificationsCount} color="secondary">
               <NotificationsOutlinedIcon sx={{ color: theme.palette?.gray?.main }} />
             </Badge>
           </IconButton>
