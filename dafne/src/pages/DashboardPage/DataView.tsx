@@ -9,8 +9,7 @@ import { DatasetType, getFileNameFromPath } from '../../types/enums';
 import FaceIcon from '@mui/icons-material/Face';
 import PublicIcon from '@mui/icons-material/Public';
 import { useSelector } from 'react-redux';
-import { selectDatasetByPathname, selectDatasets } from '../../redux/features/userSlice';
-import { IDatasetItem } from '../../types';
+import { selectDatasets } from '../../redux/features/userSlice';
 
 const DataViewComponent: React.FC<{
     isDialog?: boolean,
@@ -37,9 +36,6 @@ const DataViewComponent: React.FC<{
                 lastModified: new Date(dataset.lastModified),
             }
         })
-
-        console.log(DatasetsRows)
-
 
         const DatasetsColumns: GridColDef<DatasetsRowData>[] = [
             {

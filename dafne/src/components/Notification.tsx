@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
+import ErrorIcon from '@mui/icons-material/Error';
+import WarningIcon from '@mui/icons-material/Warning';
+import InfoIcon from '@mui/icons-material/Info';
 import CloseIcon from '@mui/icons-material/Close';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 import { useSelector } from 'react-redux';
@@ -17,7 +20,6 @@ const Notification = () => {
 
 
     const theme = useTheme();
-    const nodeRef = React.useRef(null);
 
     const handleClose = (_: any, reason: SnackbarCloseReason) => {
         if (reason === 'clickaway') {
@@ -25,6 +27,21 @@ const Notification = () => {
         }
     };
 
+    const getIcon = () => {
+        const iconStyle = { marginRight: theme.spacing(3), marginLeft: theme.spacing(1) };
+        switch (notification.type) {
+            case 'success':
+                return <CheckIcon sx={{ ...iconStyle, color: 'success.main' }} />;
+            case 'error':
+                return <ErrorIcon sx={{ ...iconStyle, color: 'error.main' }} />;
+            case 'warning':
+                return <WarningIcon sx={{ ...iconStyle, color: 'secondary.main' }} />;
+            case 'info':
+                return <InfoIcon sx={{ ...iconStyle, color: 'primary.main' }} />;
+            default:
+                return null;
+        }
+    };
 
 
 
@@ -46,15 +63,7 @@ const Notification = () => {
             >
 
                 <Box display="flex" flexDirection="row">
-                    <CheckIcon
-                        sx={{
-                            color: 'success.main',
-                            flexShrink: 0,
-                            width: '1.25rem',
-                            height: '1.5rem',
-                            marginRight: theme.spacing(3),
-                        }}
-                    />
+                    {getIcon()}
                     <Box display="flex" flexDirection="column">
                         <Typography variant='h6'>{notification.header}</Typography>
                         <SizedBoxVertical space={0.5} />

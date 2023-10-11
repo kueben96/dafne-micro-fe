@@ -7,9 +7,11 @@ import { GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { JobsRowData, IJob } from '../../../types';
 import JobStatus from '../../../components/ProcessStatus';
 import { JobState } from '../../../types/enums';
+import { useSelector } from 'react-redux';
+import { selectJobs } from '../../../redux/features/userSlice';
 
 interface JobsViewProps {
-    userJobs: IJob[];
+    userJobs?: IJob[];
 }
 
 const JobsColumns: GridColDef<JobsRowData>[] = [
@@ -81,9 +83,12 @@ const JobsColumns: GridColDef<JobsRowData>[] = [
 
 
 
-const JobsView: React.FC<JobsViewProps> = ({ userJobs }) => {
+const JobsView: React.FC<JobsViewProps> = () => {
 
-    const JobsRows: JobsRowData[] = userJobs.map(job => {
+    const userJobsArray: IJob[] = useSelector(selectJobs) ?? [];
+
+
+    const JobsRows: JobsRowData[] = userJobsArray.map(job => {
         const { jobId, createdAt, instruction, status, type } = job;
         const metric = instruction.metrics.map(metric => metric.metric).join(', ');
         const model = instruction.model.weightsPath ?

@@ -56,7 +56,7 @@ const AppBarHeader: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDraw
               displayNotification({
                 header: "You are generating your first synthetic dataset!",
                 message: "Your dataset and model are saved in your account dashboard for one more week. ",
-                type: "success"
+                type: "warning"
               })}>
             <Badge badgeContent={1} color="secondary">
               <NotificationsOutlinedIcon sx={{ color: theme.palette?.gray?.main }} />

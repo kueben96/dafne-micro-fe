@@ -7,6 +7,8 @@ import { Navigate } from 'react-router-dom';
 import { ROUTES } from '../utils/constants';
 import Layout from '../Layout';
 import JobDetailPage from '../pages/DashboardPage/JobsView/JobDetailPage';
+import DataViewComponent from '../pages/DashboardPage/DataView';
+import JobsView from '../pages/DashboardPage/JobsView';
 
 export const routes = [
     {
@@ -24,23 +26,29 @@ export const routes = [
                 element: <Navigate to={ROUTES.DASHBOARD.INDEX} />
             },
             {
-                path: ROUTES.DASHBOARD.INDEX,
-                element: <DashboardPage />
+                path: '/dashboard',
+                element: <DashboardPage />,
+                children: [
+                    {
+                        index: true,
+                        element: <Navigate to='jobs' replace />,
+                    },
+                    {
+                        path: 'models',
+                        element: <h1>Models View</h1>
+                    },
+                    {
+                        path: 'data',
+                        element: <DataViewComponent />
+                    },
+                    {
+                        path: 'jobs',
+                        element: <JobsView />
+                    },
+                ]
             },
             {
-                path: ROUTES.DASHBOARD.MODELS,
-                element: <DashboardPage />
-            },
-            {
-                path: ROUTES.DASHBOARD.DATA,
-                element: <DashboardPage />
-            },
-            {
-                path: ROUTES.DASHBOARD.JOBS,
-                element: <DashboardPage />
-            },
-            {
-                path: ROUTES.DASHBOARD.JOB_DETAIL,
+                path: '/dashboard/jobs/:id',
                 element: <JobDetailPage />
             },
             {
