@@ -17,8 +17,6 @@ const Notification = () => {
 
     const notifications = useSelector((state: RootState) => state.notifications.notifications);
     const dispatch = useDispatch()
-    const { removeNotification } = useNotification();
-
 
     const theme = useTheme();
 
@@ -47,6 +45,12 @@ const Notification = () => {
                 return null;
         }
     };
+    const getVerticalPosition = (index: number) => {
+        const basePosition = 4;
+        const verticalPosition = basePosition + index * 6.5;
+        return `${verticalPosition}rem`;
+    };
+
 
 
     return (
@@ -61,7 +65,7 @@ const Notification = () => {
                     sx={{
                         backgroundColor: theme.palette.background?.paper,
                         display: "flex",
-                        marginTop: 5.5,
+                        marginTop: getVerticalPosition(index),
                         borderRadius: 0.5,
                         boxShadow: 3,
                         padding: theme.spacing(2, 1),
