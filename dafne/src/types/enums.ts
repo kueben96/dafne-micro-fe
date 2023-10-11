@@ -3,6 +3,7 @@ export enum JobState {
     Running = "running",
     Completed = "completed",
     Error = "error",
+    All = "all",
 }
 export enum DatasetType {
     User = "userbucket",

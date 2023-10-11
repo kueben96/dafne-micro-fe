@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Container, Link, Typography, styled } from '@mui/material'
 import TableToolBar from '../../../components/TableToolBar';
 import { ContentPaper, SizedBoxVertical, StyledLink } from '../../../assets/theme/dafneStyles';
@@ -86,6 +86,7 @@ const JobsColumns: GridColDef<JobsRowData>[] = [
 const JobsView: React.FC<JobsViewProps> = () => {
 
     const userJobsArray: IJob[] = useSelector(selectJobs) ?? [];
+    const [selectedFilter, setSelectedFilter] = useState('all');
 
 
     const JobsRows: JobsRowData[] = userJobsArray.map(job => {
@@ -106,15 +107,24 @@ const JobsView: React.FC<JobsViewProps> = () => {
             dateCreated,
         };
     });
+    const filterJobs = (filter: string) => {
+        if (filter === 'all') {
+            return JobsRows;
+        }
+        return JobsRows.filter(job => job.status === filter);
+    };
+    const filteredJobs = filterJobs(selectedFilter);
 
     return (
         <>
             <ContentPaper>
                 <Container>
                     <Box display="flex" flexDirection="column">
-                        <TableToolBar />
+                        <TableToolBar
+                            handleFilterJobs={setSelectedFilter}
+                            selectedFilter={selectedFilter} />
                         <SizedBoxVertical space={2} />
-                        <JobsTable columns={JobsColumns} rows={JobsRows} tableType={'jobs'} />
+                        <JobsTable columns={JobsColumns} rows={filteredJobs} tableType={'jobs'} />
                     </Box>
                 </Container>
             </ContentPaper>

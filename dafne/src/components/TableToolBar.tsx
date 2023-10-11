@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useSelector } from 'react-redux';
+import { selectJobs } from '../redux/features/userSlice';
+import { JobState } from '../types/enums';
 
 const SearchBox = styled(Box)<{ theme: Theme }>(({ theme }) => ({
     display: 'flex',
@@ -78,15 +81,23 @@ const FilterButton: React.FC<FilterButtonProps> = ({ theme, selected, count, chi
 
 // TODO: implement table toolbar search functionality
 
-const TableToolBar = () => {
+const TableToolBar: React.FC<{
+    selectedFilter: string;
+    handleFilterJobs: (filter: string) => void
+}> = ({ handleFilterJobs }) => {
 
     const theme = useTheme()
 
     const [selected, setSelected] = useState(0);
+    const userJobs = useSelector(selectJobs)
+    const allCounts = userJobs?.length ?? 0;
+    const runningCounts = userJobs?.filter(job => job.status === JobState.Running).length ?? 0;
+    const completedCounts = userJobs?.filter(job => job.status === JobState.Completed).length ?? 0;
+
     const filters = [
-        { label: 'All', count: 1 },
-        { label: 'Running', count: 0 },
-        { label: 'Completed', count: 0 },
+        { label: 'All', state: JobState.All, count: allCounts },
+        { label: 'Running', state: JobState.Running, count: runningCounts },
+        { label: 'Completed', state: JobState.Completed, count: completedCounts },
     ];
 
     const handleFilterClick = (index: number) => {
@@ -96,6 +107,7 @@ const TableToolBar = () => {
             }
             return index;
         });
+        handleFilterJobs(filters[index].state)
     };
     const buttonStyles = {
         fontSize: theme.typography.body1
