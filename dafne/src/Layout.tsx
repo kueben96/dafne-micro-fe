@@ -7,8 +7,7 @@ import { Outlet } from 'react-router-dom';
 import Notification from './components/Notification';
 
 const Main = styled('main')(
-    // TODO: check if there is still enough space for content only add margin if overlaps
-    // TODO: think of layout concept after implementing main content
+
     ({ theme, open }: { theme: Theme; open: boolean }) => ({
         marginTop: 60,
         ... (open && {

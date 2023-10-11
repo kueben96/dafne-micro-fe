@@ -27,6 +27,6 @@
         }
       ]
     },
-    "import/no-commonjs": "error" 
+    // "import/no-commonjs": "error" 
   }
   

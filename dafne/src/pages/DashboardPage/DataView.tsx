@@ -1,10 +1,8 @@
 import React from 'react'
-import { useFetchDatasetsQuery } from '../../redux/apiGatewaySlice';
 import JobsTable from '../../components/JobsTable';
 import { GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { ContentPaper, StyledLink } from '../../assets/theme/dafneStyles';
 import { Chip, Container } from '@mui/material';
-import { v4 as uuidv4 } from 'uuid';
 import { DatasetType, getFileNameFromPath } from '../../types/enums';
 import FaceIcon from '@mui/icons-material/Face';
 import PublicIcon from '@mui/icons-material/Public';

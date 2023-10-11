@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { ICreateServiceInstruction, IJob, IJobStatus, IMetric, IModel, IDatasetItem } from '../types';
-import { mapServiceTypeToReadable, mapStatusToReadable } from '../types/enums';
+import { mapServiceTypeToReadable } from '../types/enums';
 
 const baseQuery = fetchBaseQuery({
     baseUrl: 'http://localhost:8086/api/',
@@ -24,6 +25,7 @@ export const apiGatewaySlice = createApi({
     endpoints: (builder) => ({
         fetchDatasets: builder.query<IDatasetItem[], void>({
             query: () => 'data',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             transformResponse: (rawResponse: any) => {
                 const parsedResponse: IDatasetItem[] = rawResponse.files.map((dataset: any) => {
                     return {
@@ -70,7 +72,7 @@ export const apiGatewaySlice = createApi({
                 method: 'POST',
                 body: instructionObject,
                 headers: {
-                    'Content-Type': 'application/json', // Specify JSON content type
+                    'Content-Type': 'application/json',
                 },
             }),
         }),

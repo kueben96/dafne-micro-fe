@@ -1,4 +1,5 @@
-import { DatasetType, JobState, JobType } from "./enums";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { DatasetType, JobState } from "./enums";
 
 declare module '*.jpg';
 declare module "*.png" {

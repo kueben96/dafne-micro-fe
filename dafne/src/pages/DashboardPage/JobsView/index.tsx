@@ -81,6 +81,7 @@ const JobsColumns = (navigate: (url: string) => void): GridColDef<JobsRowData>[]
                         underline="none"
                         href="#"
                         onClick={() => {
+                            console.log(id)
                             navigate(`/dashboard/jobs/${id}`);
                         }}
                     >
@@ -116,7 +117,14 @@ const JobsView: React.FC<JobsViewProps> = () => {
     });
 
     const navigate = useNavigate();
+    const filterJobs = (filter: string) => {
+        if (filter === JobState.All) {
+            return JobsRows;
+        }
+        return JobsRows.filter(job => job.status === filter);
+    };
 
+    const filteredJobs = filterJobs(selectedFilter);
     return (
         <>
             <ContentPaper>
@@ -126,7 +134,7 @@ const JobsView: React.FC<JobsViewProps> = () => {
                         <SizedBoxVertical space={2} />
                         <JobsTable
                             columns={JobsColumns(navigate)}
-                            rows={JobsRows}
+                            rows={filteredJobs}
                             tableType={'jobs'}
                         />
                     </Box>

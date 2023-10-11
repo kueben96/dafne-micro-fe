@@ -1,13 +1,11 @@
 // Import necessary modules and components
-import React, { useState } from 'react';
+import React from 'react';
 import { Box } from "@mui/material";
 import PageHeaderDashboard from "../../components/PageHeaderDashboard";
-import JobsView from "./JobsView";
-import DataViewComponent from './DataView';
-import { selectJobs, selectJobsCount, selectUser } from '../../redux/features/userSlice';
+import { selectJobsCount, selectUser } from '../../redux/features/userSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { useNavigate, Outlet, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 
 const DashboardPage = () => {
 

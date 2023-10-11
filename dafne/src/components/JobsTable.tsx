@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { GridColDef, GridRowsProp, useGridApiRef } from '@mui/x-data-grid';
+import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { EmptyRowsImage } from '../assets/images';
 import { CustomDataGrid, TableCustomBox } from '../assets/theme/dafneStyles';
@@ -62,8 +62,6 @@ const JobsTable: React.FC<JobsTableProps> = ({ rows, columns, tableType, setSele
                 return 400;
         }
     }
-
-    let selectedRowId = null;
 
     return (
         <TableCustomBox theme={theme} ref={tableRef} height={getTableHeight()}>

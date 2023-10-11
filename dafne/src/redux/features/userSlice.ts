@@ -65,7 +65,7 @@ const userSlice = createSlice({
 
             if (token) {
                 try {
-                    var decodedToken: _DecodedToken = jwt_decode(token);
+                    const decodedToken: _DecodedToken = jwt_decode(token);
                     console.log(decodedToken);
 
 

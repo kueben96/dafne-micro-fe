@@ -18,7 +18,6 @@ import { styled } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../redux/features/userSlice';
 import { useNotification } from '../useNotification';
-import { selectNotificationsCount } from '../redux/features/notificationsSlice';
 import { RootState } from '../redux/store';
 
 const Logo = styled('img')({

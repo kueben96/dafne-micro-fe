@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { styled } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
 import ErrorIcon from '@mui/icons-material/Error';
 import WarningIcon from '@mui/icons-material/Warning';
@@ -8,7 +7,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { useNotification } from '../useNotification';
 import { AlertColor, Box, IconButton, Snackbar, Typography, useTheme } from '@mui/material';
 import { NotificationActions } from '../redux/features/notificationsSlice';
 
@@ -20,7 +18,7 @@ const Notification = () => {
 
     const theme = useTheme();
 
-    const handleClose = (_: any, reason: SnackbarCloseReason) => {
+    const handleClose = (_: unknown, reason: SnackbarCloseReason) => {
         if (reason === 'clickaway') {
             return;
         }

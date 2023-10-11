@@ -8,10 +8,9 @@ import { isStepCompleted } from '../../utils/stepperUtils';
 import { OutputDataSelectionStep } from './steps';
 import GenerationFeedback from './GenerationFeedback';
 import { reproductionHorizontalSteps } from '../../utils/constants';
-import ProcessDetail from './JobDetail';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { useCreateServiceWithInstructionMutation, useGetJobStatusByIdQuery } from '../../redux/apiGatewaySlice';
+import { useCreateServiceWithInstructionMutation } from '../../redux/apiGatewaySlice';
 import { resetInstruction, setInstruction } from '../../redux/features/jobsSlice';
 import { selectUser } from '../../redux/features/userSlice';
 

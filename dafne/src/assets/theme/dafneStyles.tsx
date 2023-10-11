@@ -1,4 +1,3 @@
-import { AutoMode } from '@mui/icons-material';
 import { Box, Drawer, AppBar, Link } from '@mui/material';
 import { styled } from '@mui/material';
 import { Theme } from '@mui/material/styles';

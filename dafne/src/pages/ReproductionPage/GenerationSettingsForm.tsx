@@ -4,13 +4,12 @@ import CustomStepIcon from '../../components/CustomStepIcon';
 import { isStepCompleted, isStepSkipped } from '../../utils/stepperUtils';
 import { DataSourceSelectionStep, DropDownSelectionStep, ParameterSettingsStep, StepSummaryField } from './steps';
 import { getMetricDisplayName } from '../../utils/constants';
-import { ICreateServiceInstruction, IDatasetItem, IMetric, IMetricServiceInstruction, IModel, IModelInstruction, IPathInstruction, InstructionOptionDropdown } from '../../types';
+import { IDatasetItem, IMetric, IMetricServiceInstruction, IModel, IModelInstruction, IPathInstruction, InstructionOptionDropdown } from '../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { selectInitialPublicDataset, setInstruction } from '../../redux/features/jobsSlice';
 import { useGetMetricsQuery, useGetModelsQuery } from '../../redux/apiGatewaySlice';
 import { selectDatasets } from '../../redux/features/userSlice';
-import { DatasetType } from '../../types/enums';
 
 
 const GenerationSettingsForm: React.FC = () => {

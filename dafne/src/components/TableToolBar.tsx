@@ -2,7 +2,6 @@ import { Box, Button, InputBase, Theme, styled, useTheme } from '@mui/material';
 import React, { useState } from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { useSelector } from 'react-redux';
 import { selectJobs } from '../redux/features/userSlice';
 import { JobState } from '../types/enums';
