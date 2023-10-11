@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { useNotification } from '../useNotification';
 import { AlertColor, Box, IconButton, Snackbar, Typography, useTheme } from '@mui/material';
-import { SizedBoxVertical } from '../assets/theme/dafneStyles';
 import { NotificationActions } from '../redux/features/notificationsSlice';
 
 
@@ -29,7 +28,7 @@ const Notification = () => {
         }
         // Dispatch an action to remove the first notification in the list
         if (notifications.length > 0) {
-            dispatch(NotificationActions.removeNotification(notifications[0].id));
+            dispatch(NotificationActions.removeNotification(notifications[0].id!));
         }
     }
 
@@ -77,7 +76,7 @@ const Notification = () => {
                                 {notification.message}
                             </Typography>
                         </Box>
-                        <IconButton onClick={() => dispatch(NotificationActions.removeNotification(notification.id))} sx={{ alignSelf: "start" }}>
+                        <IconButton onClick={() => dispatch(NotificationActions.removeNotification(notification.id!))} sx={{ alignSelf: "start" }}>
                             <CloseIcon sx={{ color: theme.palette.gray?.light }} />
                         </IconButton>
                     </Box>

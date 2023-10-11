@@ -36,8 +36,6 @@ const AppBarHeader: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDraw
 
   const user = useSelector(selectUser)
   const notificationsCount = useSelector((state: RootState) => state.notifications.notifications.length);
-  console.log(notificationsCount)
-  console.log("notificationsCount")
   const { displayNotification } = useNotification()
 
   return (
