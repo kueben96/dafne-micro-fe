@@ -1,13 +1,11 @@
-@import './components/Theme.js';
 
-// // Define your primary and secondary colors using the palette
-// $primary-main: {$globalPalette.primary.main};
-// $primary-dark: {$globalPalette.primary.dark};
-// $primary-light: {$globalPalette.primary.light};
-// $primary-lighter: {$globalPalette.primary.lighter};
+
+
+$primary-main: var(--primary-color);
+$secondary-main: var(--secondary-color);
 
 // Other global styles
 body {
-  background-color: $primary-color;
-  color: $secondary-color;
+  background-color: $primary-main;
+  color: $secondary-main;
 }

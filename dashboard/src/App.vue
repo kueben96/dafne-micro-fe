@@ -45,11 +45,7 @@
     
   </script>
   
-  <style lang="scss">
-  
-  body {
-    background-color: var(--secondary-color);
-  }
+  <style src="./global-styles.scss" lang="scss">
   
   </style>
   
