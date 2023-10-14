@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
-import Dashboard from './components/Dashboard.vue'
+import App from './App.vue'
 
 
 // dashboard has no navigation inside
 const mount = (el) => {
-    const app = createApp(Dashboard);
+    const app = createApp(App);
     // this mount function is a vue-based function
     app.mount(el);
 
