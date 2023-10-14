@@ -1,9 +1,10 @@
-// Import your remote palette
-@import 'theme/palette';
+@import './components/Theme.js';
 
-// Define your primary and secondary colors using the palette
-$primary-color: palette;
-$secondary-color: palette;
+// // Define your primary and secondary colors using the palette
+// $primary-main: {$globalPalette.primary.main};
+// $primary-dark: {$globalPalette.primary.dark};
+// $primary-light: {$globalPalette.primary.light};
+// $primary-lighter: {$globalPalette.primary.lighter};
 
 // Other global styles
 body {

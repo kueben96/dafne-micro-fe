@@ -56,7 +56,18 @@ export default {
     );
 
     const palette = ref(null);
-    fetchPalette().then((data) => {
+    // fetchPalette().then((data) => {
+    //   palette.value = reactive(data);
+    // });
+    onMounted(async () => {
+      // Fetch the palette
+      const data = await fetchPalette();
+      // Set the CSS variable for primary color
+      document.documentElement.style.setProperty(
+        '--primary-color',
+        data.primary.main
+      );
+      // Update the reactive palette value
       palette.value = reactive(data);
     });
 
@@ -80,6 +91,11 @@ export default {
 </script>
 
 <style lang="scss">
+
+body {
+  background-color: var(--primary-color);
+
+}
 
 $fontSize: 14px;
 // $bodyBgColor: v-bind('palette?.primary?.main');
