@@ -1,0 +1,12 @@
+// Import your remote palette
+@import 'theme/palette';
+
+// Define your primary and secondary colors using the palette
+$primary-color: palette;
+$secondary-color: palette;
+
+// Other global styles
+body {
+  background-color: $primary-color;
+  color: $secondary-color;
+}
