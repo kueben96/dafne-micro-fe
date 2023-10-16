@@ -11,6 +11,7 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import View from "ol/View";
 import "ol/ol.css";
+
 export default defineComponent({
 	setup() {
 		let mapIns: any = {};
