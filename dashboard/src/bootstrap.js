@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-
 // dashboard has no navigation inside
 const mount = (el) => {
     const app = createApp(App);

@@ -1,23 +1,24 @@
 <template>
-   <Dashboard/>
+    <div>
+        <Dashboard/>
+        <Map msg="Welcome to Your Vue.js App"/>
+    </div>
   </template>
 
   <script>
     import Dashboard from './components/Dashboard.vue';
-    import {ref, onMounted, reactive} from 'vue';  
-  
-  
+    import Map from './components/Map.vue';
+    import {ref, onMounted, reactive, provide} from 'vue';
+   
   async function fetchPalette() {
-    const palette = await import('theme/palette');
-    console.log("fetchPalette function")
-    console.log(palette.default)
-    
+    const palette = await import('theme/palette');    
     return palette.default;
   }
   
   export default {
     components: {
-    Dashboard
+    Dashboard,
+    Map
     },  
     setup() {
 
@@ -33,10 +34,13 @@
           '--secondary-color',
           data.secondary.main
         );
+        document.documentElement.style.setProperty(
+          '--body-color',
+          data.common.white
+        );
         // Update the reactive palette value
         palette.value = reactive(data);
       });
-  
       return {
         palette
       };
@@ -44,7 +48,7 @@
   };
     
   </script>
-  
+
   <style src="./global-styles.scss" lang="scss">
   
   </style>
