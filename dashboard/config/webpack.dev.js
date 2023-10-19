@@ -8,11 +8,11 @@ const devConfig = {
     mode: 'development',
     output: {
         // set whole path for nested paths
-        publicPath: 'http://localhost:8086/'
+        publicPath: 'http://localhost:8087/'
     },
     entry: './src/index.js',
     devServer: {
-        port: 8086,
+        port: 8087,
         historyApiFallback: {
             index: '/index.html'
         },
