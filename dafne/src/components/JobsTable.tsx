@@ -75,7 +75,6 @@ const JobsTable: React.FC<JobsTableProps> = ({ rows, columns, tableType, setSele
                 onRowSelectionModelChange={
 
                     (e) => {
-                        selectedRowId = e[0]
                         setSelectedRowId?.(e[0].toString());
                     }
                 }
