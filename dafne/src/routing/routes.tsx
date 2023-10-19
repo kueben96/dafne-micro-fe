@@ -61,7 +61,7 @@ export const routes = [
                 element: <ReproductionPage />
             },
             {
-                path: 'neighborhood',
+                path: 'use-case/neighborhood',
                 element: <NeigborhoodApp />
             }
         ],

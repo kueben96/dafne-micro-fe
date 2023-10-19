@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Neighborhood Generation</h1>
     <!-- <button @click="increment">Counter</button>
     <div>{{ arrayOfEmojis }}</div>
       <div :style="{ color: $primary-color }">Primary Color: moin</div>
