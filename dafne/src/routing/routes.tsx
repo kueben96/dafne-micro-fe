@@ -9,6 +9,7 @@ import Layout from '../Layout';
 import JobDetailPage from '../pages/DashboardPage/JobsView/JobDetailPage';
 import DataViewComponent from '../pages/DashboardPage/DataView';
 import JobsView from '../pages/DashboardPage/JobsView';
+import NeigborhoodApp from '../pages/NeigborhoodApp';
 
 export const routes = [
     {
@@ -59,6 +60,10 @@ export const routes = [
                 path: ROUTES.METHODS.REPRODUCTION,
                 element: <ReproductionPage />
             },
+            {
+                path: 'neighborhood',
+                element: <NeigborhoodApp />
+            }
         ],
     },
 ];
