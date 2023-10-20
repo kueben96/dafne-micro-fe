@@ -1,17 +1,24 @@
 <template>
   <div>
-    <h1 :style="{ color: 'var(--primary-color)' }">Dashboard</h1>
-    <Button  label="Click" />
+    <h1>Dashboard</h1>
+    <Button label="Click" />
+    <div class="flex flex-column gap-2">
+    <label for="username">Username</label>
+    <InputText id="username" v-model="value" aria-describedby="username-help" />
+    <small id="username-help">Enter your username to reset your password.</small>
+</div>
+
+
   </div>
 
 </template>
 
 <script>
-import 'primevue/resources/themes/saga-blue/theme.css';
+import '../assets/customtheme.css';
 import 'primevue/resources/primevue.css';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
-
+import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import {ref, watch, computed,onBeforeMount, inject} from 'vue';  
 
@@ -26,6 +33,7 @@ export default {
   },
   components: {
     Button,
+    InputText
   },
 
   setup(props) {

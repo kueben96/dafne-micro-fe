@@ -13,7 +13,6 @@
   
   <script>
   import Dashboard from './components/Dashboard.vue';
-  import './assets/customtheme.css'
   import MapContainerVue from './components/MapContainer.vue';
   import Map from './components/Map.vue';
   import Edit from './components/Edit';
@@ -24,6 +23,26 @@
     const palette = await import('theme/palette');
     return palette.default;
   }
+
+  async function createPaletteVariables() {
+  const paletteData = await fetchPalette();
+
+  for (const category in paletteData) {
+    console.log('category', category);  
+    if (paletteData.hasOwnProperty(category)) {
+      const categoryData = paletteData[category];
+      for (const color in categoryData) {
+        if (categoryData.hasOwnProperty(color)) {
+          const variableName = `--${category}-${color}`;
+          const colorValue = categoryData[color];
+          console.log('variableName', variableName);
+          document.documentElement.style.setProperty(variableName, colorValue);
+        }
+      }
+    }
+  }
+}
+
   
   export default {
     components: {
@@ -34,37 +53,22 @@
     },
   
     setup() {
-      const geoJson = ref({
-        type: 'Feature',
-        properties: {},
-        geometry: {
-          type: 'Polygon',
-          coordinates: [
-            [
-              [-27.0703125, 43.58039085560784],
-              [-28.125, 23.563987128451217],
-              [-10.8984375, 32.84267363195431],
-              [-27.0703125, 43.58039085560784]
-            ]
-          ]
-        }
-      });
   
-      console.log('geojson', geoJson.value);
-  
+
       const palette = ref(null);
   
       onMounted(async () => {
         const data = await fetchPalette();
-        document.documentElement.style.setProperty('--primary-color', data.primary.main);
-        document.documentElement.style.setProperty('--secondary-color', data.secondary.main);
-        document.documentElement.style.setProperty('--body-color', data.common.white);
-        palette.value = { ...data };
+        createPaletteVariables();
+        // console.log('data', data);
+        // document.documentElement.style.setProperty('--primary-color', data.primary.main);
+        // document.documentElement.style.setProperty('--secondary-color', data.secondary.main);
+        // document.documentElement.style.setProperty('--body-color', data.common.white);
+        // palette.value = { ...data };
       });
   
       return {
-        palette,
-        geoJson
+        palette
       };
     }
   };
