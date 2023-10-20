@@ -3,30 +3,22 @@
       <Dashboard />
       <div id="app">
         <div class="cell cell-map">
-          <!-- the GeoJSON data is now given as input -->
           <!-- <MapContainerVue :geoJson="geoJson"></MapContainerVue>
            -->
            <Map :msg="Moin"></Map>
         </div>
-        <div class="cell cell-edit">
-          <!-- update the app state on `change` events -->
-          <Edit :geoJson="geoJson" @change="geoJson = $event">
-          </Edit>
-        </div>
-        <div class="cell cell-inspect">
-          Inspect
-        </div>
       </div>
-      <!-- <Map msg="Welcome to Your Vue.js App"></Map> -->
     </div>
   </template>
   
   <script>
   import Dashboard from './components/Dashboard.vue';
+  import './assets/customtheme.css'
   import MapContainerVue from './components/MapContainer.vue';
   import Map from './components/Map.vue';
   import Edit from './components/Edit';
   import { ref, onMounted } from 'vue';
+ 
   
   async function fetchPalette() {
     const palette = await import('theme/palette');
@@ -38,7 +30,7 @@
       Dashboard,
       MapContainerVue,
       Map,
-      Edit
+      Edit,
     },
   
     setup() {
@@ -78,7 +70,7 @@
   };
   </script>
   
-  <style src="./global-styles.scss" lang="scss">
+  <style src="./assets/global-styles.scss" lang="scss">
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     height: 100%;

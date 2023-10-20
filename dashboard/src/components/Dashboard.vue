@@ -1,9 +1,7 @@
 <template>
   <div>
-    <!-- <button @click="increment">Counter</button>
-    <div>{{ arrayOfEmojis }}</div>
-      <div :style="{ color: $primary-color }">Primary Color: moin</div>
-    <p>Counter Value: {{ counter }}</p> -->
+    <h1 :style="{ color: 'var(--primary-color)' }">Dashboard</h1>
+    <Button  label="Click" />
   </div>
 
 </template>
@@ -13,6 +11,8 @@ import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.css';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
+
+import Button from 'primevue/button';
 import {ref, watch, computed,onBeforeMount, inject} from 'vue';  
 
 
@@ -23,6 +23,9 @@ export default {
       type: String,
       default: '💩',
     },
+  },
+  components: {
+    Button,
   },
 
   setup(props) {
