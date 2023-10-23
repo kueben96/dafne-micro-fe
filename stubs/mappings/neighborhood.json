@@ -1,0 +1,25 @@
+{
+    "request": {
+        "method": "POST",
+        "urlPattern": "/api/neighborhood",
+        "bodyPatterns": [
+            {
+                "equalToJson": {
+                    "city": "hannover",
+                    "lat": 52,
+                    "lon": 10
+                }
+            }
+        ]
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "jsonBody": {
+            "job_id": "userxyz_32jk32jkekkdkfjhi2j3kejkeji23iej3oijeio2jioe3ji3ej",
+            "status": "running"
+        }
+    }
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { mount } from 'neighborhood/DashboardApp'
 import PageHeader from '../components/PageHeader';
+import { ContentPaper } from '../assets/theme/dafneStyles';
 
 const NeigborhoodApp = () => {
     const ref = useRef<HTMLDivElement | null>(null);
@@ -15,7 +16,11 @@ const NeigborhoodApp = () => {
         <>
             <PageHeader title='Neighborhood Generation'
                 subtitle='Generate a synthetic city plan' />
-            <div ref={ref}></div>;
+            <ContentPaper>
+                <div ref={ref}></div>;
+            </ContentPaper>
+
+
         </>
     )
 

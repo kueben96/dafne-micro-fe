@@ -1,17 +1,16 @@
 <template>
-  <div>
-    <h1>Dashboard</h1>
-    <Button label="Click" />
-    <div class="flex flex-column gap-2">
-    <label for="username">Username</label>
-    <InputText id="username" v-model="value" aria-describedby="username-help" />
-    <small id="username-help">Enter your username to reset your password.</small>
-</div>
-
-
+  <div class="dashboard-container">
+    <Button @click="submitRequest" label="Start Generation" />
+    <div class="input-container">
+      <InputText id="city" v-model="neighborhoodRequestBody.city" placeholder="City" aria-describedby="city-help" />
+      <InputText id="lat" v-model="neighborhoodRequestBody.lat" placeholder="Latitude" aria-describedby="lat-help"
+        type="number" />
+      <InputText id="lon" v-model="neighborhoodRequestBody.lon" placeholder="Longitude" aria-describedby="lon-help"
+        type="number" />
+    </div>
   </div>
-
 </template>
+
 
 <script>
 import '../assets/customtheme.css';
@@ -20,51 +19,88 @@ import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
-import {ref, watch, computed,onBeforeMount, inject} from 'vue';  
-
-
+import { ref, defineProps, defineEmits, emit } from 'vue';
 
 export default {
-  props: {
-    emoji: {
-      type: String,
-      default: '💩',
-    },
-  },
+
   components: {
     Button,
     InputText
   },
 
-  setup(props) {
+  setup(_, { emit }) {
+    const neighborhoodRequestBody = ref({
+      city: 'hannover',
+      lat: 52,
+      lon: 10
+    });
 
-    const counter = ref(0)
-    const increment = () => {
-      counter.value++
+    const submitRequest = async () => {
+      try {
+        const response = await makeApiPostRequest(neighborhoodRequestBody.value);
+        console.log('response', response.job_id);
+        emit('jobCreated', {
+          jobId: response.job_id,
+          status: response.status
+        });
+
+      }
+      catch (error) {
+        console.log('api request', error);
+      }
     }
 
-    watch(counter, current => {
-      if(current ===5) console.log("counter is 5")
-    })
+    const makeApiPostRequest = async (requestBody) => {
+      try {
+        const response = await fetch('http://localhost:8086/api/neighborhood', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestBody)
+        });
 
-    const arrayOfEmojis = computed(() => 
-      Array.from(new Array(counter.value), ()=> props.emoji).join(' ')
-    );    
+
+
+        if (!response.ok) {
+          throw new Error(`API request failed with status: ${response.status}`);
+        }
+        return await response.json();
+
+      } catch (error) {
+        console.log('api request', error);
+      }
+
+    }
+
     return {
-   counter, increment, arrayOfEmojis
-    };
-  },
+      neighborhoodRequestBody,
+      submitRequest
+    }
+  }
 
-  data() {
-    return {
-      tasksCheckbox: [],
-      dropdownCity: null,
-      events: null,
-    };
-  },
-
-};
+}
 
 </script>
 
 
+<style scoped>
+.dashboard-container {
+  padding: 16px;
+  /* Add 16px padding to the entire content */
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Adjust the width as needed */
+.input-container .p-inputtext {
+  width: 48%;
+  /* Each input field takes up 48% of the container width */
+  margin-right: 2%;
+  /* Add a small gap between the input fields */
+}
+</style>

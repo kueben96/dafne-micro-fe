@@ -8,6 +8,8 @@ const mount = (el) => {
     app.use()
     // this mount function is a vue-based function
     app.mount(el);
+    // Enable Vue Devtools
+    app.config.devtools = true;
 
 
 }

@@ -1,8 +1,8 @@
-$primary-main: var(--primary-color);
-$secondary-main: var(--secondary-color);
-$body-color: var(--body-color);
+$primaryColor: var(--primary-main);
+$secondaryColor: var(--secondary-main);
+$bodyColor: var(--common-black);
 
 // Other global styles
 body {
-  background-color: $body-color;
+  color: $secondaryColor;
 }
