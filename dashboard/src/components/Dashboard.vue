@@ -19,7 +19,7 @@ import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
-import { ref, defineProps, defineEmits, emit } from 'vue';
+import { ref } from 'vue';
 
 export default {
 
@@ -28,7 +28,7 @@ export default {
     InputText
   },
 
-  setup(_, { emit }) {
+  setup() {
     const neighborhoodRequestBody = ref({
       city: 'hannover',
       lat: 52,
@@ -39,10 +39,13 @@ export default {
       try {
         const response = await makeApiPostRequest(neighborhoodRequestBody.value);
         console.log('response', response.job_id);
-        emit('jobCreated', {
-          jobId: response.job_id,
-          status: response.status
-        });
+
+        window.dispatchEvent(new CustomEvent('jobCreated', {
+          detail: {
+            jobId: response.job_id,
+            status: response.status
+          }
+        }));
 
       }
       catch (error) {
