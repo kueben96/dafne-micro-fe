@@ -7,16 +7,14 @@
   },
   "dependencies": {
     "@stadiamaps/maplibre-search-box": "^1.0.0",
+    "@vueuse/head": "^2.0.0",
     "chart.js": "3.7.1",
     "maplibre-gl": "^3.5.2",
-    "ol": "^8.1.0",
-    "ol-ext": "^4.0.11",
     "primeflex": "3.1.3",
     "primeicons": "5.0.0",
     "primevue": "3.12.0",
     "sass": "^1.69.4",
-    "vue": "3.2.31",
-    "vue3-openlayers": "^2.0.1"
+    "vue": "3.2.31"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",

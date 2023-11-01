@@ -2,15 +2,11 @@
   <div style="height: 100%;">
     <Dashboard />
     <MapLibre />
-    <!-- <Map :msg="Moin"></Map> -->
-
-
   </div>
 </template>
   
 <script>
 import Dashboard from './components/Dashboard.vue';
-import Map from './components/Map.vue';
 import MapLibre from './components/MapLibre.vue';
 import { ref, onMounted } from 'vue';
 
