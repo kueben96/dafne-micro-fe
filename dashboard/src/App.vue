@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div style="height: 100%;">
     <Dashboard />
-    <Map :msg="Moin"></Map>
+    <MapLibre />
+    <!-- <Map :msg="Moin"></Map> -->
 
 
   </div>
@@ -10,6 +11,7 @@
 <script>
 import Dashboard from './components/Dashboard.vue';
 import Map from './components/Map.vue';
+import MapLibre from './components/MapLibre.vue';
 import { ref, onMounted } from 'vue';
 
 
@@ -40,11 +42,10 @@ export default {
   components: {
     Dashboard,
     Map,
+    MapLibre
   },
 
   setup() {
-
-
     const palette = ref(null);
 
     onMounted(async () => {
@@ -58,4 +59,15 @@ export default {
   }
 };
 </script>
+
+<style lang="css" >
+body {
+  height: 100vh;
+}
+
+#_dashboard-dev-root {
+  height: 100%;
+}
+</style>
+
   
