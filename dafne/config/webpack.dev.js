@@ -27,7 +27,7 @@ const devConfig = {
             filename: 'remoteEntry.js',
             remotes: {
                 theme: 'theme@http://localhost:8085/remoteEntry.js',
-                neighborhood: 'dashboard@http://localhost:8087/remoteEntry.js',
+                neighborhood: 'neighborhood@http://localhost:8087/remoteEntry.js',
             },
             exposes: {
                 './DafneApp': './src/bootstrap'

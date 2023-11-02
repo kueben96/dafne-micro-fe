@@ -1,13 +1,13 @@
 <template>
   <div style="height: 100%;">
     <Dashboard />
-    <MapLibre />
+    <MapSelection />
   </div>
 </template>
   
 <script>
 import Dashboard from './components/Dashboard.vue';
-import MapLibre from './components/MapLibre.vue';
+import MapSelection from './components/MapSelection.vue';
 import { ref, onMounted } from 'vue';
 import { useHead } from '@vueuse/head'
 
@@ -39,7 +39,7 @@ export default {
   components: {
     Dashboard,
     Map,
-    MapLibre
+    MapSelection
   },
 
   setup() {

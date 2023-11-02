@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { mount } from 'neighborhood/DashboardApp'
+import { mount } from 'neighborhood/NeighborhoodApp'
 import PageHeader from '../components/PageHeader';
 import { ContentPaper } from '../assets/theme/dafneStyles';
 

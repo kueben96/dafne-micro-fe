@@ -25,10 +25,10 @@ const devConfig = {
             template: './public/index.html'
         }),
         new ModuleFederationPlugin({
-            name: 'dashboard',
+            name: 'neighborhood',
             filename: 'remoteEntry.js',
             exposes: {
-                './DashboardApp': './src/bootstrap'
+                './NeighborhoodApp': './src/bootstrap'
             },
             remotes: {
                 theme: 'theme@http://localhost:8085/remoteEntry.js',
