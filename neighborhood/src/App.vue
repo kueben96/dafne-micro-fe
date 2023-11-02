@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%;" class="p-2">
+  <div style="height: 100%;">
     <MapSelection />
   </div>
 </template>

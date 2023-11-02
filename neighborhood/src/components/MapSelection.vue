@@ -4,14 +4,14 @@
             aperiam, praesentium deserunt sapiente sequi assumenda voluptates aliquam numquam voluptate doloribus aliquid
             repellendus ipsa vel ad.</p>
         <div class="p-2 flex justify-content-between ">
-            <div class="flex align-items-center">
+            <div class="flex align-items-center" style="width: 100%;">
                 <RadioButton v-model="selectionMode" value="city" name="selectionMode" />
                 <label for="city" class="m-2">City selection</label>
-                <InputText v-model="selectedCity" class="m-2" placeholder="Selected City" />
+                <InputText v-model="selectedCity" class="m-2" style="width: 50%;" placeholder="Selected City" />
                 <RadioButton v-model="selectionMode" value="polygon" name="selectionMode" />
                 <label for="city" class="m-2">Polygon selection</label>
             </div>
-            <Button @click="submitSelection" class="ml-4">Submit Selection</Button>
+            <Button @click="submitSelection">Generate</Button>
         </div>
 
         <div id="maplibre" class="mt-2" style="height: 600px"></div>
@@ -72,8 +72,6 @@ onMounted(() => {
 
     map.addControl(searchControl, 'top-left');
 
-
-
     function updateArea(e) {
         const data = draw.getAll();
         selectedAreaGeoJSON.value = data;
@@ -92,40 +90,43 @@ onMounted(() => {
         drawnPolygonId = e.features[0].id;
         updateArea()
     });
-
-    function submitSelection() {
-        if (selectionMode.value === "city") {
-            // Use selected city name for API call
-            const cityName = prompt("Select a city or district:");
-            if (cityName) {
-                // Send the cityName to the API for city selection
-                sendCitySelection(cityName);
-            }
-        } else {
-            // Use the drawn polygon for API call
-            if (selectedAreaGeoJSON.value && selectedAreaGeoJSON.value.features.length > 0) {
-                // Send the selectedAreaGeoJSON to the API for polygon selection
-                sendPolygonSelection(selectedAreaGeoJSON.value);
-            } else {
-                alert("Please draw a polygon before submitting.");
-            }
-        }
-    }
-
-    function sendCitySelection(cityName) {
-        // Implement API call to select city by name
-        // Example: fetchDataFromAPI({ city: cityName });
-        // console.log("Selected City:", cityName);
-    }
-
-    function sendPolygonSelection(polygonGeoJSON) {
-        // Implement API call to select by polygon
-        // Example: fetchDataFromAPI({ polygon: polygonGeoJSON });
-        // console.log("Selected Polygon:", polygonGeoJSON);
-    }
 }
 
 )
+function submitSelection() {
+    console.log("submitSelection")
+    if (selectionMode.value === "city") {
+        // Use selected city name for API call
+        // const cityName = prompt("Select a city or district:");
+        if (selectedCity.value) {
+            // Send the cityName to the API for city selection
+            sendCitySelection(selectedCity.value);
+        }
+    } else {
+        // Use the drawn polygon for API call
+        if (selectedAreaGeoJSON.value && selectedAreaGeoJSON.value.features.length > 0) {
+            // Send the selectedAreaGeoJSON to the API for polygon selection
+            sendPolygonSelection(selectedAreaGeoJSON.value);
+        } else {
+            alert("Please draw a polygon before submitting.");
+        }
+    }
+}
+function sendCitySelection(cityName) {
+    console.log("sendCitySelection")
+    console.log(cityName)
+    // Implement API call to select city by name
+    // Example: fetchDataFromAPI({ city: cityName });
+    // console.log("Selected City:", cityName);
+}
+
+function sendPolygonSelection(polygonGeoJSON) {
+    console.log("sendPolygonSelection")
+    console.log(polygonGeoJSON)
+    // Implement API call to select by polygon
+    // Example: fetchDataFromAPI({ polygon: polygonGeoJSON });
+    // console.log("Selected Polygon:", polygonGeoJSON);
+}
 
 </script>
 
