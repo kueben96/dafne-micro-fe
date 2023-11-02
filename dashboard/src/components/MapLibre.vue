@@ -17,19 +17,36 @@ import { useHead } from '@vueuse/head'
 
 
 useHead({
-    script: {
-        src: 'https://unpkg.com/maplibre-gl/dist/maplibre-gl.js',
-        type: 'text/javascript',
-    },
-    script: {
-        src: "https://unpkg.com/terra-draw@0.0.1-alpha.47/dist/terra-draw.umd.js",
-        type: 'text/javascript',
-    },
-    link: {
-        rel: 'stylesheet',
-        href: 'https://unpkg.com/maplibre-gl/dist/maplibre-gl.css',
-    },
-})
+    script: [
+        {
+            src: 'https://unpkg.com/maplibre-gl/dist/maplibre-gl.js',
+            type: 'text/javascript',
+        },
+        {
+            src: "https://unpkg.com/terra-draw@0.0.1-alpha.47/dist/terra-draw.umd.js",
+            type: 'text/javascript',
+        },
+        {
+            src: "https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js",
+            type: 'text/javascript',
+        },
+        {
+            src: "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js",
+            type: 'text/javascript',
+        },
+    ],
+    link: [
+        {
+            rel: 'stylesheet',
+            href: 'https://unpkg.com/maplibre-gl/dist/maplibre-gl.css',
+        },
+        {
+            rel: 'stylesheet',
+            href: 'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css',
+            type: 'text/css',
+        },
+    ],
+});
 const selectedAreaGeoJSON = ref(null);
 const selectedAreaGeoJSONText = ref("");
 onMounted(() => {
