@@ -6,7 +6,9 @@
     "build": "webpack --config config/webpack.prod.js"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.4.3",
     "@stadiamaps/maplibre-search-box": "^1.0.0",
+    "@turf/turf": "^6.5.0",
     "@vueuse/head": "^2.0.0",
     "chart.js": "3.7.1",
     "maplibre-gl": "^3.5.2",
@@ -14,6 +16,7 @@
     "primeicons": "5.0.0",
     "primevue": "3.12.0",
     "sass": "^1.69.4",
+    "terra-draw": "^0.0.1-alpha.48",
     "vue": "3.2.31"
   },
   "devDependencies": {

@@ -56,7 +56,10 @@ export default {
 };
 </script>
 
-<style lang="css" >
+<style lang="scss" >
+@import "assets/global-styles.scss";
+
+
 body {
   height: 100vh;
 }
