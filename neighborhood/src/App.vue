@@ -1,6 +1,5 @@
 <template>
-  <div style="height: 100%;">
-    <Dashboard />
+  <div style="height: 100%;" class="p-2">
     <MapSelection />
   </div>
 </template>
