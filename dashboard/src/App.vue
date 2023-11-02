@@ -9,6 +9,7 @@
 import Dashboard from './components/Dashboard.vue';
 import MapLibre from './components/MapLibre.vue';
 import { ref, onMounted } from 'vue';
+import { useHead } from '@vueuse/head'
 
 
 async function fetchPalette() {
@@ -43,6 +44,37 @@ export default {
 
   setup() {
     const palette = ref(null);
+    useHead({
+      script: [
+        {
+          src: 'https://unpkg.com/maplibre-gl/dist/maplibre-gl.js',
+          type: 'text/javascript',
+        },
+        {
+          src: "https://unpkg.com/terra-draw@0.0.1-alpha.47/dist/terra-draw.umd.js",
+          type: 'text/javascript',
+        },
+        {
+          src: "https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js",
+          type: 'text/javascript',
+        },
+        {
+          src: "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js",
+          type: 'text/javascript',
+        },
+      ],
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://unpkg.com/maplibre-gl/dist/maplibre-gl.css',
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css',
+          type: 'text/css',
+        },
+      ],
+    });
 
     onMounted(async () => {
       const data = await fetchPalette();
