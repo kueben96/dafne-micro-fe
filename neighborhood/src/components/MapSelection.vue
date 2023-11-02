@@ -38,6 +38,8 @@ const selectedAreaGeoJSONText = ref("");
 const selectionMode = ref("city"); // Initialize with "Select City" mode
 const selectedCity = ref(null);
 
+let draw = null; // Store the draw instance
+let drawnPolygonId = null;
 onMounted(() => {
 
     const searchControl = new MapLibreSearchControl(
@@ -54,7 +56,7 @@ onMounted(() => {
         center: [9.9937, 53.5511], // Hamburg, Germany
         zoom: 10,
     });
-    const draw = new MapboxDraw({
+    draw = new MapboxDraw({
         displayControlsDefault: false,
         boxSelect: false,
         controls: {
@@ -70,15 +72,26 @@ onMounted(() => {
 
     map.addControl(searchControl, 'top-left');
 
-    map.on("draw.create", updateArea);
-    map.on("draw.delete", updateArea);
-    map.on("draw.update", updateArea);
+
 
     function updateArea(e) {
         const data = draw.getAll();
         selectedAreaGeoJSON.value = data;
         selectedAreaGeoJSONText.value = JSON.stringify(data, null, 2); // Format GeoJSON for display
     }
+
+    map.on("draw.delete", updateArea);
+    map.on("draw.update", updateArea);
+    map.on("draw.create", (e) => {
+        // Handle the newly created polygon
+        if (drawnPolygonId) {
+            draw.delete(drawnPolygonId)
+        }
+        console.log("e.features")
+        console.log(e.features)
+        drawnPolygonId = e.features[0].id;
+        updateArea()
+    });
 
     function submitSelection() {
         if (selectionMode.value === "city") {
@@ -102,13 +115,13 @@ onMounted(() => {
     function sendCitySelection(cityName) {
         // Implement API call to select city by name
         // Example: fetchDataFromAPI({ city: cityName });
-        console.log("Selected City:", cityName);
+        // console.log("Selected City:", cityName);
     }
 
     function sendPolygonSelection(polygonGeoJSON) {
         // Implement API call to select by polygon
         // Example: fetchDataFromAPI({ polygon: polygonGeoJSON });
-        console.log("Selected Polygon:", polygonGeoJSON);
+        // console.log("Selected Polygon:", polygonGeoJSON);
     }
 }
 
