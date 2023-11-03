@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { mount } from 'neighborhood/NeighborhoodApp'
 import PageHeader from '../components/PageHeader';
 import { ContentPaper } from '../assets/theme/dafneStyles';
+import { Container } from '@mui/system';
 
 const NeigborhoodApp = () => {
     const ref = useRef<HTMLDivElement | null>(null);
@@ -38,7 +39,9 @@ const NeigborhoodApp = () => {
             <PageHeader title='Neighborhood Generation'
                 subtitle='Generate a synthetic city plan' />
             <ContentPaper>
-                <div ref={ref}></div>;
+                <Container>
+                    <div ref={ref}></div>;
+                </Container>
             </ContentPaper>
 
 

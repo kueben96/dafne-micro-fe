@@ -1,8 +1,15 @@
 <template>
     <div>
-        <p>Hey Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum eius omnis sint perspiciatis consequatur
-            aperiam, praesentium deserunt sapiente sequi assumenda voluptates aliquam numquam voluptate doloribus aliquid
-            repellendus ipsa vel ad.</p>
+
+        <h3>Instruction</h3>
+        <p>This tool provides you a GNN to generate synthetic optimized neighborhood city plans. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Officiis totam cumque ullam repellat maxime. </p>
+        <ol>
+            <li>Select Area Either by City Name/Address or Draw a polygon</li>
+            <li>Click Generate</li>
+            <li>View result</li>
+            <li>Download GeoDataframe</li>
+        </ol>
 
         <div class="p-2 flex justify-content-between ">
             <div class="flex align-items-center" style="width: 100%;">
