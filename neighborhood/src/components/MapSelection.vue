@@ -24,7 +24,7 @@
         <div id="maplibre" class="mt-2" style="height: 600px"></div>
         <!-- eslint-disable-next-line vue/no-v-model-argument -->
         <Dialog v-model:visible="showGeoJSON" header="GeoJSON Data" :style="{ width: '50rem' }">
-            <p>{{ selectedAreaGeoJSONText }}</p>
+            <pre>{{ selectedAreaGeoJSONText }}</pre>
         </Dialog>
 
 
