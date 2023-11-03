@@ -3,6 +3,7 @@
         <p>Hey Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum eius omnis sint perspiciatis consequatur
             aperiam, praesentium deserunt sapiente sequi assumenda voluptates aliquam numquam voluptate doloribus aliquid
             repellendus ipsa vel ad.</p>
+
         <div class="p-2 flex justify-content-between ">
             <div class="flex align-items-center" style="width: 100%;">
                 <RadioButton v-model="selectionMode" value="city" name="selectionMode" />
@@ -10,16 +11,23 @@
                 <InputText v-model="selectedCity" class="m-2" style="width: 50%;" placeholder="Selected City" />
                 <RadioButton v-model="selectionMode" value="polygon" name="selectionMode" />
                 <label for="city" class="m-2">Polygon selection</label>
+                <Button @click="toggleGeoJSONVisibility">
+                    <span>
+                        <i class="pi pi-external-link mr-1"></i>
+                        {{ showGeoJSON ? 'Hide GeoJSON' : 'Show GeoJSON' }}
+                    </span>
+                </Button>
+
             </div>
             <Button @click="submitSelection">Generate</Button>
         </div>
-
         <div id="maplibre" class="mt-2" style="height: 600px"></div>
+        <!-- eslint-disable-next-line vue/no-v-model-argument -->
+        <Dialog v-model:visible="showGeoJSON" header="GeoJSON Data" :style="{ width: '50rem' }">
+            <p>{{ selectedAreaGeoJSONText }}</p>
+        </Dialog>
 
-        <div>
-            <h2>Selected GeoJSON:</h2>
-            <textarea v-model="selectedAreaGeoJSONText" rows="30" cols="50" readonly></textarea>
-        </div>
+
 
     </div>
 </template>
@@ -32,14 +40,22 @@ import MapboxDraw from '@mapbox/mapbox-gl-draw'
 import Button from 'primevue/button';
 import RadioButton from 'primevue/radiobutton';
 import InputText from 'primevue/inputtext';
+import Dialog from 'primevue/dialog';
+import 'primeicons/primeicons.css';
 
 const selectedAreaGeoJSON = ref(null);
 const selectedAreaGeoJSONText = ref("");
 const selectionMode = ref("city"); // Initialize with "Select City" mode
 const selectedCity = ref(null);
+const showGeoJSON = ref(false);
 
 let draw = null; // Store the draw instance
 let drawnPolygonId = null;
+
+function toggleGeoJSONVisibility() {
+    showGeoJSON.value = !showGeoJSON.value;
+}
+
 onMounted(() => {
 
     const searchControl = new MapLibreSearchControl(

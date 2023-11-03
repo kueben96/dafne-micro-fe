@@ -1,13 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue';
 import { createHead } from '@vueuse/head'
+import PrimeVue from 'primevue/config';
+
 
 // dashboard has no navigation inside
 const mount = (el) => {
     const app = createApp(App);
     const head = createHead()
-    app.use(head)
-    // this mount function is a vue-based function
+    app.use(head).use(PrimeVue);
     app.mount(el);
     // Enable Vue Devtools
     app.config.devtools = true;
