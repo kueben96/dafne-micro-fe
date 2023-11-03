@@ -11,10 +11,10 @@
                 <InputText v-model="selectedCity" class="m-2" style="width: 50%;" placeholder="Selected City" />
                 <RadioButton v-model="selectionMode" value="polygon" name="selectionMode" />
                 <label for="city" class="m-2">Polygon selection</label>
-                <Button @click="toggleGeoJSONVisibility">
+                <Button @click="toggleGeoJSONVisibility" outlined>
                     <span>
                         <i class="pi pi-external-link mr-1"></i>
-                        {{ showGeoJSON ? 'Hide GeoJSON' : 'Show GeoJSON' }}
+                        'Show GeoJSON'
                     </span>
                 </Button>
 
@@ -24,7 +24,8 @@
         <div id="maplibre" class="mt-2" style="height: 600px"></div>
         <!-- eslint-disable-next-line vue/no-v-model-argument -->
         <Dialog v-model:visible="showGeoJSON" header="GeoJSON Data" :style="{ width: '50rem' }">
-            <pre>{{ selectedAreaGeoJSONText }}</pre>
+            <pre>{{ selectedAreaGeoJSONText ??
+                'Draw a polygon with the draw tool on the top right corner of the map' }}</pre>
         </Dialog>
 
 
@@ -44,7 +45,7 @@ import Dialog from 'primevue/dialog';
 import 'primeicons/primeicons.css';
 
 const selectedAreaGeoJSON = ref(null);
-const selectedAreaGeoJSONText = ref("");
+const selectedAreaGeoJSONText = ref(null);
 const selectionMode = ref("city"); // Initialize with "Select City" mode
 const selectedCity = ref(null);
 const showGeoJSON = ref(false);
