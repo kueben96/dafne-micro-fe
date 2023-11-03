@@ -2,8 +2,9 @@
     <div>
 
         <h3>Instruction</h3>
-        <p>This tool provides you a GNN to generate synthetic optimized neighborhood city plans. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Officiis totam cumque ullam repellat maxime. </p>
+        <p>This tool provides you a GNN to generate synthetic optimized neighborhood city plans. This tool uses a Graph
+            Neural Network to learn which buildings are next to other buildings in a city. This GNN can then use that model
+            to try to guess which function a building serves based on the buildings around it. </p>
         <ol>
             <li>Select Area Either by City Name/Address or Draw a polygon</li>
             <li>Click Generate</li>
@@ -15,7 +16,14 @@
             <div class="flex align-items-center" style="width: 100%;">
                 <RadioButton v-model="selectionMode" value="city" name="selectionMode" />
                 <label for="city" class="m-2">City selection</label>
-                <InputText v-model="selectedCity" class="m-2" style="width: 50%;" placeholder="Selected City" />
+                <div class="maplibregl-ctrl stadiamaps-search-box">
+                    <InputText v-model="selectedCity" class="m-2 input-container" placeholder="Selected City"
+                        @input="syncInputFields" />
+                    <div v-if="searchResultsList" class="results">
+                        <div class="results-list" v-html="searchResultsList.innerHTML"></div>
+                    </div>
+                </div>
+
                 <RadioButton v-model="selectionMode" value="polygon" name="selectionMode" />
                 <label for="city" class="m-2">Polygon selection</label>
                 <Button @click="toggleGeoJSONVisibility" outlined>
@@ -56,24 +64,43 @@ const selectedAreaGeoJSONText = ref(null);
 const selectionMode = ref("city"); // Initialize with "Select City" mode
 const selectedCity = ref(null);
 const showGeoJSON = ref(false);
+const searchResultsList = ref(null);
 
 let draw = null; // Store the draw instance
 let drawnPolygonId = null;
+let searchControl;
+
 
 function toggleGeoJSONVisibility() {
     showGeoJSON.value = !showGeoJSON.value;
 }
 
+function syncInputFields() {
+
+    const searchControlInput = searchControl.input;
+    if (searchControlInput) {
+        searchControlInput.value = selectedCity.value;
+        const event = new Event("input", { bubbles: true });
+        searchControlInput.dispatchEvent(event);
+        searchResultsList.value = searchControl.resultsList;
+        console.log(searchResultsList.value)
+    }
+    selectedCity.value = searchControlInput.value;
+}
+
+
 onMounted(() => {
 
-    const searchControl = new MapLibreSearchControl(
+    searchControl = new MapLibreSearchControl(
         {
             onResultSelected: (result) => {
                 selectedCity.value = result.properties.label;
+                syncInputFields();
                 console.log(result)
             },
         }
     );
+
     const map = new maplibre.Map({
         container: 'maplibre',
         style: "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL", // style URL
@@ -88,13 +115,15 @@ onMounted(() => {
             trash: true
         }
     });
+    map.addControl(searchControl, 'top-left');
+
+
+
     map.addControl(draw, 'top-right');
     map.addControl(new maplibre.NavigationControl());
 
     const mapboxCtrlGroup = document.querySelector('.mapboxgl-ctrl-group');
     mapboxCtrlGroup.classList.add('maplibregl-ctrl', 'maplibregl-ctrl-group');
-
-    map.addControl(searchControl, 'top-left');
 
     function updateArea(e) {
         const data = draw.getAll();
