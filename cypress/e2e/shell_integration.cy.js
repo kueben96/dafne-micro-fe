@@ -3,8 +3,8 @@ describe('Routing Test', () => {
   const fakeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 
   const login = () => {
-    cy.get('input[name="email"]').type("email");
-    cy.get('input[name="password"]').type("password");
+    // cy.get('input[name="email"]').type("jenny.smith@test.com");
+    // cy.get('input[name="password"]').type("user_pass");
     cy.get('button[type="submit"]').should('be.visible').click();
   };
 

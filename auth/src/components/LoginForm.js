@@ -5,6 +5,7 @@ import { formContainerStyles } from '../styles/authStyles';
 import { loginUser } from '../authService';
 import useSnackbar from '../useSnackbar';
 import FeedbackSnackbar from './FeedbackSnackbar';
+import { isIsolationMode } from '../bootstrap';
 const LoginForm = () => {
 
     const theme = useTheme()
@@ -32,7 +33,10 @@ const LoginForm = () => {
                 password: formData.password,
             });
 
-            showSnackbar({ message: 'Login successful', isError: false });
+            if (isIsolationMode) showSnackbar({ message: 'Login successful', isError: false });
+
+
+
         } catch (error) {
             showSnackbar({ message: error.message, isError: true })
         }

@@ -32,6 +32,11 @@ if (process.env.NODE_ENV == 'development') {
     }
 }
 
+const isIsolationMode = () => {
+    console.log(process.env.NODE_ENV)
+    return process.env.NODE_ENV == 'development' && document.querySelector('#_auth-dev-root');
+}
+
 // else: export the mount function if running through container
 
-export { mount };
+export { mount, isIsolationMode };

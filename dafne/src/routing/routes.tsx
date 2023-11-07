@@ -9,7 +9,9 @@ import Layout from '../Layout';
 import JobDetailPage from '../pages/DashboardPage/JobsView/JobDetailPage';
 import DataViewComponent from '../pages/DashboardPage/DataView';
 import JobsView from '../pages/DashboardPage/JobsView';
-import NeigborhoodApp from '../pages/NeigborhoodApp';
+
+
+const NeighborhoodLazy = React.lazy(() => import('../pages/NeigborhoodApp'));
 
 export const routes = [
     {
@@ -62,7 +64,10 @@ export const routes = [
             },
             {
                 path: 'use-case/neighborhood',
-                element: <NeigborhoodApp />
+                element:
+                    <React.Suspense fallback={<div>Loading...</div>}>
+                        <NeighborhoodLazy />
+                    </React.Suspense>
             }
         ],
     },
