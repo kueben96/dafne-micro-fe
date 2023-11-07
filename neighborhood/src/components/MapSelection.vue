@@ -54,6 +54,7 @@ import RadioButton from 'primevue/radiobutton';
 import InputText from 'primevue/inputtext';
 import Dialog from 'primevue/dialog';
 import 'primeicons/primeicons.css';
+import { useEventDispatcher } from '../useEventDispatcher'
 
 const selectedAreaGeoJSON = ref(null);
 const selectedAreaGeoJSONText = ref(null);
@@ -63,6 +64,8 @@ const showGeoJSON = ref(false);
 
 let draw = null; // Store the draw instance
 let drawnPolygonId = null;
+
+const { dispatchEvent } = useEventDispatcher();
 
 
 function toggleGeoJSONVisibility() {
@@ -128,15 +131,7 @@ async function submitSelection() {
             response = await sendCitySelection(selectedCity.value);
         }
         else {
-            window.dispatchEvent(new CustomEvent('neighborhood', {
-                detail:
-                {
-                    header: "Input missing",
-                    type: "warning",
-                    message: "Please select a city or district by searching for it in the search bar of the map"
-                }
-
-            }));
+            dispatchEvent('warning', 'Input missing', 'Please select a city or district by searching for it in the search bar of the map');
         }
     } else {
         // Use the drawn polygon for API call
@@ -145,26 +140,11 @@ async function submitSelection() {
             response = await sendPolygonSelection(selectedAreaGeoJSON.value);
             console.log("respomse", response)
         } else {
-            window.dispatchEvent(new CustomEvent('neighborhood', {
-                detail:
-                {
-                    header: "Input missing",
-                    type: "warning",
-                    message: "Please draw a polygon before submitting. You can find the drawing tool on the top right corner of the map."
-                }
-
-            }));
+            dispatchEvent('warning', 'Input missing', 'Please draw a polygon before submitting. You can find the drawing tool on the top right corner of the map.');
         }
     }
     if (response) {
-        window.dispatchEvent(new CustomEvent('neighborhood', {
-            detail:
-            {
-                header: `Job ${response.job_id} created`,
-                type: "success",
-                message: "Your neighborhood is being generated. You will get notified when the generation is completed"
-            }
-        }));
+        dispatchEvent('success', `Job ${response.job_id} created`, 'Your neighborhood is being generated. You will get notified when the generation is completed');
     }
 
 }
@@ -186,25 +166,11 @@ async function sendCitySelection(cityName) {
             const data = await response.json();
             return data;
         } else {
-            window.dispatchEvent(new CustomEvent('neighborhood', {
-                detail:
-                {
-                    header: "Error occured" + response.status,
-                    type: "error",
-                    message: "Generation failed: " + response.statusText
-                }
-            }));
+            dispatchEvent('error', 'Error occured', 'Generation failed: ' + response.statusText)
             return null;
         }
     } catch (error) {
-        window.dispatchEvent(new CustomEvent('neighborhood', {
-            detail:
-            {
-                header: "Error occured",
-                type: "error",
-                message: "Generation failed: " + error.message
-            }
-        }));
+        dispatchEvent('error', 'Error occured', 'Generation failed: ' + error.message)
         return null;
     }
 }
