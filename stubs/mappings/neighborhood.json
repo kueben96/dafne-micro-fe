@@ -1,25 +1,60 @@
 {
-    "request": {
-        "method": "POST",
-        "urlPattern": "/api/neighborhood",
-        "bodyPatterns": [
+    "mappings": [
+      {
+        "request": {
+          "method": "POST",
+          "urlPattern": "/api/neighborhood/with-city",
+          "bodyPatterns": [
             {
-                "equalToJson": {
-                    "city": "hannover",
-                    "lat": 52,
-                    "lon": 10
-                }
+              "equalToJson": {
+                "type": "city",
+                "cityName": "Berlin, Deutschland"  
+              }
             }
-        ]
-    },
-    "response": {
-        "status": 200,
-        "headers": {
-            "Content-Type": "application/json"
+          ]
         },
-        "jsonBody": {
-            "job_id": "userxyz_32jk32jkekkdkfjhi2j3kejkeji23iej3oijeio2jioe3ji3ej",
-            "status": "running"
+        "response": {
+          "status": 200,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "jsonBody": {
+            "job_id": "jobidhjkhshkjhda",
+            "status": "created"
+          }
         }
-    }
-}
+      },
+      {
+        "request": {
+          "method": "POST",
+          "urlPattern": "/api/neighborhood/with-coordinates",
+          "bodyPatterns": [
+            {
+              "equalToJson": {
+                "type": "polygon",
+                  "coordinates": 
+                    [
+                      [9.958279176372912, 53.62466555546399],
+                      [10.166297117947494, 53.63842201380942],
+                      [10.167070418845242, 53.574645997285614],
+                      [10.085873824550191, 53.58153293746449],
+                      [9.958279176372912, 53.62466555546399]
+                    ] 
+              }
+            }
+          ]
+        },
+        "response": {
+          "status": 200,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "jsonBody": {
+            "job_id": "userxyj1212312",
+            "status": "created"
+          }
+        }
+      }
+    ]
+  }
+  

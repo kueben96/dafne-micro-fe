@@ -3,9 +3,11 @@ import { mount } from 'neighborhood/NeighborhoodApp'
 import PageHeader from '../components/PageHeader';
 import { ContentPaper } from '../assets/theme/dafneStyles';
 import { Container } from '@mui/system';
+import { useNotification } from '../useNotification';
 
 const NeigborhoodApp = () => {
     const ref = useRef<HTMLDivElement | null>(null);
+    const { displayNotification } = useNotification()
 
 
     useEffect(() => {
@@ -22,14 +24,22 @@ const NeigborhoodApp = () => {
             const customEvent = event as CustomEvent;
             if (customEvent.detail) {
                 console.log('Job Created:', customEvent.detail, customEvent.detail);
+                displayNotification(
+                    {
+                        type: customEvent.detail.type,
+                        header: customEvent.detail.header,
+                        message: customEvent.detail.message,
+                        timeout: 10000,
+                    }
+                )
             }
         };
 
-        window.addEventListener('jobCreated', handleJobCreated);
+        window.addEventListener('neighborhood', handleJobCreated);
 
         return () => {
             // Clean up the event listener when the component unmounts
-            window.removeEventListener('jobCreated', handleJobCreated);
+            window.removeEventListener('neighborhood', handleJobCreated);
         };
     }, []);
 

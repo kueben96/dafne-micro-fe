@@ -74,6 +74,7 @@ onMounted(() => {
         {
             onResultSelected: (result) => {
                 selectedCity.value = result.properties.label;
+                console.log(result.properties)
             },
         }
     );
@@ -119,39 +120,148 @@ onMounted(() => {
 }
 )
 
-// TODO: implement API Call
-function submitSelection() {
-    console.log("submitSelection")
+async function submitSelection() {
+    let response = null;
     if (selectionMode.value === "city") {
-        // Use selected city name for API call
-        // const cityName = prompt("Select a city or district:");
         if (selectedCity.value) {
             // Send the cityName to the API for city selection
-            sendCitySelection(selectedCity.value);
+            response = await sendCitySelection(selectedCity.value);
+        }
+        else {
+            window.dispatchEvent(new CustomEvent('neighborhood', {
+                detail:
+                {
+                    header: "Input missing",
+                    type: "warning",
+                    message: "Please select a city or district by searching for it in the search bar of the map"
+                }
+
+            }));
         }
     } else {
         // Use the drawn polygon for API call
         if (selectedAreaGeoJSON.value && selectedAreaGeoJSON.value.features.length > 0) {
             // Send the selectedAreaGeoJSON to the API for polygon selection
-            sendPolygonSelection(selectedAreaGeoJSON.value);
+            response = await sendPolygonSelection(selectedAreaGeoJSON.value);
+            console.log("respomse", response)
         } else {
-            alert("Please draw a polygon before submitting.");
+            window.dispatchEvent(new CustomEvent('neighborhood', {
+                detail:
+                {
+                    header: "Input missing",
+                    type: "warning",
+                    message: "Please draw a polygon before submitting. You can find the drawing tool on the top right corner of the map."
+                }
+
+            }));
         }
     }
+    if (response) {
+        window.dispatchEvent(new CustomEvent('neighborhood', {
+            detail:
+            {
+                header: `Job ${response.job_id} created`,
+                type: "success",
+                message: "Your neighborhood is being generated. You will get notified when the generation is completed"
+            }
+        }));
+    }
+
 }
-function sendCitySelection(cityName) {
-    console.log("sendCitySelection")
-    console.log(cityName)
-    // Implement API call to select city by name
-    // Example: fetchDataFromAPI({ city: cityName });
+async function sendCitySelection(cityName) {
+    const payload = {
+        type: "city",
+        cityName: "Berlin, Deutschland",
+    };
+
+    try {
+        const response = await fetch('http://localhost:8086/api/neighborhood/with-city', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+        } else {
+            window.dispatchEvent(new CustomEvent('neighborhood', {
+                detail:
+                {
+                    header: "Error occured" + response.status,
+                    type: "error",
+                    message: "Generation failed: " + response.statusText
+                }
+            }));
+            return null;
+        }
+    } catch (error) {
+        window.dispatchEvent(new CustomEvent('neighborhood', {
+            detail:
+            {
+                header: "Error occured",
+                type: "error",
+                message: "Generation failed: " + error.message
+            }
+        }));
+        return null;
+    }
 }
 
-function sendPolygonSelection(polygonGeoJSON) {
+async function sendPolygonSelection(polygonGeoJSON) {
     console.log("sendPolygonSelection")
-    console.log(polygonGeoJSON)
-    // Implement API call to select by polygon
-    // Example: fetchDataFromAPI({ polygon: polygonGeoJSON });
-    // console.log("Selected Polygon:", polygonGeoJSON);
+    const polygonMockPattern =
+        [
+            [9.958279176372912, 53.62466555546399],
+            [10.166297117947494, 53.63842201380942],
+            [10.167070418845242, 53.574645997285614],
+            [10.085873824550191, 53.58153293746449],
+            [9.958279176372912, 53.62466555546399]
+
+        ]
+    const payload = {
+        type: "polygon",
+        coordinates: polygonMockPattern,
+    };
+    try {
+        const response = await fetch('http://localhost:8086/api/neighborhood/with-coordinates', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+            // body: JSON.stringify({ polygonGeoJSON }), // Replace with your payload
+        });
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+            return data;
+        } else {
+            console.error('Error in sendPolygonSelection:', response);
+            window.dispatchEvent(new CustomEvent('neighborhood', {
+                detail:
+                {
+                    header: "Error occured " + response.status,
+                    type: "error",
+                    message: "Generation failed: " + response.statusText
+                }
+            }));
+            return null;
+        }
+    } catch (error) {
+        console.log("error in polygonselection", error)
+        window.dispatchEvent(new CustomEvent('neighborhood', {
+            detail:
+            {
+                header: "Error occured",
+                type: "error",
+                message: "Generation failed: " + error.message
+            }
+        }));
+        return null;
+    }
+
 }
 
 </script>
