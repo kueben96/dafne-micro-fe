@@ -11,7 +11,7 @@ import DataViewComponent from '../pages/DashboardPage/DataView';
 import JobsView from '../pages/DashboardPage/JobsView';
 
 
-const NeighborhoodLazy = React.lazy(() => import('../pages/NeigborhoodApp'));
+const NeighborhoodLazy = React.lazy(() => import('../pages/NeighborhoodApp'));
 
 export const routes = [
     {
