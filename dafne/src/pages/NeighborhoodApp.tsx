@@ -5,7 +5,7 @@ import { ContentPaper } from '../assets/theme/dafneStyles';
 import { Container } from '@mui/system';
 import { useNotification } from '../useNotification';
 
-const NeigborhoodApp = () => {
+const NeighborhoodApp = () => {
     const ref = useRef<HTMLDivElement | null>(null);
     const { displayNotification } = useNotification()
 
@@ -60,4 +60,4 @@ const NeigborhoodApp = () => {
 
 }
 
-export default NeigborhoodApp
+export default NeighborhoodApp
