@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { mount } from 'neighborhood/NeighborhoodApp'
 import PageHeader from '../components/PageHeader';
 import { ContentPaper } from '../assets/theme/dafneStyles';
