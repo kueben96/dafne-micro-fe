@@ -84,7 +84,7 @@ onMounted(() => {
 
     const map = new maplibre.Map({
         container: 'maplibre',
-        style: "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL", // style URL
+        style: "https://api.maptiler.com/maps/streets/style.json?key=2nJoak6XHLcKyvexO0HX", // style URL
         center: [9.9937, 53.5511], // Hamburg, Germany
         zoom: 10,
     });
