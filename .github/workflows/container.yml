@@ -19,11 +19,17 @@ jobs:
             echo "Services are not up yet. Waiting..."
             sleep 10s
           done
-      - run: docker ps
       - run: npm install
       - run: npm run start &
       - run: sleep 100s
       - run: npx cypress run
+        # Archive Cypress artifacts
+      - name: Archive Cypress Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-artifacts
+          path: cypress/screenshots, cypress/videos
+
   build: 
     needs: test
     runs-on: ubuntu-latest
