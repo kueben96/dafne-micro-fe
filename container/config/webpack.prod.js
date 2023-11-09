@@ -10,18 +10,18 @@ const prodConfig = {
     output: {
         filename: '[name].[contenthash].js',
         publicPath: '/container/latest/'
-    }, amk!!!!!!
-plugins: [
-    new ModuleFederationPlugin({
-        name: 'container',
-        remotes: {
-            marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
-            auth: `auth@${domain}/auth/latest/remoteEntry.js`,
-            dafne: `dafne@${domain}/dafne/latest/remoteEntry.js`
-        },
-        shared: packageJson.dependencies,
-    })
-]
+    },
+    plugins: [
+        new ModuleFederationPlugin({
+            name: 'container',
+            remotes: {
+                marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
+                auth: `auth@${domain}/auth/latest/remoteEntry.js`,
+                dafne: `dafne@${domain}/dafne/latest/remoteEntry.js`
+            },
+            shared: packageJson.dependencies,
+        })
+    ]
 }
 
 module.exports = merge(commonConfig, prodConfig);
