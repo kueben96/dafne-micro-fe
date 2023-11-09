@@ -15,7 +15,7 @@ jobs:
       - run: docker-compose up -d
       - run: sleep 30
       - run: npm install
-      - run: npm run start
+      - run: npm run start &
       - run: sleep 100
       - run: npx cypress run 
   build: 
