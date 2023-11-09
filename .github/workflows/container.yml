@@ -23,7 +23,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          project: ./cypress/e2e 
           browser: chrome
           headless: true
           record: true
