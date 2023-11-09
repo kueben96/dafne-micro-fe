@@ -10,15 +10,15 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    steps: 
-      - run: docker-compose up -d
+    steps:
+      # - run: docker-compose up -d
       - uses: actions/checkout@v2
-      - run: sleep 30
+      # - run: sleep 30
       - run: npm install
       - run: npm run start &
       - run: sleep 200
-      - run: npx cypress run 
-  build: 
+      - run: npx cypress run
+  build:
     needs: test
     runs-on: ubuntu-latest
     defaults:
