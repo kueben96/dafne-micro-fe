@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
-      - run: docker-compose up --build -d
+      - run: docker-compose up -d
       - run: |
           # Wait for the Docker Compose services to be up
           while ! docker-compose ps | grep -q "Up"; do
@@ -25,6 +25,7 @@ jobs:
       - run: npx cypress run
         # Archive Cypress artifacts
       - name: Archive Cypress Artifacts
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: cypress-artifacts
