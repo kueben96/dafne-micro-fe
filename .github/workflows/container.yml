@@ -13,30 +13,10 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
       - run: docker-compose up -d
-      - run: |
-          # Wait for the Docker Compose services to be up
-          while ! docker-compose ps | grep -q "Up"; do
-            echo "Services are not up yet. Waiting..."
-            sleep 10s
-          done
-      - run: npm install
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          browser: chrome
-          headless: true
-          record: true
-          start: npm run start
-      - uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: cypress-videos
-          path: cypress/videos
+      - run: sleep 30
+      - run: npm run start
+      - run: sleep 100
+      - run: npx cypress run 
   build: 
     needs: test
     runs-on: ubuntu-latest
