@@ -21,15 +21,26 @@ jobs:
           done
       - run: npm install
       - run: npm run start &
-      - run: sleep 100s
-      - run: npx cypress run
-        # Archive Cypress artifacts
-      - name: Archive Cypress Artifacts
-        if: always()
-        uses: actions/upload-artifact@v3
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
         with:
-          name: cypress-artifacts
-          path: cypress/screenshots, cypress/videos
+          project: ./cypress/e2e 
+          browser: chrome
+          headless: true
+          record: true
+          start: npm start
+          wait-on: "http://localhost:3000"
+       
+      # - run: sleep 100s
+      # - run: npx cypress run
+      
+      #   # Archive Cypress artifacts
+      # - name: Archive Cypress Artifacts
+      #   if: always()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: cypress-artifacts
+      #     path: cypress/screenshots, cypress/videos
 
   build: 
     needs: test
