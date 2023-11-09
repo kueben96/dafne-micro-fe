@@ -4,7 +4,7 @@ const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json')
 
 const domain = process.env.PRODUCTION_DOMAIN;
-
+// production
 const prodConfig = {
     mode: 'production',
     output: {
