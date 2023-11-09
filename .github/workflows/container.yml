@@ -28,7 +28,6 @@ jobs:
           headless: true
           record: true
           start: npm run start
-          wait-on: "http://localhost:3000"
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
