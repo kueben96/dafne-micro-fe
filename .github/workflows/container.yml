@@ -20,7 +20,6 @@ jobs:
             sleep 10s
           done
       - run: npm install
-      - run: npm run start &
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
@@ -28,20 +27,18 @@ jobs:
           browser: chrome
           headless: true
           record: true
-          start: npm start
+          start: npm run start
           wait-on: "http://localhost:3000"
-       
-      # - run: sleep 100s
-      # - run: npx cypress run
-      
-      #   # Archive Cypress artifacts
-      # - name: Archive Cypress Artifacts
-      #   if: always()
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: cypress-artifacts
-      #     path: cypress/screenshots, cypress/videos
-
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
   build: 
     needs: test
     runs-on: ubuntu-latest
