@@ -27,7 +27,7 @@ const prodConfig = {
             },
             remotes: {
                 theme: `theme@${domain}/theme/latest/remoteEntry.js`,
-                neighborhood: `neighborhood@${domain}/theme/latest/remoteEntry.js`,
+                neighborhood: `neighborhood@${domain}/neighborhood/latest/remoteEntry.js`,
             },
             shared: packageJson.dependencies,
         })
