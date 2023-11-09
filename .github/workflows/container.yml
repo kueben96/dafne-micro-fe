@@ -25,7 +25,7 @@ jobs:
       - run: npx cypress run
         # Archive Cypress artifacts
       - name: Archive Cypress Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: cypress-artifacts
           path: cypress/screenshots, cypress/videos
