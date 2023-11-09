@@ -1,10 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 module.exports = {
+    resolve: {
+        modules: ['node_modules', path.resolve(__dirname, 'src')],
+    },
     module: {
-        resolve: {
-            modules: ['node_modules', path.resolve(__dirname, 'src')],
-        },
         rules: [
             // loader: tell webpack to process different files as we import them to the project
             {
