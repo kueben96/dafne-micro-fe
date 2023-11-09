@@ -14,9 +14,6 @@ const prodConfig = {
         publicPath: '/neighborhood/latest/'
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: './public/index.html'
-        }),
         new ModuleFederationPlugin({
             name: 'neighborhood',
             filename: 'remoteEntry.js',
