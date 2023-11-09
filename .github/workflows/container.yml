@@ -19,6 +19,7 @@ jobs:
             echo "Services are not up yet. Waiting..."
             sleep 10s
           done
+      - run: docker ps
       - run: npm install
       - run: npm run start &
       - run: sleep 100s
