@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: clean cache
         run: npm cache clean --force
+      - run: node --version
       - name: Install dependencies and build container app
         run: |
           npm ci
