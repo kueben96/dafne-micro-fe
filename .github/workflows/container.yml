@@ -20,7 +20,7 @@ jobs:
       - run: node --version
       - name: Install dependencies and build container app
         run: |
-          npm ci
+          npm install
           npm run build
         env:
          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
