@@ -1,8 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-    resolve: {
-        extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
-    },
     module: {
         rules: [
             // loader: tell webpack to process different files as we import them to the project
