@@ -3,7 +3,7 @@ import { Routes, Route, Link, Navigate, useNavigate, useLocation, BrowserRouter 
 import { marketingRoutingPrefix, authRoutingPrefix, dafneRoutingPrefix } from './utils/constants'
 import { AuthContext, AuthProvider, useAuth } from './utils/AuthProvider'
 import ProtectedRoute from './utils/ProtectedRoute'
-import MicroFrontendErrorBoundary from './utils/testChange'
+import MicroFrontendErrorBoundary from './utils/MicroFrontendErrorBoundary'
 
 const App = () => {
     // TODO: if authenticated, then navigate index to dafne
