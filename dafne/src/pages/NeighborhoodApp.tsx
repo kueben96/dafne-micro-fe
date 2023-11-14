@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react';
 import { mount } from 'neighborhood/NeighborhoodApp'
 import PageHeader from '../components/PageHeader';
 import { ContentPaper } from '../assets/theme/dafneStyles';

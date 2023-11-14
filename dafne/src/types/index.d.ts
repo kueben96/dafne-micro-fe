@@ -10,6 +10,11 @@ declare module "*.png" {
 declare module 'theme/theme';
 declare module 'react-dom/client'
 
+interface IJobNotification {
+    // TODO: implement Notification interface
+}
+type NotificationType = Error | IJobNotification | IUserNotification;
+
 interface IUser {
     _id: string;
     email: string;
