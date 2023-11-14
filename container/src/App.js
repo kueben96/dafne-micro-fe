@@ -7,7 +7,6 @@ import MicroFrontendErrorBoundary from './utils/MicroFrontendErrorBoundary'
 
 const App = () => {
     // TODO: if authenticated, then navigate index to dafne
-
     const MarketingLazy = lazy(() => import('./components/MarketingApp'))
     const DaFneLazy = lazy(() => import('./components/DafneApp'))
     const AuthLazy = lazy(() => import('./components/AuthApp'))
