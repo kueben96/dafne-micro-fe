@@ -47,7 +47,11 @@ const devConfig = {
                     remoteName: 'marketing',
                     dashboardURL,
                 }),
-                auth: 'auth@http://localhost:8082/remoteEntry.js',
+                auth: DashboardPlugin.clientVersion({
+                    currentHost: 'container',
+                    remoteName: 'auth',
+                    dashboardURL,
+                }),
                 dafne: 'dafne@http://localhost:8083/remoteEntry.js',
             },
             shared: {
