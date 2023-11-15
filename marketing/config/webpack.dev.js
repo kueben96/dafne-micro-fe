@@ -5,10 +5,14 @@ const DashboardPlugin = require("@module-federation/dashboard-plugin");
 const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json')
 const path = require('path');
-const DASHBOARD_WRITE_TOKEN = "4ef1ef7b-5c18-4aa1-a376-754ec17d83b6"
-const DASHBOARD_READ_TOKEN = "cff21df1-7f3f-43de-911e-73e682998569"
-// const DASHBOARD_BASE_URL = "http://localhost:3000"
-const DASHBOARD_BASE_URL = "https://api.medusa.codes"
+const { readFileSync } = require('fs');
+const tokens = readFileSync(__dirname + '/../../.env')
+    .toString('utf-8')
+    .split('\n')
+    .map(v => v.trim().split('='));
+
+process.env.DASHBOARD_WRITE_TOKEN = tokens.find(([k]) => k === 'DASHBOARD_WRITE_TOKEN')[1];
+process.env.DASHBOARD_BASE_URL = tokens.find(([k]) => k === 'DASHBOARD_BASE_URL')[1];
 
 const devConfig = {
     mode: 'development',
@@ -25,12 +29,12 @@ const devConfig = {
             historyApiFallback: true,
         },
         static: {
-            directory: path.join(__dirname, "../dist")
+            directory: path.join(__dirname, "../../dist")
         },
     },
     plugins: [
         new ModuleFederationPlugin({
-            name: 'marketing',
+            name: 'marketing__REMOTE_VERSION__',
             filename: 'remoteEntry.js',
             exposes: {
                 './MarketingApp': './src/bootstrap'
@@ -51,7 +55,7 @@ const devConfig = {
             versionStrategy: `${Date.now()}`,
             filename: 'dashboard.json',
             environment: 'development',
-            dashboardURL: `${DASHBOARD_BASE_URL}/update?token=${DASHBOARD_WRITE_TOKEN}`,
+            dashboardURL: `${process.env.DASHBOARD_BASE_URL}/update?token=${process.env.DASHBOARD_WRITE_TOKEN}`,
             metadata: {
                 baseUrl: 'http://localhost:8081',
                 remote: 'http://localhost:8081/remoteEntry.js',

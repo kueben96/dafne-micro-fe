@@ -3,15 +3,17 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const DashboardPlugin = require("@module-federation/dashboard-plugin");
 const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json')
-const Dotenv = require('dotenv-webpack');
 const path = require('path');
+const { readFileSync } = require('fs');
+const tokens = readFileSync(__dirname + '/../../.env')
+    .toString('utf-8')
+    .split('\n')
+    .map(v => v.trim().split('='));
+process.env.DASHBOARD_READ_TOKEN = tokens.find(([k]) => k === 'DASHBOARD_READ_TOKEN')[1];
+process.env.DASHBOARD_WRITE_TOKEN = tokens.find(([k]) => k === 'DASHBOARD_WRITE_TOKEN')[1];
+process.env.DASHBOARD_BASE_URL = tokens.find(([k]) => k === 'DASHBOARD_BASE_URL')[1];
 
-
-const DASHBOARD_WRITE_TOKEN = "4ef1ef7b-5c18-4aa1-a376-754ec17d83b6"
-const DASHBOARD_READ_TOKEN = "cff21df1-7f3f-43de-911e-73e682998569"
-// const DASHBOARD_BASE_URL = "http://localhost:3000"
-const DASHBOARD_BASE_URL = "https://api.medusa.codes"
-const dashboardURL = `${DASHBOARD_BASE_URL}/env/development/get-remote?token=${DASHBOARD_READ_TOKEN}`;
+const dashboardURL = `${process.env.DASHBOARD_BASE_URL}/env/development/get-remote?token=${process.env.DASHBOARD_READ_TOKEN}`;
 const devConfig = {
 
     mode: 'development',
@@ -19,7 +21,6 @@ const devConfig = {
     output: {
         filename: '[name].[contenthash].js',
         chunkFilename: '[name].[contenthash].js',
-        // publicPath: 'auto'
     },
     devServer: {
         port: 8080,
@@ -30,15 +31,12 @@ const devConfig = {
             'Access-Control-Allow-Origin': '*',
         },
         static: {
-            directory: path.join(__dirname, "../dist")
+            directory: path.join(__dirname, "../../dist")
         },
     },
     devtool: 'source-map',
 
     plugins: [
-        new Dotenv({
-            path: `../.env`, // Load the .env file based on the environment (e.g., .env.development)
-        }),
         new ModuleFederationPlugin({
             name: 'container',
             filename: 'remoteEntry.js',
@@ -48,7 +46,6 @@ const devConfig = {
                     remoteName: 'marketing',
                     dashboardURL,
                 }),
-                // marketing: 'marketing@http://localhost:8081/remoteEntry.js',
                 auth: 'auth@http://localhost:8082/remoteEntry.js',
                 dafne: 'dafne@http://localhost:8083/remoteEntry.js',
             },
@@ -63,10 +60,10 @@ const devConfig = {
         }),
         new DashboardPlugin({
             versionStrategy: `${Date.now()}`,
-            dashboardURL: `${DASHBOARD_BASE_URL}/update?token=${DASHBOARD_WRITE_TOKEN}`,
+            dashboardURL: `${process.env.DASHBOARD_BASE_URL}/update?token=${process.env.DASHBOARD_WRITE_TOKEN}`,
             filename: 'dashboard.json',
             metadata: {
-                clientUrl: DASHBOARD_BASE_URL,
+                clientUrl: process.env.DASHBOARD_BASE_URL,
                 baseUrl: 'http://localhost:8080',
                 remote: 'http://localhost:8080/remoteEntry.js',
             },
