@@ -52,7 +52,11 @@ const devConfig = {
                     remoteName: 'auth',
                     dashboardURL,
                 }),
-                dafne: 'dafne@http://localhost:8083/remoteEntry.js',
+                auth: DashboardPlugin.clientVersion({
+                    currentHost: 'container',
+                    remoteName: 'dafne',
+                    dashboardURL,
+                }),
             },
             shared: {
                 ...packageJson.dependencies,
