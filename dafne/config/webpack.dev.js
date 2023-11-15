@@ -10,9 +10,10 @@ const tokens = readFileSync(__dirname + '/../../.env')
     .toString('utf-8')
     .split('\n')
     .map(v => v.trim().split('='));
-
+process.env.DASHBOARD_READ_TOKEN = tokens.find(([k]) => k === 'DASHBOARD_READ_TOKEN')[1];
 process.env.DASHBOARD_WRITE_TOKEN = tokens.find(([k]) => k === 'DASHBOARD_WRITE_TOKEN')[1];
 process.env.DASHBOARD_BASE_URL = tokens.find(([k]) => k === 'DASHBOARD_BASE_URL')[1];
+const dashboardURL = `${process.env.DASHBOARD_BASE_URL}/env/development/get-remote?token=${process.env.DASHBOARD_READ_TOKEN}`;
 
 const devConfig = {
     mode: 'development',
@@ -38,8 +39,12 @@ const devConfig = {
             name: 'dafne',
             filename: 'remoteEntry.js',
             remotes: {
+                neighborhood: DashboardPlugin.clientVersion({
+                    currentHost: 'dafne',
+                    remoteName: 'neighborhood',
+                    dashboardURL,
+                }),
                 theme: 'theme@http://localhost:8085/remoteEntry.js',
-                neighborhood: 'neighborhood@http://localhost:8087/remoteEntry.js',
             },
             exposes: {
                 './DafneApp': './src/bootstrap'
