@@ -21,6 +21,7 @@ const devConfig = {
     output: {
         filename: '[name].[contenthash].js',
         chunkFilename: '[name].[contenthash].js',
+        publicPath: '/'
     },
     devServer: {
         port: 8080,
