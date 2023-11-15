@@ -44,7 +44,11 @@ const devConfig = {
                     remoteName: 'neighborhood',
                     dashboardURL,
                 }),
-                theme: 'theme@http://localhost:8085/remoteEntry.js',
+                theme: DashboardPlugin.clientVersion({
+                    currentHost: 'dafne',
+                    remoteName: 'theme',
+                    dashboardURL,
+                }),
             },
             exposes: {
                 './DafneApp': './src/bootstrap'

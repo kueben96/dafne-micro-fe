@@ -13,7 +13,8 @@ const tokens = readFileSync(__dirname + '/../../.env')
 
 process.env.DASHBOARD_WRITE_TOKEN = tokens.find(([k]) => k === 'DASHBOARD_WRITE_TOKEN')[1];
 process.env.DASHBOARD_BASE_URL = tokens.find(([k]) => k === 'DASHBOARD_BASE_URL')[1];
-
+process.env.DASHBOARD_READ_TOKEN = tokens.find(([k]) => k === 'DASHBOARD_READ_TOKEN')[1];
+const dashboardURL = `${process.env.DASHBOARD_BASE_URL}/env/development/get-remote?token=${process.env.DASHBOARD_READ_TOKEN}`;
 const devConfig = {
     mode: 'development',
     entry: './src/index.js',
@@ -39,7 +40,11 @@ const devConfig = {
                 './NeighborhoodApp': './src/bootstrap'
             },
             remotes: {
-                theme: 'theme@http://localhost:8085/remoteEntry.js',
+                theme: DashboardPlugin.clientVersion({
+                    currentHost: 'neighborhood',
+                    remoteName: 'theme',
+                    dashboardURL,
+                }),
             },
             shared: packageJson.dependencies
         }),
