@@ -36,7 +36,7 @@ const devConfig = {
     },
     plugins: [
         new ModuleFederationPlugin({
-            name: 'dafne',
+            name: 'dafne__REMOTE_VERSION__',
             filename: 'remoteEntry.js',
             remotes: {
                 neighborhood: DashboardPlugin.clientVersion({

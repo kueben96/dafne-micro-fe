@@ -52,7 +52,7 @@ const devConfig = {
                     remoteName: 'auth',
                     dashboardURL,
                 }),
-                auth: DashboardPlugin.clientVersion({
+                dafne: DashboardPlugin.clientVersion({
                     currentHost: 'container',
                     remoteName: 'dafne',
                     dashboardURL,

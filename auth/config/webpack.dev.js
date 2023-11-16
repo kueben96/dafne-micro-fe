@@ -33,7 +33,7 @@ const devConfig = {
     },
     plugins: [
         new ModuleFederationPlugin({
-            name: 'auth',
+            name: 'auth__REMOTE_VERSION__',
             filename: 'remoteEntry.js',
             remotes: {
                 theme: DashboardPlugin.clientVersion({
