@@ -1,6 +1,6 @@
 {
   "name": "theme",
-  "version": "dafneBlueNew",
+  "version": "dafnePrimaryBlue",
   "description": "Theme as shared module for microfrontedns",
   "main": "index.js",
   "scripts": {

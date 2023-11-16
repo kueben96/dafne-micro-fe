@@ -6,6 +6,10 @@
 - Resources: O'Reilly; Building Micro-Frontends - Scaling Teams and Projects, Empowering Developers. (Luca Mezzalira)
 
 
+# Integration into Medusa Module Federation Dashboard
+
+- cd into each application run `npm run build && npm run serve`
+
 For typescript migration install 
 
 npm install --save-dev @babel/preset-typescript typescript @types/react @types/react-dom
