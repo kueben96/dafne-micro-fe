@@ -58,7 +58,7 @@ const devConfig = {
             }
         ),
         new DashboardPlugin({
-            versionStrategy: `${Date.now()}`,
+            versionStrategy: require("../package.json").version,
             filename: 'dashboard.json',
             environment: 'development',
             dashboardURL: `${process.env.DASHBOARD_BASE_URL}/update?token=${process.env.DASHBOARD_WRITE_TOKEN}`,
