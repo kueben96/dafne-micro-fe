@@ -1,34 +1,22 @@
-import { Box, Grid, ThemeProvider } from '@mui/material'
-import React, { useState } from 'react'
+import { Box, Grid, ThemeProvider, createTheme, CircularProgress } from '@mui/material'
+import React, { useState, useEffect } from 'react'
 import { Header, LeftContainer, ButtonDaFne, RightContainer, Subline } from '../styles/authStyles'
 import Navbar from './Navbar'
 
 const AuthPageLayout = ({ isLoginMode, onToggleMode, children }) => {
-    const [theme, setTheme] =
-        React.useState(null);
+    const defaultTheme = createTheme({});
+    const [theme, setTheme] = useState(defaultTheme);
 
-
-    React.useEffect(() => {
+    useEffect(() => {
         import('theme/theme')
-            .then((sharedTheme) =>
-                setTheme(
-                    sharedTheme.default
-                ),
-            )
-            .catch((error) =>
-                console.error(
-                    'Error loading shared theme',
-                    error
-                )
-            );
+            .then((sharedTheme) => setTheme(sharedTheme.default))
+            .catch((error) => console.error('Error loading shared theme', error));
     }, []);
 
 
     if (!theme) {
         return (
-            <div>
-                Loading theme...
-            </div>
+            <CircularProgress />
         );
     }
 
