@@ -7,12 +7,16 @@ const packageJson = require('../package.json')
 const devConfig = {
     mode: 'development',
     output: {
-        // set whole path for nested paths
+        uniqueName: 'neighborhood',
         publicPath: 'http://localhost:8087/'
+    },
+    watchOptions: {
+        poll: 1000,
     },
     entry: './src/index.js',
     devServer: {
         port: 8087,
+        host: "0.0.0.0",
         historyApiFallback: {
             index: '/index.html'
         },

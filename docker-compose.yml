@@ -9,3 +9,29 @@ services:
     volumes:
       - ./stubs:/home/wiremock
     command: "--enable-stub-cors --verbose"
+  theme: 
+    build: ./theme
+    ports:
+      - "8085:8085"
+  marketing: 
+    build: ./marketing
+    ports:
+      - "8081:8081"
+  auth: 
+    build: ./auth
+    ports:
+      - "8082:8082"
+  dafne: 
+    build: ./dafne
+    ports:
+      - "8083:8083"
+  neighborhood:
+    build: ./neighborhood
+    ports:
+      - "8087:8087"
+  container: 
+    build: ./container
+    ports:
+      - "8080:8080"
+
+

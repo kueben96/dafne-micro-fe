@@ -1,25 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import { Button, ThemeProvider, Typography } from '@mui/material'
+import { Button, ThemeProvider, Typography, CircularProgress, createTheme } from '@mui/material'
 
 const App = () => {
-    // TODO: implement more generic navigation
-    // TODO: navigateToOtherMicroFrontend("/auth")
-    // TODO: is there a solution to retrieve these functions from shell? 
+    const defaultTheme = createTheme({});
+    const [theme, setTheme] = useState(defaultTheme);
+
     const navigateToAuthApp = () => {
         window.dispatchEvent(
             new CustomEvent("[external] navigated",
                 { detail: '/auth/login' })
         );
     }
-
-    const handleClick = () => {
-        console.log("clicked next button")
-    }
-    const [theme, setTheme] =
-        React.useState(null);
-
-
     React.useEffect(() => {
         let isMounted = true; // This flag tracks whether the component is mounted
 
@@ -40,16 +32,12 @@ const App = () => {
         };
     }, []);
 
-
-    console.log("A CHANGE IN MARKETING")
-
     if (!theme) {
         return (
-            <div>
-                Error loading theme...
-            </div>
+            <CircularProgress />
         );
     }
+
 
 
     return (
