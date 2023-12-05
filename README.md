@@ -2,6 +2,10 @@
 
 - Design Files: https://www.figma.com/file/WLF8iTjZjvnc58rI6xMdHH/DaFne_UI?node-id=31%3A21&t=G4lABVcnh6X5yhti-1
 
+## For dockerized applications:
+- run ```docker-compose up --build```: all dev servers and the mock server are running on the same addresses. entry point is localhost:8080 for container
+- the dist folders are copied inside the container
+
 ## Micro-Frontends setup instruction
 - cd to root directory
 - run ```docker-compose up --build```: stub server is running on localhost:8086
