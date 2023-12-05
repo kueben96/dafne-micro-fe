@@ -1,7 +1,6 @@
-import React, { lazy, useContext } from 'react'
-import { Routes, Route, Link, Navigate, useNavigate, useLocation, BrowserRouter } from 'react-router-dom'
-import { marketingRoutingPrefix, authRoutingPrefix, dafneRoutingPrefix } from './utils/constants'
-import { AuthContext, AuthProvider, useAuth } from './utils/AuthProvider'
+import React, { lazy } from 'react'
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
+import { useAuth } from './utils/AuthProvider'
 import ProtectedRoute from './utils/ProtectedRoute'
 import MicroFrontendErrorBoundary from './utils/MicroFrontendErrorBoundary'
 
