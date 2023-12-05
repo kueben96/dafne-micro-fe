@@ -3,6 +3,7 @@ import React from 'react'
 import HeaderBreadcrumbs from './HeaderBreadcrumbs';
 import { PageHeaderAppBar } from '../assets/theme/dafneStyles';
 import { IUser } from '../types';
+import userSlice from '../redux/features/userSlice';
 
 const AssetStatistic = styled(Box)(({ theme }) => ({
     display: 'flex',
@@ -46,8 +47,13 @@ const PageHeaderDashboard = (props: PageHeaderDashboardProps) => {
                         </Box>
                         <Box display="flex" flexDirection="row" justifyContent="space-between">
                             <Box display="flex" flexDirection="column" >
-                                <Typography>{props.user.firstName + ' ' + props.user.lastName}</Typography>
-                                <Typography variant="subtitle1">{props.user.jobTitle + ' - ' + props.user.industry}</Typography>
+                                {props.user &&
+                                    <>
+                                        <Typography>{props.user.firstName + ' ' + props.user.lastName}</Typography>
+                                        <Typography variant="subtitle1">{props.user.jobTitle + ' - ' + props.user.industry}</Typography>
+                                    </>
+                                }
+
                             </Box>
                             <Box display="flex" flexDirection="column">
                                 <Box display="flex" flexDirection="row" >

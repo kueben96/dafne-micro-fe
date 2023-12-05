@@ -71,7 +71,9 @@ const AppBarHeader: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDraw
             <IconButton>
               <Avatar sx={{ width: 30, height: 30 }} alt="User" src="/avatar.jpg" />
             </IconButton>
-            <Typography variant="body1">{user?.firstName + ' ' + user?.lastName}</Typography>
+            {user &&
+              <Typography variant="body1">{user?.firstName + ' ' + user?.lastName}</Typography>
+            }
           </Box>
         </UserContainer>
       </Toolbar>
