@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-theme
+  namespace: dafne
+  labels:
+    service: frontend-theme
+spec:
+  selector:
+    matchLabels:
+      service: frontend-theme
+  template:
+    metadata:
+      labels:
+        service: frontend-theme
+    spec:
+      containers:
+        - image: git.haw-hamburg.de:5000/dafne/frontend/frontend-prod/theme:latest
+          name: frontend-theme
+          ports:
+            - containerPort: 8085
+              protocol: TCP
+          env:
+            - name: "API_BASE_URL"
+              value: "api-gateway"
+      imagePullSecrets:
+        - name: dafne-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-theme
+  namespace: dafne
+  labels:
+    service: frontend-theme
+spec:
+  ports:
+    - name: http
+      port: 8085
+      protocol: TCP
+      targetPort: 8085
+  selector:
+    service: frontend-theme
+  type: ClusterIP
+
