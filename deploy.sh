@@ -42,15 +42,15 @@ done
 # Verschieben der verarbeiteten Optionen, um nicht verarbeitete Argumente zu erhalten
 shift $((OPTIND-1))
 
-(cd auth/ \ 
-    && ./deploy.sh -a auth -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod && kube rollout restart deployment/frontend-auth)
-(cd container/ \
-    && ./deploy.sh -a container -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod && kube rollout restart deployment/frontend-container)
-(cd dafne/ \
-    && ./deploy.sh -a dafne -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod && kube rollout restart deployment/frontend-dafne)
-(cd marketing/ \
-    && ./deploy.sh -a marketing -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod && kube rollout restart deployment/frontend-marketing)
-(cd neighborhood/ \
-    && ./deploy.sh -a neighborhood -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod && kube rollout restart deployment/frontend-neighborhood)
-(cd theme/ \
-    && ./deploy.sh -a theme -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod && kube rollout restart deployment/frontend-theme)
+(cd auth &&
+    ./deploy.sh -a auth -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod)
+(cd container && 
+    ./deploy.sh -a container -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod)
+(cd dafne &&
+    ./deploy.sh -a dafne -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod)
+(cd marketing &&
+    ./deploy.sh -a marketing -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod)
+(cd neighborhood &&
+    ./deploy.sh -a neighborhood -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod)
+(cd theme &&
+    ./deploy.sh -a theme -b "${BUILD_OPTION}" -c "${CONTEXT}" -s "${SUBSTITUTE}" -t "${TAG}" frontend frontend-prod)

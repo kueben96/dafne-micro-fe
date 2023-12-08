@@ -23,7 +23,7 @@ TAG="latest"
 SUBSTITUTE="false"
 
 # Verarbeiten der optionalen Parameter
-while getopts ":c:b:d:s:t:" opt; do
+while getopts "a:c:b:d:s:t:" opt; do
   case $opt in
     a)
       MICRO_APP="$OPTARG"
@@ -64,7 +64,7 @@ fi
 
 SERVICE_GROUP=$1
 SERVICE_NAME=$2
-DOCKER_TAG="${SERVICE_PATH_PREFIX}/${SERVICE_GROUP}/${SERVICE_NAME}/${MICRO_APP}:${TAG}"
+DOCKER_TAG="${SERVICE_PATH_PREFIX}/${SERVICE_GROUP}/${SERVICE_NAME}/${MICRO_APP:${TAG}}"
 
 if [[ "$SUBSTITUTE" == "true" ]]; then
   echo "Filename: ${DEPLOY_FILE}"
@@ -80,6 +80,8 @@ fi
 
 if [[ "$BUILD_OPTION" == "true" ]]; then
   echo building application with tag "${DOCKER_TAG}" 
+  npm ci
+  npm run build
   docker build -t "${DOCKER_TAG}" .
   docker push "${DOCKER_TAG}"
 fi
