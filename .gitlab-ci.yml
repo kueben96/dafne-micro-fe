@@ -33,7 +33,7 @@ variables:
 # BUILDERNAME: $SERVICE_NAME-$APP_NAME-builder
 # CONTEXTNAME: $SERVICE_NAME-$APP_NAME0-context
 
-create_auth_image:
+create_image_auth:
   extends: .create_image
   stage: dockerize
   image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:24.0.3
@@ -56,6 +56,7 @@ create_auth_image:
 .create_image:
   script:
     - cd $APP_NAME
+    - apt install nodejs
     - npm ci
     - npm run build
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
