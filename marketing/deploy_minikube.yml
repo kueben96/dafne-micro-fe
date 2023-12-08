@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-marketing
+  namespace: dafne
+  labels:
+    service: frontend-marketing
+spec:
+  selector:
+    matchLabels:
+      service: frontend-marketing
+  template:
+    metadata:
+      labels:
+        service: frontend-marketing
+    spec:
+      containers:
+        - image: git.haw-hamburg.de:5000/dafne/frontend/frontend-prod/marketing:latest
+          name: frontend-marketing
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+          env:
+            - name: "API_BASE_URL"
+              value: "api-gateway"
+      imagePullSecrets:
+        - name: dafne-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-marketing
+  namespace: dafne
+  labels:
+    service: frontend-marketing
+spec:
+  ports:
+    - name: http
+      port: 8081
+      protocol: TCP
+      targetPort: 8081
+  selector:
+    service: frontend-marketing
+  type: ClusterIP
+
