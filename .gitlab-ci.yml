@@ -34,17 +34,8 @@ variables:
 # CONTEXTNAME: $SERVICE_NAME-$APP_NAME0-context
 
 create_auth_image:
-  stage: dockerize
-  variables:
-    APP_NAME: "auth"
-    IMAGE_NAME: $CI_REGISTRY/$CI_PROJECT_PATH/$APP_NAME:latest
-    BUILDERNAME: $SERVICE_NAME-$APP_NAME-builder
-    CONTEXTNAME: $SERVICE_NAME-$APP_NAME0-context
   extends: .create_image
-
-
-
-create_image:
+  stage: dockerize
   image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:24.0.3
   only:
     - main
@@ -53,6 +44,16 @@ create_image:
   tags:
     - dind
     - docker
+  variables:
+    APP_NAME: "auth"
+    IMAGE_NAME: $CI_REGISTRY/$CI_PROJECT_PATH/$APP_NAME:latest
+    BUILDERNAME: $SERVICE_NAME-$APP_NAME-builder
+    CONTEXTNAME: $SERVICE_NAME-$APP_NAME0-context
+  after_script:
+    - docker buildx rm $BUILDERNAME
+
+
+.create_image:
   script:
     - cd $APP_NAME
     - npm ci
@@ -61,5 +62,3 @@ create_image:
     - docker context create $CONTEXTNAME
     - docker buildx create --use $CONTEXTNAME --name $BUILDERNAME
     - docker buildx build --builder $BUILDERNAME --provenance false --platform linux/amd64,linux/arm64/v8 --tag $IMAGE_NAME --push .
-  after_script:
-    - docker buildx rm $BUILDERNAME
