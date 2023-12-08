@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-neighborhood
+  namespace: dafne
+  labels:
+    service: frontend-neighborhood
+spec:
+  selector:
+    matchLabels:
+      service: frontend-neighborhood
+  template:
+    metadata:
+      labels:
+        service: frontend-neighborhood
+    spec:
+      containers:
+        - image: git.haw-hamburg.de:5000/dafne/frontend/frontend-prod/neighborhood:latest
+          name: frontend-neighborhood
+          ports:
+            - containerPort: 8087
+              protocol: TCP
+          env:
+            - name: "API_BASE_URL"
+              value: "api-gateway"
+      imagePullSecrets:
+        - name: dafne-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-neighborhood
+  namespace: dafne
+  labels:
+    service: frontend-neighborhood
+spec:
+  ports:
+    - name: http
+      port: 8087
+      protocol: TCP
+      targetPort: 8087
+  selector:
+    service: frontend-neighborhood
+  type: ClusterIP
+
