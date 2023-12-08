@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-auth
+  name: frontend-theme
   namespace: dafne
   labels:
-    service: frontend-auth
+    service: frontend-theme
 spec:
   selector:
     matchLabels:
-      service: frontend-auth
+      service: frontend-theme
   template:
     metadata:
       labels:
-        service: frontend-auth
+        service: frontend-theme
     spec:
       containers:
         - image: git.haw-hamburg.de:5000/dafne/frontend/frontend-prod/theme:latest
-          name: frontend-auth
+          name: frontend-theme
           ports:
             - containerPort: 8085
               protocol: TCP
@@ -29,10 +29,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-auth
+  name: frontend-theme
   namespace: dafne
   labels:
-    service: frontend-auth
+    service: frontend-theme
 spec:
   ports:
     - name: http
@@ -40,6 +40,6 @@ spec:
       protocol: TCP
       targetPort: 8085
   selector:
-    service: frontend-auth
+    service: frontend-theme
   type: ClusterIP
 
