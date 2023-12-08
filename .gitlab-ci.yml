@@ -33,6 +33,64 @@ variables:
 # BUILDERNAME: $SERVICE_NAME-$APP_NAME-builder
 # CONTEXTNAME: $SERVICE_NAME-$APP_NAME0-context
 
+# create_image_container:
+#   extends: .create_image
+#   stage: dockerize
+#   image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:24.0.3
+#   only:
+#     - main
+#   services:
+#     - docker:24.0.3-dind
+#   tags:
+#     - dind
+#     - docker
+#   variables:
+#     APP_NAME: "dafne"
+#     IMAGE_NAME: $CI_REGISTRY/$CI_PROJECT_PATH/$APP_NAME:latest
+#     BUILDERNAME: $SERVICE_NAME-$APP_NAME-builder
+#     CONTEXTNAME: $SERVICE_NAME-$APP_NAME0-context
+#   after_script:
+#     - docker buildx rm $BUILDERNAME
+
+# create_image_dafne:
+#   extends: .create_image
+#   stage: dockerize
+#   image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:24.0.3
+#   only:
+#     - main
+#   services:
+#     - docker:24.0.3-dind
+#   tags:
+#     - dind
+#     - docker
+#   variables:
+#     APP_NAME: "dafne"
+#     IMAGE_NAME: $CI_REGISTRY/$CI_PROJECT_PATH/$APP_NAME:latest
+#     BUILDERNAME: $SERVICE_NAME-$APP_NAME-builder
+#     CONTEXTNAME: $SERVICE_NAME-$APP_NAME0-context
+#   after_script:
+#     - docker buildx rm $BUILDERNAME
+
+# create_image_marketing:
+#   extends: .create_image
+#   stage: dockerize
+#   image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:24.0.3
+#   only:
+#     - main
+#   services:
+#     - docker:24.0.3-dind
+#   tags:
+#     - dind
+#     - docker
+#   variables:
+#     APP_NAME: "dafne"
+#     IMAGE_NAME: $CI_REGISTRY/$CI_PROJECT_PATH/$APP_NAME:latest
+#     BUILDERNAME: $SERVICE_NAME-$APP_NAME-builder
+#     CONTEXTNAME: $SERVICE_NAME-$APP_NAME0-context
+#   after_script:
+#     - docker buildx rm $BUILDERNAME
+
+
 create_image_auth:
   extends: .create_image
   stage: dockerize
@@ -56,7 +114,7 @@ create_image_auth:
 .create_image:
   script:
     - cd $APP_NAME
-    - apt install nodejs
+    - apk add --update nodejs npm
     - npm ci
     - npm run build
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
