@@ -22,3 +22,26 @@
 For typescript migration install 
 
 npm install --save-dev @babel/preset-typescript typescript @types/react @types/react-dom
+
+### Kubernetes deployment
+* needs access to the gitlab repository
+* simply do
+```shell
+./deploy.sh -b true -c $CONTEXT -s true frontend frontend-prod
+```
+to build and deploy every pod of the frontend.
+* Each pod can be individually build from within its directory:
+```shell
+cd auth
+usage: ./deploy.sh [-h | --help] [Optional -b] [Optional -c] [Optional -d] [Optional -t] <service_group> <service_name>
+    -b = buildoption           the option of build image from Repo can be true or false default=false
+    -c = context               kubectl context to deploy to, default=dafne@k8.smsy.haw-hamburg.de (production)
+    -d = deploy_file           the filename for the file which will be deployed default=deploy.yml / deploy_minikube.yml
+    -s = substitute            this option defines if you want to substitute filename with context default=false
+    -t = tag                   the tag if you want to build an image deafult=latest
+    service_group              the path of the service for docker, e.g [experiments/]
+    service_name               the name of the service to deploy
+
+./deploy.sh -a auth -b true -c $CONTEXT frontend frontend-prod
+```
+* if `-c minikube` and `-s true` are set, the deployment will happen on your local machine.
