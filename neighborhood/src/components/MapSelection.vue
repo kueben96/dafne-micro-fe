@@ -205,7 +205,7 @@ async function sendPolygonSelection(polygonGeoJSON) {
             return data;
         } else {
             console.error('Error in sendPolygonSelection:', response);
-            window.dispatchEvent(new CustomEvent('neighborhood', {
+            window.dispatchEvent(new CustomEvent('jobCreated', {
                 detail:
                 {
                     header: "Error occured " + response.status,
@@ -217,7 +217,7 @@ async function sendPolygonSelection(polygonGeoJSON) {
         }
     } catch (error) {
         console.log("error in polygonselection", error)
-        window.dispatchEvent(new CustomEvent('neighborhood', {
+        window.dispatchEvent(new CustomEvent('jobCreated', {
             detail:
             {
                 header: "Error occured",

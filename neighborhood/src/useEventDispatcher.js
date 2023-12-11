@@ -9,7 +9,7 @@ export function useEventDispatcher() {
       header,
       message,
     };
-    window.dispatchEvent(new CustomEvent('neighborhood', { detail: eventDetail.value }));
+    window.dispatchEvent(new CustomEvent('jobCreated', { detail: eventDetail.value }));
   };
 
   return {

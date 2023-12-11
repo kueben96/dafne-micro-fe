@@ -35,11 +35,11 @@ const NeighborhoodApp = () => {
             }
         };
 
-        window.addEventListener('neighborhood', handleJobCreated);
+        window.addEventListener('jobCreated', handleJobCreated);
 
         return () => {
             // Clean up the event listener when the component unmounts
-            window.removeEventListener('neighborhood', handleJobCreated);
+            window.removeEventListener('jobCreated', handleJobCreated);
         };
     }, []);
 
