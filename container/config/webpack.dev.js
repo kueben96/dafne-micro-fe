@@ -32,9 +32,12 @@ const devConfig = {
             shared: {
                 ...packageJson.dependencies,
                 react: {
-                    // eager: true,
-                    requiredVersion: false,
                     singleton: true,
+                    requiredVersion: packageJson.dependencies.react,
+                },
+                "react-dom": {
+                    singleton: true,
+                    requiredVersion: packageJson.dependencies["react-dom"],
                 },
             }
         })

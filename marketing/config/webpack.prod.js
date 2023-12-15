@@ -25,7 +25,20 @@ const prodConfig = {
             exposes: {
                 './MarketingApp': './src/bootstrap'
             },
-            shared: packageJson.dependencies,
+            shared: {
+                ...deps,
+                react: {
+                    singleton: true,
+                    requiredVersion: deps.react,
+                },
+                'react-dom': {
+                    requiredVersion: deps["react-dom"],
+                    singleton: true,
+                },
+                '@mui/material': {
+                    singleton: true
+                }
+            }
         })
     ]
 }

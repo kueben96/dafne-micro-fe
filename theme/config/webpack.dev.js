@@ -11,9 +11,6 @@ const devConfig = {
 
         port: 8085,
     },
-    // resolve: {
-    //     modules: ["src", "node_modules"],
-    // },
     output: {
         uniqueName: 'theme',
         publicPath: 'http://localhost:8085/',
@@ -33,18 +30,18 @@ const devConfig = {
                 },
                 shared: {
                     ...deps,
-                    react: {
-                        singleton: true,
-                        requiredVersion: deps.react,
-                    },
-                    'react-dom': {
-                        requiredVersion: deps["react-dom"],
-                        singleton: true,
-                    },
-                    // '@mui/material': {
+                    // react: {
                     //     singleton: true,
-                    //     requiredVersion: deps["@mui/material"]
-                    // }
+                    //     requiredVersion: deps.react,
+                    // },
+                    // 'react-dom': {
+                    //     requiredVersion: deps["react-dom"],
+                    //     singleton: true,
+                    // },
+                    '@mui/material': {
+                        singleton: true,
+                        requiredVersion: deps["@mui/material"]
+                    }
                 }
             }
         ),
