@@ -30,13 +30,13 @@ const prodConfig = {
                 neighborhood: `neighborhood@${domain}/neighborhood/latest/remoteEntry.js`,
             },
             shared: {
-                ...deps,
+                ...packageJson.dependencies,
                 react: {
                     singleton: true,
-                    requiredVersion: deps.react,
+                    requiredVersion: packageJson.dependencies.react,
                 },
                 'react-dom': {
-                    requiredVersion: deps["react-dom"],
+                    requiredVersion: packageJson.dependencies["react-dom"],
                     singleton: true,
                 },
                 '@mui/material': {
