@@ -53,7 +53,21 @@ const devConfig = {
             exposes: {
                 './DafneApp': './src/bootstrap'
             },
-            shared: packageJson.dependencies,
+            shared: {
+                ...packageJson.dependencies,
+                react: {
+                    singleton: true,
+                    requiredVersion: packageJson.dependencies.react,
+                },
+                'react-dom': {
+                    requiredVersion: packageJson.dependencies["react-dom"],
+                    singleton: true,
+                },
+                '@mui/material': {
+                    singleton: true,
+                    requiredVersion: packageJson.dependencies["@mui/material"]
+                }
+            }
         }),
         new DashboardPlugin({
             versionStrategy: `${Date.now()}`,

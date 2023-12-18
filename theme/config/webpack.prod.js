@@ -24,7 +24,20 @@ const prodConfig = {
                 './theme': './src/shared-theme',
                 './palette': './src/shared-palette',
             },
-            shared: packageJson.dependencies,
+            shared: {
+                ...packageJson.dependencies,
+                react: {
+                    singleton: true,
+                    requiredVersion: packageJson.dependencies.react,
+                },
+                'react-dom': {
+                    requiredVersion: packageJson.dependencies["react-dom"],
+                    singleton: true,
+                },
+                '@mui/material': {
+                    singleton: true
+                }
+            }
         })
     ]
 }

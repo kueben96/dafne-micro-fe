@@ -9,7 +9,8 @@ import Layout from '../Layout';
 import JobDetailPage from '../pages/DashboardPage/JobsView/JobDetailPage';
 import DataViewComponent from '../pages/DashboardPage/DataView';
 import JobsView from '../pages/DashboardPage/JobsView';
-
+import MicroFrontendErrorBoundary from '../utils/MicroFrontendErrorBoundary';
+import { CircularProgress } from '@mui/material';
 
 const NeighborhoodLazy = React.lazy(() => import('../pages/NeighborhoodApp'));
 
@@ -65,9 +66,11 @@ export const routes = [
             {
                 path: 'use-case/neighborhood',
                 element:
-                    <React.Suspense fallback={<div>Loading...</div>}>
-                        <NeighborhoodLazy />
-                    </React.Suspense>
+                    <MicroFrontendErrorBoundary>
+                        <React.Suspense fallback={<CircularProgress />}>
+                            <NeighborhoodLazy />
+                        </React.Suspense>
+                    </MicroFrontendErrorBoundary>
             }
         ],
     },

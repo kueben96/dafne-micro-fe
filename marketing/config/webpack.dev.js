@@ -50,10 +50,17 @@ const devConfig = {
             shared: {
                 ...packageJson.dependencies,
                 react: {
-                    // eager: true,
-                    requiredVersion: false,
+                    singleton: true,
+                    requiredVersion: packageJson.dependencies.react,
+                },
+                'react-dom': {
+                    requiredVersion: packageJson.dependencies["react-dom"],
                     singleton: true,
                 },
+                '@mui/material': {
+                    singleton: true,
+                    requiredVersion: packageJson.dependencies["@mui/material"]
+                }
             }
         }),
         new DashboardPlugin({

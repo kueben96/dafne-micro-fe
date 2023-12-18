@@ -29,7 +29,20 @@ const prodConfig = {
                 theme: `theme@${domain}/theme/latest/remoteEntry.js`,
                 neighborhood: `neighborhood@${domain}/neighborhood/latest/remoteEntry.js`,
             },
-            shared: packageJson.dependencies,
+            shared: {
+                ...packageJson.dependencies,
+                react: {
+                    singleton: true,
+                    requiredVersion: packageJson.dependencies.react,
+                },
+                'react-dom': {
+                    requiredVersion: packageJson.dependencies["react-dom"],
+                    singleton: true,
+                },
+                '@mui/material': {
+                    singleton: true
+                }
+            }
         })
     ]
 }

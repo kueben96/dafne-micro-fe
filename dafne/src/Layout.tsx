@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AppBarHeader from './components/Header'
 import DafneDrawer from './components/DafneDrawer'
-import { CssBaseline, Theme, ThemeProvider } from '@mui/material'
+import { CssBaseline, Theme, ThemeProvider, createTheme, CircularProgress } from '@mui/material'
 import { styled } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import Notification from './components/Notification';
@@ -25,13 +25,16 @@ const Main = styled('main')(
 const Layout = () => {
 
     const [isNavOpen, setIsNavOpen] = useState(true);
+    const defaultTheme = createTheme({});
+    const [theme, setTheme] = useState(defaultTheme);
+
 
     const handleNavToggle = () => {
         setIsNavOpen(!isNavOpen);
     };
 
-    const [theme, setTheme] =
-        React.useState(null);
+    // const [theme, setTheme] =
+    //     React.useState(null);
 
     useEffect(() => {
         let isMounted = true; // This flag tracks whether the component is mounted
@@ -55,9 +58,7 @@ const Layout = () => {
 
     if (!theme) {
         return (
-            <div>
-                Loading theme...
-            </div>
+            <CircularProgress />
         );
     }
 

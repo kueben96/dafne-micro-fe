@@ -55,6 +55,9 @@ const devConfig = {
                     requiredVersion: deps["react-dom"],
                     singleton: true,
                 },
+                '@mui/material': {
+                    singleton: true
+                }
             }
         }),
         new DashboardPlugin({
