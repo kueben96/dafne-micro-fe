@@ -18,46 +18,15 @@ const App = () => {
             navigate('/login');
         }
     };
-    const [theme, setTheme] =
-        React.useState(null);
-
-
-    React.useEffect(() => {
-        import('theme/theme')
-            .then((sharedTheme) =>
-                setTheme(
-                    sharedTheme.default
-                ),
-            )
-            .catch((error) =>
-                console.error(
-                    'Error loading shared theme',
-                    error
-                )
-            );
-    }, []);
-
-
-    if (!theme) {
-        return (
-            <div>
-                Loading theme...
-            </div>
-        );
-    }
-
-    if (theme) {
-        console.log(theme)
-    }
 
     return (
-        <ThemeProvider theme={theme}>
-            <Routes >
-                <Route index element={<Navigate to={"/login"} />} />
-                <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
-                <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
-            </Routes>
-        </ThemeProvider>
+        // <ThemeProvider theme={theme}>
+        <Routes >
+            <Route index element={<Navigate to={"/login"} />} />
+            <Route path="/login" element={<LoginPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+            <Route path="/signup" element={<SignupPage isLoginMode={isLoginMode} onToggleMode={handleToggleMode} />} />
+        </Routes>
+        // </ThemeProvider>
     )
 }
 

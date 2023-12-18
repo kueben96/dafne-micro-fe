@@ -48,7 +48,7 @@ const LoginForm = () => {
         <Box sx={formContainerStyles}>
             <LockOpenIcon sx={{
                 fontSize: 90,
-                color: theme.palette.gray.light,
+                color: theme.palette.gray?.light ?? 'gray',
                 position: 'absolute',
                 top: theme.spacing(2),
                 right: theme.spacing(0)
