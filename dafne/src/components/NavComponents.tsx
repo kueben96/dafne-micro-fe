@@ -166,7 +166,7 @@ const NavComponents = () => {
         icon={<LightbulbOutlinedIcon />}
         text="Use Case Explorer"
         children={<div>
-          <ChildListItem text="Neighborhood Generation" path={'use-case/neighborhood'} isActive={false} />
+          <ChildListItem text="Neighborhood Generation" path={'/use-case/neighborhood'} isActive={pathname === '/use-case/neighborhood'} />
         </div>} isActive={false} />
       <IconListItem icon={<ExtensionOutlinedIcon />} text="Contribute" isActive={false} />
       <IconListItem icon={<ArticleOutlinedIcon />} text="Documentation" isActive={false} />
