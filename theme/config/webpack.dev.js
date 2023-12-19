@@ -28,21 +28,21 @@ const devConfig = {
                     './palette': './src/shared-palette',
                     './ReactButton': './src/Button',
                 },
-                shared: {
-                    ...deps,
-                    // react: {
-                    //     singleton: true,
-                    //     requiredVersion: deps.react,
-                    // },
-                    // 'react-dom': {
-                    //     requiredVersion: deps["react-dom"],
-                    //     singleton: true,
-                    // },
-                    '@mui/material': {
-                        singleton: true,
-                        requiredVersion: deps["@mui/material"]
-                    }
-                }
+                // shared: {
+                //     ...deps,
+                //     // react: {
+                //     //     singleton: true,
+                //     //     requiredVersion: deps.react,
+                //     // },
+                //     // 'react-dom': {
+                //     //     requiredVersion: deps["react-dom"],
+                //     //     singleton: true,
+                //     // },
+                //     '@mui/material': {
+                //         singleton: true,
+                //         requiredVersion: deps["@mui/material"]
+                //     }
+                // }
             }
         ),
         new HtmlWebpackPlugin({

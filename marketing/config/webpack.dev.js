@@ -27,21 +27,21 @@ const devConfig = {
             remotes: {
                 theme: 'theme@http://localhost:8085/remoteEntry.js',
             },
-            shared: {
-                ...packageJson.dependencies,
-                react: {
-                    singleton: true,
-                    requiredVersion: packageJson.dependencies.react,
-                },
-                'react-dom': {
-                    requiredVersion: packageJson.dependencies["react-dom"],
-                    singleton: true,
-                },
-                '@mui/material': {
-                    singleton: true,
-                    requiredVersion: packageJson.dependencies["@mui/material"]
-                }
-            }
+            // shared: {
+            //     ...packageJson.dependencies,
+            //     react: {
+            //         singleton: true,
+            //         requiredVersion: packageJson.dependencies.react,
+            //     },
+            //     'react-dom': {
+            //         requiredVersion: packageJson.dependencies["react-dom"],
+            //         singleton: true,
+            //     },
+            //     '@mui/material': {
+            //         singleton: true,
+            //         requiredVersion: packageJson.dependencies["@mui/material"]
+            //     }
+            // }
         }),
         new HtmlWebpackPlugin({
             template: './public/index.html'

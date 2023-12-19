@@ -69,7 +69,7 @@ const AppBarHeader: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDraw
           </IconButton>
           <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { console.log('User Info Clicked') }}>
             <IconButton>
-              <Avatar sx={{ width: 30, height: 30 }} alt="User" src="/avatar.jpg" />
+              <Avatar sx={{ width: 30, height: 30 }} alt="User" />
             </IconButton>
             {user &&
               <Typography variant="body1">{user?.firstName + ' ' + user?.lastName}</Typography>

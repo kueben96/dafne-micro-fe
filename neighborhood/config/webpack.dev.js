@@ -37,7 +37,7 @@ const devConfig = {
             remotes: {
                 theme: 'theme@http://localhost:8085/remoteEntry.js',
             },
-            shared: packageJson.dependencies
+            // shared: packageJson.dependencies
         })
     ]
 }

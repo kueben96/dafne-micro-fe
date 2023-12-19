@@ -26,20 +26,20 @@ const devConfig = {
             exposes: {
                 './AuthApp': './src/bootstrap'
             },
-            shared: {
-                ...deps,
-                react: {
-                    singleton: true,
-                    requiredVersion: deps.react,
-                },
-                'react-dom': {
-                    requiredVersion: deps["react-dom"],
-                    singleton: true,
-                },
-                '@mui/material': {
-                    singleton: true
-                }
-            }
+            // shared: {
+            //     ...deps,
+            //     react: {
+            //         singleton: true,
+            //         requiredVersion: deps.react,
+            //     },
+            //     'react-dom': {
+            //         requiredVersion: deps["react-dom"],
+            //         singleton: true,
+            //     },
+            //     '@mui/material': {
+            //         singleton: true
+            //     }
+            // }
         }),
         new HtmlWebpackPlugin({
             template: './public/index.html'

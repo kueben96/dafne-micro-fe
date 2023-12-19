@@ -29,17 +29,17 @@ const devConfig = {
                 auth: 'auth@http://localhost:8082/remoteEntry.js',
                 dafne: 'dafne@http://localhost:8083/remoteEntry.js',
             },
-            shared: {
-                ...packageJson.dependencies,
-                react: {
-                    singleton: true,
-                    requiredVersion: packageJson.dependencies.react,
-                },
-                "react-dom": {
-                    singleton: true,
-                    requiredVersion: packageJson.dependencies["react-dom"],
-                },
-            }
+            // shared: {
+            //     ...packageJson.dependencies,
+            //     react: {
+            //         singleton: true,
+            //         requiredVersion: packageJson.dependencies.react,
+            //     },
+            //     "react-dom": {
+            //         singleton: true,
+            //         requiredVersion: packageJson.dependencies["react-dom"],
+            //     },
+            // }
         })
     ]
 }
