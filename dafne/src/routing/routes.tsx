@@ -64,7 +64,7 @@ export const routes = [
                 element: <ReproductionPage />
             },
             {
-                path: 'use-case/neighborhood',
+                path: '/use-case/neighborhood',
                 element:
                     <MicroFrontendErrorBoundary>
                         <React.Suspense fallback={<CircularProgress />}>
